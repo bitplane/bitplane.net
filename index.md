@@ -1,6 +1,6 @@
 Hey, looks like I've got a website again!
 
-* UNDERC~1.GIF UNDERC~1.GIF UNDERC~1.GIF
+* UNDERC\~1.GIF UNDERC\~1.GIF UNDERC\~1.GIF
 
 
 ## Elsewhere
