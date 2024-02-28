@@ -1,16 +1,5 @@
-Hey, looks like I've got a website again!
 
-* UNDERC\~1.GIF UNDERC\~1.GIF UNDERC\~1.GIF
-
-
-## Elsewhere
-
-* [YouTube](https://youtube.com/bitplane)
-
-
-## Projects
-
-### Python dev things
+## Python dev things
 
 * [example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
@@ -21,7 +10,7 @@ Hey, looks like I've got a website again!
 * [py9](https://github.com/bitplane/py9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
 
-### Command line
+## Command line
 
 * [uh-halp](/uh-halp) -
   AI helper for the shell.
@@ -30,7 +19,7 @@ Hey, looks like I've got a website again!
 * [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
 
-### Hax
+## Hax
 
 * [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) - 
   Generate proveably random numbers using a smoke alarm and a webcam.
