@@ -8,11 +8,11 @@ with infrared LEDs stuck on the front. Pointing my trusty Xbox remote at my
 camera, I was surprised to see the light from my remote show up blue.
 
 
-![clock 1](./infrared/clock-1.jpg) ![clock 2](./infrared/clock-2.jpg)
+![clock 1](clock-1.jpg) ![clock 2](clock-2.jpg)
 
 blurred piccies using digital zoom
 
-![p800 1](./infrared/p800-1.jpg) ![p800 2](./infrared/p800-2.jpg)
+![p800 1](p800-1.jpg) ![p800 2](p800-2.jpg)
 
 Much better snaps with the flashlight propped up 6ft away
 
@@ -57,7 +57,7 @@ battery in and out. I taped mine on the back.
 Next you'll want to strip and then coil wires around a few times like a spring.
 They'll need to push against the back of the case.
 
-![tis springy, see?](./infrared/springy.jpg)
+![tis springy, see?](springy.jpg)
 
 ## The case
 
@@ -66,7 +66,7 @@ could drill, but I'm messy), poke lengths of wire through them and line them
 up. Strip and tape the wires making sure there's no tape where they line up
 with the coils on the battery side.
 
-![backmod](./infrared/backmod-1.jpg)
+![backmod](backmod-1.jpg)
 
 ## The bulb and switch
 
@@ -75,7 +75,7 @@ iron and welded the microswitch. Solder the switch to one of the wires on the
 outside, solder the bulb on. Put the case back together and test out your
 phone torch!
 
-![Let there be light!](./infrared/backmod-2.jpg)
+![Let there be light!](backmod-2.jpg)
 
 ## The Results
 

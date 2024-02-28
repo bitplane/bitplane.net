@@ -43,7 +43,7 @@ help and the sunshine threatening to return and dry everything out. People saile
 through the camp down to the bogwash, it'd all be okay. Get back to the business
 of getting wasted and winging it, sorting things out as they showed up.
 
-[![rafting video](./glasto/glasto-2005.jpg)](https://www.youtube.com/watch?v=7SJU741EVpE)
+[![rafting video](glasto-2005.jpg)](https://www.youtube.com/watch?v=7SJU741EVpE)
 
 That's our gazeebo right there.
 
