@@ -1,5 +1,18 @@
+# Software
 
-## Python dev things
+I started programming when I was 6 or 7 years old, before I could read and
+write. This sounds like a lie, but it was actually possible at the time - on
+the ZX Spectrum you'd press one key and it'd type out an entire keyword, and
+you'd need to actually do this in order to load a game. By sticking a line
+number in front of it, the command would be saved as a program, which you
+could write to tape later on.
+
+Almost 40 years later I'm still at it, and still enjoy it too. Here's some of
+the things I've managed to index.
+
+## GitHub repos
+
+### Python dev things
 
 * [example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
@@ -10,7 +23,7 @@
 * [py9](https://github.com/bitplane/py9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
 
-## Command line
+### Command line
 
 * [uh-halp](/uh-halp) -
   AI helper for the shell.
@@ -19,7 +32,7 @@
 * [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
 
-## Hax
+### Hax
 
 * [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) - 
   Generate proveably random numbers using a smoke alarm and a webcam.
@@ -56,3 +69,16 @@ anymore.
   I worked on this for a couple of years, made the GUI editor, Linux font
   generator, some file format loaders, grass and clouds scene nodes, console
   renderer, impostors and a bunch of other fun stuff.
+
+## Language index
+
+ * [amos](amos)
+ * [basic](basic)
+ * [c](c)
+ * [c++](c++)
+ * [mirc](mirc)
+ * [python](python)
+ * [php](php)
+ * [ruby](ruby)
+ * [vb](vb)
+
