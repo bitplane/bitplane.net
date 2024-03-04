@@ -10,7 +10,6 @@ have come years later, or I might add an index to stuff years later.
 
 ## CURRENT\_YEAR
 
-
 * [2024](2024)
 * [2023](2023)
 * [2022](2022)
