@@ -72,13 +72,14 @@ anymore.
 
 ## Language index
 
- * [amos](amos)
- * [basic](basic)
- * [c](c)
- * [c++](c++)
- * [mirc](mirc)
- * [python](python)
- * [php](php)
- * [ruby](ruby)
- * [vb](vb)
+ * [amos](amos) - Games and stuff for the Amiga
+ * [bash](bash) - Shell rebourne
+ * [basic](basic) - The 8-bit days. ZX BASIC, Amstrad CPC 464/6128
+ * [c](c) - "High level", they said...
+ * [c++](c++) - Mostly Irrclicht Engine stuff
+ * [mirc](mirc) - mIRC scripting in the days of IRC
+ * [python](python) - My weapon of choice
+ * [php](php) - Personal Home Page?
+ * [ruby](ruby) - Some Rails Projects
+ * [vb](vb) - Visual Basic 6, VBA, VBS
 
