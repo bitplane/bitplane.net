@@ -1,4 +1,4 @@
-* [ratm](bash for Xmas number 1!)
+* [bash for Xmas number 1!](ratm)
 
 * [2009-08-06 - Irrlicht 1.5.1 released](08/irrlicht-1.5-1-released)
 * [2009-07-22 - Be Internet rebranding fiasco](07/be-internet-rebranded)
