@@ -23,9 +23,11 @@ it.
 
 Some old things are here:
 
+ * [temper1 driver](https://github.com/bitplane/temper)
+   - Temperature sensor logger for Linux
  * [Animal, Vegetable, Mineral](avm) - Everyone's first linked list.
  * [banner](banner) - sysv banner program for the Amiga
  * [curs](curs) - ncurses-like cursor control for MS DOS batch file menus
- * [sfv_dll](sfv_dll) - a DLL for Windows / VB6, for computing CRC32s
+ * [sfv dll](sfv-dll) - a DLL for Windows / VB6, for computing CRC32s
  * [textrot](textrot) - 3D rotating text for EGA graphics
- * [wayback_zip] - Fix zips downloaded from wayback machine
+ * [wayback zip](waybac-zip) - Fix zips downloaded from wayback machine
