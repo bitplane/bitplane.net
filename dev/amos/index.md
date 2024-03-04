@@ -96,6 +96,7 @@ which they mostly weren't.
   all the code was there, actually creating content requires a pipeline and
   artists and is extremely hard work. And that's not the fun bit if you're a
   programmer.
-* Scrawler - Jimmy White's Whirlwind Snooker had this cool effect where it
-  drew letters on the screen as if someone was drawing them by hand. So I
-  made a tool that would record and play them back.
+* [Scrawler](scrawler) - Jimmy White's Whirlwind Snooker had this cool effect
+  where it drew letters on the screen as if someone was drawing them by hand.
+  So I made a tool that would record and play them back, ended up porting it
+  to DOS and Windows too.
