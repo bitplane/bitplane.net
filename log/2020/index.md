@@ -1,0 +1,4 @@
+* [2020-05-09 - [bad idea] Bank of Darknet](05/bank-of-darknet)
+* [2020-05-07 - [bad idea] Laser Hat](05/laser-hat)
+* [2020-03-01 - [idea] Shazam Radio Compression](03/shazam-compression)
+* [2020-02-01 - [idea] Deepfake Video Call Compression](02/deepfake-compression)
