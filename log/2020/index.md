@@ -2,3 +2,4 @@
 * [2020-05-07 - [bad idea] Laser Hat](05/laser-hat)
 * [2020-03-01 - [idea] Shazam Radio Compression](03/shazam-compression)
 * [2020-02-01 - [idea] Deepfake Video Call Compression](02/deepfake-compression)
+* [2020-01-17 - [idea] Rating By Order](01/rating-by-order)
