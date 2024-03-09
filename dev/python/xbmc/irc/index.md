@@ -11,14 +11,14 @@ I think this was the first IRC client that I wrote, although I used a library
 for it I did know a fair bit about it by that point thanks to [mIRC](/dev/mirc)
 scripting.
 
-Here's some screenshots I managed to salvage from the wayback machine
+Here's some screenshots I managed to salvage from the wayback machine. Note the
+crap taste in music in the images because I wanted it to be popular (it wasn't).
 
+![2](2.jpg)
 
-![2](2.png)
+![3](3.jpg)
 
-![3](3.png)
-
-![4](4.png)
+![4](4.jpg)
 
 And here's [the code](xbmcirc014.rar), in a RAR file, as it was back then.
 
