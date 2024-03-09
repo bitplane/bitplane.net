@@ -1,10 +1,15 @@
-Hey, looks like I've got a website again!
+# 🚧🚧 UNDERC\~1.GIF 🚧🚧
 
-## UNDERC\~1.GIF
+  📎\<Hey, it looks like you're writing a website!)
 
-* [blog](./log) - 
-  shouting into the bitbucket.
-* [dev](./dev) - 
-  software should be free as in beard.
-* [videos](https://youtube.com/bitplane) -
-  I'll index these eventually.
+Slowly transferring old content from the internet archive, git,
+and maybe even floppy disks.
+
+* [log](log) - 
+  Shouting into the bitbucket.
+* [dev](dev) - 
+  Software should be free as in beard.
+* [media](mnt) -
+  Multi
+* [doc](doc) -
+  Writings
