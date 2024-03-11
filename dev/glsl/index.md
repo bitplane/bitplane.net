@@ -1,16 +1,15 @@
 # GLSL / HLSL
 
 Graphics shader languages are pretty fun to program in, pity I didn't do
-more of it to be honest. And I can't see any code anywhere in my archives.
+more of it to be honest. 
 
-# Comic Book Shader
+I can't see any code anywhere in my archives, but here's some videos:
 
+## Comic Book Shader
 
-[![comic shader](comic.jpg)](https://www.youtu.be/tt2NqS99nmg)
+[![comic shader](comic.jpg)](https://youtu.be/tt2NqS99nmg)
 
+## Clouds
 
-# Clouds
-
-
-[![cloud shader](clouds.jpg)](https://www.youtu.be/S-zvSDu1iPE)
+[![cloud shader](clouds.jpg)](https://youtu.be/S-zvSDu1iPE)
 

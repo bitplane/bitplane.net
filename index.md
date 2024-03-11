@@ -5,6 +5,8 @@
 Slowly transferring old content from the internet archive, git,
 and maybe even floppy disks.
 
+During this time, links will be unstable.
+
 * [log](log) - 
   Shouting into the bitbucket.
 * [dev](dev) - 
