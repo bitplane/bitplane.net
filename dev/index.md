@@ -77,6 +77,7 @@ anymore.
  * [basic](basic) - The 8-bit days. ZX BASIC, Amstrad CPC 464/6128
  * [c](c) - "High level", they said...
  * [c++](c++) - Mostly Irrclicht Engine stuff
+ * [glsl](glsl) - OpenGL Shader Language
  * [mirc](mirc) - mIRC scripting in the days of IRC
  * [python](python) - My weapon of choice
  * [php](php) - Personal Home Page?
