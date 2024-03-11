@@ -76,16 +76,16 @@ which they mostly weren't.
   (R.I.P.). In a similarly tragic vein, we also made a single level of a game
   "Nuts, Andrew Hazelnuts", starring self-confessed nut-case Andrew Hazeldon,
   who also died in a car crash in early adulthood.
-* Matchstick Man - Crap graphics, single player, made entirely by me. But it's
-  a game that I actually finished and it worked. I was really proud of it at
-  the time.
-* NSLE - The Benson Bros got their hands on a digital camera that took those
-  mini VHS tapes, while Browney had a digitizer that, if used with a VHS player
-  with enough heads to pause it without streaks, could actually capture stills
-  from the video. So we made a Lethal Enforcers clone over the course of a
-  couple of weekends. Black and white of course. And Jay took his shoes off
-  between parts of the rolling animation and we didn't realise until after
-  filming, had to draw it back on in DPaint.
+* [Matchstick Man](matchstick-man) - Crap graphics, single player, made
+  entirely by me. But it's a game that I actually finished and it worked. I was
+  really proud of it at the time.
+* [NSLE](nsle) - The Benson Bros got their hands on a digital camera that took
+  those mini VHS tapes, while Browney had a digitizer that, if used with a VHS
+  player with enough heads to pause it without shaking or streaks, could
+  actually capture stills from the video. So we made a Lethal Enforcers clone
+  over the course of a couple of weekends. Black and white of course. And Jay
+  took his shoes off between parts of the rolling animation and we didn't
+  realise until after filming, had to draw it back on in DPaint.
 * Circular GUI elements - I remember being introduced to Pythagoras's Theorem
   in an early algebra test, and realising it could be used to make circular
   collision detection. So I memorized the formula and used it to make a bunch
