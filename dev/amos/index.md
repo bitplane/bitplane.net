@@ -69,12 +69,13 @@ which they mostly weren't.
 * QAB - A Galaga type game with a sprite-swapping twist that we don't talk
   about in this day and age for fear of being cancelled on grounds of homophobia
   and crassness. We were kids though, it was funny at the time.
-* Thrusts - A 3 player game that just wasn't fast enough to be the Gravity Force
-  2 that we wanted it to be. Matt and Jay Benson made the sprites I think.
-* Eggit - A Dizzy-remake starring an old friend, Stephen Edgar (R.I.P.). In a
-  similarly tragic vein, we also made a single level of a game "Nuts, Andrew
-  Hazelnuts", starring self-confessed nut-case Andrew Hazeldon, who also died
-  in a car crash in early adulthood.
+* [Thrusts](thrusts) - A 3 player game that just wasn't fast enough to be the
+  Gravity Force 2 that we wanted it to be. Matt and Jay Benson made the sprites
+  I think.
+* [Eggit](eggit) - A Dizzy-remake starring an old friend, Stephen Edgar
+  (R.I.P.). In a similarly tragic vein, we also made a single level of a game
+  "Nuts, Andrew Hazelnuts", starring self-confessed nut-case Andrew Hazeldon,
+  who also died in a car crash in early adulthood.
 * Matchstick Man - Crap graphics, single player, made entirely by me. But it's
   a game that I actually finished and it worked. I was really proud of it at
   the time.

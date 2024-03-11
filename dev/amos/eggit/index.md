@@ -38,5 +38,5 @@ I'm well proud of this game because I "invented" loads of stuff, like:
   is huge because of this. Maybe it's too big, but I can fill in some of the empty
   bits later on. (spoiler: I didn't)
 
-You can download the game [here](eggit.gif)
+You can download the game [here](eggit.rar)
 
