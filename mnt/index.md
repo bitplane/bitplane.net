@@ -8,3 +8,5 @@ fight for the cause.
 * Tacotron 2 Voices
 * Book Scanning
 * [DeOldify](ai/deoldify)
+* [Karaoke](ai/karaoke)
+
