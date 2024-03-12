@@ -15,6 +15,8 @@ programming.
   - Loading figlet fonts on the console device.
 * [grass](grass)
   - A grass patch scene node, used in a few popular games.
+* [GUI Editor](gui)
+  - The GUI editor for Irrlicht
 * [ico-loader](ico-loader)
   - Load Windows icon and cursor files in your Irrlicht app.
 * [irrvaders](irrvaders)
