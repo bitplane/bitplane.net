@@ -1,11 +1,9 @@
 # CBatchingMesh
 
-A mesh that batches its children up. 
+![screenshot](batcher.jpg)
 
 [demo](CBatchingMesh.zip) |
 [src](https://sourceforge.net/p/irrext/code/HEAD/tree/trunk/extensions/scene/IMesh/CBatchingMesh)
-
-
 
 ## CBatchingMesh v 0.2
 
