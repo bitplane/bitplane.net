@@ -9,6 +9,7 @@
 * [2023-04-18 - [idea] pitch-perfection](04/pitch-perfection)
 * [2023-04-18 - [idea] music-and-language](04/music-and-language)
 * [2023-04-18 - [idea] educate-ai](04/educate-ai)
+* [2023-04-12 - GOD SAVE THE KING](https://youtu.be/uJmsnzfhSGo)
 * [2023-03-13 - [idea] great-brain-robbery](03/great-brain-robbery)
 * [2023-03-12 - [idea] joy-of-oblivion](03/joy-of-oblivion)
 * [2023-03-10 - [idea] crackable-chat](03/crackable-chat)
