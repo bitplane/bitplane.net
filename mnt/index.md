@@ -7,4 +7,4 @@ fight for the cause.
 * OpenStreetMap
 * Tacotron 2 Voices
 * Book Scanning
-
+* [DeOldify](ai/deoldify)
