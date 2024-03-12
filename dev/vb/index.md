@@ -10,7 +10,8 @@ Here's some stuff I made in it over the years:
 * [2d23d](2d23d) - VB6 app to turn pixel art to voxels.
 * [auto-nudge-repeater](auto-nudge-repeater) - Annoy your friends over MSN!
 * [batnball](batnball) - A very very bad breakout style game in VB6
-* [collapsedirs](collapsedirs) - Flatten 
+* [collapsedirs](collapsedirs) - Flatten a filesystem
+* [deansy](deansy) - Region calls for a prank popup
 * [dat2url](dat2url) - Piracy helper from back when that was rife.
 * [deansy](deansy) - A bit of office fun.
 * [file2bmp](file2bmp) - Mail filter evasion, because anarchy.
