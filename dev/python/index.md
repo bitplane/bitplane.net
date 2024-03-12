@@ -19,3 +19,4 @@ that's still fair comment.
 
  * [XBMC IRC](xbmc)
  * [Google Remote Desktop Search](rgds)
+ * favicon to png
