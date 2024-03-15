@@ -1,14 +1,12 @@
 # Software
 
-I started programming when I was 6 or 7 years old, before I could read and
-write. This sounds like a lie, but it was actually possible at the time - on
-the ZX Spectrum you'd press one key and it'd type out an entire keyword, and
-you'd need to actually do this in order to load a game. By sticking a line
-number in front of it, the command would be saved as a program, which you
-could write to tape later on.
+I started programming [as a kid](basic), and have enjoyed it for about 40 years
+or so. Less than a decade left before I lose my memory, this set of pages acts
+as less volatile storage, if not for code then at least a bit of a record of
+the projects I've worked on.
 
-Almost 40 years later I'm still at it, and still enjoy it too. Here's some of
-the things I've managed to index.
+Note there's a lot of stuff and this is ongoing, so it'll be a while before
+all the links work.
 
 ## GitHub repos
 
