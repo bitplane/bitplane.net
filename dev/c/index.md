@@ -30,4 +30,7 @@ Some old things are here:
  * [curs](curs) - ncurses-like cursor control for MS DOS batch file menus
  * [sfv dll](sfv-dll) - a DLL for Windows / VB6, for computing CRC32s
  * [textrot](textrot) - 3D rotating text for EGA graphics
- * [wayback zip](waybac-zip) - Fix zips downloaded from wayback machine
+ * [wayback zip](wayback-zip) - Fix zips downloaded from wayback machine
+
+During my professional life, I used LoadRunner a lot. So it's probably
+worth [writing something about that](loadrunner) for the sake of history.

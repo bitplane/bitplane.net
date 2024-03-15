@@ -20,3 +20,11 @@ that's still fair comment.
  * [XBMC IRC](xbmc)
  * [Google Remote Desktop Search](rgds)
  * favicon to png
+
+## Commercial stuff
+
+* For BetFair, I used [funkload](https://github.com/nuxeo/funkload) for
+  performance testing and submitted a couple of bug fixes and made some pretty
+  nice results visualization/reporting/diffing tools for CI. All that survives
+  is the bug report.
+
