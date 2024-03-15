@@ -19,7 +19,7 @@ character and pressing a button in Keyword input mode would insert that
 character and it'd be displayed as the command you wanted, in this case
 `LOAD`.
 
-![keyboard](spectrum.webp)
+![keyboard](zx-buttons.webp)
 
 `LOAD` was *conveniently* located on the J key. But that wasn't enough to load
 a game, nope, you also had to pass a parameter - the name of the program you
@@ -54,17 +54,32 @@ bedroom programmers who couldn't even read and write yet, then later went on to
 seems, `INKEY$` is an imaginary cartoon octopus that would be at home next to
 the text SEE INLAY FOR DETAILS.
 
-## First steps with your spectrum
+## Learning before the Internet
 
+Before we had the web, we had books and magazines. 
 
+### First steps with your spectrum
 
-## Input Magazine
+![first steps](first-steps.webp)
 
-## Gareth's UDG planner
+### Input Magazine
+
+## It's machine code
+
+![I wish... it's machine code](machine-code.webp)
+
+### Gareth's UDG planner
+
+todo: making sprites on the ZX spectrum
+
+### PEEKing and POKEing
+
+todo: Uncle Phil's letter deciphering the PRINTAT command
 
 ## Other BASICs
 
 
 ## THIS IS WHAT THE ENEMY LOOKS LIKE
 
+todo: rant about Microsoft and what they did to us
 
