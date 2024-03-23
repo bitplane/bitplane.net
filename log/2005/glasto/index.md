@@ -63,7 +63,7 @@ somewhat recluse, but without a family history of schizophrenia.
 So, as the weekend went on I endured a descent into madness, I paced round in
 constant panic thinking I was being followed, and if I went to sleep I'd get
 stabbed. Food was off the menu as poisoned, everyone hated me for being so
-jolly at a time of such misery. They didn't, and for the next 6 months steet
+jolly at a time of such misery. They didn't, and for the next 6 months street
 signs and car registration plates weren't taunting me with unknown, ominous
 warnings. I had to stop smoking weed as was now an amplifier of an almost
 permenent psychosis, as is the insomnia that made me good at computers.

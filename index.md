@@ -1,4 +1,9 @@
-# 🚧🚧 UNDERC\~1.GIF 🚧🚧
+# bitplane.net
+
+Hi, this is the 4th and hopefully final iteration of [my](/home/gaz) personal
+website.
+
+## 🚧🚧 UNDERC\~1.GIF 🚧🚧
 
   📎\<Hey, it looks like you're writing a website!)
 
