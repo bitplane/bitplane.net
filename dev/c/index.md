@@ -21,16 +21,20 @@ While C is fast, debugging on the Amiga at the time was pretty unforgiving
 compared to AMOS, so it was years later before I considered myself any good at
 it.
 
+Some more recent/useful things:
+
+* [obfuspace](https://github.com/bitplane/obfuspace)
+* [temper1 driver](https://github.com/bitplane/temper)
+  - Temperature sensor logger for Linux
+
 Some old things are here:
 
- * [temper1 driver](https://github.com/bitplane/temper)
-   - Temperature sensor logger for Linux
- * [Animal, Vegetable, Mineral](avm) - Everyone's first linked list.
- * [banner](banner) - sysv banner program for the Amiga
- * [curs](curs) - ncurses-like cursor control for MS DOS batch file menus
- * [sfv dll](sfv-dll) - a DLL for Windows / VB6, for computing CRC32s
- * [textrot](textrot) - 3D rotating text for EGA graphics
- * [wayback zip](wayback-zip) - Fix zips downloaded from wayback machine
+* [Animal, Vegetable, Mineral](avm) - Everyone's first linked list.
+* [banner](banner) - sysv banner program for the Amiga
+* [curs](curs) - ncurses-like cursor control for MS DOS batch file menus
+* [sfv dll](sfv-dll) - a DLL for Windows / VB6, for computing CRC32s
+* [textrot](textrot) - 3D rotating text for EGA graphics
+* [wayback zip](wayback-zip) - Fix zips downloaded from wayback machine
 
 During my professional life, I used LoadRunner a lot. So it's probably
 worth [writing something about that](loadrunner) for the sake of history.
