@@ -12,11 +12,11 @@ and maybe even floppy disks.
 
 During this time, links will be unstable.
 
-* [log](log) - 
+* [log](log)
   Shouting into the bitbucket.
-* [dev](dev) - 
+* [dev](dev)
   Software should be free as in beard.
-* [media](mnt) -
+* [media](mnt)
   Multi
-* [doc](doc) -
-  Writings
+* [home](home/gaz)
+  volatile dumping ground
