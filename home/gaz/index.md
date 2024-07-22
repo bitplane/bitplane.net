@@ -1,5 +1,5 @@
 # /home/gaz/
 
-* [.ssh](.ssh)
+* [.ssh](_ssh)
 * [Documents](Documents)
 * [Pictures](Pictures)

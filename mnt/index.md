@@ -5,8 +5,7 @@ fight for the cause.
 
 * Wikimedia Commons
 * OpenStreetMap
-* Tacotron 2 Voices
+* [Tacotron 2 Voices](https://archive.org/details/gd_tacotron2)
 * Book Scanning
 * [DeOldify](ai/deoldify)
 * [Karaoke](ai/karaoke)
-
