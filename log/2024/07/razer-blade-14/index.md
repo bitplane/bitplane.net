@@ -4,7 +4,11 @@ Got a new laptop 'cause my old XPS-13 has a dead battery and the charger. It's
 the
 [2023 Razer Blade 14](https://www.amazon.co.uk/Razer-Blade-14-Display-Windows/dp/B09Q6D7H7V).
 
-| Component       | Specification                                               |
+![pic](laptop.webp)
+
+Specs:
+
+| ?               | =                                                           |
 |-----------------|-------------------------------------------------------------|
 | **Display**     | 14" IPS, 2560 x 1440, 165Hz                                 |
 | **CPU**         | AMD Ryzen 9 5900HX                                          |
@@ -19,14 +23,14 @@ the
 | **Weight**      | 1.78 kg                                                     |
 | **Dimensions**  | 319.7 x 220 x 16.8 mm                                       |
 | **PSU**         | 230W power brick, supports USB-C PD charging (up to 100W)   |
-|-----------------|-------------------------------------------------------------|
 
-Initial thoughts:
+## Thoughts
 
 * Windows 11 is *okay*, it's not great, but it's not bad either.
   That said I'll get Linux running on it ASAP.
-* Battery life isn't great compared to the M1 Mac I've been using for work. But
-  it is a bit of a monster and I've spent time installing stuff.
+* Battery life isn't great compared to the M1 Mac I've been using for work.
+  But it is a bit of a monster and I've most spent time installing stuff, so
+  it might get better.
 * Charger port is on the wrong side as usual, but thankfully it supports USB PD
   as well as the chunky charger, so I can charge it with the client's Mac
   charger (like my phone, vape, Switch, headset, e-reader etc).
@@ -40,9 +44,9 @@ Initial thoughts:
   Not that the 32GB I had on my XPS was ever used, it'd slow to a crawl long
   before I'd filled it.
 * Cooling seems to be better than the XPS. Well, anything is better than Dell's
-  cooling. But there's time for the fans to get clogged up yet, so time will
-  tell.
-* [![PassMark Benchmark](https://www.passmark.com/baselines/V10/images/215083212996.png)](https://www.passmark.com/baselines/V11/display.php?id=215083212996)
+  cooling. It's not that loud, but it does get toasty.
+  There's time for the fans to get clogged up yet, so time will tell.
+* PassMark score was pretty good:
+  [![PassMark Benchmark](https://www.passmark.com/baselines/V10/images/215083212996.png)](https://www.passmark.com/baselines/V11/display.php?id=215083212996)
 
-Overall I'm pretty happy with it.
-
+Overall I'm happy with it.
