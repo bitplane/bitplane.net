@@ -2,8 +2,7 @@ Can software be conscious?
 ================================================================================
 
 NOTE: This developed into something a bit better. It took a while though.
-  see: [/doc/metaphysics](/doc/metaphysics)
-
+  see: [philosophy](/home/gaz/Documents/naval-gazing/)
 
 No. Why would logic gates in silicon feel like anything other than electrified
 silicon?

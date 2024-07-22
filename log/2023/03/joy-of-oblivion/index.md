@@ -1,6 +1,6 @@
 # new consciousness idea
 
-NOTE: this was part of the seeds for [this](/doc/consciousness)
+NOTE: this was part of the seeds for [this](/home/gaz/Documents/naval-gazing/)
 
 Start from Budnik's Realistic Monism idea - subjective experience
 is the totality of existence. And t is the direction through the
