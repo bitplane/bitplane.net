@@ -1,1 +1,1 @@
-* [2011-01-27 - Desktop++](https://imgur.com/sKtTz)
+* [2011-01-27 - Compiz desktop](compiz)
