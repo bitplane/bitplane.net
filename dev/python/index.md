@@ -8,23 +8,71 @@ Python's probably my favourite language and has been a constant throughout my
 adult life. Back then I would have called it a modern BASIC, and I still think
 that's still fair comment.
 
-## Command line apps
+## Python dev things
 
+* [example-python-project](https://github.com/bitplane/example-python-project) -
+  A template for Python projects developed in vim/vscode on Mac/Linux.
 
+### Command line apps
 
-## Python libraries
+* [uh-halp](/uh-halp) -
+  AI helper for the shell.
+* [merge-files](/merge-files) -
+  Universal file converter, extractor, merger. Not quite, but might be one day.
+* [ienv](/ienv) -
+  Brutalize your venvs by symlinking them together.
+* [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
+  Use Optical Character Recognition to convert a PDF to TXT.
 
+## Libraries
+
+* [arranges](/arranges) -
+  Represent ranges as strings in Pydantic.  
+* [interpolist](interpolist) -
+  A list that fills in missing values.
+* [py9](https://github.com/bitplane/py9) -
+  A Python implementation of Nokia's T9, from back when that was a thing.
+
+### Hax
+
+* [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
+  Generate proveably random numbers using a smoke alarm and a webcam.
+* [bubbler](https://github.com/bitplane/bubbler) -
+  Count bubbles as your beer or wine ferments.
+* [temper](https://github.com/bitplane/temper) -
+  Linux driver for temper digital thermometers.
+* [connection-limiter](https://github.com/bitplane/connection-limiter) -
+  The hackiest way to limit connections per user to a back-end behind nginx.
 
 ## Older projects
 
- * [XBMC IRC](xbmc)
- * [Google Remote Desktop Search](rgds)
- * favicon to png
+* [XBMC IRC](xbmc) -
+  an IRC MP3 downloader for XBMC (Kodi).
+* [Google Remote Desktop Search](rgds) -
+  Search your local machine remotely.
+* favicon to png -
+  Convert faviocons to PNGs on the fly.
+* [Scrapers](scrapers) -
+  Numerous data scrapers for various sites.
 
-## Commercial stuff
+## Commercial stuff
 
-* For BetFair, I used [funkload](https://github.com/nuxeo/funkload) for
+* For [First Response Finance](https://www.firstresponsefinance.co.uk/), I
+  wrote a framework for delivering Python machine learning models as APIs
+  to Azure.
+
+* At [William Hill](https://www.williamhill.com/) I wrote note and coin
+  acceptor drivers for multiple devices, and a bunch of other things for a
+  gaming machine.
+
+* For [Betconnect](https://www.betconnect.com/), I did a bunch of performance
+  engineering for their exchange software.
+
+* Someone on bitcointalk paid me 6 Bitcoins to write a data scraper for a
+  violin sale site. I wish I'd kept them, they were worth $36 at the time.
+
+* At BetFair, I used [funkload](https://github.com/nuxeo/funkload) for
   performance testing and submitted a couple of bug fixes and made some pretty
-  nice results visualization/reporting/diffing tools for CI. All that survives
-  is the bug report.
-
+  nice results visualization/reporting/diffing tools for perf tools in CI.
+  Didn't get permission to share the reporting tools, so all that survives is
+  a bug report!
