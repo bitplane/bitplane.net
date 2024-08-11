@@ -56,7 +56,7 @@ the text SEE INLAY FOR DETAILS.
 
 ## Learning before the Internet
 
-Before we had the web, we had books and magazines. 
+Before we had the web, we had books and magazines.
 
 ### First steps with your spectrum
 
@@ -78,8 +78,10 @@ todo: Uncle Phil's letter deciphering the PRINTAT command
 
 ## Other BASICs
 
+* CPC 464/6128
+* BBC Micro/Master
+* C64
 
 ## THIS IS WHAT THE ENEMY LOOKS LIKE
 
 todo: rant about Microsoft and what they did to us
-

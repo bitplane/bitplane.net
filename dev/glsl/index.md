@@ -1,7 +1,7 @@
 # GLSL / HLSL
 
 Graphics shader languages are pretty fun to program in, pity I didn't do
-more of it to be honest. 
+more of it to be honest.
 
 Here's some videos:
 
@@ -16,4 +16,3 @@ Here's some videos:
 Can't find the code for this one
 
 [![cloud shader](clouds.jpg)](https://youtu.be/S-zvSDu1iPE)
-
