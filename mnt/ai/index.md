@@ -2,3 +2,5 @@
 
 
 
+* [Karaoke](karaoke)
+* [de-oldify](deoldify)

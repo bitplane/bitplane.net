@@ -24,8 +24,8 @@ it.
 Some more recent/useful things:
 
 * [obfuspace](https://github.com/bitplane/obfuspace)
-* [temper1 driver](https://github.com/bitplane/temper)
-  - Temperature sensor logger for Linux
+* [temper1 driver](https://github.com/bitplane/temper) -
+  Temperature sensor logger for Linux
 
 Some old things are here:
 
