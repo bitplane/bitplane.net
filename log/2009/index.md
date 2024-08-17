@@ -1,4 +1,4 @@
-* [bash for Xmas number 1!](ratm)
+* [bash for Xmas number 1!](12/ratm)
 
 ... https://web.archive.org/web/20161020072516/http://bitplane.net/2009/12/
 ... https://web.archive.org/web/20161020072117/http://bitplane.net/2009/11/

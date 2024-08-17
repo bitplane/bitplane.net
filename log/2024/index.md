@@ -1,3 +1,4 @@
+* [2024-08-17 - Found my old Microsoft badge](08/lsa-vs-tvp)
 * [2024-07-19 - New laptop](07/razer-blade-14)
 * [2024-06-03 - Encoding arbitrary data into whitespace (C)](06/obfuspace)
 * [2024-03-11 - [idea] automated upgrades](03/pytest-upgrade)

@@ -1,7 +1,7 @@
 # AMOS BASIC
 
 AMOS was the Amiga port of STOS, a BASIC for the Atari ST written in assembly
-language by François Lionet. Not just a procedural programming language, but a 
+language by François Lionet. Not just a procedural programming language, but a
 batteries-included IDE that supported the emerging multimedia pipelines of the
 day - Deluxe Paint as a pixel painter and animation tool, and the array of
 audio editors and trackers, and later on even supported 3D graphics created by
@@ -20,9 +20,7 @@ shit.
 
 The 90s were a beautiful time for multimedia. Moving from a time where hard
 drives were an expensive luxury, low bandwidth cassette tape and low capacity
-floppy disks ruled the day. Then the CD-ROM came along with 800 times as much
-space, we went from an era of extreme resource constraints to one of egregious
-bloat and wastefulness. 
+floppy disks ruled the day.
 
 In the good old days graphics and audio weren't just created, they were
 engineered. You'd carefully craft the palette as well as paint the pixels,
@@ -44,7 +42,10 @@ to fake more than 2 channels, and the snare drum would take up more space than
 everything else combined.
 
 Then the CD came along and the public were wowed by the voice acting and full
-motion video, while we looked on in utter disgust.
+motion video, while we looked on in utter disgust. With 800 times as much space,
+we went from an era of extreme resource constraints to one of egregious bloat
+and wastefulness. From one of precision engineering and craftmanship, to
+filler.
 
 ## Some projects
 
