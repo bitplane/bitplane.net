@@ -1,22 +1,18 @@
 # bitplane.net
 
-Hi, this is the 4th and hopefully final iteration of [my](/home/gaz) personal
-website.
+📎\<Hey, it looks like you're writing a website!)
 
 ## 🚧🚧 UNDERC\~1.GIF 🚧🚧
 
-  📎\<Hey, it looks like you're writing a website!)
+This is the 4th and hopefully final iteration of [my](/home/gaz) personal
+website.
 
-Slowly transferring old content from the internet archive, git,
-and maybe even floppy disks.
+Slowly transferring old content from the internet archive, git, and maybe even
+floppy disks.
 
-During this time, links will be unstable.
+During this time, links outside /log/ and /dev/ will be unstable.
 
-* [log](log)
-  Shouting into the bitbucket.
-* [dev](dev)
-  Software should be free as in beard.
-* [media](mnt)
-  Multi
-* [home](home/gaz)
-  volatile dumping ground
+## Recent posts
+
+* [The Fylde coast vs The Thames Valley](/log/2024/08/lsa-vs-tvp)
+* []
