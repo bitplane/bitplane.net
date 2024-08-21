@@ -2,8 +2,8 @@
 
 While looking for my old Amiga floppy disks, I found my security pass from my
 first visit to Microsoft. It brings back memories, so it's as good an excuse as
-any to reflect on the trends and who I was at the time, to bang on about the
-North/South divide and class consciousness.
+any to reflect on the trends and who I was 22 years ago, to bang on about the
+North/South divide and shoehorn in some class consciousness.
 
 ## Lytham St Anne's
 
