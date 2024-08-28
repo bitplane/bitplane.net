@@ -13,10 +13,12 @@ it out of cubes in Wings3D, [like so](https://youtu.be/VXSu4dI-R3g) (that vid
 did have an MC Hammer loop as a soundtrack but was censored).
 
 If at the end it looks like it has promise, keep hold of it and make textures
-for the thing. If not, then it was a bit of practice. I only made a couple of
-okay ones, I'm a programmer art guy 🤷
+for the thing. If not, then it was a bit of practice. I only made a few half
+decent ones, I'm a programmer art guy.
 
-* [download](https://archive.org/item/gd_3D_models)
+I'll add more as I find them here:
+
+* [download](https://archive.org/details/gd_3D_models)
 
 ## Kiri Engine
 
@@ -27,4 +29,4 @@ Wanting to save them for after Roblox close them off, which will likely happen
 if they can put higher walls in their garden, I put them on the web here for
 others to use:
 
-* [download](https://archive.org/item/gd_3D)
+* [download](https://archive.org/details/gd_3D)
