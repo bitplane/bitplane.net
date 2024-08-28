@@ -18,7 +18,6 @@ the most modest hardware:
 [![rocks](rocks.jpg)<br>
 click for video](https://youtu.be/cPtzMCbLP9Y)
 
-
 Or flip the axis 90 degrees for cartoon rain:
 
 [![rain](rain.jpg)<br>
