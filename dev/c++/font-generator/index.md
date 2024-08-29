@@ -17,7 +17,14 @@ if you’re into that sort of thing!
 
 ![russian](russian.webp)
 
-I also made a tessellator for vector fonts, but this used the brute force and
-ignorance method and is still incomplete, it saves but lacks a loader. The
-font tool has been part of the Irrlicht distribution for a long time now, you
-can get it along with the source from the main website.
+I also made a tessellator for vector fonts, but it used the brute force and
+ignorance method and is forever incomplete; it saved but lacked a loader. The
+purpose of these was to convert vector or bitmap fonts into mesh buffers so they
+could be rendered in the 3D scene. Or extruded, rotated, apply shaders to them
+and so on, on devices that lacked font loading libraries (Irrlicht has some
+serious "not invented here" going on that makes it perfect for supporting
+oddball platforms)
+
+The font tool has been part of the Irrlicht distribution for a long time now,
+you can get it along with the source from the
+[project website](https://irrlicht.sf.net/).

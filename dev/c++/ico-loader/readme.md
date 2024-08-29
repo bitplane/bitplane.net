@@ -5,9 +5,9 @@ Engine graphics apps/games.
 
 Download: [CIcoLoader.zip](CIcoLoader.zip)
 
-Source online: 
-[link](https://sourceforge.net/p/irrext/code/HEAD/tree/trunk/extensions/io/IArchiveLoader/ICO/)
+Source online:
 
+[link](https://sourceforge.net/p/irrext/code/HEAD/tree/trunk/extensions/io/IArchiveLoader/ICO/)
 
 ## Docs
 
@@ -59,7 +59,7 @@ loaders to be able to read icons in all ICO files.
 
 // create an instance of the loader 
 io::CArchiveLoaderICO* icoLoader = 
-	new io::CArchiveLoaderICO(fs, driver);
+  new io::CArchiveLoaderICO(fs, driver);
 
 // add it to the filesystem
 fs->addArchiveLoader(icoLoader);
@@ -73,25 +73,24 @@ fs->addFileArchive("bitplane.ico");
 // and load an icon from it
 video::ITexture* tex = driver->getTexture("bitplane.ico.2.tga");
 
-
 -----------------------------------------------------------------
 3. Credits
 -----------------------------------------------------------------
 
 Written by Gaz Davidson (gaz@bitplane.net)
 
-Thanks to Wikipedia's page on icons for documenting the file 
+Thanks to Wikipedia's page on icons for documenting the file
 format.
 
-Thanks to GIMP's icon loader plugin source code, which was used 
-as a reference rather than copied, as I didn't want to adhere to 
-the GPL. Thanks to the guys in #GIMP for pointing me in the right 
+Thanks to GIMP's icon loader plugin source code, which was used
+as a reference rather than copied, as I didn't want to adhere to
+the GPL. Thanks to the guys in #GIMP for pointing me in the right
 direction.
 
-Thanks to www.axialis.com, where I stole SamplePNG.ico from. You 
+Thanks to www.axialis.com, where I stole SamplePNG.ico from. You
 don't have permission to use this icon!
 
-And of course thanks to the rest of the Irrlicht dev team, this 
+And of course thanks to the rest of the Irrlicht dev team, this
 code sits on top of Irrlicht.
 
 -----------------------------------------------------------------

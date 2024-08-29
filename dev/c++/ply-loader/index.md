@@ -6,7 +6,7 @@ the memory. It could possibly be made a bit faster by rewriting `atof`, but
 it's 3x quicker than Stanford's reference implementation, which I thought was
 pretty good for a lay-hacker without a computer science degree.
 
-It's included in Irrlciht, but it's here too in case that ever changes:
+It's included in Irrlicht, but it's here too in case that ever changes:
 
-[.cpp](CPLYMeshFileLoader.cpp) | 
+[.cpp](CPLYMeshFileLoader.cpp) |
 [.h](CPLYMeshFileLoader.h)

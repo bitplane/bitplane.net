@@ -1,9 +1,10 @@
 # Spheremap Renderer
 
-Rendering to a spheremap.
-1) render scene to cube sides
-2) render cubemap to texture (sides of hexahedral sphere)
-3) apply texture to mesh
+Rendering to a spheremap, for use in directional lighting effects.
+
+1. render the scene to the sides of a cube
+2. render cubemap to texture via a premade hexahedral sphere
+3. apply texture to mesh
 
 Step 2 must be done each time the camera is moved
 
@@ -12,4 +13,3 @@ Step 2 must be done each time the camera is moved
 (click for video)
 
 download: TODO
-
