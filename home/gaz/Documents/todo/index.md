@@ -21,19 +21,14 @@
   * in motion contest
   * mesh deformation contest
   * speed modelling
-    * ~~page~~
-    * ~~upload to archive.org~~
     * Need to find that chest.obj
 * Images
   * Steel gazing globe
-  * ~~Infrared phone camera~~
   * Old college black and white photos
   * Wikimedia commons
   * Microsoft PhotoSynth
 * Document life events
   * ZX Spectrum
-    * ~~INKEY$~~
-      * ~~Write to Carolyn Hughes again~~
     * UDG planner
     * The PRINT AT analysis
   * Amiga
@@ -50,7 +45,6 @@
   * Health and Safety Executive
   * DWP
     * Extreme BBQing
-    * ~~MS Visit~~
     * How to not do analysis
     * XBMC and modchips
   * Facilita Forecast
@@ -72,8 +66,8 @@
 * Get SVN backup from hard drive at Kath's
 * Amiga
   * Get Amiga hard drive from mum's with old Amiga games and software
-  * ~~Find floppy disks~~
   * Order USB floppy drive
+    * Ugh. Get a working Amiga floppy disk reader. Document the process.
 * Somehow get that ISA disk from the MS-DOS 8086 box
   * Vector 2d graphics engine
   * `curs`
@@ -82,7 +76,6 @@
   * Space invaders for XENIX; '99, might be on my Amiga though.
 * Digitize ZX Spectrum games
   * I think I only have one finished game, TUE.
-  * ~~Order a tape player~~
 * Old Linux machines
   * Decrypt XPS13 hard drive and see if there's anything there
   * Old machine from Microsoft days
@@ -90,4 +83,4 @@
 ## Data
 
 * Pull Mapillary images using the API and put them on archive.org.
-* ~~Kiri Engine 3D models~~
+
