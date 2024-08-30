@@ -14,6 +14,6 @@ The result was a fun game:
 
 As usual it contains no sounds, also due to its hurried nature the design
 is really awful. Someday I might refactor it and make the source code
-something to be proud of, but no promises here! You can grab a 
+something to be proud of, but no promises here! You can grab a
 [Windows binary](irrvaders.zip) if you just want to play it, which will be
 a lot more fun that reading the source.

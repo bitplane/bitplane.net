@@ -11,7 +11,6 @@ Source online:
 
 ## Docs
 
-
 ```txt
 -----------------------------------------------------------------
            Irrlicht .ICO & .CUR archive loader v1.0
