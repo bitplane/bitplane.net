@@ -6,4 +6,3 @@ your choice as your screensaver. Odd that this only just caught on 20 years
 later, it's the default on the Mac anyway.
 
 [download](WMPSCR.rar)
-

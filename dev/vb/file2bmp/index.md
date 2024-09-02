@@ -11,4 +11,3 @@ I had to XOR the files because the mail filter had got a bit better in the 3
 years since filestore.mdb
 
 [download](file2bmp.zip)
-

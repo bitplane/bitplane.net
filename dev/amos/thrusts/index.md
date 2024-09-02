@@ -7,4 +7,3 @@ Maybe 3 players on screen at once was too optimistic.
 [![screenshot](thrusts.gif)](https://youtu.be/qjaxq99wKQk)
 
 [download](thrusts_adf.zip)
-

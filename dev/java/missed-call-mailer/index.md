@@ -47,7 +47,6 @@ Every email sent by the system comes with an unsubscribe link, clicking this
 link will cause your email address and device ID to be deleted from the
 database. It will be like you never existed!
 
-
 ## dead
 
 So it wasn't popular, and Kath got a job that wasn't in a call center and
