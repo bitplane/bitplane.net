@@ -11,6 +11,7 @@ During this time, links will be unstable.
 
 Some posts and projects
 
+* [INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [The Fylde coast vs The Thames Valley](/log/2024/08/lsa-vs-tvp)
 * [Obfuspace: Encoding arbitrary data into whitespace](/log/2024/06/obfuspace)
 * [Cargo Cult Consciousness](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
