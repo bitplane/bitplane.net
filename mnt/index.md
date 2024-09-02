@@ -4,8 +4,7 @@ Free culture is kinda important. Over the years I've done what I can to help
 fight for the cause.
 
 * Wikimedia Commons
-* OpenStreetMap
-* Book Scanning
-* [DeOldify](ai/deoldify)
-* [Karaoke](ai/karaoke)
+* [Cartography](maps)
+* [Book Scanning](archtivism)
+* [Machine Learning](ai)
 * [3D Models](3d)
