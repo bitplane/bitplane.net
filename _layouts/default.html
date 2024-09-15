@@ -24,11 +24,11 @@
 <body>
     <header>
         <nav>
-            <a href="{{ '/' | relative_url }}">/</a> |
-            <a href="{{ '/log/' | relative_url }}">log</a> |
-            <a href="{{ '/dev/' | relative_url }}">dev</a> |
-            <a href="{{ '/home/' | relative_url }}">home</a> |
-            <a href="{{ '/mnt/' | relative_url }}">mnt</a>
+            <a href="/">bitplane.net</a>/{% assign url_parts = page.url | split: '/' %}{% assign path = "" %}{% for part in url_parts %}{% unless part == "" %}{% assign path = path | append: "/" | append: part %}<a href="{{ path }}">{{ part }}</a>{% unless forloop.last %}/{% endunless %}{% endunless %}{% endfor %}
+            [<a href="{{ '/log' | relative_url }}">log</a> |
+            <a href="{{ '/dev' | relative_url }}">dev</a> |
+            <a href="{{ '/home' | relative_url }}">home</a> |
+            <a href="{{ '/mnt' | relative_url }}">mnt</a>]
         </nav>
     </header>
     <main>
