@@ -6,4 +6,5 @@
 * [2024-06-03 - ⚒️ Encoding arbitrary data into whitespace (C)](06/obfuspace)
 * [2024-03-11 - 💡 automated upgrades](03/pytest-upgrade)
 * [2024-03-04 - 📝 favicon oops](03/favicon)
+* [2024-02-21 - 📝 bitplane.net v4.0](02/new-website)
 * [2024-02-03 - 📽️ How it's made - Reinforced Industrial Hose and Tube](02/one-or-more-reinforcement-layers)
