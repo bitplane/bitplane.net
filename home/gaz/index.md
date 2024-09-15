@@ -1,4 +1,4 @@
-# /home/gaz/
+# home
 
 * [.ssh](ssh)
 * [Documents](Documents)

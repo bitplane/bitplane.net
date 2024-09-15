@@ -9,13 +9,18 @@
 * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
-* Write up the Southport incident.
-  * Might be too soon for this. Dunno. It's still a bit fucking raw.
-* Perverse incentives in online dating
-  * ~~Write graph theory incentives.~~
-    * Get graphs Mermaid graphs working here.
-    * Syntax highlighting in general too.
-  * Finish the alternative idea section.
+* Articles:
+  * __The Southport incident.__
+    * Might be too soon for this. Dunno. It's still a bit fucking raw.
+  * __Perverse incentives in online dating__
+    * ~~Write graph theory incentives.~~
+      * Get graphs Mermaid graphs working here.
+      * Syntax highlighting too.
+    * Finish the alternative idea section.
+  * __Cap'n Fintan__
+    * 
+* Align project docs and site CSS
+  * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
 * Document more Irrlicht stuff
   * Rest of the C++ code projects
   * in motion contest
@@ -49,7 +54,7 @@
     * XBMC and modchips
   * Facilita Forecast
     * The price of ignorance.
-    * Littlewoods.
+    * Littlewoods: how to kill a community.
   * ...
 * Take back the web!
   * Write an article about IE6 and Microsoft, and why the Firefox campaign
@@ -66,8 +71,10 @@
 * Get SVN backup from hard drive at Kath's
 * Amiga
   * Get Amiga hard drive from mum's with old Amiga games and software
-  * Order USB floppy drive
-    * Ugh. Get a working Amiga floppy disk reader. Document the process.
+  * ~~Order USB floppy drive~~
+    * Ugh. Didn't work. Find something that does
+      * ~~Greaseweazle~~, ~~PSU~~, ~~disk drive~~, cable
+      * Document the process.
 * Somehow get that ISA disk from the MS-DOS 8086 box
   * Vector 2d graphics engine
   * `curs`
@@ -83,4 +90,3 @@
 ## Data
 
 * Pull Mapillary images using the API and put them on archive.org.
-

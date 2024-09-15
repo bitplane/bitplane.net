@@ -1,4 +1,4 @@
-# /home/gaz/Pictures/
+# Pictures
 
 * [misc](misc)
 * [me](me)

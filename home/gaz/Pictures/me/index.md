@@ -1,4 +1,4 @@
-# /home/gaz/Pictures/me
+# me
 
 ![2006 - gaz@home](2006_-_at_home.jpg)
 ![2007 - Littlewoods Shop Direct Group](200-_-_sumo_suit_at_littlewoods.jpg)
