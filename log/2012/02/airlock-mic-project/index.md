@@ -12,7 +12,7 @@ The first thing I did was break the plastic housing off the mic and exposed the
 sensor, I snipped off the headphone socket and taped up the rest. It’s not the
 prettiest bit of electrical tape you’re likely to see, but it does the job:
 
-![mic1](butchered-mic.webp) ![mic2](butchered-mic-2.webp)
+![mic1](butchered-mic-1.jpg) ![mic2](butchered-mic-2.jpg)
 
 I then taped the mic to the airlock roughly at the area where the bubbles will
 be, then taped the whole thing up to make it a bit more water-resistant.

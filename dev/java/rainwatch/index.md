@@ -25,3 +25,5 @@ I reverse engineered was eventually taken offline. I was due a cease and
 desist for abusing their flash API anyway so I never fixed it. And their
 new version wasn't as good as mine or the old flash app, which is a real
 shame. Oh well.
+
+If I find the source code I'll put it online here.

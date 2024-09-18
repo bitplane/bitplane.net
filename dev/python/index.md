@@ -37,7 +37,7 @@ that's still fair comment.
 
 * [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
-* [bubbler](https://github.com/bitplane/bubbler) -
+* [bubbler](/log/2012/02/airlock-mic-project) -
   Count bubbles as your beer or wine ferments.
 * [temper](https://github.com/bitplane/temper) -
   Linux driver for temper digital thermometers.
@@ -58,8 +58,8 @@ that's still fair comment.
 ## Commercial stuff
 
 * For [First Response Finance](https://www.firstresponsefinance.co.uk/), I
-  wrote a framework for delivering Python machine learning models as APIs
-  to Azure.
+  wrote an ML Ops inference and deployment framework for delivering Python + R
+  machine learning models as APIs to Azure.
 
 * At [William Hill](https://www.williamhill.com/) I wrote note and coin
   acceptor drivers for multiple devices, and a bunch of other things for a
@@ -67,6 +67,9 @@ that's still fair comment.
 
 * For [Betconnect](https://www.betconnect.com/), I did a bunch of performance
   engineering for their exchange software.
+
+* At [Sonocent](https://glean.co/), I wrote a BI platform to support business
+  experiments.
 
 * Someone on bitcointalk paid me 6 Bitcoins to write a data scraper for a
   violin sale site. I wish I'd kept them, they were worth $36 at the time.

@@ -23,7 +23,6 @@ Lists stuff here:
 
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [2024-08-17 - ✍️ Found my old Microsoft badge](log/2024/08/lsa-vs-tvp)
-* [2024-07-19 - ✍️ New laptop](log/2024/07/razer-blade-14)
 * [2024-06-03 - ⚒️ Encoding arbitrary data into whitespace (C)](log/2024/06/obfuspace)
 * [2021-10-19 - ✍️ Chester's Lego Strip Bar](log/2021/10/chest-er)
 * [2014-06-12 - ✍️ Naming is hard, dadding is harder](log/2014/jess)
@@ -32,7 +31,6 @@ Lists stuff here:
 * [2012-01-15 - ⚒️ TEMPer1 temperature sensor in Linux](log/2012/01/temper1-ubuntu)
 * [2012-01-06 - ⚒️ Irrlicht website in WordPress](log/2012/01/irrcliht-website-update)
 * [2012-01-05 - ✍️ 2011 in review](log/2012/01/2011)
-* [2011-01-03 - ⚒️ Anonypic and Microphone source drop](log/2011/01/anonypic-mic-source)
 * [2010-07-16 - ⚒️ anonypic](/dev/java/anonypic)
 * [2010-05-16 - ⚒️ Automatic favicon to PNG script](log/2010/05/favicon-to-png)
 * [2009-12-12 - ⚒️ Interpolated list class for Python](log/2009/12/interpolist)

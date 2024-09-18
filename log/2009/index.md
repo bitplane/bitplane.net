@@ -1,4 +1,4 @@
-* [2009-12-30 - 📝 Website update](12/website-update)
+* [2009-12-30 - 🌐 bitplane.net v4.0 (WordPress)](12/website)
 * [2009-12-14 - 📝 More Sidewiki Leaks](12/more-sidewiki-leaks)
 * [2009-12-12 - ⚒️ Interpolated list class for Python](12/interpolist)
 * [2009-12-06 - ✍️ Bash for Xmas number 1!](12/ratm)
