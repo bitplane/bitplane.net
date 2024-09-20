@@ -18,7 +18,6 @@
       * Syntax highlighting too.
     * Finish the alternative idea section.
   * __Cap'n Fintan__
-    * 
 * Align project docs and site CSS
   * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
 * Document more Irrlicht stuff
@@ -32,6 +31,7 @@
   * Old college black and white photos
   * Wikimedia commons
   * Microsoft PhotoSynth
+  * Drawings
 * Document life events
   * ZX Spectrum
     * UDG planner
@@ -55,7 +55,18 @@
   * Facilita Forecast
     * The price of ignorance.
     * Littlewoods: how to kill a community.
-  * ...
+  * Brum
+    * NHS LSP fraud
+  * Microsoft
+  * Leeds
+    * LBG
+    * CDS
+    * M7K
+    * NHS.D
+    * Hermes
+    * Sonocent
+  * Jess
+
 * Take back the web!
   * Write an article about IE6 and Microsoft, and why the Firefox campaign
     existed
@@ -73,7 +84,6 @@
   * Get Amiga hard drive from mum's with old Amiga games and software
   * ~~Order USB floppy drive~~
     * Ugh. Didn't work. Find something that does
-      * ~~Greaseweazle~~, ~~PSU~~, ~~disk drive~~, cable
       * Document the process.
 * Somehow get that ISA disk from the MS-DOS 8086 box
   * Vector 2d graphics engine
