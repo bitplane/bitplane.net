@@ -168,3 +168,9 @@ members_per_hr="http://chart.apis.google.com/chart?chtt=Members+per+hr&chs=600x3
  
 # I then create an HTML file from some templates and upload everything to my dump
 ```
+
+## Update
+
+We did it!
+
+![result](result.jpg)
