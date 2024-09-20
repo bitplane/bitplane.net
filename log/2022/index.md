@@ -6,6 +6,6 @@
 * [2022-11-02 - 💡 import p2pit](11/p2pit)
 * [2022-09-08 - 📽️ MediaWiki missed the mobile thing](https://youtu.be/Vmqfr8hZeK0)
 * [2022-09-02 - 🤖 DeOldify](/mnt/ai/deoldify)
-* [2022-06-09 - 📽️ Makeshift scales](https://youtu.be/6c3yHu1uwVo)
+* [2022-06-09 - 🤓 Makeshift scales](https://youtu.be/6c3yHu1uwVo)
 * [2022-02-26 - 💡 Schizoid Psyops](02/schizosis)
 * [2022-02-23 - 💡 `photorekd`](02/photorekd)

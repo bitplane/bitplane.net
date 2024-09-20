@@ -1,2 +1,2 @@
-* [2013-01-01 - 📝 When I accidentally broke Pioneer](01/pioneer)
+* [2013-01-01 - 💥 My first GitHub pull request](01/pioneer)
 
