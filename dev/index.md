@@ -31,6 +31,8 @@ all the links work.
   Universal file converter, extractor, merger. Not quite, but might be one day.
 * [🔡 ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
+* [🪈 benpipe](https://github.com/bitplane/benpipe) -
+  Convert bencoded data to JSON and back again.
 
 ### Hax
 
