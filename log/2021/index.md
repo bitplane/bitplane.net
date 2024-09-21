@@ -1,3 +1,5 @@
+# 📅 2021
+
 * [2021-10-19 - ✍️ Chester's Lego Strip Bar](10/chest-er)
 * [2021-10-12 - 📽️ Nasal Discrimination](https://youtu.be/tyM0Z0dSwSQ)
 * [2021-10-12 - 😆 GDPR Awareness](10/gdpr)

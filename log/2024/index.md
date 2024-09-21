@@ -1,3 +1,5 @@
+# 📅 2024
+
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](09/benpipe)
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [2024-08-31 - 💡 Twinstaller - social engineering UAC prompts](08/twinstaller)

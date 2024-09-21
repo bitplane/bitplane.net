@@ -1,7 +1,7 @@
-# benpipe
+# benpipe
 
 I've been mucking about with the idea of P2P, self-seeding Docker images
-[for a while now](../../../2022/12/ipfsos). The endgame being unprivilaged
+[for a while now](../../../2022/12/ipfsos). The endgame being unprivileged
 containers with encrypted IPFS mountpoints that are built from and self-host
 P2P.
 

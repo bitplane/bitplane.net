@@ -1,3 +1,5 @@
+# 📅 2022
+
 * [2022-12-17 - 💡 IPFS OS](12/ipfsos)
 * [2022-12-09 - 💡 Docker Pipeline Cache](12/docker-pipeline-cache)
 * [2022-11-06 - 💡 `git blog`](11/git-blog)

@@ -1,3 +1,5 @@
+# 📅 2012
+
 * [2012-11-21 - 😆 How's about that then?](11/stranger-danger)
 * [2012-10-07 - 📝 Yet another Glastonbury ticket fiasco](10/glastonbury-registration-2013/)
 * [2012-05-08 - 📝 On software aptitude tests](05/back-to-work)

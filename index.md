@@ -1,25 +1,20 @@
-# /
+# bitplane.net
 
 The 5th and hopefully final version of [my](/home/gaz) personal website.
 
 What's here?
 
-* [dev](dev) -
-  Programming projects
-* [log](log) -
-  index and writings
-* [home](home) -
-  stuff that doesn't have a home yet.
-* [mnt](mnt) -
-  External files
+* 📦 [/dev](dev)   - Programming projects
+* 📅 [/log](log)   - Index and writings
+* 🏠 [/home](home) - Stuff that doesn't have a home yet.
+* 🔌 [/mnt](mnt)   - External files
 
-Still transferring old content from the internet archive, git, floppy disks, old
-hard drives, phones and so on. Links may be unstable. See
-[to-do](/home/gaz/Documents/todo).
+Still transferring content from the internet archive, git, floppy disks, old
+hard drives, phones and so on.
 
-## [./log.sh](log.sh)
+Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
-Lists stuff here:
+## grep log
 
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](log/2024/09/benpipe)
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
@@ -54,7 +49,7 @@ Lists stuff here:
 * [2009-07-17 - 🌐 bitplane.net 4.0 (WordPress)](log/2009/07/new-layout)
 * [2009-07-06 - 📦 Irrlicht TAR reader](log/2009/06/tar-reader)
 * [2009-03-29 - 🤓 Milk Scanner](log/2009/03/milk-scanner)
-* [2008-07-09 - ☁️  Cloud Shader](/dev/glsl)
+* [2008-07-09 - ☁️ Cloud Shader](/dev/glsl)
 * [2007-10-24 - 📔 Comic Book Print Shader](/dev/glsl)
 * [2007-04-09 - ⚒️ Fix Wayback Zips](/dev/c/wayback-zip)
 * [2007-03-27 - 🌐 bitplane.net v3.0 (e107)](log/2007/03/website)
