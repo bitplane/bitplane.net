@@ -17,7 +17,7 @@ tool that could dump them to something more readable and back again.
 
 So I wrote one, and published it on pypi:
 
-```bash
+```shell
 $ pip install benpipe
 $ cat file.torrent | benpipe | benpipe > file2.torrent
 ```

@@ -26,7 +26,7 @@ To start logging your TEMPer1′s data in Ubuntu just
  $ make clean
  $ make
  # start logging!
- $ sudo ./log.sh &gt; temperature.log
+ $ sudo ./log.sh > temperature.log
 ```
 
 Now I’m just waiting for my USB clip-on-mic to arrive. Once it does I can log

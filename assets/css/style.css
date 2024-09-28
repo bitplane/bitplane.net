@@ -28,6 +28,6 @@ ul>li::after {
     color: #535353;
 }
 
-pre.code {
-    scrollbar-width: none;
+code {
+    overflow-x: unset;
 }
