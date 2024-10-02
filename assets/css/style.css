@@ -27,7 +27,3 @@ ul>li::after {
 .slash {
     color: #535353;
 }
-
-code {
-    overflow-x: unset;
-}
