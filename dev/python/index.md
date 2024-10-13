@@ -23,6 +23,8 @@ that's still fair comment.
   Brutalize your venvs by symlinking them together.
 * [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
+* [benpipe](https://github.com/bitplane/benpipe) -
+  Convert bencoded data to JSON and back again using stdin/stdout.
 
 ## Libraries
 
@@ -50,12 +52,15 @@ that's still fair comment.
   an IRC MP3 downloader for XBMC (Kodi).
 * [Google Remote Desktop Search](rgds) -
   Search your local machine remotely.
-* favicon to png -
-  Convert faviocons to PNGs on the fly.
+* [favicon to png](https://github.com/bitplane/favicon-to-png) -
+  Tiny script to convert favicons to PNGs on the fly and cache them.
 * [Scrapers](scrapers) -
   Numerous data scrapers for various sites.
 
 ## Commercial stuff
+
+* At NDA PROTECTED CLIENT, I've been writing bots and command line tools and
+  libraries in Python.
 
 * For [First Response Finance](https://www.firstresponsefinance.co.uk/), I
   wrote an ML Ops inference and deployment framework for delivering Python + R
@@ -70,6 +75,9 @@ that's still fair comment.
 
 * At [Sonocent](https://glean.co/), I wrote a BI platform to support business
   experiments.
+
+* At NHS Digital, I worked on the SPINE 2 project doing various things, probably
+  the biggest TDD Python codebase in the world.
 
 * Someone on bitcointalk paid me 6 Bitcoins to write a data scraper for a
   violin sale site. I wish I'd kept them, they were worth $36 at the time.

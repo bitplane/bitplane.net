@@ -36,7 +36,7 @@ all the links work.
 
 ### Hax
 
-* [🎲 schrodinger's rng](https://github.com/bitplane/schrodingers-rng) - 
+* [🎲 schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
 * [🍷 bubbler](https://github.com/bitplane/bubbler) -
   Count bubbles as your beer or wine ferments.
@@ -55,7 +55,7 @@ all the links work.
 ## Language index
 
 * [👾 amos](amos) - Games and stuff for the Amiga
-* [📜 bash](bash) - Shell rebourne
+* [📜 shell](sh) - Bourne again
 * [📺 basic](basic) - The 8-bit days. ZX BASIC, Amstrad CPC 464/6128
 * [🔧 c](c) - "High level", they said...
 * [🔨 c++](c++) - Mostly Irrlicht Engine stuff
