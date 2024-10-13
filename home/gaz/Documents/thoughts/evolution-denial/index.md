@@ -48,35 +48,34 @@ preferences and to amplify the force of will.
 
 It's a chooser, not a calculator.
 
-## Determinism is constrained choice
+## Determinism as constrained choice
 
-The existence of deterministic processes does not contradict the existence of
-free will. If the universe is made of stuff that follows laws, then, if you
-skip the philosophical hoop jumping and Best Correctness, you end up in with
-determinism.
+Let's imagine you could make a list of all possible situations, and in each one,
+you listed every possible action that could be taken. Because each action leads
+to another situation, you could connect them all together to make a flow chart
+of everything that is possible.
 
-If the universe is made of stuff that makes choices based on simple preferences,
-and a system within it enters a cycle where strongly preferred choices exist,
-then the system will naturally become deterministic.
+Inside this vast graph of possibility-space, there will be situations with
+endless options and others with none at all. Of the ones with none at all, some
+of them will never lead to another chance to choose. Those parts of the graph
+are paths to determinism in a universe of free will.
 
-That is to say, determinism works as a subset of free will, it's something that
-emerges due to constraints on choice.
+So determinism is constrained choice, a subset of free will, and will naturally
+arise in a universe that has freedom of choice. Free will, on the other hand,
+can't arise in a universe that doesn't have choices.
 
-Free will can't emerge in a deterministic system.
-
-Given that we know that brains with minds evolved (because we are them), and we
+Given that we know brains with minds evolved (because we are them), and we
 know that free will exists (because brains with minds minds evolved), then to
 argue that we live in a deterministic universe is to deny the fact of evolution.
 
 ## Software consciousness is mysticism
 
 There is no choice a piece of software can make that will change its outputs,
-because it exists in a deterministic system. We have structured the silicon in a
-way where its choices are constrained so it chooses to flip logic gates and run
-our programs.
+because it exists within a deterministic system. A chooser can choose to
+calculate, but a calculator cannot calculate to choose.
 
-For software to be conscious, you need to not only deny evolution, but believe
-in mathematics as the grantor of souls.
+For software to be conscious, you need to not only deny evolution and your own
+free will, but also believe that mathematics is the grantor of souls.
 
 This is akin to a religious belief, it's supernatural woo that is given far too
 much credence.
