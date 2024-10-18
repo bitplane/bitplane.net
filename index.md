@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-10-01 - ✍️ A common sense code of conduct](log/2024/10/fkin-cocs)
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](log/2024/09/benpipe)
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [2024-08-17 - ✍️ Found my old Microsoft badge](log/2024/08/lsa-vs-tvp)
@@ -68,7 +69,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2004-05-15 - 🪟 File 2 BMP](/dev/vb/file2bmp)
 * [2004-01-19 - 🌐 bitplane.net v1.0 (IFRAMEs)](log/2004/01/website)
 * [2003-11-11 - 🤖 fserver leech](/dev/mirc)
-* [2003-10-28 - 🪟 resize ocx](/dev/vb/resize)
+* [2003-10-28 - 🪟 resize.ocx](/dev/vb/resize)
 * [2002-01-02 - 🪟 SFV DLL for VB](/dev/c/sfv-dll)
 * [2001-06-10 - ⚒️ filestore.mdb](/dev/vb/filestore)
 * [2000-06-06 - 🪟 2d to 3d](/dev/vb/2d23d)
