@@ -1,12 +1,22 @@
 # ONBUILD COPY . /var/www/pwned/
 
-Titles should contain context, this one goes the extra mile and broadcasts it
-too!
+All good titles should contain context. This one goes the extra mile and
+broadcasts it too!
 
-Careful where your images are `FROM`, you might end up serving your .env files,
-.git/config, core dumps, log files, that customers.dat~ file you were messing
-with.
+If you didn't have enough good reasons to never build and push from your
+local repo, here's another:
 
-Unless you're sure your `.dockerignore` is absolute perfection, you might want
-to make a habit of never building and pushing from your local repo, just to be
-safe.
+A Dockerfile's `ONBUILD` lines are executed when building containers that depend
+on it.
+
+This means a rogue Docker image isn't just a runtime risk to all of its
+downstream dependencies, it can ransack *your* build dir while you're building
+it, adding files that aren't in your `.dockerignore` to the image that you then
+publish, and it can serve them back to the attacker.
+
+That sort of deliberate attack is quite unlikely, but it opens the avenue to
+accidental leaks too.  Unless you're sure you've ignored everything important,
+building locally could expose your .env files, .git/config, core dumps, log
+files, and that customers.dat~ file you were messing with too.
+
+🌈⭐
