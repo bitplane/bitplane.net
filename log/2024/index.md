@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-10-17 - 📝 Titles should contain context](10/from-me-to-you-to-everyone/)
 * [2024-10-01 - ✍️ A common sense code of conduct](10/fkin-cocs)
 * [2024-09-27 - 💡 Eyeballing training runs](09/visualistic-grokkability)
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](09/benpipe)
