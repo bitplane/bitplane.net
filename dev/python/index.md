@@ -29,11 +29,13 @@ that's still fair comment.
 ## Libraries
 
 * [arranges](/arranges) -
-  Represent ranges as strings in Pydantic.  
+  Represent ranges as strings in Pydantic.
 * [interpolist](interpolist) -
   A list that fills in missing values.
 * [py9](https://github.com/bitplane/py9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
+* [filefrag](https://github.com/bitplane/pyfilefrag) -
+  Python library to access Linux File Extents
 
 ### Hax
 
