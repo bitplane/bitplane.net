@@ -2,6 +2,7 @@
 
 * [2024-10-19 - 🐍 filefrag](10/filefrag)
 * [2024-10-17 - 📝 Titles should contain context](10/from-me-to-you-to-everyone/)
+* [2024-10-09 - 📜 pierdat - docker containers that host their own data](10/pierdat)
 * [2024-10-01 - ✍️ A common sense code of conduct](10/fkin-cocs)
 * [2024-09-27 - 💡 Eyeballing training runs](09/visualistic-grokkability)
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](09/benpipe)
