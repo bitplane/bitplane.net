@@ -219,18 +219,30 @@ like this, but at scale:
 
 ```mermaid
 graph TD;
-    Binder == "👍" ==> Fadwords;     linkStyle 0 stroke:green
-    Fadwords ==> You;                linkStyle 1 stroke:green
-    Fadwords ==> Me;                 linkStyle 2 stroke:green
-    Fadwords ==> Us[Our Friends];    linkStyle 3 stroke:green
-    Fadwords ==> Them[Other People]; linkStyle 4 stroke:green
+    Binder == "😀" ==> Fadwords;             linkStyle 0 stroke:green
+    Fadwords -- "😀" --> You;                linkStyle 1 stroke:green
+    Fadwords -- "😀" --> Me;                 linkStyle 2 stroke:green
+    Fadwords -- "😀" --> Us[Our Friends];    linkStyle 3 stroke:green
+    Fadwords -- "😀" --> Us[Our Friends];    linkStyle 4 stroke:green
+    Fadwords -- "😀" --> Us[Our Friends];    linkStyle 5 stroke:green
+    Fadwords == "😀" ==> Them[Other People]; linkStyle 6 stroke:green
+    Fadwords == "😀" ==> Them[Other People]; linkStyle 7 stroke:green
+    Fadwords == "😀" ==> Them[Other People]; linkStyle 8 stroke:green
 
-    Us --> You;                      linkStyle 5 stroke:green
-    Us --> Me;                       linkStyle 6 stroke:green
-    Them ==> Us;                     linkStyle 7 stroke:green
+    Us -- "😀" --> You;                      linkStyle 9 stroke:green
+    Us -- "😀" --> Me;                       linkStyle 10 stroke:green
+    Them == "😀" ==> Us;                     linkStyle 11 stroke:green
+    Them == "😀" ==> Us;                     linkStyle 12 stroke:green
+    Them == "😀" ==> Us;                     linkStyle 13 stroke:green
+    Them == "😀" ==> Us;                     linkStyle 14 stroke:green
 
-    You -. "👎" .-> Us;              linkStyle 8 stroke:red
-    Me -. "👎" .-> Us;               linkStyle 9 stroke:red
+    You -. "🤬" .-> Us;                      linkStyle 15 stroke:red
+    Me  -. "🤬" .-> Us;                      linkStyle 16 stroke:red
+
+    Us -- "😀" --> You;                      linkStyle 17 stroke:green
+    Us -- "😀" --> You;                      linkStyle 18 stroke:green
+    Us -- "😀" --> Me;                       linkStyle 19 stroke:green
+    Us -- "😀" --> Me;                       linkStyle 20 stroke:green
 ```
 
 You can't shout back at an advert, it puts its view into the minds of everyone
