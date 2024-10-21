@@ -17,8 +17,8 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 ## grep log
 
 * [2024-10-19 - 🐍 filefrag](log/2024/10/filefrag)
+* [2024-10-09 - 📜 pierdat - docker containers that host their own data](log/2024/10/pierdat)
 * [2024-10-01 - ✍️ A common sense code of conduct](log/2024/10/fkin-cocs)
-* [2024-10-?? - ⚒️ Self hosting Docker containers](log/2024/10/pierdat)
 * [2024-09-20 - 🐍 Converting between JSON and bencoding](log/2024/09/benpipe)
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [2024-08-17 - ✍️ Found my old Microsoft badge](log/2024/08/lsa-vs-tvp)
