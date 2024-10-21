@@ -1,8 +1,8 @@
 # Documents
 
-* [todo](todo) -
+* 📃 [todo](todo) -
   Site migration to-do list
-* [philosophy](thoughts) -
+* 📁 [philosophy](thoughts) -
   This will always be a work in progress.
-* [poetry](poetry) -
+* 📁 [poetry](poetry) -
   Not saying it's any good. But practice is good.

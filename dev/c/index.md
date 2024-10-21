@@ -23,9 +23,10 @@ it.
 
 Some more recent/useful things:
 
-* [obfuspace](https://github.com/bitplane/obfuspace)
-* [temper1 driver](https://github.com/bitplane/temper) -
-  Temperature sensor logger for Linux
+* 🕵️ [obfuspace](https://github.com/bitplane/obfuspace) -
+  convert arbitrary data into whitespace.
+* 🌡️ [temper1 driver](https://github.com/bitplane/temper) -
+  Temperature sensor logger for Linux.
 
 Some old things are here:
 

@@ -17,61 +17,61 @@ more boring, real things.
 
 Some games, none of any note.
 
-* [irrvaders](irrvaders) -
+* 👾 [irrvaders](irrvaders) -
   A space invaders game with a cylindrical coordinate system.
-* [jetpac](jetpac) -
+* 🚀 [jetpac](jetpac) -
   A remake of JetPac.
-* [jump or burn](jumporburn) -
+* 🔥 [jump or burn](jumporburn) -
   Ridiculously crap game made for a gaming contest.
-* [mines](mines) -
+* 💥 [mines](mines) -
   Minesweeper game.
-* [UFO game](ufo-game) -
+* 👽 [UFO game](ufo-game) -
   A game that Graeme and I never finished.
 
 ## Irrlicht Scene Nodes
 
 Things that make your world pretty
 
-* [axial-billboards](axial-billboards) -
+* 🧑‍🔧 [axial-billboards](axial-billboards) -
   Axis aligned billboards, like Mariokart on the SNES.
-* [batching-mesh](batching-mesh) -
+* 📦 [batching-mesh](batching-mesh) -
   A mesh that batches its children, so you can use fewer render calls.
-* [beam-scene-node](beam-scene-node) -
+* ⚡ [beam-scene-node](beam-scene-node) -
 * A screen-aligned beam effect. Basically a rod with a billboard on each end.
-* [clouds](clouds) -
+* ☁️ [clouds](clouds) -
   Clouds with recursive levels of detail.
-* [grass](grass) -
+* ☘️ [grass](grass) -
   A grass patch scene node, used in a few popular games.
-* [impostors](impostors) -
+* 🕵️ [impostors](impostors) -
   Distant items become billboards, making enormous scenes possible.
-* [plantlod](plantlod) -
+* 🪴 [plantlod](plantlod) -
   A quad tree to render loads of stuff, loaded from disk and culled depending
   on distance.
-* [spheremap renderer](spheremap-renderer) -
+* 🌍 [spheremap renderer](spheremap-renderer) -
   Render the scene into a spheremap, for use in lighting effects.
-* [skybox renderer](skybox) -
+* 🖼️ [skybox renderer](skybox) -
   Render your scene into a sky box. Same as above, but for performance reasons.
 
 ## Tools
 
-* [3d mesh thumbnailer](thumbnailer) -
+* 👍 [3d mesh thumbnailer](thumbnailer) -
   A Gnome thumbnailer for 3D mesh file formats.
-* [font generator](font-generator) -
+* 🔡 [font generator](font-generator) -
   The cross platform Irrlicht font generator.
-* [GUI Editor](gui) -
+* 🖊️ [GUI Editor](gui) -
   The GUI editor for Irrlicht.
 
 ## Irrlicht Loaders and Internals
 
-* [figlet driver](figlet-driver) -
+* 🔠 [figlet driver](figlet-driver) -
   Loading figlet fonts on the console device, or wherever.
-* [console device](console-device) -
+* 🤖 [console device](console-device) -
   Created as a null device, became an ASCII device for software drivers
-* [ico-loader](ico-loader) -
+* 🖼️ [ico-loader](ico-loader) -
   Load Windows icon and cursor files in your Irrlicht app.
-* [loader profiler](loader-profiler) -
+* 📉 [loader profiler](loader-profiler) -
   Profile the various loaders for the Irrlicht Engine.
-* [ply loader](ply-loader) -
+* 💾 [ply loader](ply-loader) -
   A loader for Stanford Polygon with blistering performance due to ugly hacks.
-* [rsrc-loader](rsrc-loader) -
+* 🪟 [rsrc-loader](rsrc-loader) -
   Load resources from Windows DLL and EXE files.

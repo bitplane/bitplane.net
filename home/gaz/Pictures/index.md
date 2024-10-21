@@ -1,4 +1,4 @@
 # Pictures
 
-* [misc](misc)
-* [me](me)
+* 🖼️ [misc](misc)
+* 🖼️ [me](me)
