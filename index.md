@@ -25,6 +25,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2024-06-03 - ⚒️ Encoding arbitrary data into whitespace (C)](log/2024/06/obfuspace)
 * [2024-02-21 - 🌐 bitplane.net v5.0 (Jekyll)](log/2024/02/website)
 * [2024-02-03 - 😆 Reinforced Industrial Hose and Tube](log/2024/02/one-or-more-reinforcement-layers)
+* [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-04-12 - 😆 GOD SAVE THE KING](https://youtu.be/uJmsnzfhSGo)
 * [2023-03-12 - 🤖 Donald Trump's favourite Pink Floyd album](https://youtu.be/Xh1lK7QzjLo)
 * [2022-09-02 - 🤖 DeOldify](/mnt/ai/deoldify)

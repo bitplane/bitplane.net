@@ -6,6 +6,7 @@
 * [2023-09-19 - 💡 office-md](09/office-md)
 * [2023-09-18 - 💡 lottery](09/lottery)
 * [2023-09-18 - 💡 dockerize](09/dockerize)
+* [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-08-07 - 📽️ 50/50 hindsight](https://youtu.be/dIHvCTXgq4c)
 * [2023-07-28 - 💡 distributed-proof-service](07/distributed-proof-service)
 * [2023-06-16 - 💡 turing-machine-consciouness](06/turing-machine-consciouness)
