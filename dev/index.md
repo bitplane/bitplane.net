@@ -1,4 +1,4 @@
-# Software
+# 🧑‍💻 Software
 
 I started programming [as a kid](basic), and have enjoyed it for about 40 years
 or so. Less than a decade left before I lose my memory, this set of pages acts
@@ -10,9 +10,9 @@ all the links work.
 
 --------------------------------------------------------------------------------
 
-## GitHub repos
+## 😺 GitHub repos
 
-### Python dev things
+### 🐍 Python dev things
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
@@ -34,7 +34,7 @@ all the links work.
 * [🪈 benpipe](https://github.com/bitplane/benpipe) -
   Convert bencoded data to JSON and back again.
 
-### Hax
+### 🧑‍💻 Hax
 
 * [🎲 schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
@@ -45,14 +45,14 @@ all the links work.
 * [🐌 connection-limiter](https://github.com/bitplane/connection-limiter) -
   The hackiest way to limit connections per user to a back-end behind nginx.
 
-### Gaming and Graphics
+### 🎮 Gaming and Graphics
 
 * [👾 Irrlicht Engine](https://irrlicht.sf.net/) -
   I worked on this for a couple of years, made the GUI editor, Linux font
   generator, some file format loaders, grass and clouds scene nodes, console
   renderer, impostors and a bunch of other fun stuff. See [c++](c++).
 
-## Language index
+## 🔠 Language index
 
 * [👾 amos](amos) - Games and stuff for the Amiga
 * [📜 shell](sh) - Bourne again
