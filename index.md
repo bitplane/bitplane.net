@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-10-31 - 🎃 content features in Jekyll](log/2024/10/a-matter-of-features)
 * [2024-10-19 - 🐍 filefrag](log/2024/10/filefrag)
 * [2024-10-09 - 📜 pierdat - docker containers that host their own data](log/2024/10/pierdat)
 * [2024-10-01 - ✍️ a common sense code of conduct](log/2024/10/fkin-cocs)
