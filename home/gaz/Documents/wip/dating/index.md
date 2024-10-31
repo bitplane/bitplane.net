@@ -1,3 +1,7 @@
+---
+features: ["mermaid"]
+---
+
 # Perverse incentives in online dating
 
 A bit ago I posted this Tweet (xeet?), which you can consider a tl;dr:

@@ -1,0 +1,13 @@
+<script src="/assets/js/mermaid.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const mermaidBlocks = document.querySelectorAll('.language-mermaid');
+    mermaidBlocks.forEach(block => {
+      const div = document.createElement('div');
+      div.className = 'mermaid';
+      div.innerHTML = block.textContent;
+      block.replaceWith(div);
+    });
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  });
+</script>
