@@ -1,6 +1,6 @@
 # 📅 2004
 
-* [2004-12-09 - 🕹️ Eggit.rar](/dev/amos/eggit)
+* [2004-12-09 - 🕹️ eggit.rar](/dev/amos/eggit)
 * [2004-10-11 - 🪟 Windows Media Player Screensaver](/dev/vb/wmp-scr)
 * [2004-07-12 - 🐍 py9 - T9 for Python](/dev/python/py9)
 * [2004-05-17 - 🐍 XBMC Python Skin](/dev/python/xbmc/skin)
