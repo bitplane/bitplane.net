@@ -2,7 +2,7 @@
 
 Spent last night making this, added some turd polish today and added it to pypi.
 
-## 🤷 what
+## 🤷 what?
 
 I wanted to get file fragmentation info so I can punch holes in files, aligned
 with memory pages. But I really didn't want to parse `filefrag`'s outputs, so I
@@ -12,7 +12,7 @@ json.
 It only works on Linux as it depends on the FIE interface, but pull requests
 welcome.
 
-## ⚒️ how
+## ⚒️ how?
 
 See [the video](https://asciinema.org/a/681791) for a demo including installing
 from source, but you can install with pip:
@@ -41,7 +41,7 @@ Comes with a Device class to do comparisons, so it ought to work with fragments
 in files on different mountpoints, bind mounts and so on (unfortunately not
 snap's FUSE mounts; they're far too abstract and piped in via a socket)
 
-## 🌍 links
+## 🌍 where?
 
 * 📺 [asciinema](https://asciinema.org/a/681791) -
   video of install and use
