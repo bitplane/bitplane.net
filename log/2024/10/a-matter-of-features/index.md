@@ -9,8 +9,17 @@ show the code if it isn't.
 
 ## Big deal
 
-Yeah, anyone can just add the mermaid.js to their pages, right? No. That adds
-100k to every page. So I went with this:
+Yeah, anyone can just add the mermaid.js to their pages, right?
+
+No. That adds 100k to every page. I'm already pretty disgusted with myself for
+the 1.5kb of boilerplate in the template, and including 16kb of CSS to a site
+where every page is actually 20 times smaller than that.
+
+So on average, my site has 20x as much bloat as it does content. Adding 100kb of
+JavaScript to each page would make that 10x worse. That would be 10x better than
+most sites, but 800x worse than something I could be proud of.
+
+So I went with this approach for now:
 
 ```mermaid
 flowchart TD
@@ -19,6 +28,7 @@ flowchart TD
     B -- yes --> C[for each feature]
 
     C -- next --> D[include feature.html]
+    D --> C
     C -- end --> E
 ```
 
