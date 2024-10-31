@@ -1,5 +1,4 @@
 # Archtivism
 
-* 📜 Scrapers
-* ❌ REDACTED -
-  Let's not end up like Aaron Swartz
+* 📜 [Scrapers](/dev/python/scrapers)
+* 📚 [Book Scanning](/log/2018/09/scanner)

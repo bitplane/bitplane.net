@@ -40,6 +40,8 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2021-05-03 - 🐍 Example Python Project](https://github.com/bitplane/example-python-project)
 * [2020-07-21 - 🐌 connection-limiter](https://github.com/bitplane/connection-limiter)
 * [2019-01-04 - 😆 Who's your celebrity crush?](https://youtu.be/M_ZBpOFJ5Z4)
+* [2018-09-17 - 📚 digitizing treeware](log/2018/09/scanner)
+* [2014-06-12 - 🍼 Naming is hard, dadding is harder](log/2014/jess)
 * [2013-10-01 - 🎲 Schrödinger's RNG](https://github.com/bitplane/schrodingers-rng)
 * [2013-01-01 - 💥 My first GitHub pull request](log/2013/01/pioneer)
 * [2012-11-21 - 😆 How's about that then?](log/2012/11/stranger-danger)
