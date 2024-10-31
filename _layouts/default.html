@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="{{ '/assets/css/terminal.min.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/code.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% if page.features %}{% for feature in page.features %}
+    <script src="/assets/js/{{ feature }}.js"></script>
+    {% endfor %}{% endif %}
 </head>
 <body>
     <header>

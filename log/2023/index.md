@@ -1,14 +1,17 @@
 # 📅 2023
 
 * [2023-11-03 - 💡 metacompression](11/metacompression)
+* [2023-10-25 - 🐍 uh-halp - AI on the command line](/uh-halp)
 * [2023-10-18 - 💡 docker-fuse-shim](10/docker-fuse-shim)
 * [2023-09-28 - 📽️ Neofetch 7.1.0 - all the --ascii\_distro logos](https://youtu.be/ONzEwlrs7A0)
+* [2023-09-25 - 🐍 ienv - combine your venvs](/ienv)
 * [2023-09-19 - 💡 office-md](09/office-md)
 * [2023-09-18 - 💡 lottery](09/lottery)
 * [2023-09-18 - 💡 dockerize](09/dockerize)
 * [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-08-07 - 📽️ 50/50 hindsight](https://youtu.be/dIHvCTXgq4c)
 * [2023-07-28 - 💡 distributed-proof-service](07/distributed-proof-service)
+* [2023-05-28 - 🐍 arranges - Range strings for Pydantic](/arranges)
 * [2023-06-16 - 💡 turing-machine-consciouness](06/turing-machine-consciouness)
 * [2023-04-18 - 💡 pitch-perfection](04/pitch-perfection)
 * [2023-04-18 - 💡 music-and-language](04/music-and-language)
@@ -19,3 +22,5 @@
 * [2023-03-12 - 💡 joy-of-oblivion](03/joy-of-oblivion)
 * [2023-03-10 - 💡 crackable-chat](03/crackable-chat)
 * [2023-03-06 - 💡 toasternet](03/toasternet)
+* [2023-03-06 - 🐍 ocr-pdf - PDF to JSON](https://github.com/bitplane/ocr-pdf)
+* [2023-02-27 - 🐍 merge-files - universal file merger](https://github.com/bitplane/merge-files)

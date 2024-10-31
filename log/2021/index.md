@@ -6,6 +6,7 @@
 * [2021-09-10 - 📽️ Overheating advertising booth](https://youtu.be/aTufJOtLDOw)
 * [2021-08-05 - 📽️ UK BankBot Trojan SMS Scam](https://youtu.be/IMO5ltOVv_4)
 * [2021-08-05 - 💡 Consciousness Explored](08/consciousness-explored)
+* [2021-05-03 - 🐍 Example Python Project](https://github.com/bitplane/example-python-project)
 * [2021-03-01 - 💡 Wide Printer](03/wide-printer)
 * [2021-02-13 - ⚠️ HTTP Relay](02/http-relay)
 * [2021-02-01 - 💡 Distributed Release Tool](02/distributed-release-tool)
