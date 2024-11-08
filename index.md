@@ -34,6 +34,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2023-03-12 - 🤖 Donald Trump's favourite Pink Floyd album](https://youtu.be/Xh1lK7QzjLo)
 * [2023-03-06 - 🐍 ocr-pdf - PDF to JSON](https://github.com/bitplane/ocr-pdf)
 * [2023-02-27 - 🐍 merge-files - universal file merger](https://github.com/bitplane/merge-files)
+* [2023-02-10 - 🕵️ Uncropping script for The Intercept](https://theintercept.com/2023/02/14/whistleblower-image-crop-document/)
 * [2022-09-02 - 🤖 DeOldify](/mnt/ai/deoldify)
 * [2022-06-09 - 🤓 makeshift scales](https://youtu.be/6c3yHu1uwVo)
 * [2021-10-19 - ✍️ Chester's Lego Strip Bar](log/2021/10/chest-er)

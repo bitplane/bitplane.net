@@ -24,3 +24,4 @@
 * [2023-03-06 - 💡 toasternet](03/toasternet)
 * [2023-03-06 - 🐍 ocr-pdf - PDF to JSON](https://github.com/bitplane/ocr-pdf)
 * [2023-02-27 - 🐍 merge-files - universal file merger](https://github.com/bitplane/merge-files)
+* [2023-02-10 - 🕵️ Uncropping script for The Intercept](https://theintercept.com/2023/02/14/whistleblower-image-crop-document/)
