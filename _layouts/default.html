@@ -12,8 +12,8 @@
 <body>
     <header>
         <nav style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5em;">
-            <span><a href="/">bitplane.net</a><span class="slash">/</span>{% assign url_parts = page.url | split: '/' %}{% assign path = "" %}{% for part in url_parts %}{% unless part == "" %}{% assign path = path | append: "/" | append: part %}<a href="{{ path }}">{{ part }}</a>{% unless forloop.last %}<span class="slash">/</span>{% endunless %}{% endunless %}{% endfor %}</span>
-            <span><span class="slash">[</span><a href="{{ '/dev' | relative_url }}">dev</a><span class="slash">|</span><a href="{{ '/log' | relative_url }}">log</a><span class="slash">|</span><a href="{{ '/home' | relative_url }}">home</a><span class="slash">|</span><a href="{{ '/mnt' | relative_url }}">mnt</a><span class="slash">]</span></span>
+            <span><a href="/" tabindex="-1">bitplane.net</a><span class="slash">/</span>{% assign url_parts = page.url | split: '/' %}{% assign path = "" %}{% for part in url_parts %}{% unless part == "" %}{% assign path = path | append: "/" | append: part %}<a href="{{ path }}" tabindex="-1">{{ part }}</a>{% unless forloop.last %}<span class="slash">/</span>{% endunless %}{% endunless %}{% endfor %}</span>
+            <span><span class="slash">[</span><a href="{{ '/dev' | relative_url }}" tabindex="-1">dev</a><span class="slash">|</span><a href="{{ '/log' | relative_url }}" tabindex="-1">log</a><span class="slash">|</span><a href="{{ '/home' | relative_url }}" tabindex="-1">home</a><span class="slash">|</span><a href="{{ '/mnt' | relative_url }}" tabindex="-1">mnt</a><span class="slash">]</span></span>
         </nav>
     </header>
     <main>
