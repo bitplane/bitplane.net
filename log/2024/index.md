@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-11-17 - 📝 treasure hunt update](11/treasure-hunt-update)
 * [2024-10-31 - 🎃 content features in Jekyll](10/a-matter-of-features)
 * [2024-10-19 - 🐍 filefrag](10/filefrag)
 * [2024-10-17 - 📝 titles should contain context](10/from-me-to-you-to-everyone/)
