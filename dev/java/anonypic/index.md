@@ -4,12 +4,11 @@ Anonypic is [was] my first attempt at making an Android application, it’s a
 simple service which lets you send images to bayimg.com from an item in your
 share menu:
 
-![share menu](anonypic1.webp)
+| ![share menu](anonypic1.webp) | ![trust issues](anonypic2.webp) |
 
 Bayimg remove your EXIF metadata once you’ve uploaded it, so you don’t give
 away your location or device’s serial numbers.
 
-![trust issues](anonypic2.webp)
 
 ## dead
 
