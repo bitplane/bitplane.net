@@ -11,3 +11,10 @@ it too, so don’t expect polished graphics, sounds, fancy menus or anything
 like that!
 
 You can snag the binary and source [here](mines.zip)
+
+## Sprites
+
+![game over](game over.webp) | ![ground](ground.webp)
+-----------------------------|-------------------------
+![mine](mine.webp)           | ![winner](winner.webp)
+
