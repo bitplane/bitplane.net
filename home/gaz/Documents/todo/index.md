@@ -7,6 +7,7 @@
 * Pull stuff from Google Drive
   * Bitcoin description article - did I ever finish that? Weave into blog
   * Semantic web
+  * ~~Monotheism~~
 * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
@@ -15,24 +16,31 @@
     * Might be too soon for this. Dunno. It's still a bit fucking raw.
   * __Perverse incentives in online dating__
     * ~~Write graph theory incentives.~~
-      * Get graphs Mermaid graphs working here.
-      * Syntax highlighting too.
+      * ~~Get Mermaid graphs working here.~~
+      * ~~Syntax highlighting too.~~
     * Finish the alternative idea section.
   * __Cap'n Fintan__
 * Align project docs and site CSS
   * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
+  * Get ASCIInema working locally
+  * Do something about video tags?
 * Document more Irrlicht stuff
   * Rest of the C++ code projects
+    * Go through forum posts
   * in motion contest
   * mesh deformation contest
   * speed modelling
     * Need to find that chest.obj
+
 * Images
-  * Steel gazing globe
+  * ~~Steel gazing globe~~
+    * Figure out the dates and add to log
   * Old college black and white photos
   * Wikimedia commons
   * Microsoft PhotoSynth
-  * Drawings
+  * ~~Drawings~~
+    * I think there's one or two more that aren't nudes
+    * Get Wacom Bamboo date.
 * Document life events
   * ZX Spectrum
     * UDG planner
@@ -91,12 +99,15 @@
   * `curs`
   * `textrot`, did I already do that?! Maybe in SVN.
   * Turbo Pascal side scroller from college (on floppy maybe?)
+    * Couldn't find it
   * Space invaders for XENIX; '99, might be on my Amiga though.
 * Digitize ZX Spectrum games
   * I think I only have one finished game, TUE.
 * Old Linux machines
-  * Decrypt XPS13 hard drive and see if there's anything there
-  * Old machine from Microsoft days
+  * ~~Decrypt XPS13 hard drive and see if there's anything there~~
+  * Gigabyte laptop
+  * HP Server
+  * Bitcoin miner
 
 ## Data
 
