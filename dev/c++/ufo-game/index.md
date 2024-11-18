@@ -12,6 +12,8 @@ content creation pipeline was immature as hell. Like the obj exporter exported
 things inside out, the X format was borked, and nobody supported it because they
 were all too busy using Blender instead.
 
+![explosions](explosions.jpg)
+
 So while this was the reason I learned Irrlicht and ended up on the team, I
 ended up getting sidetracked by joining the dev team and making all kinds of fun
 things rather than fight against hacked proprietary software that I didn't want
