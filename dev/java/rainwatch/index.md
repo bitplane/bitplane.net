@@ -6,7 +6,7 @@ reports but is mostly useful for rain. When you open the app it will detect
 your rough location using nearby phone masts and WiFi networks, then display
 the closest region to you like so:
 
-![screenshot](rainwatch.png)
+| ![screenshot](rainwatch.png) | ![europe](rainwatch2.png) |
 
 Scroll the slider to see the bursting clouds push across the screen, this
 gives you a pretty good idea of whether it’s going to rain or not at a
@@ -16,7 +16,6 @@ be "unsettled" it means that the MET office don't really know what's going to
 happen. You can also use it to browse the world's weather, though you can't
 zoom in and it's only updated twice a day:
 
-![europe](rainwatch2.png)
 
 ## dead
 
