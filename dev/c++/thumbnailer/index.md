@@ -10,3 +10,6 @@ TODO: find the source code and put it on github.
 
 ![obj](obj.webp)
 
+## Idea
+
+![idea](idea.png)
