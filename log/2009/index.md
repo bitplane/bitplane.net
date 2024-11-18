@@ -32,4 +32,4 @@
 * [2009-06-11 - 🎨 chair](06/chair)
 * [2009-05-13 - 🎨 iron](05/iron)
 * [2009-05-12 - 🎨 Charlie](05/darwin)
-* [2009-03-29 - 🤓 milk Scanner](03/milk-scanner)
+* [2009-03-29 - 🥛 milk Scanner](03/milk-scanner)

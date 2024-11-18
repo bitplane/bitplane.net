@@ -70,7 +70,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2009-06-11 - 🎨 chair](log/2009/06/chair)
 * [2009-05-13 - 🎨 iron](log/2009/05/iron)
 * [2009-05-12 - 🎨 Charlie](log/2009/05/darwin)
-* [2009-03-29 - 🤓 milk Scanner](log/2009/03/milk-scanner)
+* [2009-03-29 - 🥛 milk Scanner](log/2009/03/milk-scanner)
 * [2008-07-09 - ☁️ cloud shader](/dev/glsl)
 * [2008-02-17 - 👾 impostors](/dev/c++/impostors)
 * [2007-10-24 - 📔 comic book print shader](/dev/glsl)
