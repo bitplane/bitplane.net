@@ -28,4 +28,8 @@
 * [2009-07-19 - 📝 irrEdit in Wine?](07/irredit-in-wine)
 * [2009-07-17 - 🌐 bitplane.net 4.0 (WordPress)](07/new-layout)
 * [2009-07-06 - 📦 Irrlicht TAR reader](06/tar-reader)
+* [2009-06-14 - 🎨 Lilly](06/lilly)
+* [2009-06-11 - 🎨 chair](06/chair)
+* [2009-05-13 - 🎨 iron](05/iron)
+* [2009-05-12 - 🎨 Charlie](05/darwin)
 * [2009-03-29 - 🤓 milk Scanner](03/milk-scanner)
