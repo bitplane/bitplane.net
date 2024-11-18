@@ -63,6 +63,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2009-09-14 - 📜 PHP file list using mod\_rewrite](log/2009/09/file-list)
 * [2009-09-11 - ✍️ why I won’t be joining the Pirate Party UK](log/2009/09/ppuk-fail)
 * [2009-08-06 - 🎉 Irrlicht 1.5.1 released](log/2009/08/irrlicht-1-5-1-released)
+* [2009-08-02 - 👍 3D object thumbnailer](/dev/c++/thumbnailer)
 * [2009-07-17 - 🌐 bitplane.net 4.0 (WordPress)](log/2009/07/new-layout)
 * [2009-07-06 - 📦 Irrlicht TAR reader](log/2009/06/tar-reader)
 * [2009-03-29 - 🤓 milk Scanner](log/2009/03/milk-scanner)

@@ -22,6 +22,7 @@
 * [2009-08-20 - 📝 Irrlicht 1.5.1 for OSX](08/irrcliht-1-5-1-osx)
 * [2009-08-18 - 📝 RDF defaced](08/rdf-defaced)
 * [2009-08-06 - 🎉 Irrlicht 1.5.1 released](08/irrlicht-1-5-1-released)
+* [2009-08-02 - 👍 3D object thumbnailer](/dev/c++/thumbnailer)
 * [2009-07-22 - 📝 Be Internet rebranding fiasco](07/be-internet-rebranded)
 * [2009-07-20 - 📝 Irrlicht nightly builds 2.0](07/irrlicht-nightly-builds-2-0)
 * [2009-07-19 - 📝 irrEdit in Wine?](07/irredit-in-wine)
