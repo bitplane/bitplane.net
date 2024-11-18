@@ -25,8 +25,13 @@ Some games, none of any note.
   Ridiculously crap game made for a gaming contest.
 * 💥 [mines](mines) -
   Minesweeper game.
+
+  ### Unifinished
+
 * 👽 [UFO game](ufo-game) -
-  A game that Graeme and I never finished.
+  A game that Graeme and I wanted to make, in the style of Star Fox 64.
+* ✝ [Monotheism](monotheism) -
+  A game I wanted to make, but, got distracted making other things.
 
 ## Irrlicht Scene Nodes
 
