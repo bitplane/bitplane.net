@@ -8,8 +8,17 @@ as needed, allowing you to have a scene with millions of objects
 A first iteration of a ghetto version of the stream loaders that you see in
 modern 3D engines.
 
-[![plantlod](plantpic1.jpg)](https://youtu.be/zqQ2n0duOaU)
+[![plantlod](plantpic1.webp)](https://youtu.be/zqQ2n0duOaU)
 
 (click for video)
 
 Download it [here](plantlod.zip)
+
+## Bonus screenshots
+
+![ick](plantpic.webp)
+
+![sparse](plantpic_sparse.webp)
+
+![dense](plantpic_dense.webp)
+
