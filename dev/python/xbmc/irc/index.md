@@ -14,11 +14,9 @@ scripting.
 Here's some screenshots I managed to salvage from the wayback machine. Note the
 crap taste in music in the images because I wanted it to be popular (it wasn't).
 
-![2](2.jpg)
 
-![3](3.jpg)
-
-![4](4.jpg)
+| ![1](1.jpg) | ![2](2.jpg) |
+| ![3](3.jpg) | ![4](4.jpg) |
 
 And here's [the code](xbmcirc014.rar), in a RAR file, as it was back then.
 
