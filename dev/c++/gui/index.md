@@ -14,3 +14,12 @@ Here's a video of the GUI editor, the rest you can see in most games that use
 Irrlicht as a graphics engine.
 
 [![screenshot](gui.jpg)](https://youtu.be/jLzZuTiPqpk)
+
+Klasker made a nice skinning tool for it. I think the skin in the bottom right
+was by fuzzysp00n, but don't quote me on that:
+
+[1](1.jpg)  | [2](2.jpg)
+------------|------------------
+[3](3.jpg)  | [k](klasker.png)
+
+
