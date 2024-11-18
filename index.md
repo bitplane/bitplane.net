@@ -67,6 +67,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2009-07-06 - 📦 Irrlicht TAR reader](log/2009/06/tar-reader)
 * [2009-03-29 - 🤓 milk Scanner](log/2009/03/milk-scanner)
 * [2008-07-09 - ☁️ cloud shader](/dev/glsl)
+* [2008-02-17 - 👾 impostors](/dev/c++/impostors)
 * [2007-10-24 - 📔 comic book print shader](/dev/glsl)
 * [2007-04-09 - ⚒️ fix Wayback Machine zips](/dev/c/wayback-zip)
 * [2007-03-27 - 🌐 bitplane.net v3.0 (e107)](log/2007/03/website)
