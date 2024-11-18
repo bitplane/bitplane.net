@@ -5,6 +5,11 @@ sense to also have decent console fonts. So I wrote a figlet driver.
 
 TODO: find the code.
 
-Here's a pic for now:
+Here's some pics:
 
-![figlet fonts](figletfont.jpg)
+![figs in a scene](scene.jpg)
+
+![all the letters](alphabet.jpg)
+
+![works in edit boxen](editbox.jpg)
+
