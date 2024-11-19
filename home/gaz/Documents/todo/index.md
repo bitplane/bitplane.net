@@ -20,6 +20,17 @@
       * ~~Syntax highlighting too.~~
     * Finish the alternative idea section.
   * __Cap'n Fintan__
+* linkchecker:
+```txt
+Real URL   https://bitplane.net/dev/python/py9
+Real URL   https://bitplane.net/merge-files
+Real URL   https://bitplane.net/arranges/tests/
+Real URL   https://bitplane.net/docs/pydocs.md
+Real URL   https://bitplane.net/dev/amos/matchstick-man
+Real URL   https://bitplane.net/dev/vb/bing-maps-grabber
+Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
+```
+* Kodi DVB-T story
 * Align project docs and site CSS
   * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
   * Get ASCIInema working locally

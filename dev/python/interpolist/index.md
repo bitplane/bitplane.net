@@ -14,5 +14,5 @@ values. It’s useful for graphing, where you use it like this:
 150.0
 ```
 
-See the [original post](/2009/12/interpolist) for more info. You can get
+See the [original post](/log/2009/12/interpolist) for more info. You can get
 the module [here](https://github.com/bitplane/typepie)

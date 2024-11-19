@@ -9,7 +9,7 @@ pretty good for a lay-hacker without a computer science degree.
 
 ![body scan](ply_cyberware_3d_scanner.jpg)
 
-![head scan](ply_cyberware_headscan.jpg)
+![head scan](ply_cyberware_head_scan.jpg)
 
 It's been included since [Irrlicht 1.6](/log/2009/09/irrlicht-1-6-released/),
 but it's here too in case that ever changes:

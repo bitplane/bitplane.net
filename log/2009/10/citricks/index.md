@@ -42,7 +42,7 @@ lr_end_transaction("Receive bacon", LR_AUTO);
 ## Don't trust LoadRunner to insert think-times of the correct length, nor in the correct places
 
 This one is an even more painful schoolboy error, let's use the
-[bacon meme](bacon.png) as an example again and a more realistic recording
+[bacon meme](bacon.jpg) as an example again and a more realistic recording
 including recorded thinking time, LR would generate something like this:
 
 ```c

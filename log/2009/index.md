@@ -19,7 +19,7 @@
 * [2009-09-06 - 📝 this [e107] page has moved permanently [to gallery2]](09/http-301)
 * [2009-09-04 - 📝 PISG is up again](09/pisg-running-again)
 * [2009-08-27 - 📝 Piwik in, Google Analytics out](08/piwik)
-* [2009-08-20 - 📝 Irrlicht 1.5.1 for OSX](08/irrcliht-1-5-1-osx)
+* [2009-08-20 - 📝 Irrlicht 1.5.1 for OSX](08/irrlicht-1-5-1-osx)
 * [2009-08-18 - 📝 RDF defaced](08/rdf-defaced)
 * [2009-08-06 - 🎉 Irrlicht 1.5.1 released](08/irrlicht-1-5-1-released)
 * [2009-08-02 - 👍 3D object thumbnailer](/dev/c++/thumbnailer)
