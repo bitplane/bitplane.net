@@ -15,13 +15,13 @@ to render tens or hundreds of thousands of particles as a huge cloud of debris
 which looks 3D from a distance, giving cool explosions which work on even
 the most modest hardware:
 
-[![rocks](rocks.jpg)<br>
-click for video](https://youtu.be/cPtzMCbLP9Y)
+[⏯
+![rocks](rocks.jpg)](https://youtu.be/cPtzMCbLP9Y)
 
 Or flip the axis 90 degrees for cartoon rain:
 
-[![rain](rain.jpg)<br>
-click for video](https://youtu.be/tUKlUV6JZ4o)
+[⏯
+![rain](rain.jpg)](https://youtu.be/tUKlUV6JZ4o)
 
 Or just have oldskool sprites that animate as well as rotate:
 

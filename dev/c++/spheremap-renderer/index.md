@@ -8,8 +8,7 @@ Rendering to a spheremap, for use in directional lighting effects.
 
 Step 2 must be done each time the camera is moved
 
-[![screenshot](spheremap.webp)](https://www.youtube.com/watch?v=DN6aXR8f14o)
-
-(click for video)
+[⏯
+![screenshot](spheremap.webp)](https://www.youtube.com/watch?v=DN6aXR8f14o)
 
 download: TODO

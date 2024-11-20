@@ -25,9 +25,8 @@ The setup looks like this:
 So you pop your item in the dish, point the camera at it, and record a video of
 it gradually submerging into the milk:
 
-[![screenshot](milkscan1.webp)](https://youtu.be/XBiYmA2Ik9M)
-
-(click for youtube)
+[⏯
+![screenshot](milkscan1.webp)](https://youtu.be/XBiYmA2Ik9M)
 
 Take the output and run it through an edge detection filter, then this program 
 [TODO: find code and link it here]

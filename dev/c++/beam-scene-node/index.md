@@ -2,9 +2,8 @@
 
 Made for Irrlicht in 2009. Download [here](CBeamSceneNode.zip)
 
-Click for a video:
-
-[![beam](beam.jpg)](https://youtu.be/wGbCk5g0wTc)
+[⏯
+![beam](beam.jpg)](https://youtu.be/wGbCk5g0wTc)
 
 ## Doc
 

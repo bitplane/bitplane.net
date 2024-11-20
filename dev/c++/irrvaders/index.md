@@ -9,8 +9,8 @@ a circle.
 
 The result was a fun game:
 
-[![screenshot](irrvaders.webp)](https://youtu.be/Bve3gkDTIBM)
-> (click for video)
+[⏯
+![screenshot](irrvaders.webp)](https://youtu.be/Bve3gkDTIBM)
 
 As usual it contains no sounds, also due to its hurried nature the menu design
 is pretty awful. Maybe I should add sounds and get it added to Linux distros,

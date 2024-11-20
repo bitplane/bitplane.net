@@ -9,7 +9,7 @@ it usually consisted of him, myself, Rooly, Micha, Midnight and a few others.
 
 It goes like this: Someone picks a noun at random, keeping it as broad and open
 to interpretation as possible, the timer starts and we have 20 minutes to carve
-it out of cubes in Wings3D, [like so](https://youtu.be/VXSu4dI-R3g) (that vid
+it out of cubes in Wings3D, [⏯like so](https://youtu.be/VXSu4dI-R3g) (that vid
 did have an MC Hammer loop as a soundtrack but was censored).
 
 If at the end it looks like it has promise, keep hold of it and make textures

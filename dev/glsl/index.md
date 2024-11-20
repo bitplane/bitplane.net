@@ -7,7 +7,8 @@ Here's some videos:
 
 ## Comic Book Shader
 
-[![comic shader](comic.jpg)](https://youtu.be/tt2NqS99nmg)
+[⏯
+![comic shader](comic.jpg)](https://youtu.be/tt2NqS99nmg)
 
 [download](comic_book.rfx)
 
@@ -15,4 +16,6 @@ Here's some videos:
 
 Can't find the code for this one
 
-[![cloud shader](clouds.jpg)](https://youtu.be/S-zvSDu1iPE)
+[⏯
+![cloud shader](clouds.jpg)](https://youtu.be/S-zvSDu1iPE)
+

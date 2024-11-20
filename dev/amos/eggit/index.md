@@ -5,9 +5,8 @@ Eggit is platform puzzle game in the style of Dizzy, by Codemasters. Its
 features include a map, save/load game, custom palettes for each screen,
 demo mode, and loads of hidden stuff.
 
-[![screenshot](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
-
-(click for video)
+[⏯
+![screenshot](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
 
 Eggit (aka Stephen Edgar) was a friend in school, he pretended to be pissed
 off with being portrayed as a sarcastic egg at first but he really liked the

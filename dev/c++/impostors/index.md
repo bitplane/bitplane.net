@@ -1,6 +1,6 @@
 # 🖼️ Impostors in Irrlicht
 
-* [video](https://www.youtube.com/watch?v=cHAfqwagk7I)
+* [⏯ video](https://www.youtube.com/watch?v=cHAfqwagk7I)
 * TODO: source code is on an old hard drive
 
 ## Concept

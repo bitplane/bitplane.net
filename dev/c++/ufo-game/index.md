@@ -12,7 +12,8 @@ content creation pipeline was immature as hell. Like the obj exporter exported
 things inside out, the X format was borked, and nobody supported it because they
 were all too busy using Blender instead.
 
-![explosions](explosions.jpg)
+[⏯
+![explosions](explosions.jpg)](https://youtu.be/HmNN7z-bkcM)
 
 So while this was the reason I learned Irrlicht and ended up on the team, I
 ended up getting sidetracked by joining the dev team and making all kinds of fun
@@ -26,6 +27,5 @@ projects, we didn't have the weeks to spend on the game like we used to in the
 So, we never finished the game. But we did have a lot of fun making content, so
 there's that I guess.
 
-Here's a video of where we got up to: [video](https://youtu.be/HmNN7z-bkcM)
 
 TODO: find the code. it's in here somewhere.

@@ -114,7 +114,7 @@ made music if you gave it some numbers.
 
 This is how Sir Clive Sinclair earned his knighthood, he created a generation of
 programmers who learned to code while still learning the basics of reading and
-writing. We went on to [transform the world](https://youtu.be/IagZIM9MtLo).
+writing. We went on to [⏯ transform the world](https://youtu.be/IagZIM9MtLo).
 
 ## An imaginary friend
 

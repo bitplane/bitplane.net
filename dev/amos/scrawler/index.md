@@ -12,9 +12,8 @@ clock speeds.
 
 Here's an example of the editor in action:
 
-[![screenshot](scrawleramiga.gif)](https://youtu.be/odf8lauHm-4)
-
-click for video
+[⏯
+![screenshot](scrawleramiga.gif)](https://youtu.be/odf8lauHm-4)
 
 Download:
 
