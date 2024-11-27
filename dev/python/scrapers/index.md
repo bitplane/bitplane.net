@@ -15,3 +15,5 @@ anymore.
   List files belonging to the given torrent, for automation.
 * [youtube-mp3-dl](https://github.com/bitplane/youtube-mp3-dl) -
   Let my dad send songs to his mp3 player.
+* [lloyds tsb statement downloader](https://github.com/bitplane/tsb-downloader) -
+  because their export function didn't work.
