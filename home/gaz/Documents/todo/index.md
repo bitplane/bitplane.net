@@ -7,7 +7,6 @@
 * Pull stuff from Google Drive
   * Bitcoin description article - did I ever finish that? Weave into blog
   * Semantic web
-  * ~~Monotheism~~
 * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
@@ -15,9 +14,6 @@
   * __The Southport incident.__
     * Might be too soon for this. Dunno. It's still a bit fucking raw.
   * __Perverse incentives in online dating__
-    * ~~Write graph theory incentives.~~
-      * ~~Get Mermaid graphs working here.~~
-      * ~~Syntax highlighting too.~~
     * Finish the alternative idea section.
   * __Cap'n Fintan__
 * linkchecker:
@@ -30,6 +26,8 @@ Real URL   https://bitplane.net/dev/amos/matchstick-man
 Real URL   https://bitplane.net/dev/vb/bing-maps-grabber
 Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ```
+* Solfest cards
+* Android SVG renderer
 * Kodi DVB-T story
 * Align project docs and site CSS
   * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
@@ -42,6 +40,15 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * mesh deformation contest
   * speed modelling
     * Need to find that chest.obj
+  * Milk Scanner
+  * UFO Game
+  * Thumbnailer
+  * Spheremap renderer
+  * RSRC Loader
+  * Figlet
+  * Impostors
+  * Batching Mesh
+  * Beam Node
 
 * Images
   * ~~Steel gazing globe~~
