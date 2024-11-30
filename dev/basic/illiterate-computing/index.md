@@ -21,10 +21,10 @@ Sinclair's quest for affordable home computing.
 
 An on/off switch wasn't the only missing feature - budget home computers of the
 80s outsourced their peripherals to existing consumer electronics. Cathode ray
-tube monitors with were far too expensive, and ones with digital inputs had no
-other function, so, like gaming machines of the 70s before it, the Spectrum came
-with an RF transmitter. You'd connect it to the family TV's aerial port with a
-coax cable, and tune it in the best you could.
+tube monitors were far too expensive, and ones with digital inputs had no other
+function, so, like gaming machines of the 70s before it, the Spectrum came with
+an RF transmitter. You'd connect it to the family TV's aerial port with a coax
+cable, and tune it in the best you could.
 
 More expensive devices had disk drives, but on machines like the Spectrum,
 Commodore 64 and Amstrad CPC series, games were stored on audio cassette tapes
@@ -83,10 +83,10 @@ more conveniently than `LOAD`, were inserted by holding down the aptly named
 
 If the tape wasn't too worn, too stretched and hadn't got too hot or too damp,
 it wasn't wound too tight, and wasn't an 8th generation copy from a chain of
-people's mums' dual cassette decks with Hi-Speed Dubbing, it might load. But
-only if the impatient kids didn't shock the tape heads by jumping about the
-room, or squabbled too roughly. And so your game would be ready to play in 3-4
-minutes.
+people's mums' dual cassette decks (the ones with Hi-Speed Dubbing) it might
+load. But only if the impatient kids didn't shock the tape heads by jumping
+about the room, or squabbling too roughly. And so your game would be ready to
+play in 3-4 minutes.
 
 That 4 minutes felt like a whole day.
 
@@ -128,7 +128,7 @@ If you're 6 years old, don't know what "input" means and call your keys
 all over your buttons catching the ones you press. Well, legs actually, because
 only humans have arms.
 
-To me, and me alone it seems, `INKEY$` is a friendly cartoon octopus printed on
-4 inches of thin card. One with SEE INLAY FOR DETAILS written along the side.
+To me, and me alone it seems, `INKEY$` is a cartoon octopus printed on 4 inches
+of thin card. One with SEE INLAY FOR DETAILS written along the side.
 
 Ah.. memories!
