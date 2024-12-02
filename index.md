@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-12-01 - 🦜 voice-cloning-org](log/2024/12/voice-cloning-app)
 * [2024-10-31 - 🎃 content features in Jekyll](log/2024/10/a-matter-of-features)
 * [2024-10-19 - 🐍 filefrag](log/2024/10/filefrag)
 * [2024-10-09 - 📜 pierdat - docker containers that host their own data](log/2024/10/pierdat)
@@ -28,6 +29,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2024-02-03 - 😆 Reinforced Industrial Hose and Tube](log/2024/02/one-or-more-reinforcement-layers)
 * [2023-10-25 - 🐍 uh-halp - AI on the command line](/uh-halp)
 * [2023-09-25 - 🐍 ienv - combine your venvs](/ienv)
+* [2023-09-15 - 🗒️ Voice-Cloning-App Docker images](log/2023/09/voice-cloning)
 * [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-05-28 - 🐍 arranges - Range strings for Pydantic](/arranges)
 * [2023-04-12 - 😆 GOD SAVE THE KING](https://youtu.be/uJmsnzfhSGo)
@@ -46,6 +48,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2014-06-12 - 🍼 naming is hard, dadding is harder](log/2014/jess)
 * [2013-12-17 - 💸 a bitcoin treasure hunt](log/2013/12/bitcoin-treasure-hunt)
 * [2013-10-01 - 🎲 Schrödinger's RNG](https://github.com/bitplane/schrodingers-rng)
+* [2013-02-08 - 🐍 Lloyds Bank Statement Downloader](https://github.com/bitplane/tsb-downloader)
 * [2013-01-01 - 💥 my first GitHub pull request](log/2013/01/pioneer)
 * [2012-11-21 - 😆 how's about that then?](log/2012/11/stranger-danger)
 * [2012-02-08 - 🐍 monitoring homebrew with arecord and Python](log/2012/02/airlock-mic-project)

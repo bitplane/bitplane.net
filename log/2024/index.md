@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-12-01 - 🦜 voice-cloning-org](12/voice-cloning-app)
 * [2024-11-17 - 📝 treasure hunt update](11/treasure-hunt-update)
 * [2024-10-31 - 🎃 content features in Jekyll](10/a-matter-of-features)
 * [2024-10-19 - 🐍 filefrag](10/filefrag)
