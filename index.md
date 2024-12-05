@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-12-04 - 🔦 torched and without pickles](log/2024/12/torch-weightsonly)
 * [2024-12-01 - 🦜 voice-cloning-org](log/2024/12/voice-cloning-app)
 * [2024-10-31 - 🎃 content features in Jekyll](log/2024/10/a-matter-of-features)
 * [2024-10-19 - 🐍 filefrag](log/2024/10/filefrag)
