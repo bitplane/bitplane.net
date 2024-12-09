@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-12-09 - 🐋 TRELLIS in Docker](12/trellis)
 * [2024-12-04 - 🔦 torched and without pickles](12/torch-weightsonly)
 * [2024-12-01 - 🦜 voice-cloning-org](12/voice-cloning-app)
 * [2024-11-17 - 📝 treasure hunt update](11/treasure-hunt-update)

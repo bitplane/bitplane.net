@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-12-09 - 🐋 TRELLIS in Docker](log/2024/12/trellis)
 * [2024-12-04 - 🔦 torched and without pickles](log/2024/12/torch-weightsonly)
 * [2024-12-01 - 🦜 voice-cloning-org](log/2024/12/voice-cloning-app)
 * [2024-10-31 - 🎃 content features in Jekyll](log/2024/10/a-matter-of-features)
@@ -46,6 +47,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 * [2020-07-21 - 🐌 connection-limiter](https://github.com/bitplane/connection-limiter)
 * [2019-01-04 - 😆 who's your celebrity crush?](https://youtu.be/M_ZBpOFJ5Z4)
 * [2018-09-17 - 📚 digitizing treeware](log/2018/09/scanner)
+* [2018-07-30 - ♣️ Solfest Fancy Dress] TODO github
 * [2014-06-12 - 🍼 naming is hard, dadding is harder](log/2014/jess)
 * [2013-12-17 - 💸 a bitcoin treasure hunt](log/2013/12/bitcoin-treasure-hunt)
 * [2013-10-01 - 🎲 Schrödinger's RNG](https://github.com/bitplane/schrodingers-rng)
