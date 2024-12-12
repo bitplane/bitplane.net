@@ -1,0 +1,18 @@
+<script src="/assets/js/asciinema-player.min.js"></script>
+<link rel="stylesheet" href="/assets/css/asciinema-player.css">
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('img[src*=".cast."]').forEach(img => {
+      const castSrc = img.src.replace(/\.(png|jpg|webp|gif)$/i, '');
+      const playerDiv = document.createElement('div');
+      playerDiv.className = 'asciinema-player';
+      AsciinemaPlayer.create(castSrc, playerDiv, {
+        autoplay: true,
+        theme: 'asciinema',
+        fit: 'width',
+      });
+      img.replaceWith(playerDiv);
+    });
+  });
+</script>
+
