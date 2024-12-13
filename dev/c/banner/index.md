@@ -1,6 +1,12 @@
+---
+features: ["dosbox"]
+---
+
 # banner.c
 
-SysV `banner` for Amiga and MS-DOS: [banner.zip](banner.zip)
+SysV `banner` for Amiga and MS-DOS:
+
+* [📺 banner.zip](banner.dos.zip)
 
 ## Docs
 

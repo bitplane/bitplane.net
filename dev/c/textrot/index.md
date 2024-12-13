@@ -1,8 +1,11 @@
+---
+features: ["dosbox"]
+---
 # 3D rotating text
 
 Made this back in '99. 
 
-You can download it [here](textrot.zip)
+* [📦 download](textrot.dos.zip)
 
 ## readme
 

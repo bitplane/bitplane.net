@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/assets/css/js-dos.css">
+<style>
+  .dosbox-container {
+    width: 75ch;
+    height: 40ch;
+    align-content: center;
+    border: 1px solid #333;
+    background: #000;
+    color: #0f0;
+  }
+</style>
+
+<script type="module" src="/assets/js/js-dos.js"></script>
+<script src="/assets/js/jszip.min.js"></script> 
+<script>
+async function unzipAndPrepareInitFs(zipURL) {
+  const response = await fetch(zipURL);
+  const buffer = await response.arrayBuffer();
+  const zip = await JSZip.loadAsync(buffer);
+  const files = [];
+  for (const [filePath, file] of Object.entries(zip.files)) {
+    if (!file.dir) {
+      const fileData = await file.async("uint8array");
+      files.push({ path: filePath, contents: fileData });
+    }
+  }
+  return files;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  // Prevent CTRL+R in DOS from overriding browser refresh
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'r') {
+      e.preventDefault();
+    }
+  });
+
+  const links = document.querySelectorAll('a[href$=".dos.zip"]');
+  for (const link of links) {
+    const container = document.createElement('div');
+    container.classList.add('dosbox-container');
+    link.parentNode.insertBefore(container, link);
+
+    const initFs = await unzipAndPrepareInitFs(link.href);
+
+    Dos(container, {
+      wdosboxUrl: "/assets/js/wdosbox.js",
+      pathPrefix: "/assets/js/",
+      kiosk: true,
+      noCloud: true,
+      noNetworking: true,
+      autoStart: true,
+      dosboxConf: `
+[autoexec]
+mount c .
+c:
+`,
+      initFs: initFs,
+      onEvent: (event, ci) => {
+        if (event === "ci-ready") {
+            // "DIR" + Enter
+            ci.simulateKeyPress(68, 73, 82, 28);
+        }
+      }
+    });
+  }
+});
+</script>

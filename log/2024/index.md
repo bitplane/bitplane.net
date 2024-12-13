@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-12-13 - 💾 ...and also dosbox](12/dosbox)
 * [2024-12-12 - 📺 embedding asciinema](12/asciinema)
 * [2024-12-09 - 🐋 TRELLIS in Docker](12/trellis)
 * [2024-12-04 - 🔦 torched and without pickles](12/torch-weightsonly)
