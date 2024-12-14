@@ -1,3 +1,6 @@
+---
+features: ["emulator/amiga"]
+---
 # Eggit
 
 This is my final Amos game, my best one but unfinished due to lack of plot.
@@ -6,7 +9,9 @@ features include a map, save/load game, custom palettes for each screen,
 demo mode, and loads of hidden stuff.
 
 [⏯
-![screenshot](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
+![amiga:/oof.adf.zip](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
+
+* [🥚 download](eggit.hdf.zip)
 
 Eggit (aka Stephen Edgar) was a friend in school, he pretended to be pissed
 off with being portrayed as a sarcastic egg at first but he really liked the
@@ -37,5 +42,4 @@ I'm well proud of this game because I "invented" loads of stuff, like:
   is huge because of this. Maybe it's too big, but I can fill in some of the empty
   bits later on. (spoiler: I didn't)
 
-You can download the game [here](eggit.rar)
 

@@ -1,3 +1,6 @@
+---
+features: ["emulator/amiga"]
+---
 # Scrawler
 
 There was a game on the Amiga, Jimmy White's Whirlwind Snooker, and along with
@@ -13,7 +16,7 @@ clock speeds.
 Here's an example of the editor in action:
 
 [⏯
-![screenshot](scrawleramiga.gif)](https://youtu.be/odf8lauHm-4)
+![amiga:scrawler.hdf.zip](scrawleramiga.gif)](https://youtu.be/odf8lauHm-4)
 
 Download:
 

@@ -1,0 +1,151 @@
+<script src="/assets/js/sae/prototypes.js"></script>
+<script src="/assets/js/sae/utils.js"></script>
+<script src="/assets/js/sae/dms.js"></script>
+<script src="/assets/js/sae/config.js"></script>
+<script src="/assets/js/sae/roms.js"></script>
+<script src="/assets/js/sae/memory.js"></script>
+<script src="/assets/js/sae/autoconf.js"></script>
+<script src="/assets/js/sae/expansion.js"></script>
+<script src="/assets/js/sae/events.js"></script>
+<script src="/assets/js/sae/gayle.js"></script>
+<script src="/assets/js/sae/ide.js"></script>
+<script src="/assets/js/sae/filesys.js"></script>
+<script src="/assets/js/sae/hardfile.js"></script>
+<script src="/assets/js/sae/dongle.js"></script>
+<script src="/assets/js/sae/input.js"></script>
+<script src="/assets/js/sae/serpar.js"></script>
+<script src="/assets/js/sae/custom.js"></script>
+<script src="/assets/js/sae/blitter.js"></script>
+<script src="/assets/js/sae/copper.js"></script>
+<script src="/assets/js/sae/playfield.js"></script>
+<script src="/assets/js/sae/video.js"></script>
+<script src="/assets/js/sae/audio.js"></script>
+<script src="/assets/js/sae/cia.js"></script>
+<script src="/assets/js/sae/disk.js"></script>
+<script src="/assets/js/sae/rtc.js"></script>
+<script src="/assets/js/sae/m68k.js"></script>
+<script src="/assets/js/sae/cpu.js"></script>
+<script src="/assets/js/sae/amiga.js"></script>
+
+<script src="/assets/js/jszip.min.js"></script>
+<script type="module">
+import { loadArchive } from "/assets/js/loadarchive.js";
+import { replaceImages } from "/assets/js/replaceImages.js";
+
+// Make sae a global variable for debugging
+var sae;
+
+document.addEventListener("DOMContentLoaded", () => {
+  function abToStr(buf) {
+    const arr = new Uint8Array(buf);
+    let str = "";
+    for (let i = 0; i < arr.length; i++) str += String.fromCharCode(arr[i]);
+    return str;
+  }
+
+  async function loadArosRoms() {
+    const romRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-rom.bin");
+    if (!romRes.ok) throw new Error("Failed to load Kickstart ROM");
+    const romBuf = await romRes.arrayBuffer();
+    const romData = abToStr(romBuf);
+
+    const extRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-ext.bin");
+    if (!extRes.ok) throw new Error("Failed to load Extended ROM");
+    const extBuf = await extRes.arrayBuffer();
+    const extData = abToStr(extBuf);
+
+    return { romData, extData };
+  }
+
+  let romsPromise = loadArosRoms();
+  let emulatorInitialized = false;
+
+  function setupAmigaEmulator(zipName, img) {
+    if (emulatorInitialized) {
+      // Only one emulator instance per page
+      const dummy = document.createElement('div');
+      dummy.style.display = 'none';
+      return dummy;
+    }
+    emulatorInitialized = true;
+
+    const w = img.naturalWidth || img.width;
+    const h = img.naturalHeight || img.height;
+
+    const container = document.createElement('div');
+    container.id = "scriptedAmigaEmulator";
+    container.style.width = w + "px";
+    container.style.height = h + "px";
+    container.style.position = "relative";
+    container.style.background = "#000";
+    container.style.margin = "1em 0";
+    container.style.border = "1px solid #333";
+
+    // Defer emulator initialization until the container is in the DOM
+    setTimeout(async () => {
+      const { romData, extData } = await romsPromise;
+      const files = await loadArchive(zipName, name => {
+        const lower = name.toLowerCase();
+        return lower.endsWith(".adf") || lower.endsWith(".hdf");
+      });
+
+      sae = new ScriptedAmigaEmulator(); // Assign to global variable
+      const cfg = sae.getConfig();
+
+      cfg.cpu.model = SAEC_Config_CPU_Model_68020;
+      cfg.cpu.addressSpace24 = false;
+      cfg.chipset.mask = SAEC_Config_Chipset_Mask_AGA;
+      cfg.memory.chipSize = 2 << 20; //2MB chip
+
+      cfg.video.id = "scriptedAmigaEmulator";
+      cfg.video.enabled = true;
+      cfg.video.api = SAEC_Config_Video_API_WebGL;
+      cfg.video.colorMode = 5;
+
+      // Use AROS ROMS again
+      cfg.memory.rom.data = romData;
+      cfg.memory.rom.size = romData.length;
+      cfg.memory.extRom.data = extData;
+      cfg.memory.extRom.size = extData.length;
+
+      for (let i = 0; i < 4; i++) {
+        cfg.floppy.drive[i].type = SAEC_Config_Floppy_Type_None;
+      }
+
+      let hdfMounted = false;
+      let floppyIndex = 0;
+
+      for (const f of files) {
+        const binStr = abToStr(f.data);
+        if (f.name.toLowerCase().endsWith(".adf")) {
+          if (floppyIndex < 4) {
+            cfg.floppy.drive[floppyIndex].type = SAEC_Config_Floppy_Type_35_DD;
+            cfg.floppy.drive[floppyIndex].file.data = binStr;
+            cfg.floppy.drive[floppyIndex].file.size = binStr.length;
+            cfg.floppy.drive[floppyIndex].file.prot = false;
+            sae.insert(floppyIndex);
+            floppyIndex++;
+          }
+        } else if (f.name.toLowerCase().endsWith(".hdf") && !hdfMounted) {
+          const ci = cfg.mount.config[0].ci;
+          ci.controller_type = SAEC_Config_Mount_Controller_Type_MB_IDE;
+          ci.controller_unit = 0;
+          ci.readonly = false;
+          ci.file.data = binStr;
+          ci.file.size = binStr.length;
+          ci.file.prot = false;
+          hdfMounted = true;
+        }
+      }
+
+      const err = sae.start();
+      console.log("Amiga emulator start error code:", err);
+    }, 0);
+
+    return container;
+  }
+
+  replaceImages("amiga", setupAmigaEmulator);
+});
+</script>
+
