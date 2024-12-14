@@ -17,8 +17,9 @@ Here's an example of the editor in action:
 
 Download:
 
-[amos](scrawler_amos_src.zip) |
-[amiga emulator](scrawler_runpack.zip) |
-[ms-dos](scrawler_dos.zip) |
-[visual basic](scrawler_vb.zip)
+
+* [👾 amiga](scrawler.hdf.zip)
+* [📜 amos](scrawler_amos_src.zip)
+* [📺 ms-dos](scrawler.dos.zip)
+* [🪟 visual basic](scrawler_vb.zip)
 
