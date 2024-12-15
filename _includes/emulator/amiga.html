@@ -44,17 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function loadArosRoms() {
-    const romRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-rom.bin");
+    //const romRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-rom.bin");
+    const romRes = await fetch("/assets/js/sae/roms/KICK31.ROM");
     if (!romRes.ok) throw new Error("Failed to load Kickstart ROM");
     const romBuf = await romRes.arrayBuffer();
     const romData = abToStr(romBuf);
 
-    const extRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-ext.bin");
-    if (!extRes.ok) throw new Error("Failed to load Extended ROM");
-    const extBuf = await extRes.arrayBuffer();
-    const extData = abToStr(extBuf);
+    //const extRes = await fetch("/assets/js/sae/roms/aros-amiga-m68k-ext.bin");
+    //if (!extRes.ok) throw new Error("Failed to load Extended ROM");
+    //const extBuf = await extRes.arrayBuffer();
+    //const extData = abToStr(extBuf);
 
-    return { romData, extData };
+    return { romData };
   }
 
   let romsPromise = loadArosRoms();
@@ -83,7 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Defer emulator initialization until the container is in the DOM
     setTimeout(async () => {
-      const { romData, extData } = await romsPromise;
+      //const { romData, extData } = await romsPromise;
+      const { romData } = await romsPromise;
       const files = await loadArchive(zipName, name => {
         const lower = name.toLowerCase();
         return lower.endsWith(".adf") || lower.endsWith(".hdf");
@@ -105,8 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Use AROS ROMS again
       cfg.memory.rom.data = romData;
       cfg.memory.rom.size = romData.length;
-      cfg.memory.extRom.data = extData;
-      cfg.memory.extRom.size = extData.length;
+      //cfg.memory.extRom.data = extData;
+      //cfg.memory.extRom.size = extData.length;
 
       for (let i = 0; i < 4; i++) {
         cfg.floppy.drive[i].type = SAEC_Config_Floppy_Type_None;
