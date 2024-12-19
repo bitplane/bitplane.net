@@ -34,7 +34,7 @@ flowchart TD
 
 ## How?
 
-The trick comes from [`_layouts/default.html`](https://github.com/bitplane/bitplane.github.io/blob/main/_layouts/default.html)
+The trick comes from [`_layouts/default.html`](https://github.com/bitplane/bitplane.net/blob/main/_layouts/default.html)
 letting me add features:
 
 {% raw %}
@@ -47,7 +47,7 @@ letting me add features:
 
 {% endraw %}
 
-...the front-matter in [this file](https://github.com/bitplane/bitplane.github.io/blob/main/log/2024/10/a-matter-of-features/index.md)
+...the front-matter in [this file](https://github.com/bitplane/bitplane.net/blob/main/log/2024/10/a-matter-of-features/index.md)
 having the "mermaid" feature:
 
 ```markdown
@@ -56,7 +56,7 @@ features: ["mermaid"]
 ---
 ```
 
-...and the [mermaid feature](https://github.com/bitplane/bitplane.github.io/blob/main/_includes/mermaid.html)
+...and the [mermaid feature](https://github.com/bitplane/bitplane.net/blob/main/_includes/mermaid.html)
 including the JavaScript that replaces the code blocks for the div class Mermaid
 expects, and initializing the thing:
 

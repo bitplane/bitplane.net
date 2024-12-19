@@ -10,5 +10,5 @@ I can now embed an image, like this:
 
 And if JavaScript is enabled, it'll be swapped out on the fly for a video.
 
-* [🐱 github](https://github.com/bitplane/bitplane.github.io/blob/main/_includes/asciinema.html)
+* [🐱 github](https://github.com/bitplane/bitplane.net/blob/main/_includes/asciinema.html)
 
