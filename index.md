@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2024-12-21 - ➡️ subcmd.sh `cmd sub` -> `cmd-sub`](https://github.com/bitplane/subcmd)
 * [2024-12-19 - 🖕 renamed default branches to master](log/2024/12/no-more-main)
 * [2024-12-13 - 💾 ...and also dosbox](log/2024/12/dosbox)
 * [2024-12-12 - 📺 embedding asciinema](log/2024/12/asciinema)

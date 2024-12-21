@@ -1,5 +1,6 @@
 # 📅 2024
 
+* [2024-12-21 - ➡️ subcmd.sh `cmd sub` -> `cmd-sub`](https://github.com/bitplane/subcmd)
 * [2024-12-19 - 🖕 renamed default branches to master](12/no-more-main)
 * [2024-12-13 - 💾 ...and also dosbox](12/dosbox)
 * [2024-12-12 - 📺 embedding asciinema](12/asciinema)

@@ -12,5 +12,5 @@ here:
 
 * [🌐 pierdat](https://github.com/bitplane/pierdat) -
   Docker containers that host their own data.
-* [⊂ subcmd](https://github.com/bitplane/subcmd) -
+* [➡️ subcmd](https://github.com/bitplane/subcmd) -
   A shell script that converts `cmd subcmd` -> `cmd-subcmd` for you.
