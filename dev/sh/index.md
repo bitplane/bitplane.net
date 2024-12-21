@@ -10,5 +10,7 @@ use Makefiles and bash scripts where possible.
 If I find some actual shell script projects from over the years, I'll add them
 here:
 
-* 🌐 [pierdat](https://github.com/bitplane/pierdat) -
+* [🌐 pierdat](https://github.com/bitplane/pierdat) -
   Docker containers that host their own data.
+* [⊂ subcmd](https://github.com/bitplane/subcmd) -
+  A shell script that converts `cmd subcmd` -> `cmd-subcmd` for you.
