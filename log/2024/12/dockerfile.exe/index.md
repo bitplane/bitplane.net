@@ -92,7 +92,7 @@ Here's some you could try though:
 * 🌽 `#!/usr/bin/ksh echo sometimes I cannot feel my face`
 * 🐟 `#!/usr/bin/fish -c'echo teach a man to starve'`
 * 🐪 `#!/usr/bin/perl -e'print "camels love line noise"'`
-* 💎 `#!/usr/bin/ruby -e'puts "肌にローションを塗る"'
+* 💎 `#!/usr/bin/ruby -e'puts "肌にローションを塗る"'`
 
 ## Links
 
