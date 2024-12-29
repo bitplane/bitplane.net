@@ -1,17 +1,26 @@
 # 🐳 Dockerfile.exe
 
-When the kernel runs your shebang, it only does one split. So you can't pass
-multiple parameters because they all get stuck together. This sort of thing
-will fail:
+tldr: self-executing Dockerfiles using an `awk` script as the interpreter.
+
+## What?
+
+When the kernel runs your shebang, it only does one split.
+
+This means you can't pass multiple parameters because they all get smushed
+together as one. So this sort of thing will fail:
 
 ```sh
 #!/bin/sh -c 'echo party pooper'
 ```
 
-`'-c '` isn't an option, and `-c'echo hello'` won't work either beause it
-needs a space after the `-c`.
+Because it's passing `-c 'echo party pooper'` into the first parameter for
+`sh`. So it reads the `-c` part and sees that `' '` isn't an option and fails.
 
-Same deal with bash.
+You can't cheat it by passing `-c'echo hello'` either; it needs a space after
+the `-c` because it's expected.
+
+Same deal with `bash`, `zsh`, `dash` and `csh`. Some other shells do work, but
+nobody uses them (except you).
 
 ```shell
 $ ./party_pooper
@@ -27,7 +36,7 @@ $ bash -c"boooh"
 bash: -c: option requires an argument
 ```
 
-## ? \[Yn\]
+## Why?
 
 Because the `\0` terminated `argv` list only has 3 args. The binary (`$0`),
 everything after it (`$1`) and the name of the file (`$2`).
@@ -35,7 +44,7 @@ everything after it (`$1`) and the name of the file (`$2`).
 You can use env with the `-S` flag to work around that; this will work:
 
 ```sh
-#!/usr/bin/env -S sh -c 'echo hello!'`
+#!/usr/bin/env -S sh -c 'echo hello!'
 ```
 
 But it's not POSIX. And might be in `/bin`. It's usually in both so that's
@@ -71,6 +80,21 @@ ENTRYPOINT ["sh", "-c", "echo hello world"]
 
 Works for the files I've tried it with, so it should probably be more of a
 thing!
+
+## `awk` is bad and you should feel bad
+
+Well, it's one way to deal with the problems of passing the input as an arg
+and the file into stdin and std out back into itself or whatever the hell is
+going on.
+
+Here's some you could try though:
+
+* 🌽 `#!/usr/bin/ksh echo sometimes I cannot feel my face`
+* 🐟 `#!/usr/bin/fish -c'echo teach a man to starve'`
+* 🐪 `#!/usr/bin/perl -e'print "camels love line noise"'`
+* 💎 `#!/usr/bin/ruby -e'puts "肌にローションを塗る"'
+
+## Links
 
 * [🐱 github](https://docker.com/bitplane/Dockerfile.exe)
 * [👽 reddit](https://www.reddit.com/r/docker/comments/1hotp9l/a_shebang_for_dockerfiles/)
