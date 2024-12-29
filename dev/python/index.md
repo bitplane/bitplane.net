@@ -15,7 +15,7 @@ that's still fair comment.
 
 ### Command line apps
 
-* [uh-halp](/uh-halp) -
+* [uh-halp](uh-halp) -
   AI helper for the shell.
 * [merge-files](/merge-files) -
   Universal file converter, extractor, merger. Not quite, but might be one day.
