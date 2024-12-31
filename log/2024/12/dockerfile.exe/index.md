@@ -54,10 +54,10 @@ So I was messing about and found a way around it is using `awk`, which is
 POSIX:
 
 ```shell
-$ cat party_pooper
+$ cat meh
 #!/bin/awk BEGIN {system("hexdump -C /proc/$PPID/cmdline")}
 
-$ ./party_pooper
+$ ./meh
 00000000  2f 62 69 6e 2f 61 77 6b  00 42 45 47 49 4e 20 7b  |/bin/awk.BEGIN {|
 00000010  73 79 73 74 65 6d 28 22  68 65 78 64 75 6d 70 20  |system("hexdump |
 00000020  2d 43 20 2f 70 72 6f 63  2f 24 50 50 49 44 2f 63  |-C /proc/$PPID/c|
