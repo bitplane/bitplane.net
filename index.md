@@ -16,6 +16,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2025-01-01 - 💣 bsod.sh](log/2025/01/bsod)
 * [2024-12-28 - 🐋 Dockerfile.exe](log/2024/12/dockerfile.exe)
 * [2024-12-21 - ➡️ subcmd.sh `cmd sub` -> `cmd-sub`](https://github.com/bitplane/subcmd)
 * [2024-12-19 - 🖕 renamed default branches to master](log/2024/12/no-more-main)

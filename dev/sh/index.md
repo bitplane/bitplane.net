@@ -14,3 +14,7 @@ here:
   Docker containers that host their own data.
 * [➡️ subcmd](https://github.com/bitplane/subcmd) -
   A shell script that converts `cmd subcmd` -> `cmd-subcmd` for you.
+* [🖼️ some ascii effects](asciinema-fx) -
+  Some Windows Blue Screen of Death scripts.
+* [📷 lifecap](https://github.com/bitplane/lifecap) -
+  Capture your life for local AI agent processing.
