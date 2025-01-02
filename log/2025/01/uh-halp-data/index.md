@@ -41,7 +41,7 @@ run offline, on machines with minimal compute and space resources?
 
 Sounds like a fun project, right? This view aged like warm milk.
 
-## 🖹 the data
+## 💽 the data
 
 The app takes questions and produces answers like this:
 
@@ -72,31 +72,33 @@ learn from my own.
 
 The approach looks like this:
 
-* I put my data in the `data` dir, and some scripts in the `scripts` dir.
-* Each step depends on some piece of data and a script or two.
-* I hack the `all` target in the `Makefile` and run `make` whenever I need to
-  run the next step.
-* I make changes, remove some data, re-run `make`. Rinse and repeat.
+* ✅ I put my data in the `data` dir, and some scripts in the `scripts` dir.
+* ➡️ Each step depends on some piece of data and a script or two.
+* ✍  I hack the `all` target in the `Makefile` and run `make` whenever I need
+  to run the next step.
+* ♻️ I make changes, remove some data, re-run `make`. Rinse and repeat.
 
 ![setup](0.cast.png)
 
 ### 🤦 mental challengings
 
-* The names of the scripts, the data files and the Make steps quickly go out
+* 💩 The names of the scripts, the data files and the Make steps quickly go out
   of sync. They say naming things is the hardest problem in computing, well
   renaming things is a fragile pig's arsehole of a task.
-* Naming my scripts `01.*` and so on worked well at first, then I needed more
-  pipeline steps and `01a` etc were born. And I had to remember them. Next
+* 🔡 Naming my scripts `01.*` and so on worked well at first, then I needed
+  more pipeline steps and `01a` etc were born. And I had to remember them. Next
   time it's subdirs.
-* I had to turn bell off in my terminal because tab completion is, well, if
+* 🔕 I had to turn bell off in my terminal because tab completion is, well, if
   you've been there you'll know it makes your middle finger ache. Or maybe
-  that's just me 🔔🖕
-* I deleted all my data on more than one occasion by putting a space in after
-  the data dir while running `rm -r`. Setting the files to read-only didn't
-  help because `-f` is muscle memory by this point. Running on a Mac might
-  have, since it's less "friendly" with its flag and target ordering.
-* Conflated log and data dirs for a while, and ended up blowing them away.
+  that's just me 🖕
+* 🗑 I deleted all my data on more than one occasion by putting a space in
+  after the data dir while running `rm -r`. Setting the files to read-only
+  didn't help because `-f` is muscle memory by this point. Running on a Mac
+  might have, since it's less "friendly" with its flag and target ordering.
+* 🪵 Conflated log and data dirs for a while, and ended up blowing them away.
   Eventually I ended up with separate `data`, `data.bak` and `log` dirs.
+
+---
 
 ## 📦 1. ALL THE BINARIES
 
@@ -117,6 +119,8 @@ Windows anyway.
 So just Ubuntu packages for now. Using Docker. Easy-peasy:
 
 ![step 1](1.cast.png)
+
+---
 
 ### 📈 2. Popularity contest
 
@@ -156,22 +160,26 @@ a sort function is a pretty cool trick.
 
 ### 🤦 shouldawouldacoulda
 
-* The scoring is skewed, it should give `1.0/len(list)` to each item each pass
-  and make some effort to figure out the average score. I'm sure some useful
-  commands must have ended up with low ranks because of this.
-* Hallucinations mess the sorting up a bit, causing some things to end up
+* 📊 The scoring is skewed, it should give `1.0/len(list)` to each item each
+  pass and make some effort to figure out the average score. I'm sure some
+  useful commands must have ended up with low ranks because of this.
+* 🍄 Hallucinations mess the sorting up a bit, causing some things to end up
   filtered. Doing some kind of hamming distance or hash over the ordered lists
   might have filtered less data - but I just threw out anything that wasn't
   in the original list.
-* I didn't tell llama to exclude GUI apps. So the first time I ran it, I ended
-  up opening a million apps over `ssh -X` which I'm using for my clipboard
-  aliases.
-* The code isn't up to my usual standards. Because ChatGPT wrote most of it.
-  So I did the barking and it did the urinating, between us it wasn't dog slow.
-* I tried a process using pipes and shell scripts at first, but it's much more
-  efficient to use a proper POST with a system prompt. You can probably set up
-  the prompt by hacking ollama's manifest files, but that's more complexity
-  and complexity at scale can be measured in square inches of empty scalp.
+* 🪟 I didn't tell llama to exclude GUI apps. So the first time I ran it, I
+  ended up opening a million apps over `ssh -X` which I'm using for my
+  clipboard aliases.
+* 🤖 The code isn't up to my usual standards. Because ChatGPT wrote most of
+  it. So I did the barking and it did the urinating, between us it wasn't dog
+  slow.
+* 🐚 I tried a process using pipes and shell scripts at first, but it's much
+  more efficient to use a proper POST with a system prompt. You can probably
+  set up the prompt by hacking ollama's manifest files, but that's more
+  complexity and complexity at scale can be measured in square inches of empty
+  scalp.
+
+---
 
 ## 🐋 3. ALL THE THINGS (part 2)
 
@@ -204,15 +212,18 @@ Here they are though:
 
 ### 🤦 oofs
 
-* With such a mix of packages, some of them are bound to fail to install, and
+* ☠️ With such a mix of packages, some of them are bound to fail to install, and
   complain every time it makes a change.
-* So I needed a package blacklist, which blows my Docker cache.
-* So they have to be split into batches. I picked 500 for the batch size. Then I
-  split this into groups of 20 and install those. Then save to a Docker image.
-  If I make changes to the blacklist and re-run, it at least only builds a few
-  layers.
-* No space left on device.
-* No space left on device.
+* 💥 So I needed a package blacklist, which blows my Docker cache.
+* 🪓 So they have to be split into batches. I picked 501 for the batch size.
+  Then I split this into groups of 20 and install those. Then save to a Docker
+  image. If I make changes to the blacklist and re-run, it at least only builds
+  a few layers.
+* 💾 No space left on device.
+* 💾 No space left on device.
+* 💾 No space left on device.
+
+---
 
 ## 🛟 4. Help extraction
 
@@ -225,29 +236,30 @@ With 40,000 programs to run, you run into a lot of badly behaving ones. Ones
 that existed 60 years ago, ones that expect people in their problem domain to
 expect or put up with certain things. There's a lot of variation.
 
-* Older BSD type commands keep their help in the manual and see `--help` as
-  flags `-` `e` `l` `p`, and fail.
-* Some programmers have apparently never even heard of the command line or
+* 👴 Older BSD type commands keep their help in the manual and see `--help`
+  as flags `-` `e` `l` `p`, and fail.
+* 🪟 Some programmers have apparently never even heard of the command line or
   expect anyone to ask for help outside their long dead website.
-* Some like to open an interactive terminal and block forever.
-* Some will eat your stdin, so you can't just use `read` - you need to pipe
+* 💩 Some like to open an interactive terminal and block forever.
+* 🥩 Some will eat your stdin, so you can't just use `read` - you need to pipe
   `/dev/null` into them.
-* Others don't honour the SIGnal for INTerrupt, you need to KILL them when you
-  lose patience waiting for them to realise they're talking to a pipe not a
+* 🫸 Others don't honour the SIGnal for INTerrupt, you need to KILL them when
+  you lose patience waiting for them to realise they're talking to a pipe not a
   user, which they never will.
-* Some output ANSI escape sequences to stdout, so if you're teeing logs to your
-  terminal it'll end up reconfigured to not work with `\n` and turn echoing
-  off or whatever.
-* Some piss out a billion lines of noise to stdout. No space left on device.
-* Some create files in the working directory. They must be VERY IMPORTANT
+* ⛓‍💥 Some output ANSI escape sequences to stdout, so if you're teeing
+  logs to your terminal it'll end up reconfigured to not work with `\n` and
+  turn echoing off or whatever.
+* 🫗 Some piss out a billion lines of noise to stdout.
+  No space left on device.
+* 🆕 Some create files in the working directory. They must be VERY IMPORTANT
   COMMANDS, far more important than you or anything you might happen to be
   doing.
-* Some send their `--help` text to stderr because that's what the framework
-  they're using does by default, and so they do too. Which is kinda fair, I
-  guess.
-* Some have undocumented dependencies, so you need to install packages that
-  aren't listed. Or maybe because I didn't install recommended packages and
-  recommended actually meant mandatory.
+* 💩 Some send their `--help` text to stderr because that's what the framework
+  they're using does by default, or it's what their nan used to do, and so
+  they do too.
+* 🫥 Some have undocumented dependencies, so you need to install packages
+  that aren't listed. Or maybe because I didn't install recommended packages
+  and recommended actually meant mandatory.
 
 So I create a separate dir for each program. I run it on a 1 second timeout and
 kill the thing if it takes too long. Then run it with `-h` if it failed. And
@@ -266,15 +278,15 @@ The outputs of the help generation steps are here:
 
 ### 🤦 gahwtfkinshii
 
-* All that stuff above; Murphy's law applies at scale.
-* Diversity is frustration, freedom is toil, disk is in pieces. I love big
-  data.
-* The folks at Canonical helpfully minimize their cloud images, so `man` is
-  replaced with a shell script that prints out a message telling you to run
+* 💩 All that stuff above; Murphy's law applies at scale.
+* 📖 Diversity is frustration, freedom is toil, disk is in pieces.
+  I love big data.
+* 🇬🇧The folks at Canonical helpfully minimize their cloud images, so `man`
+  is replaced with a shell script that prints out a message telling you to run
   unminimize. And its exit code is... wait for it... `0`.
   So I had to build everything again. And again, and again, for other
   reasons. But that one time it was their fault. And mine. But also theirs.
-* I filtered by line count on the outputs, and some commands just output
+* 🗑 I filtered by line count on the outputs, and some commands just output
   a load of noise without any line breaks, so had to filter them again
   rather than wait another 3 hours.
 
@@ -285,6 +297,8 @@ The outputs of the help generation steps are here:
 * [🐱 github](https://github.com/bitplane/uh-halp-data/releases/tag/0.0.3)
   release of `/usr/share/doc` from the final image when manpages were
   missing. Might be useful to someone.
+
+---
 
 ## 🐋 5. Compressing the Docker images
 
@@ -303,15 +317,18 @@ the base image and I didn't want to wait for it to run for the larger ones.
 
 ### 🤦 snafu very much
 
-* Being too impatient for `docker export` to do its business, I decided to dump
-  the image contents with `tar` over a pipe. But ran out of space on the Orin
-  box. Twice. And had to download it all from Docker Hub again, as you can see
-  in the above cast.
+* 💤 Being too impatient for `docker export` to do its business, I decided to
+  dump the image contents with `tar` over a pipe. But ran out of space on the
+  Orin box. Twice.
+  And had to download it all from Docker Hub again, as you can see in the above
+  cast.
 
 #### Links
 
 * [🐛 bug report](https://github.com/slimtoolkit/slim/issues/741) for slim
   toolkit.
+
+---
 
 ## 📃 6. Usage scenarios
 
@@ -369,6 +386,8 @@ And let it generate the scenarios.
 
 ![step 6](6.cast.png)
 
+---
+
 ## 👨‍🦰 7. uh gen
 
 And finally, now we have some data that we can use to generate user scenarios.
@@ -376,14 +395,14 @@ The primary user being me, of course.
 
 There's a few different scenarios I generally use:
 
-* I've no idea what I'm doing, I just want to get something done. Usually I ask
-  ChatGPT when `uh` fails me. But `uh` generally works.
-* I know what command I want to use, but I don't know what the flags are. `uh`
-  is really handy for this sort of thing. If it fails, I'll grep `--help` or
-  the manpage. I want to reduce the amount of grepping here.
-* I have a command and I want a second opinion on something. So I ask `uh` how
-  to do it, to see if there's something obvious I'm missing. There often is.
-* I want to know where something system related is.
+* 🤔 I've no idea what I'm doing, I just want to get something done. Usually I
+  ask ChatGPT when `uh` fails me. But `uh` generally works.
+* 🏗️ I know what command I want to use, but I don't know what the flags are.
+  `uh` is really handy for this sort of thing. If it fails, I'll grep `--help`
+  or the manpage. I want to reduce the amount of grepping here.
+* ✅ I have a command and I want a second opinion on something. So I ask `uh`
+  how to do it, to see if there's something obvious I'm missing. There often is.
+* 🔍 I want to know where something system-related is.
 
 A full manpage extract would provide data for the last scenario, but that can
 come later. Knowing the flags to every program in the Universe and how to
