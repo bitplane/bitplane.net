@@ -3,14 +3,22 @@ features: ["asciinema"]
 ---
 # 🤖 uh-halp-data
 
-Over the Christmas break I've been working on a dataset to train a small model
+Over the Christmas break I started working on a dataset to train a small model
 that can be used to run [uh-halp](/dev/python/uh-halp) offline.
 
-This has been a bit of a slog.
+Putting it mildly, this has been a bit of a slog.
+
+## 💤 tl;dr
+
+* 🤖 I generated a ton of data for fine-tuning LLMs to help with command line
+  tasks.
+* ✅ Project is WTFPL licensed.
+* [🐱 source](https://github.com/bitplane/uh-halp-data) is on github, along
+  with released data.
 
 ## 📺 uh what?
 
-The app is a command line tool that tells you what to type on the command line,
+`uh` is a command line tool that tells you what to type on the command line,
 for people who are old and forgetful like me. A picture is worth 0x1000 DWORDS,
 and a video even more.
 
@@ -28,15 +36,14 @@ really be called free software. But I recently got myself an Nvidia Orin and can
 run language models now. At least if I've got a connection to the thing and
 ollama is running, which users might not have.
 
-But llama can create data, and I've got enough RAM for training... so, why not
-have a stab at making a model that can run offline, on machines with minimal
-compute and space resources.
+And llama can create data... so, why not have a stab at making a model that can
+run offline, on machines with minimal compute and space resources?
 
-So yeah. Sounds like a fun project, right? A view that aged like warm milk.
+Sounds like a fun project, right? This view aged like warm milk.
 
 ## 🖹 the data
 
-Data needs to be tons of pieces of text like this:
+The app takes questions and produces answers like this:
 
 ```text
 Q: how much space is left here
@@ -47,12 +54,14 @@ Q: ssh me@box but forward X so I can do gui stuff
 A: ssh -X me@box
 ```
 
+So training data needs to be in this format.
+
 ---
 
 ## 🦣 0. A data collection pipeline for mammoths
 
-And so, I decided to embark on this gigantasoric data collection exercise. One
-of many maybe, or 0.5 of many if I never actually finish it.
+And so, I decided to embark on a gigantosauric data collection exercise. One of
+many maybe, or 0.5 of 0.5 if I never actually finish it.
 
 I drive the process with a `Makefile`, which has target data files as outputs
 and scripts as inputs. This, as usual, is a mixed blessing. Having suffered
@@ -65,7 +74,9 @@ The approach looks like this:
 
 * I put my data in the `data` dir, and some scripts in the `scripts` dir.
 * Each step depends on some piece of data and a script or two.
-* I hack the `all` target in the `Makefile` and run `make` whenever.
+* I hack the `all` target in the `Makefile` and run `make` whenever I need to
+  run the next step.
+* I make changes, remove some data, re-run `make`. Rinse and repeat.
 
 ![setup](0.cast.png)
 
@@ -73,32 +84,35 @@ The approach looks like this:
 
 * The names of the scripts, the data files and the Make steps quickly go out
   of sync. They say naming things is the hardest problem in computing, well
-  renaming things is worse, fragile and a pig's arsehole of a task but without
-  the pleasure.
+  renaming things is a fragile pig's arsehole of a task.
 * Naming my scripts `01.*` and so on worked well at first, then I needed more
-  pipeline steps and `01a` etc were born. And I had to remember them. Not fun.
+  pipeline steps and `01a` etc were born. And I had to remember them. Next
+  time it's subdirs.
 * I had to turn bell off in my terminal because tab completion is, well, if
   you've been there you'll know it makes your middle finger ache. Or maybe
   that's just me 🔔🖕
 * I deleted all my data on more than one occasion by putting a space in after
-  the data dir while running rm with `-r`. Setting the files to read-only
-  didn't help because `-f` is muscle memory by this point. Running on a Mac
-  might have, since it's less "friendly" with its flag and target ordering.
+  the data dir while running `rm -r`. Setting the files to read-only didn't
+  help because `-f` is muscle memory by this point. Running on a Mac might
+  have, since it's less "friendly" with its flag and target ordering.
+* Conflated log and data dirs for a while, and ended up blowing them away.
+  Eventually I ended up with separate `data`, `data.bak` and `log` dirs.
 
 ## 📦 1. ALL THE BINARIES
 
-First up, we need to know all the binaries that exist. Thisimpossible task is
+First up, we need to know all the commands that exist. This impossible task is
 somewhat possible in Ubuntu as we can install `apt-file`, run `apt-file update`
 then grep its lz4 archives for stuff in `/bin` and `/usr/bin`.
 
 That doesn't give us everything, but if you add in `/etc/alternatives` and all
-the default binaries too (`/sbin` and the shell builtins) then you've got a
-pretty solid collection.
+the default `/sbin` and the shell builtins then you've got a pretty solid
+starting point.
 
-`uh-halp` supports Windows too, but I'll eat that can of worms when I open it.
-It's not like you can just do `pip install uh-halp` and the thing appears on
-your path in Windows, because `python` is buried in an ever-moving dir.
-Bronchitis limits the amount of time somebody has got for Windows anyway.
+`uh-halp` supports Windows too, but I'll eat that can of worms when I have the
+stomach for it. It's not like you can just do `pip install uh-halp` and the
+thing appears on your path in Windows, because `python` is buried in an
+ever-moving dir. Bronchitis limits the amount of time somebody has got for
+Windows anyway.
 
 So just Ubuntu packages for now. Using Docker. Easy-peasy:
 
@@ -113,14 +127,14 @@ One way I could do this is by pulling all the .sh files I can get my hands on,
 or running `strings` on the entire world, and tallying them up. Or I could
 carefully parse the package list and look at deps of deps, and see which ones
 are used that way. Or I could type in as many commands as I can remember -
-which is a list that's getting shorter every day.
+a list that's getting shorter by the day.
 
 But I've got a shiny new AI box thing, and fifty quid still sat on
 [vast.ai](https://vast.ai/) burning a hole in my account. So why not get llama3
 to do it for me?
 
-So that's what I do, tell the language model a white lie and have it sort
-the names of programs by likelihood of being typed into a terminal:
+So that's what I did, tell the language model a white lie and have it sort the
+names of programs by likelihood of being typed into a terminal:
 
 ```text
 You are bash-cache-priority, an AI program that decides which commands the user
@@ -132,8 +146,8 @@ names in order of likelihood.
 And pass it a list of 10 random commands. And then the next 10 and so on.
 
 Once it's ranked each group, I give them a score based on their rank order.
-Then sort, take the mean and repeat for the ones that are most useful. Pretty
-cool trick!
+Then sort, take the mean and repeat for the top half. Using a language model as
+a sort function is a pretty cool trick.
 
 * [🐱 github](https://github.com/bitplane/uh-halp-data/releases/tag/0.0.1) -
   Popularity contest results.
@@ -145,13 +159,19 @@ cool trick!
 * The scoring is skewed, it should give `1.0/len(list)` to each item each pass
   and make some effort to figure out the average score. I'm sure some useful
   commands must have ended up with low ranks because of this.
+* Hallucinations mess the sorting up a bit, causing some things to end up
+  filtered. Doing some kind of hamming distance or hash over the ordered lists
+  might have filtered less data - but I just threw out anything that wasn't
+  in the original list.
 * I didn't tell llama to exclude GUI apps. So the first time I ran it, I ended
   up opening a million apps over `ssh -X` which I'm using for my clipboard
   aliases.
+* The code isn't up to my usual standards. Because ChatGPT wrote most of it.
+  So I did the barking and it did the urinating, between us it wasn't dog slow.
 * I tried a process using pipes and shell scripts at first, but it's much more
   efficient to use a proper POST with a system prompt. You can probably set up
   the prompt by hacking ollama's manifest files, but that's more complexity
-  and complexity at scale can be measured in square inches of in lost hair.
+  and complexity at scale can be measured in square inches of empty scalp.
 
 ## 🐋 3. ALL THE THINGS (part 2)
 
@@ -201,14 +221,14 @@ each program and save the output, right?
 
 Yeah, right.
 
-With 40,000 programs to run, you run into a lot of badly behaving ones, ones
+With 40,000 programs to run, you run into a lot of badly behaving ones. Ones
 that existed 60 years ago, ones that expect people in their problem domain to
-expect certain things. There's a lot of variation.
+expect or put up with certain things. There's a lot of variation.
 
 * Older BSD type commands keep their help in the manual and see `--help` as
   flags `-` `e` `l` `p`, and fail.
 * Some programmers have apparently never even heard of the command line or
-  expect anyone to ask for help outside their long dead website
+  expect anyone to ask for help outside their long dead website.
 * Some like to open an interactive terminal and block forever.
 * Some will eat your stdin, so you can't just use `read` - you need to pipe
   `/dev/null` into them.
@@ -218,12 +238,16 @@ expect certain things. There's a lot of variation.
 * Some output ANSI escape sequences to stdout, so if you're teeing logs to your
   terminal it'll end up reconfigured to not work with `\n` and turn echoing
   off or whatever.
-* Some piss out a billion lines of noise to stdout, which fills your disk.
-* Some create files in the working directory, because they're more important
-  than anything else you might happen to be doing.
+* Some piss out a billion lines of noise to stdout. No space left on device.
+* Some create files in the working directory. They must be VERY IMPORTANT
+  COMMANDS, far more important than you or anything you might happen to be
+  doing.
 * Some send their `--help` text to stderr because that's what the framework
-  they're using does by default, and so they do too.
-* Some have undocumented dependencies.
+  they're using does by default, and so they do too. Which is kinda fair, I
+  guess.
+* Some have undocumented dependencies, so you need to install packages that
+  aren't listed. Or maybe because I didn't install recommended packages and
+  recommended actually meant mandatory.
 
 So I create a separate dir for each program. I run it on a 1 second timeout and
 kill the thing if it takes too long. Then run it with `-h` if it failed. And
@@ -243,14 +267,16 @@ The outputs of the help generation steps are here:
 ### 🤦 gahwtfkinshii
 
 * All that stuff above; Murphy's law applies at scale.
-* Diversity is frustration, freedom is toil, disk is in pieces.
+* Diversity is frustration, freedom is toil, disk is in pieces. I love big
+  data.
 * The folks at Canonical helpfully minimize their cloud images, so `man` is
   replaced with a shell script that prints out a message telling you to run
   unminimize. And its exit code is... wait for it... `0`.
   So I had to build everything again. And again, and again, for other
   reasons. But that one time it was their fault. And mine. But also theirs.
 * I filtered by line count on the outputs, and some commands just output
-  a load of noise without any line breaks.
+  a load of noise without any line breaks, so had to filter them again
+  rather than wait another 3 hours.
 
 #### Links
 
@@ -279,7 +305,8 @@ the base image and I didn't want to wait for it to run for the larger ones.
 
 * Being too impatient for `docker export` to do its business, I decided to dump
   the image contents with `tar` over a pipe. But ran out of space on the Orin
-  box. Twice. And had to download it all from Docker Hub again.
+  box. Twice. And had to download it all from Docker Hub again, as you can see
+  in the above cast.
 
 #### Links
 
@@ -293,8 +320,7 @@ usage scenarios and given the manpages, it'd just regurgitate what is in the
 manual rather than come up with scenarios that a user would do.
 
 So I needed to steer it in a way where it first generates user scenarios based
-on the program's help, then make it generate questions that a user might ask
-to use the program.
+on the program's help, then make it generate questions within that context.
 
 As an extra bonus, I want it to at least be aware of adjacent commands too. So
 here's the prompt that survived a few rounds of testing:
@@ -304,12 +330,15 @@ There is a program called "$command_name". It performs the following function:
 
 $help_text
 
-We want to understand how this program is used in real-world scenarios. Generate:
+We want to understand how this program is used in real-world scenarios.
+Generate:
 1. A one-line summary of the program's purpose.
 2. List other commands that are frequently used with it, or are related.
-3. A list of 10 realistic use cases where humans commonly use this program. Each use case should:
+3. A list of 10 realistic use cases where humans commonly use this program.
+   Each use case should:
    - Be unique and practical
-   - Focus on real-world tasks, ones that can be solved by typing the command name in.
+   - Focus on real-world tasks, ones that can be solved by typing the command
+     name in.
    - Describe a reason why you'd type the program into the console.
    - Focus mainly on common scenarios, rather than exotic or speculative ones.
 
@@ -336,7 +365,7 @@ Now, generate outputs for the following command:
 **COMMAND NAME:** $command_name
 ```
 
-And let it generate the scenarios
+And let it generate the scenarios.
 
 ![step 6](6.cast.png)
 
@@ -348,22 +377,21 @@ The primary user being me, of course.
 There's a few different scenarios I generally use:
 
 * I've no idea what I'm doing, I just want to get something done. Usually I ask
-  ChatGPT when `uh` fails me. But it often works.
+  ChatGPT when `uh` fails me. But `uh` generally works.
 * I know what command I want to use, but I don't know what the flags are. `uh`
-  is really handy for this sort of thing. If it fails, I'll grep `--help` or the
-  manpage. I want to reduce the amount of times I do this.
-* I just want a second opinion on something.
+  is really handy for this sort of thing. If it fails, I'll grep `--help` or
+  the manpage. I want to reduce the amount of grepping here.
+* I have a command and I want a second opinion on something. So I ask `uh` how
+  to do it, to see if there's something obvious I'm missing. There often is.
 * I want to know where something system related is.
 
-A full manpage extract would provide data for the last step, but that can come
-later. Knowing the flags to every program in existence, and how to install it on
-Ubuntu would help a lot with the rest.
+A full manpage extract would provide data for the last scenario, but that can
+come later. Knowing the flags to every program in the Universe and how to
+install them would help a lot with the rest.
 
-...
+The prompt I settled on was to have the LLM act like a user in the above
+situations.
 
 ## 🚂 8. Training
 
-![step 8](8.cast.png)
-
-
-![step 7](7.cast.png)
+BE TO ONETINUES
