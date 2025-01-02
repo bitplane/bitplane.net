@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2021
 
 * [2021-10-19 - ✍️ Chester's Lego Strip Bar](10/chest-er)

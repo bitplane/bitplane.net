@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2013
 
 * [2013-12-17 - 💸 a bitcoin treasure hunt](12/bitcoin-treasure-hunt)

@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # bitplane.net
 
 The 5th and hopefully final iteration of [my](/home/gaz/) personal website.

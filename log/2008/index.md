@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2008
 
 * [2008-12-22 - 📳 space writer](12/spacewriter)

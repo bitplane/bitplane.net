@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 1999
 
 * [1999-12-03 - ⚒️ scrawler for DOS](/dev/amos/scrawler)

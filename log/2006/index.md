@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2006
 
 * [2006-04-13 - 🌐 bitplane.net v2.0 (CMSimple)](04/website)
