@@ -34,8 +34,10 @@ pre code {
 }
 
 li::first-letter {
-    float: inline-start;
-    margin-left: -2ch;
+	float: inline-start;
+	margin-left: -2.5ch;
+	margin-top: 0.5ch;
+	font-size: smaller;
 }
 
 li {
