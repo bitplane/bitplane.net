@@ -1,3 +1,7 @@
+---
+features: ["date-list"]
+---
+
 # todo.md
 
 ## Text content
@@ -26,12 +30,10 @@ Real URL   https://bitplane.net/dev/amos/matchstick-man
 Real URL   https://bitplane.net/dev/vb/bing-maps-grabber
 Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ```
-* Solfest cards
 * Android SVG renderer
 * Kodi DVB-T story
 * Align project docs and site CSS
   * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
-  * Get ASCIInema working locally
   * Do something about video tags?
 * Document more Irrlicht stuff
   * Rest of the C++ code projects
@@ -122,7 +124,6 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 * Digitize ZX Spectrum games
   * I think I only have one finished game, TUE.
 * Old Linux machines
-  * ~~Decrypt XPS13 hard drive and see if there's anything there~~
   * Gigabyte laptop
   * HP Server
   * Bitcoin miner
