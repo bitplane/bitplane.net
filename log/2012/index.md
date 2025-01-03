@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2012
 
 * [2012-11-21 - 😆 how's about that then?](11/stranger-danger)

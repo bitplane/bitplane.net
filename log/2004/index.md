@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2004
 
 * [2004-12-09 - 🕹️ eggit.rar](/dev/amos/eggit)

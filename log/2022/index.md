@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2022
 
 * [2022-12-17 - 💡 IPFS OS](12/ipfsos)

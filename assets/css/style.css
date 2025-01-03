@@ -21,11 +21,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.25em;
 }
 
-ul>li::after {
-    content: "●";
-    color: #252525;
-}
-
 .slash {
     color: #535353;
 }
@@ -36,4 +31,18 @@ pre code {
 
 .highlighter-rouge {
     width: fit-content;
+}
+
+li::first-letter {
+    float: inline-start;
+    margin-left: -2ch;
+}
+
+li {
+    display: block;
+    list-style: none;
+}
+
+ul>li::after {
+    content: unset;
 }

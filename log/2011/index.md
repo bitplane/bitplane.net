@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2011
 
 * [2011-01-27 - 🖼️ Compiz desktop](01/compiz)

@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2005
 
 * [2005-07-24 - 🕹️ Jump or Burn - 3 hour game dev contest](/dev/c++/jumporburn)

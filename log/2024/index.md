@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2024
 
 * [2024-12-28 - 🐋 Dockerfile.exe](12/dockerfile.exe)

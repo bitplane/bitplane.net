@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2010
 
 * [2010-11-15 - 📝 import vmstat logs into LoadRunner](11/vmstat-to-csv)

@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # 📅 2023
 
 * [2023-11-03 - 💡 metacompression](11/metacompression)
