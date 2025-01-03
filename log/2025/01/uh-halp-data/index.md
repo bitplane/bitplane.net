@@ -181,7 +181,7 @@ a sort function is a pretty cool trick.
 
 ---
 
-## 🐋 3. ALL THE THINGS (part 2)
+## 🐋 3. ALL THE PACKAGES
 
 Now we just need to install each of the packages, right? Should be simple
 enough, as long as we're sensible and only install the few hundred that
@@ -225,7 +225,7 @@ Here they are though:
 
 ---
 
-## 🛟 4. Help extraction
+## 🛟 4. ALL THE HELPS
 
 Next step is extracting the `--help` for each program. Simple, just call it for
 each program and save the output, right?
@@ -300,7 +300,7 @@ The outputs of the help generation steps are here:
 
 ---
 
-## 🐋 5. Compressing the Docker images
+## 🐋 5. ALL THE TIME IN THE WORLD
 
 Because the Docker images are too large to actually manage, I dumped the
 contents out, reset all the atimes, mounted the root dirs, and re-ran the
@@ -330,7 +330,7 @@ the base image and I didn't want to wait for it to run for the larger ones.
 
 ---
 
-## 📃 6. Usage scenarios
+## 📃 6. All the ways to do something
 
 Early on during testing, it became pretty clear that llama, when asked for
 usage scenarios and given the manpages, it'd just regurgitate what is in the
