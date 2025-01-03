@@ -6,7 +6,6 @@ features: ["date-list"]
 
 ## Text content
 
-* Finish porting v2 website
 * objective c writeup
 * Pull stuff from Google Drive
   * Bitcoin description article - did I ever finish that? Weave into blog
