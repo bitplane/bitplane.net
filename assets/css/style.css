@@ -33,10 +33,10 @@ pre code {
     width: fit-content;
 }
 
-li::first-letter {
+ul>li::first-letter {
 	float: inline-start;
 	margin-left: -2.5ch;
-	margin-top: 0.5ch;
+	margin-top: 0.25ch;
 	font-size: smaller;
 }
 
