@@ -11,9 +11,12 @@ Because screen recordings are more fun with a bit of art.
 
 * [🐱 github](https://github.com/bitplane/bsod)
 
-## 📺 fuzzy tv screen
+## 📺 other effects
 
 ![fuzzy](fuzzy.cast.png)
 
+![lol](lol.cast.png)
+
 * [🐱 github](https://github.com/bitplane/asciinema-fx)
+
 
