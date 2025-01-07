@@ -11,7 +11,8 @@ TODO: actually add bookmarks.
 * [🎬 The Only Unbreakable Law](https://youtu.be/5IUj1EZwpJY) -
   Conway's law in depth.
 * [🎬 Basic Mechanisms in Fire Control Computers](https://youtu.be/UZfJc7IJ2cg) -
-  Analogue computers.
+  Analogue computers explained by the US Navy.
+* [🐏 nommu.org memory FAQ](https://raw.githubusercontent.com/nommu/nommu.org/refs/heads/gh-pages/memory-faq.txt)
 
 ## Mathematics
 
