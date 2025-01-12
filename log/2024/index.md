@@ -26,6 +26,7 @@ features: ["date-list"]
 * [2024-08-17 - ✍️ found my old Microsoft badge](08/lsa-vs-tvp)
 * [2024-07-19 - 📝 new laptop](07/razer-blade-14)
 * [2024-06-03 - ⚒️ encoding arbitrary data into whitespace (C)](06/obfuspace)
+* [2024-03-17 - 📝 avocado plush](03/eggplant)
 * [2024-03-11 - 💡 automated upgrades](03/pytest-upgrade)
 * [2024-03-04 - 📝 favicon oops](03/favicon)
 * [2024-02-21 - 🌐 bitplane.net v5.0 (Jekyll)](02/website)
