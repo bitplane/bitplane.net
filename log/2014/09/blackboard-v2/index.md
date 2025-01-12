@@ -1,6 +1,6 @@
 # 🕑 blackboard clock v2
 
-So the [first one](../03/blackboard-clock) was too small, so we painted a
+So the [first one](../../03/blackboard-clock) was too small, so we painted a
 piece of faux slate with the blackboard paint and moved the clock mechanism
 over to it.
 
@@ -10,5 +10,5 @@ not as smooth.
 * 🧲 No longer magnetic
 * ✏️ Harder to write on
 
-![clock v2](blackboard-v2)
+![clock v2](blackboard-v2.webp)
 
