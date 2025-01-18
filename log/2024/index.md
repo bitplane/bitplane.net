@@ -19,6 +19,7 @@ features: ["date-list"]
 * [2024-10-01 - ✍️ a common sense code of conduct](10/fkin-cocs)
 * [2024-09-27 - 💡 Eyeballing training runs](09/visualistic-grokkability)
 * [2024-09-20 - 🐍 converting between JSON and bencoding](09/benpipe)
+* [2024-09-19 - 😂 RFC5364](09/xml)
 * [2024-09-08 - 📽️ Roblox MyMovie](https://youtu.be/NlSGJElfP6k)
 * [2024-09-02 - ✍️ INKEY$ and his 8 legs](/dev/basic/illiterate-computing)
 * [2024-08-31 - 💡 twinstaller - social engineering UAC prompts](08/twinstaller)
