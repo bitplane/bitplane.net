@@ -7,9 +7,9 @@ computationalism is evolution denial.
 
 Let's start with the seemingly undeniable:
 
-* Animal brains evolved.
-* Brains have minds, that is, they feel things.
-* Minds evolved.
+* 1 Animal brains evolved.
+* 2 Brains have minds, that is, they feel things.
+* 3 Minds evolved.
 
 ## Natural, not supernatural selection
 
