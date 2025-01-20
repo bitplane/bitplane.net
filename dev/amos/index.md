@@ -32,7 +32,7 @@ counted, sizes aligned to hardware widths, you had to keep ahead of the scan
 line when filling the graphics card's output memory or you'd get tearing, lest
 take the speed and RAM hit of double-buffering. Apparently the reason BMP files
 are upside down is because a subtraction operation took less cycles than an
-addition.
+addition. It probably wasn't, but I like the sound of that.
 
 Audio was similar, chip tune was standard. You couldn't just record into a mic
 at 11khz mono and get 30 seconds of audio on a floppy disk; you want a couple
@@ -54,11 +54,11 @@ to time. And older stuff from before I had a hard drive might be on rotten
 floppy disks. They means I can pretend that they were all finished and polished,
 which they mostly weren't.
 
-* Mega Battler - an AD&D style text-based fighting tool, with character classes
-  and different weapons. You'd basically set it up and it'd tell you what was
-  going on, randomly selecting nouns and verbs to add texture to what was
+* ⚔ Mega Battler - an AD&D style text-based fighting tool, with character
+  classes and different weapons. You'd basically set it up and it'd tell you what
+  was going on, randomly selecting nouns and verbs to add texture to what was
   essentially just a bunch of dice rolls and calculations.
-* Viking Tester - John, Graeme (and I think Craig for a bit) were members of
+* 🛶 Viking Tester - John, Graeme (and I think Craig for a bit) were members of
   [Regia Anglorum](https://regia.org/), a mediaeval reenactment society where
   we cosplayed as viking peasants. We made our own authentic, ill-fitting
   tunics and trousers from itchy woolen blankets, "Cornish Pastie" shoes out of
@@ -67,38 +67,38 @@ which they mostly weren't.
   had to memorize basic Old Norse words to do with battle, this educational
   tool was an effort by John and I to memorize as much of it as we could. In
   hindsight, the only thing I remember is phalanx-esque march of "TROTHA... OI!"
-* QAB - A Galaga type game with a sprite-swapping twist that we don't talk
+* 🍆 QAB - A Galaga type game with a sprite-swapping twist that we don't talk
   about in this day and age for fear of being cancelled on grounds of homophobia
   and crassness. We were kids though, it was funny at the time.
-* [Thrusts](thrusts) - A 3 player game that just wasn't fast enough to be the
+* 🚀 [Thrusts](thrusts) - A 3 player game that just wasn't fast enough to be the
   Gravity Force 2 that we wanted it to be. Matt and Jay Benson made the sprites
   I think.
-* [Eggit](eggit) - A Dizzy-remake starring an old friend, Stephen Edgar
+* 🥚 [Eggit](eggit) - A Dizzy-remake starring an old friend, Stephen Edgar
   (R.I.P.). In a similarly tragic vein, we also made a single level of a game
   "Nuts, Andrew Hazelnuts", starring self-confessed nut-case Andrew Hazeldon,
   who also died in a car crash in early adulthood.
-* [Matchstick Man](matchstick-man) - Crap graphics, single player, made
+* 🯅 [Matchstick Man](matchstick-man) - Crap graphics, single player, made
   entirely by me. But it's a game that I actually finished and it worked. I was
   really proud of it at the time.
-* [NSLE](nsle) - The Benson Bros got their hands on a digital camera that took
-  those mini VHS tapes, while Browney had a digitizer that, if used with a VHS
-  player with enough heads to pause it without shaking or streaks, could
+* 🔫 [NSLE](nsle) - The Benson Bros got their hands on a digital camera that
+  took those mini VHS tapes, while Browney had a digitizer that, if used with a
+  VHS player with enough heads to pause it without shaking or streaks, could
   actually capture stills from the video. So we made a Lethal Enforcers clone
   over the course of a couple of weekends. Black and white of course. And Jay
   took his shoes off between parts of the rolling animation and we didn't
   realise until after filming, had to draw it back on in DPaint.
-* Circular GUI elements - I remember being introduced to Pythagoras's Theorem
+* ○ Circular GUI elements - I remember being introduced to Pythagoras's Theorem
   in an early algebra test, and realising it could be used to make circular
   collision detection. So I memorized the formula and used it to make a bunch
   of procedures that could be used to create circular buttons. Kinda weird
   and nerdy memorizing a maths test rather than things for a maths test, but
   guilty as charged.
-* The Ultimate Adventure - A remake of my ZX Spectrum text adventure, done in
-  the style of The Secret of Monkey Island. Never finished it because, while
+* 📜 The Ultimate Adventure - A remake of my ZX Spectrum text adventure, done
+  in the style of The Secret of Monkey Island. Never finished it because, while
   all the code was there, actually creating content requires a pipeline and
   artists and is extremely hard work. And that's not the fun bit if you're a
   programmer.
-* [Scrawler](scrawler) - Jimmy White's Whirlwind Snooker had this cool effect
+* ✍ [Scrawler](scrawler) - Jimmy White's Whirlwind Snooker had this cool effect
   where it drew letters on the screen as if someone was drawing them by hand.
   So I made a tool that would record and play them back, ended up porting it
   to DOS and Windows too.
