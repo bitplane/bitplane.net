@@ -17,6 +17,8 @@ that's still fair comment.
 
 * 🛟 [uh-halp](uh-halp) -
   AI helper for the shell.
+* 🗣️ [catvox](catvox) -
+  mouth sounds go in, text comes out.
 * ➕ [merge-files](/merge-files) -
   Universal file converter, extractor, merger. Not quite, but might be one day.
 * ⚠️  [ienv](/ienv) -
