@@ -5,11 +5,31 @@ features: ["date-list"]
 # todo.md
 
 ## Text content
-
+* **DAD**
+* Update doc publisher
+  * ~~arranges~~
+  * audio-keylog
+  * benpipe
+  * catvox
+  * dfused
+  * Dockerfile.exe
+  * example-python-project
+  * filefrag
+  * geo-dist
+  * ienv
+  * lifecap
+  * merge-files
+  * obfuspace
+  * pierdat
+  * retarred
+  * shruggingface
+  * subcmd
+  * torch\_weightsonly
+  * ~~uh-halp~~
+  * uh-halp-data
+  * vidi18n
+  * yapotron
 * objective c writeup
-* Pull stuff from Google Drive
-  * Bitcoin description article - did I ever finish that? Weave into blog
-  * Semantic web
 * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
@@ -59,11 +79,13 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * Microsoft PhotoSynth
   * ~~Drawings~~
     * I think there's one or two more that aren't nudes
-    * Get Wacom Bamboo date.
+      * Niamh
+      * Censor Kath drawing?
+    * Get Wacom Bamboo date + update
 * Document life events
   * ZX Spectrum
-    * UDG planner
-    * The PRINT AT analysis
+    * UDG planner (and a few words about dad)
+    * The PRINT AT analysis (and uncle phil)
   * Amiga
     * Document games and culture
   * Regia Anglorum
@@ -111,11 +133,11 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 * Amiga
   * Get Amiga hard drive from mum's with old Amiga games and software
   * ~~Order USB floppy drive~~
-    * Ugh. Didn't work. Find something that does
+    * Ugh. Didn't work. Get greaseweazle working
       * Document the process.
 * Somehow get that ISA disk from the MS-DOS 8086 box
   * Vector 2d graphics engine
-  * `curs`
+  * `curs` - can't find source.
   * `textrot`, did I already do that?! Maybe in SVN.
   * Turbo Pascal side scroller from college (on floppy maybe?)
     * Couldn't find it
