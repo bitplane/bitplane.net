@@ -1,11 +1,12 @@
 # C++
 
-C++ gets a lot of stick, and there's good reasons for it. But despite its flaws
-it was popular enough to have decent debugging tools for a lot of its life,
-making it as useful as it is dangerous.
+C++ gets a lot of flack, and there's good reasons for it. But despite its
+dispatch, dreaded diamond and SOLIDesque flaws, it was popular enough to have
+decent debugging tools for a lot of its life, making it as useful as it is
+dangerous.
 
 I got into C++ by writing games for Nikolaus Gebhardt's Irrlicht Engine, an open
-source 3D graphics library for the fixed-function pipeline that abstracts the
+source 3D library for the fixed-function graphics pipeline that abstracts the
 rendering back-end and operating system away, making it perfect for cross
 platform, device agnostic games programming.
 
@@ -26,7 +27,7 @@ Some games, none of any note.
 * 💥 [mines](mines) -
   Minesweeper game.
 
-  ### Unifinished
+### Unifinished
 
 * 👽 [UFO game](ufo-game) -
   A game that Graeme and I wanted to make, in the style of Star Fox 64.

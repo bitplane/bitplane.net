@@ -6,6 +6,18 @@ features: ["date-list"]
 
 ## Text content
 * **DAD**
+  * Scan UDG planner
+  * Obituary
+* uh-halp-data
+* front-matter alternatives
+  * modularize
+  * turn into a project
+  * modules
+    * asciinemados
+    * code
+    * amiga
+    * youtube
+    * webm
 * Update doc publisher
   * ~~arranges~~
   * audio-keylog
