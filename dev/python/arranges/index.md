@@ -42,7 +42,7 @@ I made them to select lines or bytes in a stream of data, so they:
   added to the `Ranges` object;
 * 🐍 they are unpydantic in that its constructors are duck-typed, which is
   what I need;
-* ☣️ they violates the Zen of Python by having multiple ways to do the same
+* ☣️ they violate the Zen of Python by having multiple ways to do the same
   thing, but I found that useful; and
 * ⚠️ Currently the interface is *unstable*, so lock the exact version in if
   you don't want breaking changes.
@@ -52,7 +52,7 @@ I made them to select lines or bytes in a stream of data, so they:
 `pip install arranges` if you want to use them. You'll need Python 3.10 or
 above.
 
-### Dev setup
+### Hacking
 
 To add features etc you'll ideally need `git`, `make`, `bash` and something
 with a debugger. Config for Visual Studio Code is included.
@@ -67,8 +67,8 @@ Type `make help` to see the other options, or run the one-liner scripts in the
 ## Usage
 
 * [📖 RTFM](https://bitplane.net/dev/python/arranges/)
-* 🧪 Read [the tests](https://github.com/bitplane/arranges/)
-* [🐍 Read the pydocs](https://bitplane.net/dev/python/arranges/pydocs)
+* [🧪 Read the tests](https://github.com/bitplane/arranges/)
+* [🐍 Read the pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 
 ## License
 
