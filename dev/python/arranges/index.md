@@ -1,6 +1,4 @@
-# Arranges
-
-## Range string fields for Pydantic BaseModels
+# ⛰️ arranges - range string fields for Pydantic BaseModels
 
 I needed a way to parse batches of byte, row and line and other object ranges
 in my `merge-files` app, in a way that I can just drop it in as a string field
@@ -28,7 +26,19 @@ but can be used anywhere you need a range. They are not designed with speed in
 mind, and comparisons usually use the canonical string form by converting other
 things into `Ranges` objects. Their preferred pronoun is they/them.
 
-## Constraints
+## 📦 Installation
+
+`pip install arranges` if you want to use them. You'll need Python 3.10 or
+above.
+
+## ▶️ Usage
+
+* [🏗 construction](construction)
+* [♻️ iteration](iteration)
+* [⊃ operators](operators)
+* [🧱 models](models)
+
+## ⚠️ Constraints
 
 I made them to select lines or bytes in a stream of data, so they:
 
@@ -47,12 +57,8 @@ I made them to select lines or bytes in a stream of data, so they:
 * ⚠️ Currently the interface is *unstable*, so lock the exact version in if
   you don't want breaking changes.
 
-## Installation
 
-`pip install arranges` if you want to use them. You'll need Python 3.10 or
-above.
-
-### Hacking
+### 👨‍💻 Hacking
 
 To add features etc you'll ideally need `git`, `make`, `bash` and something
 with a debugger. Config for Visual Studio Code is included.
@@ -64,12 +70,12 @@ that jazz.
 Type `make help` to see the other options, or run the one-liner scripts in the
 `./build` dir if you want to run steps without all that fancy caching nonsense.
 
-## Usage
+## ▶️ Usage
 
 * [📖 RTFM](https://bitplane.net/dev/python/arranges/)
 * [🧪 Read the tests](https://github.com/bitplane/arranges/)
 * [🐍 Read the pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 
-## License
+## ⚖️ License
 
 Free as in freedom from legalese; the [WTFPL with a warranty clause](LICENSE.md).
