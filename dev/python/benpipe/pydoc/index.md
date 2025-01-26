@@ -28,15 +28,20 @@ def to_bencode(json_data)
 
 Convert JSON data to bencoded format.
 
-<a id="benpipe.benpipe.try_both"></a>
+<a id="benpipe.convert"></a>
 
-#### try\_both
+# benpipe.convert
+
+<a id="benpipe.convert.to_json_types"></a>
+
+#### to\_json\_types
 
 ```python
-def try_both()
+def to_json_types(obj)
 ```
 
-Attempt bencode -> JSON. If that fails, assume input is JSON and try JSON -> bencode.
+Use {"__tuple": []} for tuples
+Write binary data as base64 if it isn't UTF8.
 
 <a id="benpipe.__main__"></a>
 
