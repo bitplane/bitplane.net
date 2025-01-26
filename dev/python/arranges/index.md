@@ -31,12 +31,21 @@ things into `Ranges` objects. Their preferred pronoun is they/them.
 `pip install arranges` if you want to use them. You'll need Python 3.10 or
 above.
 
-## ▶️ Usage
+## 📖 Docs
 
+* [🐍 pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 * [🏗 construction](construction)
 * [♻️ iteration](iteration)
 * [⊃ operators](operators)
 * [🧱 models](models)
+
+See the tests for executable documentation
+
+### 🔗 Links
+
+* [🐱 github](https://github.com/bitplane/arranges)
+* [🐍 pypi](https://pypi.org/arranges)
+* [🏠 home](https://bitplane.net/dev/python/arranges)
 
 ## ⚠️ Constraints
 
@@ -57,7 +66,6 @@ I made them to select lines or bytes in a stream of data, so they:
 * ⚠️ Currently the interface is *unstable*, so lock the exact version in if
   you don't want breaking changes.
 
-
 ### 👨‍💻 Hacking
 
 To add features etc you'll ideally need `git`, `make`, `bash` and something
@@ -69,12 +77,6 @@ that jazz.
 
 Type `make help` to see the other options, or run the one-liner scripts in the
 `./build` dir if you want to run steps without all that fancy caching nonsense.
-
-## ▶️ Usage
-
-* [📖 RTFM](https://bitplane.net/dev/python/arranges/)
-* [🧪 Read the tests](https://github.com/bitplane/arranges/)
-* [🐍 Read the pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 
 ## ⚖️ License
 
