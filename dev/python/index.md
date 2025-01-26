@@ -30,7 +30,7 @@ that's still fair comment.
 
 ## Libraries
 
-* ⛰️ [arranges](/arranges) -
+* ⛰️ [arranges](arranges) -
   Represent ranges as strings in Pydantic.
 * 📈 [interpolist](interpolist) -
   A list that fills in missing values.

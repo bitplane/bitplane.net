@@ -20,13 +20,13 @@ features: ["date-list"]
     * webm
 * Update doc publisher
   * ~~arranges~~
-  * audio-keylog
-  * benpipe
+  * ~~audio-keylog~~
+  * ~~benpipe~~
   * catvox
   * dfused
   * Dockerfile.exe
   * example-python-project
-  * filefrag
+  * ~~filefrag~~
   * geo-dist
   * ienv
   * lifecap
