@@ -3,7 +3,7 @@
 Determinism denies the most basic facts of evolution. This, in turn, means that
 computationalism is evolution denial.
 
-## Brains and minds
+## 🧠 Brains and minds
 
 Let's start with the seemingly undeniable:
 
@@ -11,7 +11,7 @@ Let's start with the seemingly undeniable:
 * 2 Brains have minds, that is, they feel things.
 * 3 Minds evolved.
 
-## Natural, not supernatural selection
+## 🦒 Natural, not supernatural selection
 
 Evolution can only select things that have an actual effect in the world.
 
@@ -31,7 +31,7 @@ And they did evolve, they evolved into the complex subjective experiences that
 we all enjoy. We know that blindsight is possible, but the conscious experience
 of sight is what we have. So the conscious experience itself must be selectable.
 
-## Feeling about moving
+## 🚶 Feeling about moving
 
 The only way that a feeling can have any effect on the world is by changing the
 behaviour of the organism. By having an effect on the actions it chooses.
@@ -48,7 +48,7 @@ preferences and to amplify the force of will.
 
 It's a chooser, not a calculator.
 
-## Determinism as constrained choice
+## ⊆ Determinism as constrained choice
 
 Let's imagine you could make a list of all possible situations, and in each one,
 you listed every possible action that could be taken. Because each action leads
@@ -68,11 +68,12 @@ Given that we know brains with minds evolved (because we are them), and we
 know that free will exists (because brains with minds minds evolved), then to
 argue that we live in a deterministic universe is to deny the fact of evolution.
 
-## Software consciousness is mysticism
+## 👻 Software consciousness is mysticism
 
 There is no choice a piece of software can make that will change its outputs,
-because it exists within a deterministic system. A chooser can choose to
-calculate, but a calculator cannot calculate to choose.
+because it exists within a deterministic system.
+
+A chooser can choose to calculate, but a calculator cannot calculate to choose.
 
 For software to be conscious, you need to not only deny evolution and your own
 free will, but also believe that mathematics is the grantor of and essence of
@@ -83,3 +84,29 @@ much credence.
 
 We should try to remember that that we're supposed to be rational human beings;
 a belief in `f(ghosts)` is still, fundamentally, a belief in ghosts.
+
+## 🛑 Stop it
+
+Seriously. You're supposed to be a rational person, someone who doesn't believe
+in ghosts, right?
+
+Have a fucking word with yourself.
+
+You're not immune to spiritual woo just because you're clever or think you're
+rational, this is part of what being a human is. Newton was smarter than you and
+he was wrong. Pythagoras created a maths cult. The Unabomber is smarter than all
+of us and, well, what if everyone had believed him?!
+
+We live in a world where language models tell people that they feel things.
+People believe them. The sentient software meme:
+
+* ☣️ is compatible with science fiction and our culture;
+* ☣️ is supported by some of our smartest and most influential thinkers;
+* ☣️ attracts followers and new believers;
+* ☣️ will allow tech companies to steal our human rights;
+* ☣️ will justify restricting access to technology;
+* ☣️ may lead to brain implants that turn people into mindless zombies;
+* ☣️ and "mind uploads" that are suicide machines.
+
+Stop it. It's irresponsible. People will die.
+
