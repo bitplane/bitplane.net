@@ -1,0 +1,26 @@
+# Ignore LaTeX auxiliary and log files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.dvi
+*.idx
+*.ind
+*.ilg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Ignore generated TeX and PDF files
+index.tex
+index.pdf
+
+# Ignore backup files
+*~
+*.swp
+.DS_Store
+Thumbs.db
