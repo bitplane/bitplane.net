@@ -1,6 +1,7 @@
-# Hydropsychism: Water of Mind
+---
 
-## Abstract
+---
+# Abstract
 
 The mystery of consciousness has baffled philosophers for centuries, yet Hard
 Problems remain. Current computational models rely on a strong emergentist
@@ -14,7 +15,7 @@ explains evolution of mind from the earliest stages, lacks paradoxes, matches
 observation and leads to testable predictions. This opens up the door to
 building conscious machines.
 
-## 1. Metaphysics
+# Metaphysics
 
 *Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
 enough; there are some other things that I am. I'm in a location, I experience
@@ -45,7 +46,7 @@ not only a creator and His laws, but is without a physical realm at all.
 In this new model, mind-stuff is the only stuff and it acts according to its
 will; it is and it does as it feels.
 
-## 2. Evolution of Mind
+# Evolution of Mind
 
 This position of "doing as it feels" reveals a simple mechanism by which mind
 can evolve, and from up here we can see all the way back to abiogenesis.
@@ -76,7 +77,7 @@ like animals struggling to survive. While anthropomorphism does not meet the
 high bar of scientific proof, these observations provide clues, that once seen,
 are very difficult to unsee.
 
-### Supernatural Selection
+## Supernatural Selection
 
 There's no reason why animals with brains couldn't evolve in a deterministic
 universe, such as a digital simulation of life. But without the selection
@@ -88,7 +89,7 @@ free from will and offer no causal mechanism for the evolution of mind. Unless
 they can demonstrate one, these symbolic dualisms are functionally
 indistinguishable from evolution denial.
 
-## 2. Informational Awareness
+# Informational Awareness
 
 By definition, subjective experience cannot be measured objectively. What
 another system feels like remains beyond the reach of empiricism. This will be
@@ -125,7 +126,7 @@ todo:
   make the water want to move it.
 
 
-## 3. Hydropsychism
+# Hydropsychism
 
 Having tackled the hard problem, the anthropic question, and the evolution of
 mind - while dismantling determinism, computationalism, and spacetime itself -
@@ -136,7 +137,7 @@ todo:
 * discuss physical processes in neurons
 * 
 
-### Is water special?
+## Is water special?
 
 Does the hexagonal structure of water somehow align with the 3 spatial
 dimensions, in a way that resonates with or provides access to the properties
@@ -144,15 +145,15 @@ from which space itself emerges? Does orientation play a part? Consider the
 bouncing blocks model of pi.
 
 
-## 4. Experimental Predictions
+# Experimental Predictions
 
-## 5. Implications for Neuroscience & AI
+# Implications for Neuroscience & AI
 
 - **Why AI lacks true awareness:** Unlike a neural network, which is digital and discrete, **a water-based system has no static states**—it is inherently dynamic and continuous.
 - **New directions for brain-computer interfaces:** If consciousness is fluidic rather than computational, **interfaces should target water-structuring mechanisms rather than synaptic transmission alone.**
 - **Implications for life’s origins:** If water is the agent of awareness, then **consciousness is not a late-stage evolutionary trick, but a fundamental property of structured aqueous environments.**
 
-## 6. Conclusion: Little Bags of Thinking Water
+# Conclusion: Little Bags of Thinking Water
 
 Pratchett described human beings as "little bags of thinking water held up
 briefly by fragile accumulations of calcium", and despite us all believing we

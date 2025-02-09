@@ -16,8 +16,8 @@
 *.fdb_latexmk
 
 # Ignore generated TeX and PDF files
-index.tex
-index.pdf
+paper.tex
+paper.pdf
 
 # Ignore backup files
 *~

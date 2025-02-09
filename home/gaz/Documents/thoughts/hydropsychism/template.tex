@@ -6,6 +6,10 @@
 \usepackage{titlesec}
 \usepackage{indentfirst}
 
+% remove tightlist pandoc bs
+\usepackage{etoolbox}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 % Formatting sections
 \titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
