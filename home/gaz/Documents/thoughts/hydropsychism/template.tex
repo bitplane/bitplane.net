@@ -5,8 +5,9 @@
 \usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{indentfirst}
+\usepackage{setspace}  % Improves readability with better line spacing
 
-% remove tightlist pandoc bs
+% Remove tightlist pandoc bs
 \usepackage{etoolbox}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
@@ -14,13 +15,24 @@
 \titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
 
-% Title
+% Title and Author Information
 \title{$title$}
 \author{$author$}
-\date{$date$}
+\date{\today} % Automatically sets today's date
 
 \begin{document}
 \maketitle
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+
+\noindent\rule{\textwidth}{0.4pt}  % Horizontal rule for separation
+
+\tableofcontents  % Generates a table of contents
+\noindent\rule{\textwidth}{0.4pt}  % Another horizontal rule
+
+\bigskip  % Adds vertical spacing
 
 $body$
 

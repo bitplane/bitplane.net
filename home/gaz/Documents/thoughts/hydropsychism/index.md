@@ -1,5 +1,7 @@
 ---
-
+title: "Hydropsychism: Water of Mind"
+author: "Gareth Davidson"
+date: "\today"
 ---
 # Abstract
 
