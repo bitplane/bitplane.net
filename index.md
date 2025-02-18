@@ -19,6 +19,7 @@ Links may be unstable. See [to-do](/home/gaz/Documents/todo).
 
 ## grep log
 
+* [2025-02-18 - 🤖 AI workflow notes](log/2025/02/ai)
 * [2025-01-04 - 😄 emojing](log/2025/01/emojing)
 * [2025-01-01 - 💣 bsod.sh](log/2025/01/bsod)
 * [2024-12-28 - 🐋 Dockerfile.exe](log/2024/12/dockerfile.exe)
