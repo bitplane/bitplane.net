@@ -10,11 +10,11 @@ use Makefiles and bash scripts where possible.
 If I find some actual shell script projects from over the years, I'll add them
 here:
 
-* [🌐 pierdat](https://github.com/bitplane/pierdat) -
+* [🌐 pierdat](pierdat) -
   Docker containers that host their own data.
-* [➡️ subcmd](https://github.com/bitplane/subcmd) -
+* [➡️ subcmd](subcmd) -
   A shell script that converts `cmd subcmd` -> `cmd-subcmd` for you.
 * [🖼️ some ascii effects](asciinema-fx) -
   Some Windows Blue Screen of Death scripts.
-* [📷 lifecap](https://github.com/bitplane/lifecap) -
+* [📷 lifecap](lifecap) -
   Capture your life for local AI agent processing.
