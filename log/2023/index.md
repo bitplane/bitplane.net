@@ -4,10 +4,10 @@ features: ["date-list"]
 # 📅 2023
 
 * [2023-11-03 - 💡 metacompression](11/metacompression)
-* [2023-10-25 - 🐍 uh-halp - AI on the command line](/uh-halp)
+* [2023-10-25 - 🐍 uh-halp - AI on the command line](/dev/python/uh-halp)
 * [2023-10-18 - 💡 docker-fuse-shim](10/docker-fuse-shim)
 * [2023-09-28 - 📽️ Neofetch 7.1.0 - all the --ascii\_distro logos](09/neofetch)
-* [2023-09-25 - 🐍 ienv - combine your venvs](/ienv)
+* [2023-09-25 - 🐍 ienv - combine your venvs](/dev/python/ienv)
 * [2023-09-19 - 💡 office-md](09/office-md)
 * [2023-09-18 - 💡 lottery](09/lottery)
 * [2023-09-18 - 💡 dockerize](09/dockerize)
@@ -15,7 +15,7 @@ features: ["date-list"]
 * [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-08-07 - 📽️ 50/50 hindsight](https://youtu.be/dIHvCTXgq4c)
 * [2023-07-28 - 💡 distributed-proof-service](07/distributed-proof-service)
-* [2023-05-28 - 🐍 arranges - Range strings for Pydantic](/arranges)
+* [2023-05-28 - 🐍 arranges - Range strings for Pydantic](/dev/python/arranges)
 * [2023-06-16 - 💡 turing-machine-consciouness](06/turing-machine-consciouness)
 * [2023-04-18 - 💡 pitch-perfection](04/pitch-perfection)
 * [2023-04-18 - 💡 music-and-language](04/music-and-language)
