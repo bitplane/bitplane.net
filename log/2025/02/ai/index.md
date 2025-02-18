@@ -26,7 +26,11 @@ elif [ "$XDG_SESSION_TYPE" = "wayland" ] && command -v wl-copy &>/dev/null; then
 elif command -v xsel &>/dev/null; then
     alias c="xsel --clipboard --input"
     alias v="xsel --clipboard --output"
+elif command -v clip.exe &>/dev/null; then
+    alias c="clip.exe"
+    alias v="powershell Get-Clipboard"
 fi
+
 
 # commit hash of an empty git repo
 EMPTY_TREE=$(echo -n 'tree 0\0' | sha1sum | cut -f 1 -d ' ')
