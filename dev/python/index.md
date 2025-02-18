@@ -19,9 +19,9 @@ that's still fair comment.
   AI helper for the shell.
 * 🗣️ [catvox](catvox) -
   mouth sounds go in, text comes out.
-* ➕ [merge-files](/merge-files) -
+* ➕ [merge-files](merge-files) -
   Universal file converter, extractor, merger. Not quite, but might be one day.
-* ⚠️  [ienv](/ienv) -
+* ⚠️  [ienv](ienv) -
   Brutalize your venvs by symlinking them together.
 * 📑 [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.

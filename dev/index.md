@@ -16,18 +16,18 @@ all the links work.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
-* [🤝 arranges](/arranges) -
+* [🤝 arranges](/dev/python/arranges) -
   Represent ranges as strings in Pydantic.
-* [⚠️ ienv](/ienv) -
+* [⚠️ ienv](/dev/python/ienv) -
   Brutalize your venvs by symlinking them together.
 * [☎️ py9](https://github.com/bitplane/py9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
 
 ### Command line
 
-* [💬 uh-halp](/uh-halp) -
+* [💬 uh-halp](/dev/python/uh-halp) -
   AI helper for the shell.
-* [➕ merge-files](/merge-files) -
+* [➕ merge-files](/dev/python/merge-files) -
   Universal file converter, extractor, merger. Not quite, but might be one day.
 * [🔡 ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
