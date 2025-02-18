@@ -113,8 +113,11 @@ decisions. Neutrinos could be said to be either fickle or free, with no way to
 know which. This seemingly absurd framing grants an insight: if stuff does as it
 feels, then one way or another it feels very little about what it doesn't do.
 
-Action as chosen interaction has implications for information theory too.
-Firstly, we can apply Occam's razor here and conclude that there's no need for
+Action as chosen interaction provides useful framings for quantum physics and
+information theory too. But first let's apply the razor once again and conclude
+that there's no need to have both randomness and unknowableness; to an outsider
+they are both the same thing.
+
 randomness, unknowableness and entropy; they're lower bounds on possible
 awareness, an experiential distance. This, in turn applies neatly to both
 superposition and entanglement, both of which are exclusion of other observers
@@ -124,9 +127,9 @@ from the decision path.
 todo:
 
 * more potential for awareness in liquids than solids
-* conclude that water does the moving, solids don't. protiens evolved to
-  make the water want to move it.
-
+* water does the moving, solids don't.
+* protiens evolved to make the water want to move it.
+* the evolution of mind is the manipulation of structured water
 
 # Hydropsychism
 
@@ -136,15 +139,27 @@ let's do some real work. It's time to fix panpsychism. Or idealism. Maybe both.
 
 todo:
 
-* discuss physical processes in neurons
-* 
+* physical processes in neurons
+* gates, sodium, potassium and the cascading signal
+* sodium ions and the shell around them
+* pressure on water's hexagonal lattice
+* forcing water to make a collective decision
+* awareness of the shape of the axon
+* leads to awareness of the shape of the network
 
 ## Is water special?
 
 Does the hexagonal structure of water somehow align with the 3 spatial
 dimensions, in a way that resonates with or provides access to the properties
-from which space itself emerges? Does orientation play a part? Consider the
-bouncing blocks model of pi.
+from which space itself emerges? Does orientation play a part?
+
+### todo:
+
+* The colliding blocks model of pi.
+* Vibration as the underlaying cause of dimensionality
+* The angles between the hexagonal lattice
+* Further research required in understanding whether this makes water special,
+  giving access to the substrate that space emerges from.
 
 
 # Experimental Predictions
