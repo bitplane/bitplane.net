@@ -2,6 +2,7 @@
 title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\today"
+status: "draft"
 ---
 # Abstract
 
@@ -141,107 +142,88 @@ enzymes, the medium that transcribes our DNA, and ribozymes mediate reactions
 through its fluidity far more than their own. Fish don't realize they're in
 water. The same can be said of organic chemistry.
 
-If the seat of consciousness is held by fluid rather than quantum dynamics,
-ordinary physical processes rather than computational dualism, then we should
-expect several things to be true....
+If the seat of consciousness is fluid rather than quantum dynamics, made of
+ordinary physical processes rather than computational dualism, then we don't
+need to push the idea of mind into complexity or the gaps of ignorance. It's
+simply what stuff is.
 
+So, aside from determinism being functionally equivalent to evolution denial,
+the central point of this paper is that neurons don't provide consciousness,
+they vibrate fluid around them, changing the way it feels to be that liquid.
 
-We'd expect neurons to disturb the fluid physically, amplifying and dampening
-waves through interference patterns at different frequencies.
+# Predictions
 
-Expect certain ratios.
+If consciousness is fluid-dynamics, then this ought to be observable or
+disproveable. As a lay-philosopher-hacker rather than a biologist, so I may
+be wrong about the implications, but they at least provide a starting point
+for future research.
 
-Expect areas to do with learning to change geometrically, rather than just
-network topology.
+Neurons ought to disturb the fluid physically, amplifying and dampening waves
+through interference patterns at different frequencies. The structure of the
+network and the way the neurons fire would flow in rhythmic patterns.
 
-Awareness should travel faster than neural activity, at the speed of sound in water.
+We should expect areas to do with learning to change in a geometric fashion as
+well as along the network. If awareness, or the cause of it propagates outwards
+from the axons rather than just along the network, areas connected only by
+fluids ought to change around the focal or convergence points of functional
+areas related to different experiences.
 
-More going on outside the neuron than inside it.
+Awareness, or some manifestations of it, should travel faster than neural
+activity, at the speed of sound in saline. We should expect certain ratios to
+emerge, and for there to be types of neural structures that cancel each other
+out by their geometric position.
 
-Perception would propagate from around the axons, rather than along them.
-
-Neural networks that cause perception could be distributed and focus patterns
+Neural networks that provide a similar function need not be entirely local,
 rhythmically together, rather than purely local calculations.
 
-Ultrasound would have perceptual and induce cognitive effects.
+Ultrasound would have perceptual, and induce cognitive effects. Beta and alpha
+waves would feel perceptually smooth and sharp. Brain pressure would be
+destructive to consciousness, but cognitive function would be more robust than
+the neural fibres. Hallucinogenics of different types would likely cause sync
+issues that expose interference patterns with a perceptual texture of the
+structure of the brain, rather than the network. Anasthetics would be likely
+to have measurable effects on fluid dynamics, though this may be difficult to
+prove causually.
 
-Brain pressure would be destructive to consciousness.
+Experiences would feel fluid, rather than discrete firings of neurons. It should
+be possible to measure consciousness and unconsciousness vibrationally, and by
+applying vibrations in the right places, it ought to be possible to invoke
+feelings or perceptual 
 
-Cognitive function would be more robust than the neural fibres.
-
-Beta and alpha waves would feel perceptually smooth and sharp.
-
-Experiences would feel fluid, rather than discrete, emotional waves.
-
-Consciousness and unconsciousness could be measured vibrationally.
-
-Anasthetics may have effects on fluid dynamics
-
-Hallucinogenics of different types should cause sync issues that are better
-explained with 
-
-### option 2 - structured water and pressure on the lattice
-
-Would be localized around the axons as structured water
-
-Depend on quantum effects, sodium ion pressure on the hexagonal structure
-
-### deeper reality
-
-
-
-## some refs
-
-Water Determines the Structure and Dynamics of Proteins
-
-https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/
-
-Neutrons take a deep dive into water networks surrounding DNA
-
-https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna
-
-Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy
-
-https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/
-
-Exposure to high-frequency pressure waves has been shown to modulate neuronal
-activity, indicating that mechanical forces can influence neural function
-
-https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/
-
-# todo
-
-* physical processes in neurons
-* gates, sodium, potassium and the cascading signal
-* neural activity as an interference pattern network
-* sodium ions and the shell around them
-* water's hexagonal lattice, dimensionality
-* forcing water to make a collective decision
-
-## Is water special?
+# Further thoughts: is water special?
 
 Does the hexagonal structure of water somehow align with the 3 spatial
-dimensions, in a way that resonates with or provides access to the properties
-from which space itself emerges? Does orientation play a part?
-
-* The colliding blocks model of pi.
-* Vibration as the underlaying cause of dimensionality
-* The angles between the hexagonal lattice
-* Further research required in understanding whether this makes water special,
-  giving access to the substrate that space emerges from.
-
-
-# Experimental Predictions
-
-# Implications for Neuroscience & AI
-
-- **Why AI lacks true awareness:** Unlike a neural network, which is digital and discrete, **a water-based system has no static states**—it is inherently dynamic and continuous.
-- **New directions for brain-computer interfaces:** If consciousness is fluidic rather than computational, **interfaces should target water-structuring mechanisms rather than synaptic transmission alone.**
-- **Implications for life’s origins:** If water is the agent of awareness, then **consciousness is not a late-stage evolutionary trick, but a fundamental property of structured aqueous environments.**
+dimensions in a way that resonates with, or provides access to, the properties
+from which space itself emerges? If all distance is a likelihood of interaction,
+then space itself can be viewed in terms of preference or awareness. The
+colliding blocks model of pi seems to suggest that dimensionality emerges from
+oscillations, and if water's lattice is aligned so its both relative and aligned
+with this, waves within it may align with space itself.
 
 # Conclusion: Little Bags of Thinking Water
 
 Pratchett described human beings as "little bags of thinking water held up
 briefly by fragile accumulations of calcium", and despite us all believing we
 were the bag, it turns out he was right all along.
+
+# Refs
+
+wip:
+
+Water Determines the Structure and Dynamics of Proteins
+
+<https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/>
+
+Neutrons take a deep dive into water networks surrounding DNA
+
+<https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna>
+
+Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy
+
+<https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/>
+
+Exposure to high-frequency pressure waves has been shown to modulate neuronal
+activity
+
+<https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/>
 
