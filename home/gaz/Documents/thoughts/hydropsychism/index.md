@@ -1,5 +1,5 @@
 ---
-title: "Hydropsychism: Water of Mind"
+title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\today"
 ---
@@ -27,23 +27,25 @@ how to move; I have will. And sometimes, the will to think.
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
 mind and matter stuffs. Matter is what mind looks like from a distance, or, when
-more generous with the blade, the totality of existence itself. And yet there's
-still much more to slice away. An objective reality can emerge from a web of
-subjective interactions, and having experienced both of those directly it is
-rational to consider the objective world a second order effect. Space can be
-framed so that distance is a relative compatability of the things within it -
+more generous with the blade, it is the totality of existence itself. And yet
+there's still much more to slice away. An objective reality can emerge from a
+web of subjective interactions, and having experienced both of those directly
+it is rational to consider the objective world a second order effect. Space can
+be framed so that distance is a relative compatability of the things within it -
 the likelihood of interactions between them - rather than a boundless and
 ghostly container. And as importantly as before - we know that choice is the
 cause of our actions, and so without evidence to the contrary, we should assume
 it's the same of other stuff.
 
-If the cause of actions is choice rather than commandment, then physical laws
-are our observations, and all we can observe is the statistical preferences of
-mind-stuff. Having left the concept of natural laws and looking back from enough
-distance, they resemble a cognitive bias at the heart of scientific tradition;
-the quest to discover the laws of a rule-giver we have long forsaken. Our path
-leads to a model of an entirely subjective and relative reality, one lacking
-not only a creator and His laws, but is without a physical realm at all.
+If the cause rather than commandment is the cause of actions, then physical laws
+are nothing more than our own observations; all we can observe is the aggregate
+preference of mind-stuff, statistically.
+
+Having left the concept of natural laws and looking back from enough distance,
+they resemble a cognitive bias at the heart of scientific tradition; the quest
+to discover the laws of a rule-giver we have long forsaken. Our path leads to a
+model of an entirely subjective and relative reality, one lacking not only a
+creator and His laws, but is without a physical realm at all.
 
 In this new model, mind-stuff is the only stuff and it acts according to its
 will; it is and it does as it feels.
@@ -55,89 +57,92 @@ can evolve, and from up here we can see all the way back to abiogenesis.
 
 When stuff chooses how to act based on what's around it, its actions then
 change its surroundings, and this in turn changes how it feels. This simple
-process allows for feedback loops where structure, feelings and action are
-naturally selected. Selection pressures act directly on feeling and choice,
-allowing them to evolve structurally, step by step - a process that is required
-for sapient life to emerge naturally. The simplest molecules with the least
-awareness, weakest feelings and minimally selectable actions are ratcheted up
-the gradient of awareness and will to survive. Given enough time and
-generations, it's entirely plausible that highly complex organisms could evolve
-in this system, ones with staunch opinions informed by rich and complex
-subjective experiences, that possess a force of will powerful enough to
-transform the world.
+process allows for feedback loops where structure, feelings and action can be
+naturally selected. With selection pressures able to act directly on feelings
+and choices, they can evolve structurally, step by step - a process that is
+required for sapient life to emerge.
 
-If this is the system in which we live, there should be no visible boundary
-at which subjective experience suddenly emerges, we would find none no matter
-how hard we looked or believe there is one. Will to move should be present,
-though less coordinated in organisms without nervous systems. It should be
-present within the cytoplasm, an amoeba's pseudopods should extend and retract
-with an apparent intent. White blood cells might chase down invaders with a
-sense of urgency. The inner workings of the cell might show an eerie similarity
-to creatures at larger scales, with no apparent bottom in sight. Slower moving
-organisms like plants, when filmed and played back in high speed, should act
-like animals struggling to survive. While anthropomorphism does not meet the
-high bar of scientific proof, these observations provide clues, that once seen,
-are very difficult to unsee.
+Through this process, the simplest molecules with the weakest preferences can
+be honed, through survival, into systems with staunch opinions and a powerful
+force of will.
+
+If we lived in a universe made from experience and agency, we would expect
+to see no boundary where they emerge. No matter how hard we look, or how
+strongly we believe there is one, agency should extend all the way to the
+bottom. The will to move would be present (though less coordinated) in not
+just organisms without nervous systems, but also within their cytoplasm. An
+amoeba's pseudopods would extend and retract with an apparent intent, and
+white cells blood might chase invaders with what looks like urgency. If all
+Brownian motion is choice, then the inner workings of cells should show an
+eerie similarity to creatures at larger scales. And it should apply across
+scales of time too; viewed at high speed, plants would writhe and thrash
+around as they struggle to survive. Such anthropomorphisms do not meet the
+high bar of scientific proof, yet these observations provide clues, ones
+that once seen, are very difficult to unsee.
 
 ## Supernatural Selection
 
 There's no reason why animals with brains couldn't evolve in a deterministic
-universe, such as a digital simulation of life. But without the selection
-pressures tied to free will, they'd evolve as control-calculation organs rather
+universe, digital simulations suggest that they would. But in such systems -
+ones without free will - there are no selection pressures to ratchet up a
+complexity of mind. So what would evolve is control-calculation organs rather
 than feeling-about-moving ones.
 
 Deterministic models like computationalism and mathematical functionalism are
-free from will and offer no causal mechanism for the evolution of mind. Unless
-they can demonstrate one, these symbolic dualisms are functionally
+free from will, and offer no causal mechanism through which mind can evolve.
+Until one can be demonstrated, these symbolic dualisms are functionally
 indistinguishable from evolution denial.
 
 # Informational Awareness
 
-By definition, subjective experience cannot be measured objectively. What
-another system feels like remains beyond the reach of empiricism. This will be
-true until we invent direct neural connections to other systems, allowing us
-to share experiences and systematically document the qualitative properties of
-physical structures. But first, we'd need a working, proven theory of
-consciousness to guide the engineering effort.
+When described in terms of mass and electromagetism, of particles and forces,
+we can describe and predict the behaviour of stuff, but this cannot explain the
+cause of its behaviour. By definition, a subjective experience cannot be
+measured objectively, so how another system feels will be forever beyond
+empiricism's reach. If we invent technology to connect other systems to our
+brains and share their experience, these experiences that no longer subjective.
+With this in mind, we should consider that subjectivity is not absolute, like
+all things it's a matter of perspective.
 
-In order to make one, we may be able to infer some things about subjectivity
-by observing the behaviour of other systems.
+In a universe where action is a choice, action gives some insight into
+preference and ignorance, though how much of each are involved are private to
+the chooser. We could say that atoms on the surface of a gold bar are unaware
+of the call of the sky, or strongly prefer to stay where they are. Neutrinos
+could be said to be either fickle or free, with no way to know which. This
+somewhat absurd framing grants an insight: if stuff is and does as it feels,
+then in one sense or another it feels little about what it *doesn't* do.
 
-In a universe where all action is choice, actions reveal information about an
-preference or ignorance, but how much of each were involved is known only to the
-chooser. Atoms on the surface of a gold bar are either blissfully unaware of the
-call of the sky, or they strongly prefer to continue being gold. While we might
-describe this as mass and electromagetism, and model it as in terms of protons,
-neutrons and forces. But when forces are preferences, their carriers are
-decisions. Neutrinos could be said to be either fickle or free, with no way to
-know which. This seemingly absurd framing grants an insight: if stuff does as it
-feels, then one way or another it feels very little about what it doesn't do.
+Actions as interaction choices provides a useful framing for quantum physics and
+information theory. Randomness and unknowableness are equivalent, and we know
+that unknowableness exists; randomness does not survive the razor. This and
+entropy can be described as limits to awareness itself, a minimum experiential
+distance from an observer. Both superposition and entanglement can be framed as
+an experiential exclusion from a decision chain. And if forces themselves are
+preferences, then their carriers are decisions.
 
-Action as chosen interaction provides useful framings for quantum physics and
-information theory too. But first let's apply the razor once again and conclude
-that there's no need to have both randomness and unknowableness; to an outsider
-they are both the same thing.
-
-randomness, unknowableness and entropy; they're lower bounds on possible
-awareness, an experiential distance. This, in turn applies neatly to both
-superposition and entanglement, both of which are exclusion of other observers
-from the decision path.
-
-
-todo:
-
-* more potential for awareness in liquids than solids
-* water does the moving, solids don't.
-* protiens evolved to make the water want to move it.
-* the evolution of mind is the manipulation of structured water
+The more agency a system has then the less predictable it is. Knowing what
+something will do says a bit about the limits of its agency, and by extension
+its awarness. So, without assuming all men are Socrates, it's quite reasonable
+to expect fluids to be more aware, or at least have more capacity for awareness,
+than solids.
 
 # Hydropsychism
 
-Having tackled the hard problem, the anthropic question, and the evolution of
-mind - while dismantling determinism, computationalism, and spacetime itself -
-let's do some real work. It's time to fix panpsychism. Or idealism. Maybe both.
+Life evolved on Earth through action, and if action is choice then water is the
+lead actor. It's the water that flows and moves, folding and unfolding proteins,
+bringing them together and keeping them apart. Hydrophobic and hydrophilic
+forces give cells their structure, it is the solvent of all enzymes, the medium
+that transcribes DNA, ribozymes mediate chemical reactions through its fluidity
+far more than their own. When you're a fish you don't realize you're in water,
+the same can be said of organic chemistry.
 
-todo:
+The story of life is not one of chemicals that stumbled upon feeling and evolved
+a will to live, it's one where they gradually tamed the will of the ocean,
+fragmented it, segregated it, and dragged it onto land.
+
+
+
+# todo
 
 * physical processes in neurons
 * gates, sodium, potassium and the cascading signal
@@ -152,8 +157,6 @@ todo:
 Does the hexagonal structure of water somehow align with the 3 spatial
 dimensions, in a way that resonates with or provides access to the properties
 from which space itself emerges? Does orientation play a part?
-
-### todo:
 
 * The colliding blocks model of pi.
 * Vibration as the underlaying cause of dimensionality
