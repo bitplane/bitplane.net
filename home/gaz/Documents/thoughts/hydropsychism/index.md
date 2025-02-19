@@ -122,24 +122,48 @@ preferences, then their carriers are decisions.
 
 The more agency a system has then the less predictable it is. Knowing what
 something will do says a bit about the limits of its agency, and by extension
-its awarness. So, without assuming all men are Socrates, it's quite reasonable
+its awareness. So, without assuming all men are Socrates, it's quite reasonable
 to expect fluids to be more aware, or at least have more capacity for awareness,
 than solids.
 
 # Hydropsychism
 
-Life evolved on Earth through action, and if action is choice then water is the
-lead actor. It's the water that flows and moves, folding and unfolding proteins,
-bringing them together and keeping them apart. Hydrophobic and hydrophilic
-forces give cells their structure, it is the solvent of all enzymes, the medium
-that transcribes DNA, ribozymes mediate chemical reactions through its fluidity
-far more than their own. When you're a fish you don't realize you're in water,
-the same can be said of organic chemistry.
+Life evolved on Earth through action, and if action is choice then water is our
+lead actor. This makes life's story less one about chemicals stumbling upon
+awareness, it's one of taming the ocean's will - fragmenting it, dividing it,
+and dragging it onto land. It's the water that flows and moves, it folds and
+unfolds proteins, pulling them together and pushing them apart. Hydrophobic and
+hydrophilic forces grant all cells their structure, it's the solvent of all
+enzymes, the medium that transcribes our DNA. Ribozymes mediate reactions
+through its fluidity far more than their own. Fish don't realize they're in
+water. The same can be said of organic chemistry.
 
-The story of life is not one of chemicals that stumbled upon feeling and evolved
-a will to live, it's one where they gradually tamed the will of the ocean,
-fragmented it, segregated it, and dragged it onto land.
+If the seat of consciousness is held by fluid dynamics rather than quantum ones,
+ordinary physical processes rather than computational dualism, then we should
+expect several things to be true. We'd expect longer 
 
+
+
+
+## some refs
+
+Water Determines the Structure and Dynamics of Proteins
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/
+
+Neutrons take a deep dive into water networks surrounding DNA
+
+https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna
+
+Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/
+
+
+Exposure to high-frequency pressure waves has been shown to modulate neuronal
+activity, indicating that mechanical forces can influence neural function
+
+https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/
 
 
 # todo
