@@ -72,13 +72,13 @@ strongly we believe there is one, agency should extend all the way to the
 bottom. The will to move would be present (though less coordinated) in not
 just organisms without nervous systems, but also within their cytoplasm. An
 amoeba's pseudopods would extend and retract with an apparent intent, and
-white cells blood might chase invaders with what looks like urgency. If all
-Brownian motion is choice, then the inner workings of cells should show an
-eerie similarity to creatures at larger scales. And it should apply across
-scales of time too; viewed at high speed, plants would writhe and thrash
-around as they struggle to survive. Such anthropomorphisms do not meet the
-high bar of scientific proof, yet these observations provide clues, ones
-that once seen, are very difficult to unsee.
+white blood cells might chase invaders with what looks like urgency. If all
+Brownian motion is choice, then we should not be surprised that the inner
+workings of cells show an eerie similarity to creatures at larger scales.
+And it should apply across scales of time too; viewed at high speed, plants
+would writhe and thrash around as they struggle to survive. Such
+anthropomorphisms do not meet the high bar of scientific proof, yet these
+observations provide clues, ones that once seen, are very difficult to unsee.
 
 ## Supernatural Selection
 
@@ -89,7 +89,7 @@ complexity of mind. So what would evolve is control-calculation organs rather
 than feeling-about-moving ones.
 
 Deterministic models like computationalism and mathematical functionalism are
-free from will, and offer no causal mechanism through which mind can evolve.
+free from will, and so offer no causal mechanism through which mind can evolve.
 Until one can be demonstrated, these symbolic dualisms are functionally
 indistinguishable from evolution denial.
 
@@ -100,13 +100,14 @@ we can describe and predict the behaviour of stuff, but this cannot explain the
 cause of its behaviour. By definition, a subjective experience cannot be
 measured objectively, so how another system feels will be forever beyond
 empiricism's reach. If we invent technology to connect other systems to our
-brains and share their experience, these experiences that no longer subjective.
-With this in mind, we should consider that subjectivity is not absolute, like
-all things it's a matter of perspective.
+brains and share their experience, these experiences are no longer entirely
+subjective. With this in mind, we should consider the possibility that
+subjectivity itself may not be absolute, like all other things it's a matter of
+perspective.
 
-In a universe where action is a choice, action gives some insight into
-preference and ignorance, though how much of each are involved are private to
-the chooser. We could say that atoms on the surface of a gold bar are unaware
+In a universe where action is a choice, action gives some insight into degrees
+of preference and ignorance, though how much of each are involved remain private
+to the chooser. We could say that atoms on the surface of a gold bar are unaware
 of the call of the sky, or strongly prefer to stay where they are. Neutrinos
 could be said to be either fickle or free, with no way to know which. This
 somewhat absurd framing grants an insight: if stuff is and does as it feels,
@@ -116,15 +117,16 @@ Actions as interaction choices provides a useful framing for quantum physics and
 information theory. Randomness and unknowableness are equivalent, and we know
 that unknowableness exists; randomness does not survive the razor. This and
 entropy can be described as limits to awareness itself, a minimum experiential
-distance from an observer. Both superposition and entanglement can be framed as
+distance from an observer; both superposition and entanglement can be framed as
 an experiential exclusion from a decision chain. And if forces themselves are
-preferences, then their carriers are decisions.
+preferences, then their carriers are decisions rather than particles.
 
-The more agency a system has then the less predictable it is. Knowing what
-something will do says a bit about the limits of its agency, and by extension
-its awareness. So, without assuming all men are Socrates, it's quite reasonable
-to expect fluids to be more aware, or at least have more capacity for awareness,
-than solids.
+The more agency a system has then the less predictable it will be. So knowing
+what something can do says a bit about the limits of its agency, and by
+extension its possible awareness. So, without assuming all men are Socrates,
+it's quite reasonable to expect fluids to be far more aware, or at least have 
+far more capacity for awareness, than solids, that are by comparison express
+no opinion.
 
 # Hydropsychism
 
@@ -133,15 +135,58 @@ lead actor. This makes life's story less one about chemicals stumbling upon
 awareness, it's one of taming the ocean's will - fragmenting it, dividing it,
 and dragging it onto land. It's the water that flows and moves, it folds and
 unfolds proteins, pulling them together and pushing them apart. Hydrophobic and
-hydrophilic forces grant all cells their structure, it's the solvent of all
-enzymes, the medium that transcribes our DNA. Ribozymes mediate reactions
+hydrophilic forces grant all cells their structure, but it's the water that
+expresses philia and phobia rather than the lipids. Water is the solvent of all
+enzymes, the medium that transcribes our DNA, and ribozymes mediate reactions
 through its fluidity far more than their own. Fish don't realize they're in
 water. The same can be said of organic chemistry.
 
-If the seat of consciousness is held by fluid dynamics rather than quantum ones,
+If the seat of consciousness is held by fluid rather than quantum dynamics,
 ordinary physical processes rather than computational dualism, then we should
-expect several things to be true. We'd expect longer 
+expect several things to be true....
 
+
+We'd expect neurons to disturb the fluid physically, amplifying and dampening
+waves through interference patterns at different frequencies.
+
+Expect certain ratios.
+
+Expect areas to do with learning to change geometrically, rather than just
+network topology.
+
+Awareness should travel faster than neural activity, at the speed of sound in water.
+
+More going on outside the neuron than inside it.
+
+Perception would propagate from around the axons, rather than along them.
+
+Neural networks that cause perception could be distributed and focus patterns
+rhythmically together, rather than purely local calculations.
+
+Ultrasound would have perceptual and induce cognitive effects.
+
+Brain pressure would be destructive to consciousness.
+
+Cognitive function would be more robust than the neural fibres.
+
+Beta and alpha waves would feel perceptually smooth and sharp.
+
+Experiences would feel fluid, rather than discrete, emotional waves.
+
+Consciousness and unconsciousness could be measured vibrationally.
+
+Anasthetics may have effects on fluid dynamics
+
+Hallucinogenics of different types should cause sync issues that are better
+explained with 
+
+### option 2 - structured water and pressure on the lattice
+
+Would be localized around the axons as structured water
+
+Depend on quantum effects, sodium ion pressure on the hexagonal structure
+
+### deeper reality
 
 
 
@@ -159,22 +204,19 @@ Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy
 
 https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/
 
-
 Exposure to high-frequency pressure waves has been shown to modulate neuronal
 activity, indicating that mechanical forces can influence neural function
 
 https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/
 
-
 # todo
 
 * physical processes in neurons
 * gates, sodium, potassium and the cascading signal
+* neural activity as an interference pattern network
 * sodium ions and the shell around them
-* pressure on water's hexagonal lattice
+* water's hexagonal lattice, dimensionality
 * forcing water to make a collective decision
-* awareness of the shape of the axon
-* leads to awareness of the shape of the network
 
 ## Is water special?
 
