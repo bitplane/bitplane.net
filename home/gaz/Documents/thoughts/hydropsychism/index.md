@@ -211,26 +211,30 @@ of neurons. It should be possible to measure consciousness and unconsciousness
 vibrationally, and by applying vibrations in the right places, it ought to be
 possible to directly control subjective experience.
 
-# Further thoughts: is water special?
+# The structural experience of dimensionality
 
-If distance between objects are an expression of 
+Given that π can be explained in terms of collision[^!], it's reasonable to
+assume vibration is the cause of space. And it would make sense that directions
+are only separate quantities for the sake of convenience; unlike directions,
+one cannot rotate from 4 cats into 4 dogs.
 
-Does the hexagonal structure of water somehow align with the 3 spatial
-dimensions in a way that resonates with, or provides access to, the properties
-from which space itself emerges? If all distance is a likelihood of interaction,
-then space itself can be viewed in terms of preference or awareness. The
-colliding blocks model of pi seems to suggest that dimensionality emerges from
-oscillations, and if water's lattice is aligned so its both relative and aligned
-with this, waves within it may align with space itself.
+If distance between objects is a proxy to preference, then spacetime does
+not exist as a continuum but instead emerges from the things "within" it.
+If so, the hexagonal lattice of water may align with the 3 spatial dimensions
+themselves, in a way that resonates with, and provides access to, the
+preferences that we observe as space. This may provide a mechanism whereby
+pressure waves within water have direct causal effect on the experience and
+awareness that sits below physical space.
 
 # Conclusion: Little Bags of Thinking Water
 
-For the past 20 years, I'd assumed that consciousness was 
-
+For the past 20 years, I'd assumed that human consciousness the sweet song of
+a wind of mind whistling through the structure of brains. A mind made of liquid
+makes this aether far less immaterial, and something we know to exist.
 
 Pratchett described human beings as "little bags of thinking water held up
-briefly by fragile accumulations of calcium"[^?], and despite us all believing we
-were the bag, it turns out he was right all along.
+briefly by fragile accumulations of calcium"[^?], and despite us mostly
+believing we were the bag, it turns out he was right all along.
 
 
 [^1]: René Descartes, *Meditations on First Philosophy*, 1641.
@@ -239,15 +243,17 @@ were the bag, it turns out he was right all along.
   [philpapers.org](https://philpapers.org/rec/BUDJAE)
 [^3]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. 
   [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
-[^4]: white blood cell, ????.
-  [youtube](????)
-[^5]: inside of a cell, ????.
-  [youtube](????)
-[^6]: bramble in high speed, ????.
-  [youtube](????)
+[^4]: A neutrophil chasing Staphylococcus aureus,
+  [youtube](https://youtu.be/3KrCmBNiJRI)
+[^5]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006.
+  [youtube](https://xvivo.com/examples/the-inner-life-of-the-cell/)
+[^6]: BBC Studios, *The Private Life of Plants*, 2007.
+  [youtube](https://youtu.be/TkwXa7Cvfr8)
 [^7]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024
   [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
 [^8]: Read as if Richard Dawkins had a side hustle as a safety announcer for the London underground.
+[^!]: G. Galperin, *Playing Pool with π*
+  [DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
 [^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
 
