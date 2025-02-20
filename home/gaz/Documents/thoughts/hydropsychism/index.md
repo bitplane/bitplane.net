@@ -22,8 +22,9 @@ building conscious machines.
 
 *Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
 enough; there are some other things that I am[^1]. I'm in a location, I
-experience my surroundings and the passage of time, I feel, and more importantly
-- I choose how to move; I have will. And sometimes, the will to think.
+experience my surroundings and the passage of time, I feel, and more
+importantly - I choose how to move; I have will. And sometimes, the will to
+think.
 
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
