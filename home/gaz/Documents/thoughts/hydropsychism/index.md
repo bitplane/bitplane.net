@@ -238,24 +238,24 @@ briefly by fragile accumulations of calcium"[^?], and despite us mostly
 believing we were the bag, it turns out he was right all along.
 
 
-[^1]: René Descartes, *Meditations on First Philosophy*, 1641.
+* [^1]: René Descartes, *Meditations on First Philosophy*, 1641.
   [gutenberg.org](https://www.gutenberg.org/ebooks/59).
-[^2]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. 
+* [^2]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. 
   [philpapers.org](https://philpapers.org/rec/BUDJAE)
-[^3]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. 
+* [^3]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. 
   [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
-[^4]: A neutrophil chasing Staphylococcus aureus,
+* [^4]: A neutrophil chasing Staphylococcus aureus,
   [youtube](https://youtu.be/3KrCmBNiJRI)
-[^5]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006.
+* [^5]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006.
   [youtube](https://xvivo.com/examples/the-inner-life-of-the-cell/)
-[^6]: BBC Studios, *The Private Life of Plants*, 2007.
+* [^6]: BBC Studios, *The Private Life of Plants*, 2007.
   [youtube](https://youtu.be/TkwXa7Cvfr8)
-[^7]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024
+* [^7]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024
   [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
-[^8]: Read as if Richard Dawkins had a side hustle as a safety announcer for the London underground.
-[^!]: G. Galperin, *Playing Pool with π*
+* [^8]: Read as if Richard Dawkins had a side hustle as a safety announcer for the London underground.
+* [^!]: G. Galperin, *Playing Pool with π*
   [DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
-[^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
+* [^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
 
 Water Determines the Structure and Dynamics of Proteins
