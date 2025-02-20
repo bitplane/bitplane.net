@@ -238,18 +238,18 @@ briefly by fragile accumulations of calcium"[^?], and despite us mostly
 believing we were the bag, it turns out he was right all along.
 
 
-* [^1]: René Descartes, *Meditations on First Philosophy*, 1641. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
-* [^2]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. Available at [philpapers.org](https://philpapers.org/rec/BUDJAE)
-* [^3]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
-* [^4]: A neutrophil chasing Staphylococcus aureus. Available at [youtube](https://youtu.be/3KrCmBNiJRI)
-* [^5]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006. Avaulable at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/)
-* [^6]: BBC Studios, *The Private Life of Plants*, 2007. Available at [youtube](https://youtu.be/TkwXa7Cvfr8)
-* [^7]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
-* [^8]: Read as if Richard Dawkins had a side hustle as a safety announcer for the London underground.
-* [^a]: *Water Determines the Structure and Dynamics of Proteins*. [DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
-* [^b]: *Neutrons take a deep dive into water networks surrounding DNA*. Available at [neutrons.ornl.gov](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
-* [^c]: *Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. [DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
-* [^d]: *Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. [DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
-* [^!]: G. Galperin, *Playing Pool with π*. [DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
+* [^1]: [René Descartes, *Meditations on First Philosophy*, 1641.](https://www.gutenberg.org/ebooks/59).
+* [^2]: [Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001.](https://philpapers.org/rec/BUDJAE)
+* [^3]: [Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024.](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
+* [^4]: [A neutrophil chasing Staphylococcus aureus.](https://youtu.be/3KrCmBNiJRI)
+* [^5]: [Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006](https://xvivo.com/examples/the-inner-life-of-the-cell/)
+* [^6]: [BBC Studios, *The Private Life of Plants*, 2007.](https://youtu.be/TkwXa7Cvfr8)
+* [^7]: [Gareth Davidson, *Computationalism is Evolution Denial*, 2024.](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
+* [^8]: Read as if Dawkins and Chalmers had a side hustle as safety announcers for the London underground.
+* [^a]: [*Water Determines the Structure and Dynamics of Proteins*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
+* [^b]: [*Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
+* [^c]: [*Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
+* [^d]: [*Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
+* [^!]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
 * [^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
