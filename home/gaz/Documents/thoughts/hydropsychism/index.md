@@ -136,8 +136,8 @@ the lead role. This makes life's story less one about chemicals stumbling upon
 awareness, it's one of taming the ocean's will - dividing, conquering, and
 having it drag itself onto land. It's the water that flows and moves, it folds
 and unfolds the proteins, pulling them together and pushing them apart.
-Hydrophobic and hydrophilic forces give all cells structure, but it's the water
-- not the lipids - that expresses philia and phobia. Water is the solvent of
+Hydrophobic and hydrophilic forces give all cells structure, but it's water -
+not lipids - that expresses philia and phobia. Water is the solvent of
 all enzymes, the medium that transcribes our DNA, and ribozymes mediate
 reactions through its fluidity and very little of their own. Fish don't realize
 they're in water. The same can be said of organic chemistry.
@@ -154,22 +154,27 @@ the central point of this paper is that neurons don't provide consciousness,
 they manipulate the fluid around them, changing the texture of a liquid mind.
 
 There are two obvious mechanisms that could lead to this behaviour, the most
-simple - and the one taken so far is that liquids 
+simple - and the one taken so far - is that fluids as a whole have experience.
+A less obvious one is that water's hexagonal structure is put under pressure
+from sodium ions rushing into gates along the axons, and causing it to become
+aware of the shape of the neuron's surface, and by extension the network as
+a whole.
 
-# Predictions
+These two different viewpoints result in very different outcomes, in the
+former, mind flows along the neurons themselves, while in the latter it would
+flow throughout their liquid surroundings.
 
-A fluid-dynamic model of consciousness is a falsifiable one, but as a
+# Predictions for a Fluid Dynamic model
+
+A fluid-dynamic model of consciousness is the most falsifiable one, but as a
 lay-hacker-philosopher rather than a neurologist, I can only offer
 intuition-based tests rather than technical ones. Regardless, the following
 thoughts provide a starting predictions that may support empirical testing.
 
-
-From this point on, we will assume that the mechanism is 
-
-should disturb the fluid physically, amplifying and dampening waves
-through interference patterns at different frequencies. The structure of the
-network and the way the neurons fire would flow in rhythmic patterns, as ionic
-bumrush
+Neuron activations should disturb the fluid physically, amplifying and dampening
+waves through interference patterns at different frequencies. The structure of
+the network and the way the neurons fire would flow in rhythmic patterns, as
+ionic ripples flow throughout the fluid. These 
 
 We should expect areas to do with learning to change in a geometric fashion as
 well as along the branches of the network. If awareness, or the cause of it,
