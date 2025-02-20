@@ -22,7 +22,7 @@ event had started without us:
 
 > The worst of the storm damage came when a river running through the site
 > burst its banks and sent a torrent of water through a field of tents.
-- [The Guardian, June 2005](https://www.theguardian.com/music/2005/jun/24/glastonbury2005.glastonbury3)
+- [📰 The Guardian, June 2005](https://www.theguardian.com/music/2005/jun/24/glastonbury2005.glastonbury3)
 
 The slowly rising water table had revealed itself to be flowing, which is fucking
 obvious in hindsight when you consider we were on a hill, but it was hard to see
