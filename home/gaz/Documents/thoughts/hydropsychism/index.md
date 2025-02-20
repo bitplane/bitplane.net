@@ -13,7 +13,7 @@ natural selection. Panpsychist models are elegant but fail to explain how
 subjective experience integrates into unified selves.
 
 This paper proposes **hydropsychism** - the hypothesis that **the self is simply
-the water in and around neurons**. This view is a simple panpsychist model that
+the water around neurons**. This view is a simple panpsychist model that
 explains evolution of mind from the earliest stages, lacks paradoxes, matches
 observation and leads to testable predictions. This opens up the door to
 building conscious machines.
