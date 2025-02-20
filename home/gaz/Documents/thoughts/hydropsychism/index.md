@@ -21,32 +21,32 @@ building conscious machines.
 # Metaphysics
 
 *Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
-enough; there are some other things that I am. I'm in a location, I experience
-my surroundings and the passage of time, I feel, and more importantly - I choose
-how to move; I have will. And sometimes, the will to think.
+enough; there are some other things that I am[^1]. I'm in a location, I
+experience my surroundings and the passage of time, I feel, and more importantly
+- I choose how to move; I have will. And sometimes, the will to think.
 
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
 mind and matter stuffs. Matter is what mind looks like from a distance, or, when
-more generous with the blade, it is the totality of existence itself. And yet
-there's still much more to slice away. An objective reality can emerge from a
-web of subjective interactions, and having experienced both of those directly
-it is rational to consider the objective world a second order effect. Space can
-be framed so that distance is a relative compatability of the things within it -
-the likelihood of interactions between them - rather than a boundless and
-ghostly container. And as importantly as before - we know that choice is the
-cause of our actions, and so without evidence to the contrary, we should assume
-it's the same of other stuff.
+extra generous with the blade, it is the totality of existence itself[^2]. And
+yet there's still much more for a reductionist to slice away. An objective
+reality can emerge from a web of subjective interactions, and having experienced
+both of those directly it is rational to consider the objective world a
+second-order effect. Space can be framed so that distance is a relative
+compatability of the things within it - the likelihood of interactions between
+them - rather than a boundless and ghostly container. And as importantly as
+before, we know that choice is the cause of our actions, and so without evidence
+to the contrary, we should assume other stuff is its own first-mover.
 
-If the cause rather than commandment is the cause of actions, then physical laws
+If choice rather than commandment is the cause of actions, then physical laws
 are nothing more than our own observations; all we can observe is the aggregate
 preference of mind-stuff, statistically.
 
 Having left the concept of natural laws and looking back from enough distance,
 they resemble a cognitive bias at the heart of scientific tradition; the quest
-to discover the laws of a rule-giver we have long forsaken. Our path leads to a
-model of an entirely subjective and relative reality, one lacking not only a
-creator and His laws, but is without a physical realm at all.
+to discover the laws of a rule-giver we have long forsaken[^3]. This path leads
+us to a model of an entirely subjective and relative reality, one lacking not
+only a creator and His laws, but is without a physical realm at all.
 
 In this new model, mind-stuff is the only stuff and it acts according to its
 will; it is and it does as it feels.
@@ -57,15 +57,15 @@ This position of "doing as it feels" reveals a simple mechanism by which mind
 can evolve, and from up here we can see all the way back to abiogenesis.
 
 When stuff chooses how to act based on what's around it, its actions then
-change its surroundings, and this in turn changes how it feels. This simple
-process allows for feedback loops where structure, feelings and action can be
+change its surroundings, and this in turn changes its preferences. This simple
+process provides a feedback loop where structure, feeling and action can be
 naturally selected. With selection pressures able to act directly on feelings
 and choices, they can evolve structurally, step by step - a process that is
 required for sapient life to emerge.
 
 Through this process, the simplest molecules with the weakest preferences can
-be honed, through survival, into systems with staunch opinions and a powerful
-force of will.
+be honed, through their survival, into complex systems with staunch opinions
+and a powerful force of will.
 
 If we lived in a universe made from experience and agency, we would expect
 to see no boundary where they emerge. No matter how hard we look, or how
@@ -73,11 +73,11 @@ strongly we believe there is one, agency should extend all the way to the
 bottom. The will to move would be present (though less coordinated) in not
 just organisms without nervous systems, but also within their cytoplasm. An
 amoeba's pseudopods would extend and retract with an apparent intent, and
-white blood cells might chase invaders with what looks like urgency. If all
-Brownian motion is choice, then we should not be surprised that the inner
-workings of cells show an eerie similarity to creatures at larger scales.
+white blood cells might chase invaders with what looks like urgency[^4]. If
+Brownian motion is choice, then we should not be surprised to see the inner
+workings of cells show an eerie similarity to creatures at larger scales[^5].
 And it should apply across scales of time too; viewed at high speed, plants
-would writhe and thrash around as they struggle to survive. Such
+would writhe and thrash around as they struggle to survive[^6]. Such
 anthropomorphisms do not meet the high bar of scientific proof, yet these
 observations provide clues, ones that once seen, are very difficult to unsee.
 
@@ -92,7 +92,7 @@ than feeling-about-moving ones.
 Deterministic models like computationalism and mathematical functionalism are
 free from will, and so offer no causal mechanism through which mind can evolve.
 Until one can be demonstrated, these symbolic dualisms are functionally
-indistinguishable from evolution denial.
+indistinguishable from evolution denial[^7].
 
 # Informational Awareness
 
@@ -100,97 +100,115 @@ When described in terms of mass and electromagetism, of particles and forces,
 we can describe and predict the behaviour of stuff, but this cannot explain the
 cause of its behaviour. By definition, a subjective experience cannot be
 measured objectively, so how another system feels will be forever beyond
-empiricism's reach. If we invent technology to connect other systems to our
-brains and share their experience, these experiences are no longer entirely
-subjective. With this in mind, we should consider the possibility that
-subjectivity itself may not be absolute, like all other things it's a matter of
-perspective.
+empiricism's reach. This tautology cannot be escaped even if we invent
+technology to connect other systems to our brains; a shared experience is no
+longer entirely subjective. Though with this in mind, we should consider that
+subjectivity itself may not be absolute, like all other things it's relative -
+a matter of perspective.
 
-In a universe where action is a choice, action gives some insight into degrees
-of preference and ignorance, though how much of each are involved remain private
-to the chooser. We could say that atoms on the surface of a gold bar are unaware
-of the call of the sky, or strongly prefer to stay where they are. Neutrinos
-could be said to be either fickle or free, with no way to know which. This
-somewhat absurd framing grants an insight: if stuff is and does as it feels,
-then in one sense or another it feels little about what it *doesn't* do.
+Choices give some insight into the degree of preference or ignorance, of a
+chooser, though how much of each are involved is anyone's guess. We could say
+that atoms on the surface of a gold bar are unaware of the call of the sky, or
+strongly prefer to stay where they are. Neutrinos could be said to be either
+fickle or free, with no way to know which. This somewhat absurd framing does
+grant an insight: if stuff is and does as it feels, then in one sense or another
+it feels little about what it *doesn't* do.
 
-Actions as interaction choices provides a useful framing for quantum physics and
-information theory. Randomness and unknowableness are equivalent, and we know
-that unknowableness exists; randomness does not survive the razor. This and
-entropy can be described as limits to awareness itself, a minimum experiential
-distance from an observer; both superposition and entanglement can be framed as
-an experiential exclusion from a decision chain. And if forces themselves are
-preferences, then their carriers are decisions rather than particles.
+This "actions as interaction choices" stance also provides a useful framing for
+both quantum physics and information theory. Randomness and unknowableness are
+functionally equivalent, and we know that unknowableness exists; randomness
+does not survive the razor. This and entropy can be described as limits to
+awareness itself, a minimum experiential distance from an observer; both
+superposition and entanglement can be framed as an experiential exclusion from
+a decision chain. And if forces themselves are preferences, then their carriers
+are decisions rather than particles.
 
-The more agency a system has then the less predictable it will be. So knowing
-what something can do says a bit about the limits of its agency, and by
-extension its possible awareness. So, without assuming all men are Socrates,
-it's quite reasonable to expect fluids to be far more aware, or at least have 
-far more capacity for awareness, than solids, that are by comparison express
-no opinion.
+The more agency a system has, the less predictable it will be. So knowing what
+something can do puts bounds on its possible agency, and by extension its
+possibility for awareness. So, without assuming all men are Socrates, it's quite
+reasonable to expect fluids to be far more aware - or at least have far more
+capacity for awareness - than solids, which by comparison express no opinion.
 
 # Hydropsychism
 
-Life evolved on Earth through action, and if action is choice then water is our
-lead actor. This makes life's story less one about chemicals stumbling upon
-awareness, it's one of taming the ocean's will - fragmenting it, dividing it,
-and dragging it onto land. It's the water that flows and moves, it folds and
-unfolds proteins, pulling them together and pushing them apart. Hydrophobic and
-hydrophilic forces grant all cells their structure, but it's the water that
-expresses philia and phobia rather than the lipids. Water is the solvent of all
-enzymes, the medium that transcribes our DNA, and ribozymes mediate reactions
-through its fluidity far more than their own. Fish don't realize they're in
-water. The same can be said of organic chemistry.
+Life evolved on Earth through action, and if action is choice then water played
+the lead role. This makes life's story less one about chemicals stumbling upon
+awareness, it's one of taming the ocean's will - dividing, conquering, and
+having it drag itself onto land. It's the water that flows and moves, it folds
+and unfolds the proteins, pulling them together and pushing them apart.
+Hydrophobic and hydrophilic forces give all cells structure, but it's the water
+- not the lipids - that expresses philia and phobia. Water is the solvent of
+all enzymes, the medium that transcribes our DNA, and ribozymes mediate
+reactions through its fluidity and very little of their own. Fish don't realize
+they're in water. The same can be said of organic chemistry.
 
-If the seat of consciousness is fluid rather than quantum dynamics, made of
-ordinary physical processes rather than computational dualism, then we don't
-need to push the idea of mind into complexity or the gaps of ignorance. It's
-simply what stuff is.
+Our throne of mind was built one drip at a time as nature slurped its way up the
+gradient of complexity. This model's seat of consciousness is one of fluid
+dynamics rather than quantum ones, one made of ordinary physical processes that
+we refer to as physical law. It does not rest on the eternal Platonic forms
+of symbolic dualism, nor the ignorance of complexity. No need to *mind the
+gap*[^8], it's just plain old wet stuff, whatever stuff is anyway.
 
 So, aside from determinism being functionally equivalent to evolution denial,
 the central point of this paper is that neurons don't provide consciousness,
-they vibrate fluid around them, changing the way it feels to be that liquid.
+they manipulate the fluid around them, changing the texture of a liquid mind.
+
+There are two obvious mechanisms that could lead to this behaviour, the most
+simple - and the one taken so far is that liquids 
 
 # Predictions
 
-If consciousness is fluid-dynamics, then this ought to be observable or
-disproveable. As a lay-philosopher-hacker rather than a biologist, so I may
-be wrong about the implications, but they at least provide a starting point
-for future research.
+A fluid-dynamic model of consciousness is a falsifiable one, but as a
+lay-hacker-philosopher rather than a neurologist, I can only offer
+intuition-based tests rather than technical ones. Regardless, the following
+thoughts provide a starting predictions that may support empirical testing.
 
-Neurons ought to disturb the fluid physically, amplifying and dampening waves
+
+From this point on, we will assume that the mechanism is 
+
+should disturb the fluid physically, amplifying and dampening waves
 through interference patterns at different frequencies. The structure of the
-network and the way the neurons fire would flow in rhythmic patterns.
+network and the way the neurons fire would flow in rhythmic patterns, as ionic
+bumrush
 
 We should expect areas to do with learning to change in a geometric fashion as
-well as along the network. If awareness, or the cause of it propagates outwards
-from the axons rather than just along the network, areas connected only by
-fluids ought to change around the focal or convergence points of functional
-areas related to different experiences.
+well as along the branches of the network. If awareness, or the cause of it,
+propagates outwards from the axons rather than just along the network, areas
+connected only by fluids ought to change around the focal or convergence
+points related to different experiences.
 
-Awareness, or some manifestations of it, should travel faster than neural
-activity, at the speed of sound in saline. We should expect certain ratios to
-emerge, and for there to be types of neural structures that cancel each other
-out by their geometric position.
+There should be some manifestations of awareness that, travel faster than
+neural activity, closer to the speed of sound in saline. We should expect
+certain ratios to emerge, and for there to be types of neural structures that
+cancel each other out by their position and rhythm to better cause more local
+effects. We'd expect some forms of activity to be muted or shielded, like
+when the neuron is used to route signals to another area without disturbing
+the local fluid.
 
-Neural networks that provide a similar function need not be entirely local,
-rhythmically together, rather than purely local calculations.
+Parts of the network that provide calculations need not be entirely local,
+we may see evidence of tightly synchronized areas that are closer by sea
+than by land.
 
-Ultrasound would have perceptual, and induce cognitive effects. Beta and alpha
-waves would feel perceptually smooth and sharp. Brain pressure would be
-destructive to consciousness, but cognitive function would be more robust than
-the neural fibres. Hallucinogenics of different types would likely cause sync
-issues that expose interference patterns with a perceptual texture of the
-structure of the brain, rather than the network. Anasthetics would be likely
-to have measurable effects on fluid dynamics, though this may be difficult to
-prove causually.
+Changing the positions of neurons should change perceptual effects, even if
+topology remains the same.
 
-Experiences would feel fluid, rather than discrete firings of neurons. It should
-be possible to measure consciousness and unconsciousness vibrationally, and by
-applying vibrations in the right places, it ought to be possible to invoke
-feelings or perceptual 
+Ultrasound or other methods of inducing high frequency vibrations should create
+cognitive effects. Beta and alpha waves would feel smooth and sharp
+respectively. Brain pressure would be destructive to consciousness, but
+cognitive function ought to be more robust than the neural fibres that mediate
+it. Hallucinogenics of different types would likely cause sync issues that
+expose interference patterns with a perceptual texture of the structure of the
+brain, rather than its neural network. Some types of anasthetics should inhibit
+consciousness by altering fluid dynamics.
+
+The experiences of being human should feel fluid, rather than discrete firings
+of neurons. It should be possible to measure consciousness and unconsciousness
+vibrationally, and by applying vibrations in the right places, it ought to be
+possible to directly control subjective experience.
 
 # Further thoughts: is water special?
+
+If distance between objects are an expression of 
 
 Does the hexagonal structure of water somehow align with the 3 spatial
 dimensions in a way that resonates with, or provides access to, the properties
@@ -202,13 +220,31 @@ with this, waves within it may align with space itself.
 
 # Conclusion: Little Bags of Thinking Water
 
+For the past 20 years, I'd assumed that consciousness was 
+
+
 Pratchett described human beings as "little bags of thinking water held up
-briefly by fragile accumulations of calcium", and despite us all believing we
+briefly by fragile accumulations of calcium"[^?], and despite us all believing we
 were the bag, it turns out he was right all along.
 
-# Refs
 
-wip:
+[^1]: René Descartes, *Meditations on First Philosophy*, 1641.
+  [gutenberg.org](https://www.gutenberg.org/ebooks/59).
+[^2]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. 
+  [philpapers.org](https://philpapers.org/rec/BUDJAE)
+[^3]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. 
+  [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
+[^4]: white blood cell, ????.
+  [youtube](????)
+[^5]: inside of a cell, ????.
+  [youtube](????)
+[^6]: bramble in high speed, ????.
+  [youtube](????)
+[^7]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024
+  [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
+[^8]: Read as if Richard Dawkins had a side hustle as a safety announcer for the London underground.
+[^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
+
 
 Water Determines the Structure and Dynamics of Proteins
 
