@@ -110,3 +110,9 @@ People believe them. The sentient software meme:
 
 Stop it. It's irresponsible. People will die.
 
+## 🔗 links 
+
+* [📃 cargo cult consciousness](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness) -
+  an historical view of this idea
+* [🌊 Hydropsychism](../hydropsychism) -
+  an empirically testable model of mind
