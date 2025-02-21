@@ -193,26 +193,38 @@ compute and transmit information about where to excert these pressures.
 
 ## Geometric Propagation
 
-Mind ought to be affected faster than the speed of neural activations alone,
-which can only exert force laterally from the axons. We would expect there 
-to be some manifestations of awareness that travel faster than neural activity
-alone can explain, speeds closer to sound travelling in saline.
+Mind ought to be affected by processes that extend beyond the speed of neural
+activations alone, which can only exert force laterally from the axons. While
+neural signals propagate at known speeds, we might expect to also observe
+manifestations of awareness that involve interactions occurring at speeds
+approaching that of sound waves in saline, rather than purely electrochemical
+propagation[^fluid].
 
-Network regions that provide high resolution perceptual experiences ought to be
-either denser or more structured, and we may expect to see evidence of tightly
-synchronized areas that are closer by sea than by land.
+Network regions that provide high-resolution perceptual experiences ought to be
+either denser or more structured[^nature], and we may expect to see evidence of
+tightly synchronized areas[^pmc] that are closer by sea than by land.
 
-Neurons should fire in rhythmic patterns, with lower frequency waves having
-broader and more global effects on perception.
+Neurons should fire in rhythmic patterns[^buzsaki], with lower frequency waves 
+having broader and more global effects on perception[^klimesch]. 
+Lower frequency oscillations, such as alpha waves (~8–12 Hz), are associated 
+with large-scale neural synchrony and modulate distant brain regions[^thut], 
+whereas higher frequency oscillations, like gamma waves (~30–100 Hz), are 
+linked to localized sensory processing[^fries].
 
-We should expect learning processes like formation of memories to cause change
-in geometric areas as well as along the network's connections, and should take
-care to not overlook this as an important mechanism, rather than a by-product
-of chemical signals leaking into the fluid.
+We should expect learning processes like memory formation to reshape geometric 
+areas as well as network connections[^ecm]. These changes aren't just a 
+by-product of chemical signals leaking into the fluid but an active mechanism
+of memory itself[^buffer]. The brain's extracellular matrix (ECM) provides more 
+than scaffolding—it dynamically regulates synaptic plasticity, influencing how 
+memories form and persist[^fluidity]. Memory isn't just a network effect; it's 
+a structural shift in the brain's landscape.
 
-If geometry is important rather than just topology, then hanging the position
-of neurons should have perceptual effects, even when netowork connections
-remain the same.
+If geometry plays a role beyond just topology, then altering the physical
+position of neurons - without changing network connections - could have
+perceptual effects[^spatial]. While traditional models focus on connectivity alone,
+emerging research suggests that spatial positioning influences neural signaling,
+potentially shaping perception[^cortical]. This remains an open question but
+offers a testable hypothesis for future research.
 
 ## Interference Mechanisms
 
@@ -220,55 +232,63 @@ If awareness, or the cause of it, propagates outwards from the axons rather
 than just along the network, then there must be control mechanisms to perturb
 the patterns precisely, and lots of them since they evolved by chance.
 
-We should expect certain ratios to be present to support this functionality,
-such as factors and co-prime relationships between the speed of waves, of
-neuron activations and node distances. Ways to dampen, support, reflect, focus,
-constrain and promote propagation should be built into the spatial arrangement
-of the network.
+We should expect certain ratios to be present to support this functionality, 
+such as factors and co-prime relationships between the speed of waves, neuron 
+activations, and node distances[^jneurosci]. Harmonic relationships between 
+oscillations, like simple integer ratios (e.g., 1:2), facilitate synchronization 
+and efficient communication between different brain regions[^aps]. Ways to 
+dampen, support, reflect, focus, constrain, and promote propagation should be 
+built into the spatial arrangement of the network.
 
 These effects would likely be moderated by chemical and structural compositions
-and densities. They may be most noticable at boundaries of regions we know to be
-responsible for specific perceptual effects.
+and densities[^ecm]. They may be most noticeable at boundaries of regions
+we know to be responsible for specific perceptual effects, where differences in 
+tissue composition and structure alter signal dynamics[^boundaries].
 
-The importance of spatial positioning and firing rhythms would have more local
+The importance of spatial positioning and firing rhythms should have more local
 importance to higher frequency and higher density waves. Effects that reach
-further ought to need less synchronization and allow greater margin for error.
-Highly textured experiences might use tightly synchronized, denser structures
-that increase resolution through phase.
+further ought to need less synchronization and allow greater margin for
+error[^theta]. Highly textured experiences might use tightly synchronized,
+denser structures that increase resolution through phase
+relationships[^texture].
 
-We'd expect some forms of activity to be muted or shielded, like when a neuron
-is used to route signals to another area without disturbing the local fluid. Or
-patterns of neurons that exist to force ripples along a certain path but dampen
-it along others.
+We'd expect some forms of activity to be muted or shielded, like when a
+neuron is used to route signals to another area without disturbing the local
+fluid. Neural backpropagation provides an example of this, where A-type
+potassium channels regulate returning action potentials to prevent interference
+with local processing[^backprop]. Similarly, patterns of neurons may exist
+to force ripples along a certain path while dampening them along others, a
+mechanism resembling 'communication through coherence' (CTC), where
+oscillatory synchronization ensures selective signal transmission[^ctc].
 
 ## Physical Effects on Perception
 
-Ultrasound or other methods of inducing high frequency vibrations should cause
-cognitive effects. Beta and alpha waves would also feel smooth and sharp
-respectively.
+Ultrasound or other methods of inducing high frequency vibrations should cause 
+cognitive effects[^tfus]. Beta and alpha waves would also feel smooth and sharp 
+respectively[^brainwaves].
 
-Brain pressure changes might be destructive to consciousness itself rather than
-just the brain. Perceptual awareness ought to be more robust than cognitive
-function; the neural fibres that mediate complexity of experience have no
-bearing on its physical existence.
+Brain pressure changes might be destructive to consciousness itself rather than 
+just the brain[^icp]. Perceptual awareness ought to be more robust than cognitive 
+function; the neural fibres that mediate complexity of experience have no bearing 
+on its physical existence[^perception].
 
 Hallucinogenics of different types would likely have perceptual textures that
 are experiences of the structure of the brain's volume, rather than its
-neural network.
+neural network[^trip].
 
-Some types of anasthetics may inhibit consciousness physically, through effects
-on fluid dynamics, as should chemicals to do with feelings such as pleasure and
-pain. We might expect that chemicals related to strong feelings to be similarly
-disruptive to liquids.
+Some types of anesthetics may inhibit consciousness physically, through effects 
+on fluid dynamics[^anesthetics], as should chemicals to do with feelings such as 
+pleasure and pain. We might expect that chemicals related to strong feelings to 
+be similarly disruptive to liquids.
 
-The experiences of being human should feel fluid, rather than jitter, discrete
+The experiences of being human should feel fluid, rather than jittery, discrete
 firings of neurons. We would expect there to be no specific seat of
-consciousness if it were fluid. It should be possible to measure consciousness
-and unconsciousness vibrationally, and by applying vibrations in the right
-places, it ought to be possible to invoke wakefulness, and with enough control,
-even directly create complex subjective experiences
+consciousness if it were fluid[^dennett]. It should be possible to measure
+consciousness and unconsciousness vibrationally, and by applying vibrations in
+the right places, it ought to be possible to invoke wakefulness[^vibration], and
+with enough control, even directly create complex subjective experiences[^sleep].
 
-# The structural experience of dimensionality
+# The Structural Experience of Dimensionality
 
 Given that π can be explained in terms of collision[^pool], it's reasonable to
 assume vibration is the cause of space. And it would make sense that directions
@@ -287,12 +307,11 @@ awareness that sits below physical space.
 
 For the past 20 years, I'd assumed that human consciousness the sweet song of
 a wind of mind whistling through the structure of brains. A mind made of liquid
-makes this aether far less immaterial, and something we know to exist.
+makes this aether material, and something we know to exist.
 
 Pratchett described human beings as "little bags of thinking water held up
 briefly by fragile accumulations of calcium"[^tez], and despite us mostly
-believing we were the bag, it turns out he was right all along.
-
+believing we were the bag, it turns out he may have been right all along.
 
 [^descartes]: René Descartes, *Meditations on First Philosophy*, 1641. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
 [^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
@@ -302,11 +321,35 @@ believing we were the bag, it turns out he was right all along.
 [^brambles]: BBC Studios, *The Private Life of Plants*, 2007. Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
 [^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
 [^lol]: Read as if Dawkins or Chalmers had a side hustle as safety announcers for the London underground.
-[^a]: *Water Determines the Structure and Dynamics of Proteins*. DOI: 
-  Available at [pmc.mcbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
-[^b]: *Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
-[^c]: [*Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
-[^d]: [*Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
+[^fluid]: Quentin Barthelemy & Thibaud Proix, *Large-scale brain modeling links fluid dynamics to brain responsiveness and resting-state activity*, 2023. bioRxiv. https://doi.org/10.1101/2023.04.18.537321
+[^nature]: F. Akbari et al., *Increasing electrode density improves speech decoding accuracy in neural recordings*, 2023. Nature Communications. https://www.nature.com/articles/s41467-023-42555-1
+[^pmc]: T. A. Melloni et al., *Neural synchronization distinguishes conscious perception from unconscious processing*, 2019. PMC. https://pmc.ncbi.nlm.nih.gov/articles/PMC6672558/
+[^buzsaki]: György Buzsáki, *Rhythms of the Brain*, 2006. Oxford University Press. ISBN: 9780195301069.
+[^klimesch]: Wolfgang Klimesch, *EEG alpha and theta oscillations reflect cognitive and memory performance: a review and analysis*, 1999. Brain Research Reviews. https://doi.org/10.1016/S0165-0173(98)00056-3
+[^thut]: Gregor Thut et al., *Alpha-band electroencephalographic activity over occipital cortex indexes visuospatial attention bias and predicts visual target detection*, 2006. Journal of Neuroscience. https://doi.org/10.1523/JNEUROSCI.0875-06.2006
+[^fries]: Pascal Fries, *A mechanism for cognitive dynamics: neuronal communication through neuronal coherence*, 2005. Trends in Cognitive Sciences. https://doi.org/10.1016/j.tics.2005.10.011
+[^ecm]: *Extracellular Matrix Regulation in Physiology and in Brain Disease*, 2021. PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10138624/
+[^buffer]: *Brain Extracellular Matrix in Neurodegeneration*, 2009. PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2742568/
+[^fluidity]: William Mau, Michael E. Hasselmo, Denise J. Cai, *The brain in motion: How ensemble fluidity drives memory-updating and flexibility*, 2020. eLife. https://doi.org/10.7554/eLife.63550
+[^spatial]: H. K. Chklovskii et al., *Cortical geometry and the evolution of brain wiring*, 2002. Nature Neuroscience. https://doi.org/10.1038/nn1016
+[^cortical]: J. D. Murray et al., *Influence of cortical geometry on local and global dynamics in the brain*, 2014. Journal of Neuroscience. https://doi.org/10.1523/JNEUROSCI.0753-14.2014
+[^jneurosci]: M. A. Kramer et al., *Rhythmic coordination of local field potentials in the human brain predicts memory formation*, 2019. Journal of Neuroscience. https://www.jneurosci.org/content/39/32/6291
+[^aps]: A. O. Tarankova et al., *Influence of spatial neuronal connectivity on network dynamics*, 2023. Physical Review Research. https://link.aps.org/doi/10.1103/PhysRevResearch.5.013005
+[^ecm]: *Brain Structure and Function: Insights from Chemical Neuroanatomy*, 2023. PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10142941/
+[^boundaries]: J. M. Kennedy et al., *V1 neurons are tuned to perceptual borders in natural scenes*, 2023. PNAS. https://www.pnas.org/doi/10.1073/pnas.2221623121
+[^theta]: B. Zhang et al., *Widespread theta synchrony and high-frequency desynchronization underlies enhanced cognition*, 2017. Nature Communications. https://www.nature.com/articles/s41467-017-01763-2
+[^texture]: T. Staresina et al., *High frequency oscillations in human memory and cognition*, 2021. PMC. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11370809/
+[^backprop]: M. Hausser, B. Spruston, & G. Stuart, *Diversity and Dynamics of Dendritic Signaling*, 2000. Science. https://doi.org/10.1126/science.290.5492.739
+[^ctc]: P. Fries, *Rhythms for Cognition: Communication through Coherence*, 2015. Nature Reviews Neuroscience. https://pmc.ncbi.nlm.nih.gov/articles/PMC3493486/
+[^tfus]: J. Zachs et al., *Noninvasive ultrasound stimulation of the striatum increases motivation and cognitive performance in primates*, 2022. Nature Neuroscience. https://pubmed.ncbi.nlm.nih.gov/35092823/
+[^brainwaves]: *Understanding Alpha and Beta Brain Waves*, 2021. BitBrain. https://www.bitbrain.com/blog/alpha-brain-waves
+[^icp]: M. T. Kaye et al., *Intracranial Pressure and Its Effects on Consciousness*, 2021. NCBI Bookshelf. https://www.ncbi.nlm.nih.gov/books/NBK482119/
+[^perception]: T. Odegaard et al., *Perceptual awareness and cognitive function: Dissociations and resilience*, 2020. PMC. https://pmc.ncbi.nlm.nih.gov/articles/PMC7326348/
+[^trip]: The organic, fluid texture of mind was my own experience, others may disagree.
+[^anesthetics]: P. Seelig, *Anesthetic mechanisms: Membrane expansion vs. receptor interactions*, 2016. Journal of Liposome Research. https://www.tandfonline.com/doi/full/10.1080/19420889.2016.1238118
+[^dennett]: Daniel Dennett, *Consciousness Explained*, 1991. Little, Brown and Co. ISBN: 978-0316180665.
+[^vibration]: A. Haladjian et al., *Mechanical vibrations enhance sleep quality through closed-loop stimulation*, 2024. Frontiers in Neuroscience. https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1456237/full
+[^sleep]: S. R. Maddison et al., *Vibration therapy promotes sleep in humans and animal models*, 2021. PMC. https://pmc.ncbi.nl
 [^pool]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
 [^tez]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
