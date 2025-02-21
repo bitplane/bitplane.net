@@ -45,12 +45,13 @@ preference of mind-stuff, statistically.
 
 Having left the concept of natural laws and looking back from enough distance,
 they resemble a cognitive bias at the heart of scientific tradition; the quest
-to discover the laws of a rule-giver we have long forsaken[^cults]. This path
-leads us to a model of an entirely subjective and relative reality, one lacking
-not only a creator and His laws, but is without a physical realm at all.
+to discover the laws of a rule-giver it has long forsaken[^cults]. This path
+leads us to a model of an entirely subjective and relative reality, one where
+not only a creator and His laws are unknowable, because there is no physical
+realm at all.
 
-In this new model, mind-stuff is the only stuff and it acts according to its
-will; it is and it does as it feels.
+In this new model, mind-stuff is the only knowable stuff, and it acts according
+to its will; it is and it does as it feels.
 
 # Evolution of Mind
 
@@ -68,28 +69,29 @@ Through this process, the simplest molecules with the weakest preferences can
 be honed, through their survival, into complex systems with staunch opinions
 and a powerful force of will.
 
-If we lived in a universe made from experience and agency, we would expect
-to see no boundary where they emerge. No matter how hard we look, or how
-strongly we believe there is one, agency should extend all the way to the
-bottom. The will to move would be present (though less coordinated) in not
-just organisms without nervous systems, but also within their cytoplasm. An
-amoeba's pseudopods would extend and retract with an apparent intent, and
-white blood cells might chase invaders with apparent urgency[^blood]. If
-Brownian motion is choice, then we should not be surprised to see the inner
-workings of cells show an eerie similarity to creatures at larger
-scales[^cells]. And it should apply across scales of time too; viewed at high
-speed, plants would writhe and thrash around as they struggle to
-survive[^brambles]. Such anthropomorphisms do not meet the high bar of
-scientific proof, yet these observations provide clues, ones that once seen,
-are very difficult to unsee.
+If we lived in a realm of experience and agency, we would expect to see no
+boundary where they emerge. No matter how hard we look, or how strongly we
+believe there is one, agency should extend all the way to the bottom. The will
+to move would be present (though less coordinated) in not just organisms without
+nervous systems, but also within their cytoplasm. An amoeba's pseudopods should
+extend and retract with an apparent intent, and white blood cells might chase
+invaders with apparent urgency[^blood]. If Brownian motion is choice, then we
+should not be surprised to see the inner workings of cells show an eerie
+similarity to creatures at larger scales[^cells]. And it should apply across the
+scale of time too; viewed at high speed, plants might writhe and thrash around
+like animals struggling to survive[^brambles]. Such anthropomorphisms do not
+meet the high bar of scientific proof, yet these observations provide clues that
+once seen, are very difficult to unsee.
 
 ## Supernatural Selection
 
 There's no reason why animals with brains couldn't evolve in a deterministic
-universe, digital simulations suggest that they would. But in such systems -
-ones without free will - there are no selection pressures to ratchet up a
-complexity of mind. So what would evolve is control-calculation organs rather
-than feeling-about-moving ones.
+universe, digital simulations suggest that they would[^conway]. But in such
+systems - ones without free will - there are no selection pressures to ratchet
+up the complexity of mind, the richness of subjective experience. So what would
+evolve is control-calculation organs rather than feeling-about-moving ones. And
+while a sufficiently complex chooser may choose to calculate, there is no type
+of calculator that can calculate to choose.
 
 Deterministic models like computationalism and mathematical functionalism are
 free from will, and so offer no causal mechanism through which mind can evolve.
@@ -103,46 +105,46 @@ we can describe and predict the behaviour of stuff, but this cannot explain the
 cause of its behaviour. By definition, a subjective experience cannot be
 measured objectively, so how another system feels will be forever beyond
 empiricism's reach. This tautology cannot be escaped even if we invent
-technology to connect other systems to our brains; a shared experience is no
-longer entirely subjective. Though with this in mind, we should consider that
-subjectivity itself may not be absolute, like all other things it's relative -
-a matter of perspective.
+technology to connect other systems to our brains, as a shared experience is no
+longer an entirely subjective one. With this in mind, we should consider that
+subjectivity itself is unlikely to be absolute, like all other things it's
+relative and unevenly distributed - a matter of perspective.
 
-Choices give some insight into the degree of preference or ignorance, of a
+Choices give some insight into the degree of preference or ignorance of a
 chooser, though how much of each are involved is anyone's guess. We could say
 that atoms on the surface of a gold bar are unaware of the call of the sky, or
 strongly prefer to stay where they are. Neutrinos could be said to be either
-fickle or free, with no way to know which. This somewhat absurd framing does
-grant an insight: if stuff is and does as it feels, then in one sense or another
-it feels little about what it *doesn't* do.
+fickle or free, with no way to know which. This somewhat absurd framing grants
+an insight: if stuff is and does as it feels, then in one sense or another it
+feels little about what it *doesn't* do.
 
 This "actions as interaction choices" stance also provides a useful framing for
 both quantum physics and information theory. Randomness and unknowableness are
 functionally equivalent, and we know that unknowableness exists; randomness
-does not survive the razor. This and entropy can be described as limits to
-awareness itself, a minimum experiential distance from an observer; both
-superposition and entanglement can be framed as an experiential exclusion from
-a decision chain. And if forces themselves are preferences, then their carriers
-are decisions rather than particles.
+itself does not survive the razor. These and entropy can be described as limits
+to possible awareness, as a minimum possible experiential distance from an
+observer. Both superposition and entanglement can be framed as an experiential
+exclusion from a decision chain. And if forces themselves are preferences, then
+their carriers are decisions rather than particles.
 
-The more agency a system has, the less predictable it will be. So knowing what
-something can do puts bounds on its possible agency, and by extension its
-possibility for awareness. So, without assuming all men are Socrates, it's quite
-reasonable to expect fluids to be far more aware - or at least have far more
-capacity for awareness - than solids, which by comparison express no opinion.
+The more options a system can express, the less predictable it will be. So
+knowing what something can do puts bounds on its capacity for either agency or
+awareness. So, without assuming all men are Socrates, it's quite reasonable to
+expect fluids to be far more aware - or at least have far more capacity for
+awareness - than solids, which by comparison express no opinion.
 
 # Hydropsychism
 
 Life evolved on Earth through action, and if action is choice then water played
 the lead role. This makes life's story less one about chemicals stumbling upon
-awareness, it's one of taming the ocean's will - dividing, conquering, and
+awareness and more one of taming the ocean's will - dividing, conquering, and
 having it drag itself onto land. It's the water that flows and moves, it folds
-and unfolds the proteins, pulling them together and pushing them apart.
-Hydrophobic and hydrophilic forces give all cells structure, but it's water -
-not lipids - that expresses philia and phobia. Water is the solvent of
-all enzymes, the medium that transcribes our DNA, and ribozymes mediate
-reactions through its fluidity and very little of their own. Fish don't realize
-they're in water. The same can be said of organic chemistry.
+and unfolds the proteins by pulling them together and pushing them apart.
+Hydrophobic and hydrophilic forces give all cells their structure, but it's
+liquids not lipids that express philias and phobias. Water is the solvent of all
+enzymes, the medium that transcribes our DNA, and its the fluidity of water
+through which ribozymes mediate reactions, having far less of their own. Fish
+don't realize they're in water. The same can be said of organic chemistry.
 
 Our throne of mind was built one drip at a time as nature slurped its way up the
 gradient of complexity. This model's seat of consciousness is one of fluid
@@ -152,15 +154,16 @@ of symbolic dualism, nor the ignorance of complexity. No need to *mind the
 gap*[^lol], it's just plain old wet stuff, whatever stuff is anyway.
 
 So, aside from determinism being functionally equivalent to evolution denial,
-the central point of this argument is that neurons don't provide consciousness,
-they manipulate the fluid around them, changing the texture of a liquid mind.
+the central point is that neurons don't provide consciousness, they manipulate
+the fluid around them, changing the texture of a liquid mind-stuff that
+pre-dates evolution.
 
-There are two obvious mechanisms that could lead to this behaviour, the most
-simple - and the one taken so far - is that fluids as a whole have experience.
-A less direct one is that water's hexagonal structure is put under pressure
-from sodium ions as they rush into gates along the axons, forcing it to become
-aware of the shape of the neuron's outer surface, and by extension the network
-as a whole.
+There are two obvious mechanisms that could lead to this, the most simple - and
+the one taken so far - is that fluids as a whole have experience. A less direct
+one is that water's hexagonal structure, when put under pressure from sodium
+ions rushing into gates along neural axons force a decison on its movement,
+causing it to become aware of the shape of the neuron's outer surface, and by
+extension the network as a whole.
 
 These two viewpoints result in very different outcomes. The former needs no
 special quantum behaviour, being pure fluid-dynamics it can be explained in
@@ -171,21 +174,21 @@ simple and broadly accessible, both to laypeople and to the components that
 formed the earliest stages of life.
 
 In the latter, mind flows along the neurons themselves in the usual way, but
-relies on quantum wierdness in transition states of structured water under
-pressure. This is enticing and leads to implications in physics, but is far
-more difficult to observe and to reason about. For this reason, I will focus
-mostly focus on the low hanging fruit.
+relies on unexplained quantum wierdness; collective behaviour in transition
+state of structured water under pressure. This is enticing and leads to
+implications in physics, but is far more difficult to observe and to reason
+about. For this reason, I will focus mostly focus on the low hanging fruit.
 
 # Predictions for a Fluid Dynamic Model
 
 A fluid-dynamic model of consciousness is the most falsifiable one, but as a
 lay-hacker-philosopher rather than a trained neurologist, I can only offer
-intuition-based tests rather than highly technical ones. Regardless, at least
-some of the the following will be empirically testable.
+intuition-based tests rather than highly technical ones. Regardless, I expect
+at least some of the the following to be empirically testable.
 
 Let's assume that neuron activation disturbs the fluid physically, amplifying
 and dampening waves through interference patterns at different frequencies.
-That the neural network's signals are both a mechanism for vibration, and
+That the neural network's signals are the mechanism of vibration, but also
 compute and transmit information about where to excert these pressures.
 
 ## Geometric Propagation
@@ -193,22 +196,23 @@ compute and transmit information about where to excert these pressures.
 Mind ought to be affected faster than the speed of neural activations alone,
 which can only exert force laterally from the axons. We would expect there 
 to be some manifestations of awareness that travel faster than neural activity
-alone, and closer to the speed of sound in saline.
+alone can explain, speeds closer to sound travelling in saline.
 
-Network regions that provide detailed patterns should be denser and more
-structured, but we may also see evidence of tightly synchronized areas that
-are closer by sea than by land.
+Network regions that provide high resolution perceptual experiences ought to be
+either denser or more structured, and we may expect to see evidence of tightly
+synchronized areas that are closer by sea than by land.
 
 Neurons should fire in rhythmic patterns, with lower frequency waves having
 broader and more global effects on perception.
 
-We should expect learning processes to cause change in geometric areas as well
-as along the network's connections. We should take care to not overlook this
-as an important mechanism, rather than a by-product of chemical signals
-leaking geometrically.
+We should expect learning processes like formation of memories to cause change
+in geometric areas as well as along the network's connections, and should take
+care to not overlook this as an important mechanism, rather than a by-product
+of chemical signals leaking into the fluid.
 
-Changing the position of neurons should change perceptual effects, even if
-netowork topology remains the same.
+If geometry is important rather than just topology, then hanging the position
+of neurons should have perceptual effects, even when netowork connections
+remain the same.
 
 ## Interference Mechanisms
 
@@ -219,24 +223,23 @@ the patterns precisely, and lots of them since they evolved by chance.
 We should expect certain ratios to be present to support this functionality,
 such as factors and co-prime relationships between the speed of waves, of
 neuron activations and node distances. Ways to dampen, support, reflect, focus,
-constrain and allow propagation should be built into the structure of the
-network.
+constrain and promote propagation should be built into the spatial arrangement
+of the network.
 
 These effects would likely be moderated by chemical and structural compositions
-and densities, most noticable at boundaries of regions responsible for known
-perceptual effects.
+and densities. They may be most noticable at boundaries of regions we know to be
+responsible for specific perceptual effects.
 
 The importance of spatial positioning and firing rhythms would have more local
 importance to higher frequency and higher density waves. Effects that reach
 further ought to need less synchronization and allow greater margin for error.
-Highly textured experiences might use tightly synchronized, denser patterns that
-use phase to generate high frequency experience.
-
-cancel each other out by their position and rhythm to better cause more local
-effects. 
+Highly textured experiences might use tightly synchronized, denser structures
+that increase resolution through phase.
 
 We'd expect some forms of activity to be muted or shielded, like when a neuron
-is used to route signals to another area without disturbing the local fluid.
+is used to route signals to another area without disturbing the local fluid. Or
+patterns of neurons that exist to force ripples along a certain path but dampen
+it along others.
 
 ## Physical Effects on Perception
 
@@ -244,25 +247,30 @@ Ultrasound or other methods of inducing high frequency vibrations should cause
 cognitive effects. Beta and alpha waves would also feel smooth and sharp
 respectively.
 
-Brain pressure would be destructive to consciousness, but perceptual awareness
-ought to be more robust than cognitive function; the neural fibres that mediate
-complexity of experience.
+Brain pressure changes might be destructive to consciousness itself rather than
+just the brain. Perceptual awareness ought to be more robust than cognitive
+function; the neural fibres that mediate complexity of experience have no
+bearing on its physical existence.
 
-Hallucinogenics of different types would likely expose interference patterns
-with a perceptual texture that is the structure of the brain, rather than its
-neural network. Some types of anasthetics may inhibit consciousness physically,
-through effects on fluid dynamics, as should chemicals to do with feelings such
-as pleasure and pain. We would expect chemicals that cause stronger perceptual
-effects to 
+Hallucinogenics of different types would likely have perceptual textures that
+are experiences of the structure of the brain's volume, rather than its
+neural network.
 
-The experiences of being human should feel fluid, rather than discrete firings
-of neurons. It should be possible to measure consciousness and unconsciousness
-vibrationally, and by applying vibrations in the right places, it ought to be
-possible to directly control subjective experience.
+Some types of anasthetics may inhibit consciousness physically, through effects
+on fluid dynamics, as should chemicals to do with feelings such as pleasure and
+pain. We might expect that chemicals related to strong feelings to be similarly
+disruptive to liquids.
+
+The experiences of being human should feel fluid, rather than jitter, discrete
+firings of neurons. We would expect there to be no specific seat of
+consciousness if it were fluid. It should be possible to measure consciousness
+and unconsciousness vibrationally, and by applying vibrations in the right
+places, it ought to be possible to invoke wakefulness, and with enough control,
+even directly create complex subjective experiences
 
 # The structural experience of dimensionality
 
-Given that π can be explained in terms of collision[^!], it's reasonable to
+Given that π can be explained in terms of collision[^pool], it's reasonable to
 assume vibration is the cause of space. And it would make sense that directions
 are only separate quantities for the sake of convenience; unlike directions,
 one cannot rotate from 4 cats into 4 dogs.
@@ -282,7 +290,7 @@ a wind of mind whistling through the structure of brains. A mind made of liquid
 makes this aether far less immaterial, and something we know to exist.
 
 Pratchett described human beings as "little bags of thinking water held up
-briefly by fragile accumulations of calcium"[^?], and despite us mostly
+briefly by fragile accumulations of calcium"[^tez], and despite us mostly
 believing we were the bag, it turns out he was right all along.
 
 
@@ -299,6 +307,6 @@ believing we were the bag, it turns out he was right all along.
 [^b]: *Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
 [^c]: [*Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
 [^d]: [*Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
-[^!]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
-[^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
+[^pool]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
+[^tez]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
