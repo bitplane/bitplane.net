@@ -149,64 +149,111 @@ gradient of complexity. This model's seat of consciousness is one of fluid
 dynamics rather than quantum ones, one made of ordinary physical processes that
 we refer to as physical law. It does not rest on the eternal Platonic forms
 of symbolic dualism, nor the ignorance of complexity. No need to *mind the
-gap*[^8], it's just plain old wet stuff, whatever stuff is anyway.
+gap*[^lol], it's just plain old wet stuff, whatever stuff is anyway.
 
 So, aside from determinism being functionally equivalent to evolution denial,
-the central point of this paper is that neurons don't provide consciousness,
+the central point of this argument is that neurons don't provide consciousness,
 they manipulate the fluid around them, changing the texture of a liquid mind.
 
 There are two obvious mechanisms that could lead to this behaviour, the most
 simple - and the one taken so far - is that fluids as a whole have experience.
-A less obvious one is that water's hexagonal structure is put under pressure
-from sodium ions rushing into gates along the axons, and causing it to become
-aware of the shape of the neuron's surface, and by extension the network as
-a whole.
+A less direct one is that water's hexagonal structure is put under pressure
+from sodium ions as they rush into gates along the axons, forcing it to become
+aware of the shape of the neuron's outer surface, and by extension the network
+as a whole.
 
-These two different viewpoints result in very different outcomes, in the
-former, mind flows along the neurons themselves, while in the latter it would
-flow throughout their liquid surroundings.
+These two viewpoints result in very different outcomes. The former needs no
+special quantum behaviour, being pure fluid-dynamics it can be explained in
+terms of classical physics. A mind propagating in a geometric fashion is a
+strong deviation from it traversing the network itself, leading to many
+interesting predictions and a larger space for experimentation. It's also
+simple and broadly accessible, both to laypeople and to the components that
+formed the earliest stages of life.
 
-# Predictions for a Fluid Dynamic model
+In the latter, mind flows along the neurons themselves in the usual way, but
+relies on quantum wierdness in transition states of structured water under
+pressure. This is enticing and leads to implications in physics, but is far
+more difficult to observe and to reason about. For this reason, I will focus
+mostly focus on the low hanging fruit.
+
+# Predictions for a Fluid Dynamic Model
 
 A fluid-dynamic model of consciousness is the most falsifiable one, but as a
-lay-hacker-philosopher rather than a neurologist, I can only offer
-intuition-based tests rather than technical ones. Regardless, the following
-thoughts provide a starting predictions that may support empirical testing.
+lay-hacker-philosopher rather than a trained neurologist, I can only offer
+intuition-based tests rather than highly technical ones. Regardless, at least
+some of the the following will be empirically testable.
 
-Neuron activations should disturb the fluid physically, amplifying and dampening
-waves through interference patterns at different frequencies. The structure of
-the network and the way the neurons fire would flow in rhythmic patterns, as
-ionic ripples flow throughout the fluid. These 
+Let's assume that neuron activation disturbs the fluid physically, amplifying
+and dampening waves through interference patterns at different frequencies.
+That the neural network's signals are both a mechanism for vibration, and
+compute and transmit information about where to excert these pressures.
 
-We should expect areas to do with learning to change in a geometric fashion as
-well as along the branches of the network. If awareness, or the cause of it,
-propagates outwards from the axons rather than just along the network, areas
-connected only by fluids ought to change around the focal or convergence
-points related to different experiences.
+## Geometric Propagation
 
-There should be some manifestations of awareness that, travel faster than
-neural activity, closer to the speed of sound in saline. We should expect
-certain ratios to emerge, and for there to be types of neural structures that
+Mind ought to be affected faster than the speed of neural activations alone,
+which can only exert force laterally from the axons. We would expect there 
+to be some manifestations of awareness that travel faster than neural activity
+alone, and closer to the speed of sound in saline.
+
+Network regions that provide detailed patterns should be denser and more
+structured, but we may also see evidence of tightly synchronized areas that
+are closer by sea than by land.
+
+Neurons should fire in rhythmic patterns, with lower frequency waves having
+broader and more global effects on perception.
+
+We should expect learning processes to cause change in geometric areas as well
+as along the network's connections. We should take care to not overlook this
+as an important mechanism, rather than a by-product of chemical signals
+leaking geometrically.
+
+Changing the position of neurons should change perceptual effects, even if
+netowork topology remains the same.
+
+## Interference Mechanisms
+
+If awareness, or the cause of it, propagates outwards from the axons rather
+than just along the network, then there must be control mechanisms to perturb
+the patterns precisely, and lots of them since they evolved by chance.
+
+We should expect certain ratios to be present to support this functionality,
+such as factors and co-prime relationships between the speed of waves, of
+neuron activations and node distances. Ways to dampen, support, reflect, focus,
+constrain and allow propagation should be built into the structure of the
+network.
+
+These effects would likely be moderated by chemical and structural compositions
+and densities, most noticable at boundaries of regions responsible for known
+perceptual effects.
+
+The importance of spatial positioning and firing rhythms would have more local
+importance to higher frequency and higher density waves. Effects that reach
+further ought to need less synchronization and allow greater margin for error.
+Highly textured experiences might use tightly synchronized, denser patterns that
+use phase to generate high frequency experience.
+
 cancel each other out by their position and rhythm to better cause more local
-effects. We'd expect some forms of activity to be muted or shielded, like
-when the neuron is used to route signals to another area without disturbing
-the local fluid.
+effects. 
 
-Parts of the network that provide calculations need not be entirely local,
-we may see evidence of tightly synchronized areas that are closer by sea
-than by land.
+We'd expect some forms of activity to be muted or shielded, like when a neuron
+is used to route signals to another area without disturbing the local fluid.
 
-Changing the positions of neurons should change perceptual effects, even if
-topology remains the same.
+## Physical Effects on Perception
 
-Ultrasound or other methods of inducing high frequency vibrations should create
-cognitive effects. Beta and alpha waves would feel smooth and sharp
-respectively. Brain pressure would be destructive to consciousness, but
-cognitive function ought to be more robust than the neural fibres that mediate
-it. Hallucinogenics of different types would likely cause sync issues that
-expose interference patterns with a perceptual texture of the structure of the
-brain, rather than its neural network. Some types of anasthetics should inhibit
-consciousness by altering fluid dynamics.
+Ultrasound or other methods of inducing high frequency vibrations should cause
+cognitive effects. Beta and alpha waves would also feel smooth and sharp
+respectively.
+
+Brain pressure would be destructive to consciousness, but perceptual awareness
+ought to be more robust than cognitive function; the neural fibres that mediate
+complexity of experience.
+
+Hallucinogenics of different types would likely expose interference patterns
+with a perceptual texture that is the structure of the brain, rather than its
+neural network. Some types of anasthetics may inhibit consciousness physically,
+through effects on fluid dynamics, as should chemicals to do with feelings such
+as pleasure and pain. We would expect chemicals that cause stronger perceptual
+effects to 
 
 The experiences of being human should feel fluid, rather than discrete firings
 of neurons. It should be possible to measure consciousness and unconsciousness
@@ -239,21 +286,14 @@ briefly by fragile accumulations of calcium"[^?], and despite us mostly
 believing we were the bag, it turns out he was right all along.
 
 
-[^descartes]: René Descartes, *Meditations on First Philosophy*, 1641.
-  Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
-[^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001.
-  Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
-[^cults]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024
-  Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
-[^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*.
-  Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
-[^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006.
-  Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
-[^brambles]: BBC Studios, *The Private Life of Plants*, 2007.
-  Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
-[^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024.
-  Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
-[^8]: Read as if Dawkins and Chalmers had a side hustle as safety announcers for the London underground.
+[^descartes]: René Descartes, *Meditations on First Philosophy*, 1641. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
+[^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
+[^cults]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
+[^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*. Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
+[^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006. Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
+[^brambles]: BBC Studios, *The Private Life of Plants*, 2007. Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
+[^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
+[^lol]: Read as if Dawkins or Chalmers had a side hustle as safety announcers for the London underground.
 [^a]: *Water Determines the Structure and Dynamics of Proteins*. DOI: 
   Available at [pmc.mcbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
 [^b]: *Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
