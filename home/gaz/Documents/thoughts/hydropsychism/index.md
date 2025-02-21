@@ -21,7 +21,7 @@ building conscious machines.
 # Metaphysics
 
 *Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
-enough; there are some other things that I am[^1]. I'm in a location, I
+enough; there are some other things that I am[^descartes]. I'm in a location, I
 experience my surroundings and the passage of time, I feel, and more
 importantly - I choose how to move; I have will. And sometimes, the will to
 think.
@@ -29,8 +29,8 @@ think.
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
 mind and matter stuffs. Matter is what mind looks like from a distance, or, when
-extra generous with the blade, it is the totality of existence itself[^2]. And
-yet there's still much more for a reductionist to slice away. An objective
+extra generous with the blade, it is the totality of existence itself[^budnik].
+And yet there's still much more for a reductionist to slice away. An objective
 reality can emerge from a web of subjective interactions, and having experienced
 both of those directly it is rational to consider the objective world a
 second-order effect. Space can be framed so that distance is a relative
@@ -45,9 +45,9 @@ preference of mind-stuff, statistically.
 
 Having left the concept of natural laws and looking back from enough distance,
 they resemble a cognitive bias at the heart of scientific tradition; the quest
-to discover the laws of a rule-giver we have long forsaken[^3]. This path leads
-us to a model of an entirely subjective and relative reality, one lacking not
-only a creator and His laws, but is without a physical realm at all.
+to discover the laws of a rule-giver we have long forsaken[^cults]. This path
+leads us to a model of an entirely subjective and relative reality, one lacking
+not only a creator and His laws, but is without a physical realm at all.
 
 In this new model, mind-stuff is the only stuff and it acts according to its
 will; it is and it does as it feels.
@@ -74,13 +74,14 @@ strongly we believe there is one, agency should extend all the way to the
 bottom. The will to move would be present (though less coordinated) in not
 just organisms without nervous systems, but also within their cytoplasm. An
 amoeba's pseudopods would extend and retract with an apparent intent, and
-white blood cells might chase invaders with what looks like urgency[^4]. If
+white blood cells might chase invaders with apparent urgency[^blood]. If
 Brownian motion is choice, then we should not be surprised to see the inner
-workings of cells show an eerie similarity to creatures at larger scales[^5].
-And it should apply across scales of time too; viewed at high speed, plants
-would writhe and thrash around as they struggle to survive[^6]. Such
-anthropomorphisms do not meet the high bar of scientific proof, yet these
-observations provide clues, ones that once seen, are very difficult to unsee.
+workings of cells show an eerie similarity to creatures at larger
+scales[^cells]. And it should apply across scales of time too; viewed at high
+speed, plants would writhe and thrash around as they struggle to
+survive[^brambles]. Such anthropomorphisms do not meet the high bar of
+scientific proof, yet these observations provide clues, ones that once seen,
+are very difficult to unsee.
 
 ## Supernatural Selection
 
@@ -93,7 +94,7 @@ than feeling-about-moving ones.
 Deterministic models like computationalism and mathematical functionalism are
 free from will, and so offer no causal mechanism through which mind can evolve.
 Until one can be demonstrated, these symbolic dualisms are functionally
-indistinguishable from evolution denial[^7].
+indistinguishable from evolution denial[^denial].
 
 # Informational Awareness
 
@@ -238,18 +239,26 @@ briefly by fragile accumulations of calcium"[^?], and despite us mostly
 believing we were the bag, it turns out he was right all along.
 
 
-* [^1]: [René Descartes, *Meditations on First Philosophy*, 1641.](https://www.gutenberg.org/ebooks/59).
-* [^2]: [Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001.](https://philpapers.org/rec/BUDJAE)
-* [^3]: [Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024.](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
-* [^4]: [A neutrophil chasing Staphylococcus aureus.](https://youtu.be/3KrCmBNiJRI)
-* [^5]: [Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006](https://xvivo.com/examples/the-inner-life-of-the-cell/)
-* [^6]: [BBC Studios, *The Private Life of Plants*, 2007.](https://youtu.be/TkwXa7Cvfr8)
-* [^7]: [Gareth Davidson, *Computationalism is Evolution Denial*, 2024.](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
-* [^8]: Read as if Dawkins and Chalmers had a side hustle as safety announcers for the London underground.
-* [^a]: [*Water Determines the Structure and Dynamics of Proteins*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
-* [^b]: [*Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
-* [^c]: [*Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
-* [^d]: [*Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
-* [^!]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
-* [^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
+[^descartes]: René Descartes, *Meditations on First Philosophy*, 1641.
+  Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
+[^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001.
+  Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
+[^cults]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024
+  Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
+[^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*.
+  Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
+[^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006.
+  Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
+[^brambles]: BBC Studios, *The Private Life of Plants*, 2007.
+  Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
+[^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024.
+  Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
+[^8]: Read as if Dawkins and Chalmers had a side hustle as safety announcers for the London underground.
+[^a]: *Water Determines the Structure and Dynamics of Proteins*. DOI: 
+  Available at [pmc.mcbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC7116073/)
+[^b]: *Neutrons take a deep dive into water networks surrounding DNA*](https://neutrons.ornl.gov/content/neutrons-take-a-deep-dive-water-networks-surrounding-dna)
+[^c]: [*Brain Activity Fluctuations Propagate as Waves Traversing the Cortical Hierarchy*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC8485153/)
+[^d]: [*Exposure to high-frequency pressure waves has been shown to modulate neuronal activity*. DOI: ](https://pmc.ncbi.nlm.nih.gov/articles/PMC9689772/)
+[^!]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
+[^?]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
 
