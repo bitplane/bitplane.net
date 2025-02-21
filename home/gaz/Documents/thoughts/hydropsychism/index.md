@@ -142,9 +142,9 @@ having it drag itself onto land. It's the water that flows and moves, it folds
 and unfolds the proteins by pulling them together and pushing them apart.
 Hydrophobic and hydrophilic forces give all cells their structure, but it's
 liquids not lipids that express philias and phobias. Water is the solvent of all
-enzymes, the medium that transcribes our DNA, and its the fluidity of water
-through which ribozymes mediate reactions, having far less of their own. Fish
-don't realize they're in water. The same can be said of organic chemistry.
+enzymes, the medium that transcribes our DNA[^dna], and its the fluidity of
+water through which ribozymes mediate reactions, having far less of their own.
+Fish don't realize they're in water. The same can be said of organic chemistry.
 
 Our throne of mind was built one drip at a time as nature slurped its way up the
 gradient of complexity. This model's seat of consciousness is one of fluid
@@ -321,10 +321,11 @@ believing we were the bag, it turns out he may have been right all along.
 [^brambles]: BBC Studios, *The Private Life of Plants*, 2007. Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
 [^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
 [^lol]: Read as if Dawkins or Chalmers had a side hustle as safety announcers for the London underground.
+[^dna]: Martin Egli et al., "Neutrons take a deep dive into water networks surrounding DNA," *Nucleic Acids Research*, 2021. Available at [phys.org](https://phys.org/news/2021-11-neutrons-deep-networks-dna.html) and [ORNL](https://neutrons.ornl.gov/content/neutrons-take-deep-dive-water-networks-surrounding-dna).
 [^fluid]: Quentin Barthelemy & Thibaud Proix, *Large-scale brain modeling links fluid dynamics to brain responsiveness and resting-state activity*, 2023. bioRxiv. https://doi.org/10.1101/2023.04.18.537321
 [^nature]: F. Akbari et al., *Increasing electrode density improves speech decoding accuracy in neural recordings*, 2023. Nature Communications. https://www.nature.com/articles/s41467-023-42555-1
 [^pmc]: T. A. Melloni et al., *Neural synchronization distinguishes conscious perception from unconscious processing*, 2019. PMC. https://pmc.ncbi.nlm.nih.gov/articles/PMC6672558/
-[^buzsaki]: György Buzsáki, *Rhythms of the Brain*, 2006. Oxford University Press. ISBN: 9780195301069.
+[^buzsaki]: György Buzsáki, *Rhythms of the Brain*, 2006. Oxford University Press. ISBN:9780195301069.
 [^klimesch]: Wolfgang Klimesch, *EEG alpha and theta oscillations reflect cognitive and memory performance: a review and analysis*, 1999. Brain Research Reviews. https://doi.org/10.1016/S0165-0173(98)00056-3
 [^thut]: Gregor Thut et al., *Alpha-band electroencephalographic activity over occipital cortex indexes visuospatial attention bias and predicts visual target detection*, 2006. Journal of Neuroscience. https://doi.org/10.1523/JNEUROSCI.0875-06.2006
 [^fries]: Pascal Fries, *A mechanism for cognitive dynamics: neuronal communication through neuronal coherence*, 2005. Trends in Cognitive Sciences. https://doi.org/10.1016/j.tics.2005.10.011
@@ -350,6 +351,6 @@ believing we were the bag, it turns out he may have been right all along.
 [^dennett]: Daniel Dennett, *Consciousness Explained*, 1991. Little, Brown and Co. ISBN: 978-0316180665.
 [^vibration]: A. Haladjian et al., *Mechanical vibrations enhance sleep quality through closed-loop stimulation*, 2024. Frontiers in Neuroscience. https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2024.1456237/full
 [^sleep]: S. R. Maddison et al., *Vibration therapy promotes sleep in humans and animal models*, 2021. PMC. https://pmc.ncbi.nl
-[^pool]: [G. Galperin, *Playing Pool with π*. DOI: 10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
-[^tez]: Terry Pratchett, *Pyramids*, 1989. isbn:9780575044630
+[^pool]: [G. Galperin, *Playing Pool with π*. DOI:10.1070/RD2003v008n04ABEH000252](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf)
+[^tez]: Terry Pratchett, *Pyramids*, 1989. ISBN:9780575044630
 
