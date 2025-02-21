@@ -1,8 +1,8 @@
 ---
 title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
-date: "\today"
-status: "draft"
+date: "\\today"
+version: "1.0.3"
 ---
 # Abstract
 
@@ -43,12 +43,12 @@ If choice rather than commandment is the cause of actions, then physical laws
 are nothing more than our own observations; all we can observe is the aggregate
 preference of mind-stuff, statistically.
 
-Having left the concept of natural laws and looking back from enough distance,
-they resemble a cognitive bias at the heart of scientific tradition; the quest
-to discover the laws of a rule-giver it has long forsaken[^cults]. This path
-leads us to a model of an entirely subjective and relative reality, one where
-not only a creator and His laws are unknowable, because there is no physical
-realm at all.
+Having left the concept of natural laws behind, and looking back from a
+distance, they resemble a cognitive bias at the heart of scientific tradition;
+the quest to discover the laws of a rule-giver it has long forsaken[^cults].
+This path leads us to a model of an entirely subjective, relative reality, one
+where not only a creator and His laws are unknowable, but one without need for
+a physical realm at all.
 
 In this new model, mind-stuff is the only knowable stuff, and it acts according
 to its will; it is and it does as it feels.
@@ -56,14 +56,15 @@ to its will; it is and it does as it feels.
 # Evolution of Mind
 
 This position of "doing as it feels" reveals a simple mechanism by which mind
-can evolve, and from up here we can see all the way back to abiogenesis.
+can evolve, and from this vantage point we can see all the way back to
+abiogenesis.
 
 When stuff chooses how to act based on what's around it, its actions then
-change its surroundings, and this in turn changes its preferences. This simple
+change its surroundings, which in turn changes its preferences. This simple
 process provides a feedback loop where structure, feeling and action can be
 naturally selected. With selection pressures able to act directly on feelings
 and choices, they can evolve structurally, step by step - a process that is
-required for sapient life to emerge.
+required for sapient life to emerge[^darwin].
 
 Through this process, the simplest molecules with the weakest preferences can
 be honed, through their survival, into complex systems with staunch opinions
@@ -86,7 +87,7 @@ once seen, are very difficult to unsee.
 ## Supernatural Selection
 
 There's no reason why animals with brains couldn't evolve in a deterministic
-universe, digital simulations suggest that they would[^conway]. But in such
+universe, digital simulations suggest that they would[^elife]. But in such
 systems - ones without free will - there are no selection pressures to ratchet
 up the complexity of mind, the richness of subjective experience. So what would
 evolve is control-calculation organs rather than feeling-about-moving ones. And
@@ -316,12 +317,14 @@ believing we were the bag, it turns out he may have been right all along.
 [^descartes]: René Descartes, *Meditations on First Philosophy*, 1641. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
 [^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
 [^cults]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
+[^darwin]: Charles Darwin, *On the Origin of Species by Means of Natural Selection*, 1859. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/2009).
 [^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*. Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
 [^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006. Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
 [^brambles]: BBC Studios, *The Private Life of Plants*, 2007. Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
 [^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/home/gaz/Documents/thoughts/evolution-denial)
+[^elife]: Karl Sims, *Evolving 3D Morphology and Behavior by Competition*, 1994. Available at [Karl Sims' website](http://www.karlsims.com/evolved-virtual-creatures.html).
 [^lol]: Read as if Dawkins or Chalmers had a side hustle as safety announcers for the London underground.
-[^dna]: Martin Egli et al., "Neutrons take a deep dive into water networks surrounding DNA," *Nucleic Acids Research*, 2021. Available at [phys.org](https://phys.org/news/2021-11-neutrons-deep-networks-dna.html) and [ORNL](https://neutrons.ornl.gov/content/neutrons-take-deep-dive-water-networks-surrounding-dna).
+[^dna]: Martin Egli et al., "Neutrons take a deep dive into water networks surrounding DNA," *Nucleic Acids Research*, 2021. Available at [phys.org](https://phys.org/news/2021-11-neutrons-deep-networks-dna.html)
 [^fluid]: Quentin Barthelemy & Thibaud Proix, *Large-scale brain modeling links fluid dynamics to brain responsiveness and resting-state activity*, 2023. bioRxiv. https://doi.org/10.1101/2023.04.18.537321
 [^nature]: F. Akbari et al., *Increasing electrode density improves speech decoding accuracy in neural recordings*, 2023. Nature Communications. https://www.nature.com/articles/s41467-023-42555-1
 [^pmc]: T. A. Melloni et al., *Neural synchronization distinguishes conscious perception from unconscious processing*, 2019. PMC. https://pmc.ncbi.nlm.nih.gov/articles/PMC6672558/
