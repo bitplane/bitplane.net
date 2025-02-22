@@ -1,8 +1,8 @@
 # 🌊 A water of mind
 
 For a while I've been thinking about a simple mechanism for consciousness,
-to compliment the "computationalism is evolution denial" argument that I've
-been screaming about for the last year or so.
+to compliment the [computationalism is evolution denial](/home/gaz/Documents/thoughts/evolution-denial)
+argument that I've been screaming about for the last year or so.
 
 And I finally did it. Thanks to ChatGPT's criticism (and none of its prose) I
 managed to turn a casual, sweary rant into a coherent metaphysical stance on
