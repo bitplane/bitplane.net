@@ -28,7 +28,7 @@ elif command -v xsel &>/dev/null; then
     alias v="xsel --clipboard --output"
 elif command -v clip.exe &>/dev/null; then
     alias c="clip.exe"
-    alias v="powershell Get-Clipboard"
+    alias v="powershell.exe Get-Clipboard"
 fi
 
 
