@@ -76,7 +76,7 @@ because it exists within a deterministic system.
 A chooser can choose to calculate, but a calculator cannot calculate to choose.
 
 For software to be conscious, you need to not only deny evolution and your own
-free will, but also believe that mathematics is the grantor of and essence of
+free will, but also believe that mathematics is the granter of and essence of
 souls.
 
 This is akin to a religious belief, it's supernatural woo that is given far too

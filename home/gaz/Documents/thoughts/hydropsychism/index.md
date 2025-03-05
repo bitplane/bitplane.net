@@ -2,7 +2,7 @@
 title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\\today"
-version: "1.0.3"
+version: "1.0.4"
 ---
 # Abstract
 
@@ -13,10 +13,9 @@ natural selection. Panpsychist models are elegant but fail to explain how
 subjective experience integrates into unified selves.
 
 This paper proposes **hydropsychism** - the hypothesis that **the self is simply
-the water around neurons**. This view is a simple panpsychist model that
-explains evolution of mind from the earliest stages, lacks paradoxes, matches
-observation and leads to testable predictions. This opens up the door to
-building conscious machines.
+the water around neurons**. This simple panpsychist model is reachable from
+first principles, explains evolution of mind from the earliest stages, lacks
+paradoxes, matches observation and leads to falsifiable predictions.
 
 # Metaphysics
 
@@ -34,7 +33,7 @@ And yet there's still much more for a reductionist to slice away. An objective
 reality can emerge from a web of subjective interactions, and having experienced
 both of those directly it is rational to consider the objective world a
 second-order effect. Space can be framed so that distance is a relative
-compatability of the things within it - the likelihood of interactions between
+compatibility of the things within it - the likelihood of interactions between
 them - rather than a boundless and ghostly container. And as importantly as
 before, we know that choice is the cause of our actions, and so without evidence
 to the contrary, we should assume other stuff is its own first-mover.
@@ -101,15 +100,15 @@ indistinguishable from evolution denial[^denial].
 
 # Informational Awareness
 
-When described in terms of mass and electromagetism, of particles and forces,
+When described in terms of mass and electromagnetism, of particles and forces,
 we can describe and predict the behaviour of stuff, but this cannot explain the
 cause of its behaviour. By definition, a subjective experience cannot be
 measured objectively, so how another system feels will be forever beyond
 empiricism's reach. This tautology cannot be escaped even if we invent
 technology to connect other systems to our brains, as a shared experience is no
-longer an entirely subjective one. With this in mind, we should consider that
-subjectivity itself is unlikely to be absolute, like all other things it's
-relative and unevenly distributed - a matter of perspective.
+longer an entirely subjective one. Keeping this possibility in mind, we should
+consider that subjectivity itself is unlikely to be absolute, like all other
+things it's relative and unevenly distributed - a matter of perspective.
 
 Choices give some insight into the degree of preference or ignorance of a
 chooser, though how much of each are involved is anyone's guess. We could say
@@ -162,7 +161,7 @@ pre-dates evolution.
 There are two obvious mechanisms that could lead to this, the most simple - and
 the one taken so far - is that fluids as a whole have experience. A less direct
 one is that water's hexagonal structure, when put under pressure from sodium
-ions rushing into gates along neural axons force a decison on its movement,
+ions rushing into gates along neural axons force a decision on its movement,
 causing it to become aware of the shape of the neuron's outer surface, and by
 extension the network as a whole.
 
@@ -175,7 +174,7 @@ simple and broadly accessible, both to laypeople and to the components that
 formed the earliest stages of life.
 
 In the latter, mind flows along the neurons themselves in the usual way, but
-relies on unexplained quantum wierdness; collective behaviour in transition
+relies on unexplained quantum weirdness; collective behaviour in transition
 state of structured water under pressure. This is enticing and leads to
 implications in physics, but is far more difficult to observe and to reason
 about. For this reason, I will focus mostly focus on the low hanging fruit.
@@ -185,12 +184,12 @@ about. For this reason, I will focus mostly focus on the low hanging fruit.
 A fluid-dynamic model of consciousness is the most falsifiable one, but as a
 lay-hacker-philosopher rather than a trained neurologist, I can only offer
 intuition-based tests rather than highly technical ones. Regardless, I expect
-at least some of the the following to be empirically testable.
+at least some of the following to be empirically testable.
 
 Let's assume that neuron activation disturbs the fluid physically, amplifying
 and dampening waves through interference patterns at different frequencies.
 That the neural network's signals are the mechanism of vibration, but also
-compute and transmit information about where to excert these pressures.
+compute and transmit information about where to exert these pressures.
 
 ## Geometric Propagation
 
@@ -215,17 +214,17 @@ linked to localized sensory processing[^fries].
 We should expect learning processes like memory formation to reshape geometric 
 areas as well as network connections[^ecm]. These changes aren't just a 
 by-product of chemical signals leaking into the fluid but an active mechanism
-of memory itself[^buffer]. The brain's extracellular matrix (ECM) provides more 
-than scaffolding—it dynamically regulates synaptic plasticity, influencing how 
-memories form and persist[^fluidity]. Memory isn't just a network effect; it's 
-a structural shift in the brain's landscape.
+of memory itself[^buffer]. The brain's extracellular matrix provides more 
+than scaffolding - it dynamically regulates synaptic plasticity, influencing
+how  memories form and persist[^fluidity]. Memory isn't just a network effect;
+it's also a structural shift in the brain's landscape.
 
 If geometry plays a role beyond just topology, then altering the physical
 position of neurons - without changing network connections - could have
-perceptual effects[^spatial]. While traditional models focus on connectivity alone,
-emerging research suggests that spatial positioning influences neural signaling,
-potentially shaping perception[^cortical]. This remains an open question but
-offers a testable hypothesis for future research.
+perceptual effects[^spatial]. While traditional models focus on connectivity
+alone, emerging research suggests that spatial positioning influences neural
+signalling, potentially shaping perception[^cortical]. This remains an open
+question but offers a testable hypothesis for future research.
 
 ## Interference Mechanisms
 
@@ -255,12 +254,12 @@ relationships[^texture].
 
 We'd expect some forms of activity to be muted or shielded, like when a
 neuron is used to route signals to another area without disturbing the local
-fluid. Neural backpropagation provides an example of this, where A-type
+fluid. Neural back-propagation provides an example of this, where A-type
 potassium channels regulate returning action potentials to prevent interference
 with local processing[^backprop]. Similarly, patterns of neurons may exist
 to force ripples along a certain path while dampening them along others, a
-mechanism resembling 'communication through coherence' (CTC), where
-oscillatory synchronization ensures selective signal transmission[^ctc].
+mechanism resembling 'communication through coherence', where oscillatory
+synchronization ensures selective signal transmission[^ctc].
 
 ## Physical Effects on Perception
 
@@ -277,7 +276,7 @@ Hallucinogenics of different types would likely have perceptual textures that
 are experiences of the structure of the brain's volume, rather than its
 neural network[^trip].
 
-Some types of anesthetics may inhibit consciousness physically, through effects 
+Some types of anaesthetics may inhibit consciousness physically, through effects 
 on fluid dynamics[^anesthetics], as should chemicals to do with feelings such as 
 pleasure and pain. We might expect that chemicals related to strong feelings to 
 be similarly disruptive to liquids.
@@ -314,9 +313,10 @@ Pratchett described human beings as "little bags of thinking water held up
 briefly by fragile accumulations of calcium"[^tez], and despite us mostly
 believing we were the bag, it turns out he may have been right all along.
 
+
 [^descartes]: René Descartes, *Meditations on First Philosophy*, 1641. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/59).
 [^budnik]: Paul Budnik, *Justifying and Exploring Realistic Monism*, 2001. Available at [philpapers.org](https://philpapers.org/rec/BUDJAE).
-[^cults]: Gareth Davidson, *Musings on Cargo Cult Consiousness*, 2024. Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
+[^cults]: Gareth Davidson, *Musings on Cargo Cult Consciousness*, 2024. Available at [lesswrong.org](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness).
 [^darwin]: Charles Darwin, *On the Origin of Species by Means of Natural Selection*, 1859. Available at [gutenberg.org](https://www.gutenberg.org/ebooks/2009).
 [^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*. Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
 [^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006. Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
