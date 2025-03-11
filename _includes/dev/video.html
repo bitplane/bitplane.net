@@ -1,0 +1,48 @@
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    document.querySelectorAll('img[src*="video"][src$=".png"]').forEach(async (img) => {
+        const match = img.src.match(/video(\d+)\.png$/);
+        if (!match) return; // Not a valid /dev/videoN image
+
+        const cameraIndex = parseInt(match[1], 10);
+        const constraints = { video: { deviceId: undefined } };
+
+        try {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = devices.filter(device => device.kind === "videoinput");
+
+            if (cameraIndex >= videoDevices.length) {
+                console.warn(`No such camera: /dev/video${cameraIndex}`);
+                return; // Leave the placeholder image
+            }
+
+            constraints.video.deviceId = videoDevices[cameraIndex].deviceId;
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+            const video = document.createElement("video");
+            video.autoplay = true;
+            video.srcObject = stream;
+
+            // Copy all inline styles
+            video.style.cssText = img.style.cssText;
+
+            // Copy size-related attributes
+            video.width = img.width;
+            video.height = img.height;
+
+            // Copy all classes and other attributes
+            video.className = img.className;
+            Array.from(img.attributes).forEach(attr => {
+                if (!["src", "alt"].includes(attr.name)) {
+                    video.setAttribute(attr.name, attr.value);
+                }
+            });
+
+            img.replaceWith(video);
+        } catch (err) {
+            console.warn(`Failed to open /dev/video${cameraIndex}:`, err);
+            // Leave the default image in place
+        }
+    });
+});
+</script>
