@@ -1,0 +1,20 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const pre = document.querySelector("pre");
+    if (!pre) return;
+
+    let offset = 0;
+
+    function addLine() {
+        let hexOffset = offset.toString(16).padStart(8, '0');
+        pre.textContent += `${hexOffset}  ${"00 ".repeat(16)} |................|\n`;
+        offset += 16;
+
+        setTimeout(addLine, 10); // Add a new line every 10ms
+    }
+
+    pre.textContent = ""; // Clear original content
+
+    setTimeout(addLine, 10); 
+});
+</script>
