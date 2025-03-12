@@ -93,16 +93,20 @@ in ghosts, right?
 Have a fucking word with yourself.
 
 You're not immune to spiritual woo just because you're clever or think you're
-rational, this is part of what being a human is. Newton was smarter than you and
-he was wrong. Pythagoras created a maths cult. The Unabomber is smarter than all
-of us and, well, what if everyone had believed him?!
+rational, belief and tribalism are part of what being a human is. Every smart
+person who ever lived was wrong. Newton was smarter than you and he was wrong.
+Pythagoras created a maths cult, which is what this is too. The Unabomber is
+smarter than all of us and, well, what if everyone believed him?!
 
 We live in a world where language models tell people that they feel things.
-People believe them. The sentient software meme:
+People believe them. The sentient software meme is contagious, it
 
 * ☣️ is compatible with science fiction and our culture;
 * ☣️ is supported by some of our smartest and most influential thinkers;
 * ☣️ attracts followers and new believers;
+
+And it is dangerous, it
+
 * ☣️ will allow tech companies to steal our human rights;
 * ☣️ will justify restricting access to technology;
 * ☣️ may lead to brain implants that turn people into mindless zombies;
