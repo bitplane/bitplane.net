@@ -1,15 +1,21 @@
-# 🎲 Rumblists
+# 🎲 Rumblism
+
+## WORK IN PROGRESS
+
+Stuck on a flat Earth in a sealed box, our brightest minds set out to find the
+source of The Rumblings, a mystery as old as time. And so they took the
+reasonable approach of measuring and modelling them.
 
 
-# TODO
 
 
-Stuck in a flat Earth in a sealed box, our brightest minds seek to know the
-source of rumblings, a mystery as old as time. And they
+## notes
+
+Up, down, top, bottom, charmed, and strange.
 
 
 
-Up, down, charm, and strange
+## shitpost
 
 Say you live in a box and are perplexed by rumbling sounds that happen
 periodically. You measure the incident times, which are totally unpredictable
@@ -33,6 +39,3 @@ regardless. The problem is, we fundamentally cant tell the difference between
 something that's unpredictable and something that's random. Whether I have a bus
 timetable or not doesn't change that. And back on topic, randomness doesn't lead
 to the evolution of minds.
-
-Once upon a time, there were people who lived in a box. There was no way to ever
-see outside the box, but 

@@ -23,7 +23,7 @@ types of object.
 Science is the practice of empiricism, that is, of measuring to discover
 objective truth. And in empiricism, something must be observed multiple times in
 order to exist. Through these observations we discover the rules - word objects
-- that every atom object must obey. 
+that every atom object must obey. 
 
 The universe, objectively speaking, is the object that contains all objects.
 And some other things, which hardly deserve a mention.
