@@ -1,6 +1,4 @@
 # 📺 Building the video
 
-
-```shell make ```
-
+```shell make```
 

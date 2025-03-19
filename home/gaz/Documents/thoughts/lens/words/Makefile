@@ -1,4 +1,4 @@
-words.cast: $(wildcard src/*) build/binary
+words.cast: $(wildcard src/*) build/factor.ascii
 	asciinema rec words.cast -c './src/script.sh' --overwrite
 
 clean:
