@@ -8,6 +8,8 @@ pause() {
     stty echo   # Re-enable echo
 }
 
+cd src
+
 clear
 cat 1.1*.ans
 pause

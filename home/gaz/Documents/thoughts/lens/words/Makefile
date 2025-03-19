@@ -1,12 +1,16 @@
-all: factor.bin
+words.cast: $(wildcard src/*) build/binary
+	asciinema rec words.cast -c './src/script.sh' --overwrite
 
 clean:
-	rm *.o *.bin factor
+	rm build/* words.cast
 
-factor.bin: factor.asm
-	nasm -f bin -o factor.bin factor.asm
+build/factor.ascii: build/factor
+	xxd -b build/factor | cut -d ' ' -f 2-8 | tr -d ' ' | uniq > build/factor.ascii
 
-factor: factor.asm
-	nasm -f elf32 factor.asm -o factor.o
-	ld -m elf_i386 factor.o -o factor
+build/factor.bin: src/factor.asm
+	nasm -f bin src/factor.asm -o build/factor.bin
+
+build/factor: src/factor.asm
+	nasm -f elf32 src/factor.asm -o build/factor.o
+	ld -m elf_i386 build/factor.o -o build/factor
 
