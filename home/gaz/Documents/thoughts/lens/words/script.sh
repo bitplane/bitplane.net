@@ -24,7 +24,7 @@ clear
 cat 1.4*.ans
 pause
 
-speed=30
+speed=10
 
 ./type.sh 8 3 $speed "Tyler gets me a job as a wai"
 ./type.sh 8 4 $speed "ter, after that Tyler's stuf"
