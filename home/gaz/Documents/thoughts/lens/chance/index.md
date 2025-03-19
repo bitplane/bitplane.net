@@ -11,7 +11,7 @@ reasonable approach of measuring and modelling them.
 
 ## notes
 
-Up, down, top, bottom, charmed, and strange.
+Up+, down-, top heavy, bottom light, strange unexpected, charmed solution.
 
 
 
@@ -37,5 +37,4 @@ probability function led you to believe that buses themselves were random, and
 this in turn led you to believe in randomness itself. That is faulty reasoning 
 regardless. The problem is, we fundamentally cant tell the difference between
 something that's unpredictable and something that's random. Whether I have a bus
-timetable or not doesn't change that. And back on topic, randomness doesn't lead
-to the evolution of minds.
+timetable or not doesn't change that.
