@@ -2,41 +2,42 @@
 title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\\today"
-version: "1.0.4"
+version: "1.1.0"
 ---
 # Abstract
 
 The mystery of consciousness has baffled philosophers for centuries, yet Hard
-Problems remain. Current computational models rely on a strong emergentist
+Problems remain.  Current computational models rely on a strong emergentist
 dualism, treating mind as a mathematical abstraction with no causal effect on
-natural selection. Panpsychist models are elegant but fail to explain how
+natural selection.  Panpsychist models are elegant but fail to explain how
 subjective experience integrates into unified selves.
 
 This paper proposes **hydropsychism** - the hypothesis that **the self is simply
-the water around neurons**. This simple panpsychist model is reachable from
+the water around neurons**.  This simple panpsychist model is reachable from
 first principles, explains evolution of mind from the earliest stages, lacks
 paradoxes, matches observation and leads to falsifiable predictions.
 
 # Metaphysics
 
 *Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
-enough; there are some other things that I am[^descartes]. I'm in a location, I
+enough; there are some other things that I am[^descartes].  I'm in a location, I
 experience my surroundings and the passage of time, I feel, and more
-importantly - I choose how to move; I have will. And sometimes, the will to
+importantly - I choose how to move; I have will.  And sometimes, the will to
 think.
 
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
-mind and matter stuffs. Matter is what mind looks like from a distance, or, when
-extra generous with the blade, it is the totality of existence itself[^budnik].
-And yet there's still much more for a reductionist to slice away. An objective
-reality can emerge from a web of subjective interactions, and having experienced
-both of those directly it is rational to consider the objective world a
-second-order effect. Space can be framed so that distance is a relative
-compatibility of the things within it - the likelihood of interactions between
-them - rather than a boundless and ghostly container. And as importantly as
-before, we know that choice is the cause of our actions, and so without evidence
-to the contrary, we should assume other stuff is its own first-mover.
+mind and matter stuffs.  Matter is what mind looks like from a distance, or,
+when extra generous with the blade, it is the totality of existence
+itself[^budnik]. And yet there's still much more for a reductionist to slice
+away. An objective reality can emerge from a web of subjective interactions,
+and having experienced both of those directly it is rational to consider the
+objective world a second-order effect.  Space can be framed so that distance is
+a relative compatibility of the things within it - the likelihood of
+interactions between them - rather than a boundless and ghostly container.  And
+as importantly as before, we know that choice is the cause of our actions, and
+so without evidence to the contrary, we should assume other stuff is its own
+first-mover.
 
 If choice rather than commandment is the cause of actions, then physical laws
 are nothing more than our own observations; all we can observe is the aggregate
@@ -59,7 +60,7 @@ can evolve, and from this vantage point we can see all the way back to
 abiogenesis.
 
 When stuff chooses how to act based on what's around it, its actions then
-change its surroundings, which in turn changes its preferences. This simple
+change its surroundings, which in turn changes its preferences.  This simple
 process provides a feedback loop where structure, feeling and action can be
 naturally selected. With selection pressures able to act directly on feelings
 and choices, they can evolve structurally, step by step - a process that is
@@ -70,26 +71,26 @@ be honed, through their survival, into complex systems with staunch opinions
 and a powerful force of will.
 
 If we lived in a realm of experience and agency, we would expect to see no
-boundary where they emerge. No matter how hard we look, or how strongly we
+boundary where they emerge.  No matter how hard we look, or how strongly we
 believe there is one, agency should extend all the way to the bottom. The will
 to move would be present (though less coordinated) in not just organisms without
 nervous systems, but also within their cytoplasm. An amoeba's pseudopods should
 extend and retract with an apparent intent, and white blood cells might chase
-invaders with apparent urgency[^blood]. If Brownian motion is choice, then we
+invaders with apparent urgency[^blood].  If Brownian motion is choice, then we
 should not be surprised to see the inner workings of cells show an eerie
-similarity to creatures at larger scales[^cells]. And it should apply across the
-scale of time too; viewed at high speed, plants might writhe and thrash around
-like animals struggling to survive[^brambles]. Such anthropomorphisms do not
-meet the high bar of scientific proof, yet these observations provide clues that
-once seen, are very difficult to unsee.
+similarity to creatures at larger scales[^cells].  And it should apply across
+the scale of time too; viewed at high speed, plants might writhe and thrash
+around like animals struggling to survive[^brambles]. Such anthropomorphisms do
+not meet the high bar of scientific proof, yet these observations provide clues
+that once seen, are very difficult to unsee.
 
 ## Supernatural Selection
 
 There's no reason why animals with brains couldn't evolve in a deterministic
-universe, digital simulations suggest that they would[^elife]. But in such
+universe, digital simulations suggest that they would[^elife].  But in such
 systems - ones without free will - there are no selection pressures to ratchet
-up the complexity of mind, the richness of subjective experience. So what would
-evolve is control-calculation organs rather than feeling-about-moving ones. And
+up the complexity of mind, the richness of subjective experience.  So what would
+evolve is control-calculation organs rather than feeling-about-moving ones.  And
 while a sufficiently complex chooser may choose to calculate, there is no type
 of calculator that can calculate to choose.
 
@@ -102,29 +103,32 @@ indistinguishable from evolution denial[^denial].
 
 When described in terms of mass and electromagnetism, of particles and forces,
 we can describe and predict the behaviour of stuff, but this cannot explain the
-cause of its behaviour. By definition, a subjective experience cannot be
+cause of its behaviour.  By definition, a subjective experience cannot be
 measured objectively, so how another system feels will be forever beyond
-empiricism's reach. This tautology cannot be escaped even if we invent
+empiricism's reach.  This tautology cannot be escaped even if we invent
 technology to connect other systems to our brains, as a shared experience is no
-longer an entirely subjective one. Keeping this possibility in mind, we should
+longer an entirely subjective one.  Keeping this possibility in mind, we should
 consider that subjectivity itself is unlikely to be absolute, like all other
 things it's relative and unevenly distributed - a matter of perspective.
 
 Choices give some insight into the degree of preference or ignorance of a
-chooser, though how much of each are involved is anyone's guess. We could say
+chooser, though how much of each are involved is anyone's guess.  We could say
 that atoms on the surface of a gold bar are unaware of the call of the sky, or
-strongly prefer to stay where they are. Neutrinos could be said to be either
-fickle or free, with no way to know which. This somewhat absurd framing grants
-an insight: if stuff is and does as it feels, then in one sense or another it
-feels little about what it *doesn't* do.
+strongly prefer to stay where they are.  Neutrinos could be said to be either
+fickle or free, with no way to know which.  We could also frame that gives rise
+to dimensionality
+
+
+These seemingly absurd framings do grant an insight: if stuff is and does as it
+feels, then in one sense or another it feels little about what it *doesn't* do.
 
 This "actions as interaction choices" stance also provides a useful framing for
-both quantum physics and information theory. Randomness and unknowableness are
+both quantum physics and information theory.  Randomness and unknowableness are
 functionally equivalent, and we know that unknowableness exists; randomness
-itself does not survive the razor. These and entropy can be described as limits
+itself does not survive the razor.  These and entropy can be described as limits
 to possible awareness, as a minimum possible experiential distance from an
-observer. Both superposition and entanglement can be framed as an experiential
-exclusion from a decision chain. And if forces themselves are preferences, then
+observer.  Both superposition and entanglement can be framed as an experiential
+exclusion from a decision chain.  And if forces themselves are preferences, then
 their carriers are decisions rather than particles.
 
 The more options a system can express, the less predictable it will be. So
@@ -182,14 +186,21 @@ about. For this reason, I will focus mostly focus on the low hanging fruit.
 # Predictions for a Fluid Dynamic Model
 
 A fluid-dynamic model of consciousness is the most falsifiable one, but as a
-lay-hacker-philosopher rather than a trained neurologist, I can only offer
-intuition-based tests rather than highly technical ones. Regardless, I expect
-at least some of the following to be empirically testable.
+lay-hacker-philosopher rather than a trained neuroscientist, I can only offer
+intuition-based tests rather than highly technical ones. Regardless, I expect at
+least some of the following to be empirically testable.
+
+I should note that when I started writing this paper, I had no idea about how
+the glymphatic system functions. A user on Biocord pointed this out to me, so
+most of this paper was written without any idea that neurons are responsible for
+pumping water around while we sleep. This is unlikely to be a coincidence, and
+makes a fluid dynamic model a lot more likely than I thought before.
 
 Let's assume that neuron activation disturbs the fluid physically, amplifying
 and dampening waves through interference patterns at different frequencies.
 That the neural network's signals are the mechanism of vibration, but also
 compute and transmit information about where to exert these pressures.
+
 
 ## Geometric Propagation
 
