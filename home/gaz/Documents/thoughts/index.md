@@ -11,11 +11,6 @@
   an argument that determinisms like computationalim denies the fact of
   evolution of mind, as will is the only mechanism that can cause it to evolve.
 
-* 📃 [Musings on Cargo Cult
-  Consciousness](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
-  - Less Wrong didn't like it. Partly because of the style, and partly because
-  it calls out the irrational Christian heritage that's baked into the culture
-  of science, and partly because it offends their religious beliefs as
-  computationalists. I've not had any decent arguments against the content
-  though.  I'd like to break it down into a bunch of different articles, and
-  eventually make them into a series of videos.
+* 📃 [Cargo Cult Consciousness](cargo-cults) -
+  [LessWrong](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness)
+  didn't like it, so I moved it back here.
