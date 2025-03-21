@@ -1,3 +1,4 @@
 title: bitplane.net
 markdown: kramdown
 highlighter: rouge
+include: ['~']
