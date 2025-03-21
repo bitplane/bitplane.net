@@ -15,7 +15,8 @@ might help make us more careful drivers.
 
 * [📦 objects](obj)
 * [⚖️ law](law)
-* [📚 words](words)
-* [🎲 chance](chance)
-* [📅 fashion](now)
+* [📚 language](words)
+* [🎲 chance]
+* [📅 fashion]
+* [ℂ reason]
 
