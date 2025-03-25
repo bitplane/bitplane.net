@@ -15,6 +15,8 @@ that's still fair comment.
 
 ### Command line apps
 
+* 🐳 [dockershit](dockershit) -
+  create Dockerfiles in an interactive shell.
 * 🛟 [uh-halp](uh-halp) -
   AI helper for the shell.
 * 🗣️ [catvox](catvox) -
