@@ -6,53 +6,47 @@ as less volatile storage, if not for code then at least a bit of a record of
 the projects I've worked on.
 
 Note there's a lot of stuff and this is ongoing, so it'll be a while before
-all the links work.
+all the links work. The best stuff is in [python](python), [c++](c++) and
+[sh](sh).
 
 --------------------------------------------------------------------------------
 
-## 😺 GitHub repos
+## 🗓️ Recent
 
-### 🐍 Python dev things
+Some still-active things, or at least not inactive.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
-* [🤝 arranges](/dev/python/arranges) -
-  Represent ranges as strings in Pydantic.
-* [⚠️ ienv](/dev/python/ienv) -
-  Brutalize your venvs by symlinking them together.
-* [☎️ py9](https://github.com/bitplane/py9) -
-  A Python implementation of Nokia's T9, from back when that was a thing.
-
-### Command line
-
-* [💬 uh-halp](/dev/python/uh-halp) -
+* [💬 uh-halp](python/uh-halp) -
   AI helper for the shell.
-* [➕ merge-files](/dev/python/merge-files) -
-  Universal file converter, extractor, merger. Not quite, but might be one day.
-* [🔡 ocr-pdf](https://github.com/bitplane/ocr-pdf) -
-  Use Optical Character Recognition to convert a PDF to TXT.
+* [🐳 dockershit](python/dockershit) -
+  Interactive shell for dockerfile editing.
+* [🏠 bitplane.net](https://github.com/bitplane/bitplane.net) -
+  The Jekyll source for this website.
+
+## 🏆 Worth a look
+
+I like these.
+
+* [🤝 arranges](python/arranges) -
+  Represent ranges as strings in Pydantic.
 * [🪈 benpipe](https://github.com/bitplane/benpipe) -
   Convert bencoded data to JSON and back again.
+* [👾 Irrlicht Engine](c++) -
+  Spent a couple of years as a dev on this open source project.
 
-### 🧑‍💻 Hax
+## 😎 Fun stuff
 
+* [⚠️ ienv](/dev/python/ienv) -
+  Brutalize your venvs by symlinking them together.
 * [🎲 schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
-* [🍷 bubbler](https://github.com/bitplane/bubbler) -
-  Count bubbles as your beer or wine ferments.
-* [🌡️ temper](https://github.com/bitplane/temper) -
-  Linux driver for temper digital thermometers.
 * [🐌 connection-limiter](https://github.com/bitplane/connection-limiter) -
   The hackiest way to limit connections per user to a back-end behind nginx.
 
-### 🎮 Gaming and Graphics
+## 🔠 Full index
 
-* [👾 Irrlicht Engine](https://irrlicht.sf.net/) -
-  I worked on this for a couple of years, made the GUI editor, Linux font
-  generator, some file format loaders, grass and clouds scene nodes, console
-  renderer, impostors and a bunch of other fun stuff. See [c++](c++).
-
-## 🔠 Language index
+An incomplete list of languages.
 
 * [👾 amos](amos) - Games and stuff for the Amiga
 * [📜 shell](sh) - Bourne again
