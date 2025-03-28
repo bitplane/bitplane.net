@@ -41,6 +41,13 @@ that's still fair comment.
 * 🗄️ [filefrag](https://github.com/bitplane/pyfilefrag) -
   Python library to access Linux File Extents
 
+## stubs
+
+* ❄️  [freeze-one](https://github.com/bitplane/freeze_one) -
+  like `pip freeze | grep package` but safer
+* 🔦 [torch-weightsonly](https://github.com/bitplane/torch_weightsonly) -
+  stop torch from spamming when loading a model
+
 ### Hax
 
 * 🐈 [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -

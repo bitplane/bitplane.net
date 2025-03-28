@@ -1,13 +1,13 @@
 # 📚 Pulse Fiction
 
 On a dusty shelf in the library of mind sits a book not very wide.  Its title is
-short fiction, and every book's inside.  Open up the pages and it presents a
-strange surprise: every letter's different, these stories are disguised.
+short fiction, and every book's inside.  When you open up the pages it presents
+a strange surprise: that every letter's different, these stories seem disguised.
 
 To the untrained eye or those without time it's a random stream of glyphs, but
 if you learn or make a language, you can map a story onto this.  If you shared
-this tongue with others, then they can understand; they can read your story when
-pointed at this pad.
+this tongue with others, then they can understand; they can read your story by
+proxy of your hand.
 
 This impractical tome allows a tale to be known by those who share this code,
 but they don't - and they won't - it's a point to be told.  A statement by its
