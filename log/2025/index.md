@@ -4,6 +4,7 @@ features: ["date-list"]
 # 📅 2025
 
 * [2025-03-29 - 📺 yt-mpv](03/yt-mpv)
+* [2025-03-26 - 📖 pulse fiction](/home/gaz/Documents/thoughts/lens/words)
 * [2025-03-23 - 🐳 docker sh -it](03/dockershit)
 * [2025-02-21 - 🤔 Hydropsychism - A Water of Mind](02/hydropsychism)
 * [2025-02-18 - 🤖 AI workflow notes](02/ai)
