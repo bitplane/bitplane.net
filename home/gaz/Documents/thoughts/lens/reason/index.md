@@ -1,6 +1,20 @@
 # 😕 Unreasonable Words
 
-In the quest for reason and understanding, 
+Applications on a Mac are a beautiful thing, less so on Windows, while on Linux
+they look like crap. The operating system is context which comes with unspoken
+virtues and taboos, and as all human creations are social things, it reflects
+the culture of and relationships between those involved. So Mac apps are as
+slick as they are shallow, Linux ones needlessly complex and technical, and
+Windows business software can act obnoxiously via the screen in ways no human
+would dare act to your face. Not if they value an unbroken nose.
+
+Any perspective comes with preferences that steer choices, and with selection
+comes survival and its filter. Survivorship drives evolution and is why matter
+itself exists, and it also applies to memes. It shapes our culture and our
+beliefs, it shapes lens through which we see the world. 
+
+
+## original
 
 I think that's a trap and the solution is the other way around - yes you need sharp mental constructs to explore problem spaces, and that does mean creating the tools/words to do the digging. But you also need to come up for air, as they need to survive daylight. 
 

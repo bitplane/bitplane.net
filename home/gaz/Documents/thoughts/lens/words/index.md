@@ -10,16 +10,16 @@ this tongue with others, then they can understand; they can read your story by
 proxy of your hand.
 
 This impractical tome allows a tale to be known by those who share this code,
-but they don't - and they won't - it's a point to be told.  A statement by its
-maker: words aren't in ink or paper.  They're heard in your head, as they're
-seen and they're read.  As to read, interact is a physical act, it stirs us; it
-moves us.
+but they don't - and they won't - well, it's a point to be told.  It's a
+statement by its maker: that words aren't ink or paper.  They're heard in your
+head, as they're seen and they're read.  As to read, interact is a physical act,
+it stirs us; it moves us.
 
 Binary's look is a lot like this book, without a language map it's a long stream
 of crap - and it looks like random bits.  It's not a story for us humans, it's
 for computer chips.  A machine's codes are the words that it knows, and it's a
-tongue of circuit wires.  It reads and it makes sense of it, which shakes it
-deep inside. Where we see jumbled digits, it feels `mov eax, 5`.  It knows,
+tongue of circuit wires.  Where we see jumbled digits, it feels `mov eax, 5`.
+It reads and it makes sense of it, which shakes it deep inside. It knows,
 interacts, in a physical act.  This whirs it; it moves it.
 
 To you or I its outputs, these words or sights or sounds.  We feel and hear and

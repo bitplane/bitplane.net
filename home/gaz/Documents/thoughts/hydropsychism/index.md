@@ -29,8 +29,8 @@ Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
 mind and matter stuffs.  Matter is what mind looks like from a distance, or,
 when extra generous with the blade, it is the totality of existence
-itself[^budnik]. And yet there's still much more for a reductionist to slice
-away. An objective reality can emerge from a web of subjective interactions,
+itself[^budnik].  And yet there's still much more for a reductionist to slice
+away.  An objective reality can emerge from a web of subjective interactions,
 and having experienced both of those directly it is rational to consider the
 objective world a second-order effect.  Space can be framed so that distance is
 a relative compatibility of the things within it - the likelihood of
@@ -52,6 +52,11 @@ a physical realm at all.
 
 In this new model, mind-stuff is the only knowable stuff, and it acts according
 to its will; it is and it does as it feels.
+
+# Being a bit Clearer
+
+
+
 
 # Evolution of Mind
 
@@ -115,12 +120,9 @@ Choices give some insight into the degree of preference or ignorance of a
 chooser, though how much of each are involved is anyone's guess.  We could say
 that atoms on the surface of a gold bar are unaware of the call of the sky, or
 strongly prefer to stay where they are.  Neutrinos could be said to be either
-fickle or free, with no way to know which.  We could also frame that gives rise
-to dimensionality
-
-
-These seemingly absurd framings do grant an insight: if stuff is and does as it
-feels, then in one sense or another it feels little about what it *doesn't* do.
+fickle or free, with no way to know which.  These seemingly absurd framings do
+grant an insight: if stuff is and does as it feels, then in one sense or another
+it feels little about what it *doesn't* do.
 
 This "actions as interaction choices" stance also provides a useful framing for
 both quantum physics and information theory.  Randomness and unknowableness are
@@ -131,9 +133,9 @@ observer.  Both superposition and entanglement can be framed as an experiential
 exclusion from a decision chain.  And if forces themselves are preferences, then
 their carriers are decisions rather than particles.
 
-The more options a system can express, the less predictable it will be. So
+The more options a system can express, the less predictable it will be.  So
 knowing what something can do puts bounds on its capacity for either agency or
-awareness. So, without assuming all men are Socrates, it's quite reasonable to
+awareness.  So, without assuming all men are Socrates, it's quite reasonable to
 expect fluids to be far more aware - or at least have far more capacity for
 awareness - than solids, which by comparison express no opinion.
 
