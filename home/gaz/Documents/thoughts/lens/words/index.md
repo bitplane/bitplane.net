@@ -1,5 +1,7 @@
 # 📚 Pulse Fiction
 
+* [📺 video](https://www.youtube.com/watch?v=cLZUJ5tchd0)
+
 On a dusty shelf in the library of mind sits a book not very wide.  Its title is
 short fiction, and every book's inside.  When you open up the pages it presents
 a strange surprise: that every letter's different, these stories seem disguised.
