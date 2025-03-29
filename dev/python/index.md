@@ -13,8 +13,10 @@ that's still fair comment.
 * 🎓 [example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
-### Command line apps
+## apps
 
+* 📺 [yt-mpv](yt-mpv) -
+  archive youtube videos while you play them without ads.
 * 🐳 [dockershit](dockershit) -
   create Dockerfiles in an interactive shell.
 * 🛟 [uh-halp](uh-halp) -
