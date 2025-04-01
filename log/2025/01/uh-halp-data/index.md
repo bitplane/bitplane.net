@@ -6,7 +6,7 @@ features: ["asciinema"]
 Over the Christmas break I started working on a dataset to train a small model
 that can be used to run [uh-halp](/dev/python/uh-halp) offline.
 
-Putting it mildly, this has been a bit of a slog.
+Putting it mildly, this was a bit of a slog.
 
 ## 💤 tl;dr
 
@@ -15,6 +15,7 @@ Putting it mildly, this has been a bit of a slog.
 * ✅ Project is WTFPL licensed.
 * [🐱 source](https://github.com/bitplane/uh-halp-data) is on github, along
   with released data.
+* No, I didn't finish the job. (Break over, get back to work!)
 
 ## 📺 uh what?
 
