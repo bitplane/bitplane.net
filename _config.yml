@@ -1,4 +1,6 @@
 title: bitplane.net
 markdown: kramdown
 highlighter: rouge
-include: ['~', 'home/gaz/.ssh']
+include: ['~', '~/.ssh']
+plugins:
+  - jekyll-redirect-from
