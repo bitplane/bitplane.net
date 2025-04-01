@@ -15,7 +15,7 @@ Putting it mildly, this was a bit of a slog.
 * ✅ Project is WTFPL licensed.
 * [🐱 source](https://github.com/bitplane/uh-halp-data) is on github, along
   with released data.
-* No, I didn't finish the job. (Break over, get back to work!)
+* 💩 No, I didn't finish the job. (Break over, get back to work!)
 
 ## 📺 uh what?
 
