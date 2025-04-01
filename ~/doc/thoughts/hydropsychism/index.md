@@ -54,11 +54,6 @@ a physical realm at all.
 In this new model, mind-stuff is the only knowable stuff, and it acts according
 to its will; it is and it does as it feels.
 
-# Being a bit Clearer
-
-
-
-
 # Evolution of Mind
 
 This position of "doing as it feels" reveals a simple mechanism by which mind
