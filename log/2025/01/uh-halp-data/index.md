@@ -412,4 +412,6 @@ situations.
 
 ## 🚂 8. Training
 
-BE TO ONETINUES
+And this is where I ran out of time, get back to work!
+
+To be continued!
