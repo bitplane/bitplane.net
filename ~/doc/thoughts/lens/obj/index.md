@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/obj']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/obj/']
 ---
 # 📦 Bias in the Kingdom of Nouns
 

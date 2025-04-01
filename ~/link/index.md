@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Bookmarks']
+redirect_from: ['/home/gaz/Bookmarks/']
 ---
 # 🔗 Bookmarks
 

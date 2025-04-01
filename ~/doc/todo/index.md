@@ -1,6 +1,6 @@
 ---
 features: ["date-list"]
-redirect_from: ['/home/gaz/Documents/todo']
+redirect_from: ['/home/gaz/Documents/todo/']
 ---
 
 # todo.md

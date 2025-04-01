@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/law']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/law/']
 ---
 # ⚖️ Jurisprudence
 

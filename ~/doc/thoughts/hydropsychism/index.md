@@ -3,7 +3,7 @@ title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\\today"
 version: "1.1.0"
-redirect_from: ['/home/gaz/Documents/thoughts/hydropsychism']
+redirect_from: ['/home/gaz/Documents/thoughts/hydropsychism/']
 ---
 # Abstract
 

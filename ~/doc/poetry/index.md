@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/poetry']
+redirect_from: ['/home/gaz/Documents/poetry/']
 ---
 
 # ✍ poems

@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Pictures']
+redirect_from: ['/home/gaz/Pictures/']
 ---
 # Pictures
 

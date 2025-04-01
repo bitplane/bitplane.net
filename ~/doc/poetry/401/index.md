@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/poetry/401']
+redirect_from: ['/home/gaz/Documents/poetry/401/']
 ---
 # ⛔ 401
 

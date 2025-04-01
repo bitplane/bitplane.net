@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/poetry/never-a-puddle']
+redirect_from: ['/home/gaz/Documents/poetry/never-a-puddle/']
 ---
 # Never a Puddle
 

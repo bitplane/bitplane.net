@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/words']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/words/']
 ---
 # 📚 Pulse Fiction
 

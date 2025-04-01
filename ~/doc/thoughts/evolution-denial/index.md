@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/evolution-denial']
+redirect_from: ['/home/gaz/Documents/thoughts/evolution-denial/']
 ---
 
 # Evolution Denial

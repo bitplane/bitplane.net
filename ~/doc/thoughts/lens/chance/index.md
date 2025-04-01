@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/chance']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/chance/']
 ---
 # 🎲 Rumblism
 

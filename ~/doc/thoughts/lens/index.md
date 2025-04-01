@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/']
 ---
 # 🔍 The shape of a lens
 

@@ -20,10 +20,11 @@ Links may be unstable. See [to-do](/~/doc/todo).
 ## grep log
 
 * [2025-03-29 - 📺 yt-mpv](log/2025/03/yt-mpv)
-* [2025-03-26 - 📖 pulse fiction](/~/doc/thoughts/lens/words)
+* [2025-03-26 - 📖 pulse fiction](/~/thoughts/lens/words)
 * [2025-03-23 - 🐳 docker sh -it](log/2025/03/dockershit)
 * [2025-02-21 - 🤔 Hydropsychism - A Water of Mind](log/2025/02/hydropsychism)
 * [2025-02-18 - 🤖 AI workflow notes](log/2025/02/ai)
+* [2025-01-05 - 🤖 uh-halp-data](log/2025/01/uh-halp-data)
 * [2025-01-04 - 😄 emojing](log/2025/01/emojing)
 * [2025-01-01 - 💣 bsod.sh](log/2025/01/bsod)
 * [2024-12-28 - 🐋 Dockerfile.exe](log/2024/12/dockerfile.exe)

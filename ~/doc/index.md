@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents']
+redirect_from: ['/home/gaz/Documents/']
 ---
 # Documents
 

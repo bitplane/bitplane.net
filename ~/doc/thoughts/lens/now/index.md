@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/now']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/now/']
 ---
 # 📅 The spirit of the ages
 

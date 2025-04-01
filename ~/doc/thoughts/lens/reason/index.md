@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/lens/reason']
+redirect_from: ['/home/gaz/Documents/thoughts/lens/reason/']
 ---
 # 😕 Unreasonable Words
 

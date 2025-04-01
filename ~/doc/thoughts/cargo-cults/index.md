@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts/cargo-cults']
+redirect_from: ['/home/gaz/Documents/thoughts/cargo-cults/']
 ---
 # 🤔 Musings On Cargo Cult Consciousness
 

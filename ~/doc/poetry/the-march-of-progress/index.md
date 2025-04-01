@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/poetry/the-march-of-progress']
+redirect_from: ['/home/gaz/Documents/poetry/the-march-of-progress/']
 ---
 # A limerick
 

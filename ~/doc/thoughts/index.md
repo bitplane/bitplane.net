@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/Documents/thoughts']
+redirect_from: ['/home/gaz/Documents/thoughts/']
 ---
 # Philosophy
 

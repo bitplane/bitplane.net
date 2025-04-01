@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz/ssh/id_rsa']
+redirect_from: ['/home/gaz/ssh/id_rsa/']
 ---
 
 # id_rsa
