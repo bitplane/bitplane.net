@@ -28,8 +28,7 @@ With that in mind, here's an example:
 
 Problem is, the thing needs to send your queries to an external service, which
 means having an account and a key and a config and an Internet connection and
-[so on and so on and so on...](/home/gaz/Documents/poetry/401). Which I'm not a
-big fan of.
+[so on and so on and so on...](/~/doc/poetry/401). Which I'm not a big fan of.
 
 If your freedom to use a program is mediated by an LLM provider then it can't
 really be called free software. But I recently got myself an Nvidia Orin and can

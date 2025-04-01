@@ -1,5 +1,5 @@
 ---
-redirect_from: ['/home/gaz']
+redirect_from: ['/home/gaz', '/home']
 ---
 # home
 
