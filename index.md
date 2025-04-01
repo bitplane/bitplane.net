@@ -9,7 +9,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 
 * 📦 [/dev](dev)   - Programming projects
 * 📅 [/log](log)   - Index and writings
-* 🏠 [/~](home) - Stuff that doesn't have a home yet.
+* 🏠 [/home](~) - Stuff that doesn't have a home yet.
 * 🔌 [/mnt](mnt)   - External files
 
 Still transferring content from the internet archive, git, floppy disks, old
