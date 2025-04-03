@@ -9,7 +9,6 @@ redirect_from: ['/home/gaz/Documents/todo/']
 * **DAD**
   * Scan UDG planner
   * Obituary
-* uh-halp-data
 * front-matter alternatives
   * modularize
   * turn into a project
@@ -20,14 +19,11 @@ redirect_from: ['/home/gaz/Documents/todo/']
     * youtube
     * webm
 * Update doc publisher
-  * ~~arranges~~
-  * ~~audio-keylog~~
-  * ~~benpipe~~
-  * catvox
+  * ~~catvox~~
+  * yt-mpv
   * dfused
   * Dockerfile.exe
   * example-python-project
-  * ~~filefrag~~
   * geo-dist
   * ienv
   * lifecap
@@ -38,7 +34,6 @@ redirect_from: ['/home/gaz/Documents/todo/']
   * shruggingface
   * subcmd
   * torch\_weightsonly
-  * ~~uh-halp~~
   * uh-halp-data
   * vidi18n
   * yapotron
@@ -62,6 +57,7 @@ Real URL   https://bitplane.net/dev/amos/matchstick-man
 Real URL   https://bitplane.net/dev/vb/bing-maps-grabber
 Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ```
+  * Add linkchecker to ./bin or something
 * Android SVG renderer
 * Kodi DVB-T story
 * Align project docs and site CSS

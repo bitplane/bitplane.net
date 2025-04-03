@@ -2,6 +2,12 @@
 
 Should work these into articles
 
+## Humans
+
+Human behaviour is synchronised by radio waves sent from signalling hubs. The
+signals are received by specialized machines that generate lights and sounds,
+which condition the human nervous system for purposes of economic production.
+
 ## Complexity
 
 > In computing, complexity can be measured in square inches of empty scalp.
