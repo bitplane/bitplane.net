@@ -13,19 +13,19 @@ redirect_from: ['/home/gaz/Documents/todo/']
   * modularize
   * turn into a project
   * modules
-    * asciinemados
+    * asciinema
+    * dos
     * code
     * amiga
     * youtube
     * webm
 * Update doc publisher
-  * ~~catvox~~
+  * ~~dockershit~~
   * yt-mpv
   * dfused
   * Dockerfile.exe
   * example-python-project
   * geo-dist
-  * ienv
   * lifecap
   * merge-files
   * obfuspace
@@ -59,10 +59,12 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ```
   * Add linkchecker to ./bin or something
 * Android SVG renderer
-* Kodi DVB-T story
+* How Kodi got DVB-T support story
 * Align project docs and site CSS
-  * Gonna need my own mkdocs format, or move everything to Jekyll. Not sure.
+  * ~~Gonna need my own mkdocs format~~
+    * Have an approach. Should share it as generic.
   * Do something about video tags?
+    * Use archive.org instead of YouTube (maybe webtorrent?)
 * Document more Irrlicht stuff
   * Rest of the C++ code projects
     * Go through forum posts
@@ -70,7 +72,8 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * mesh deformation contest
   * speed modelling
     * Need to find that chest.obj
-  * Milk Scanner
+  * ~~Milk Scanner~~
+    * Need the code
   * UFO Game
   * Thumbnailer
   * Spheremap renderer
@@ -84,12 +87,12 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * ~~Steel gazing globe~~
     * Figure out the dates and add to log
   * Old college black and white photos
+    * My old bedroom?
   * Wikimedia commons
   * Microsoft PhotoSynth
   * ~~Drawings~~
     * I think there's one or two more that aren't nudes
       * Niamh
-      * Censor Kath drawing?
     * Get Wacom Bamboo date + update
 * Document life events
   * ZX Spectrum
@@ -154,7 +157,7 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 * Digitize ZX Spectrum games
   * I think I only have one finished game, TUE.
 * Old Linux machines
-  * Gigabyte laptop
+  * ~~Gigabyte laptop~~
   * HP Server
   * Bitcoin miner
 

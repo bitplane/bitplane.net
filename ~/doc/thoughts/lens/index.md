@@ -22,3 +22,4 @@ might help make us more careful drivers.
 * [🎲 chance]
 * [📅 fashion]
 * [ℂ reason]
+* [🏵️ truth]
