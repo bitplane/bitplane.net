@@ -67,3 +67,19 @@ WTFPL with one additional clause:
 * [🏠 home](https://bitpane.net/dev/python/dockershit)
 * [🐍 pypi](https://pypi.org/project/dockershit)
 * [🐱 github](https://github.com/bitplane/dockershit)
+* [📖 pydoc](https://bitpane.net/dev/python/dockershit/pydoc)
+
+## TODO
+
+* CI build and deploy
+  * release docs to [bitplane.net](https://bitplane.net/dev/python/)
+  * build and post to pypi on a tag
+* record a nice video using [type.py](https://github.com/bitplane/asciinema-fx)
+* restructure input so it's a nice UI
+  * use textual?
+* remove double `WORKDIR` entries by combining them
+* deal with `ENV` and `ARG` - passing them in on the command line.
+* add `DS` commands or whatever it ends up being called
+  * use `argparse`
+  * `edit`, to edit the current file (in git editor?)
+  * `squash`, combine run steps with `&& \`
