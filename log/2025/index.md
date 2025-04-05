@@ -2,7 +2,7 @@
 features: ["date-list"]
 ---
 # 📅 2025
-
+* [2025-04-05 - 🖼️ iso8601](04/iso8601)
 * [2025-03-29 - 📺 yt-mpv](03/yt-mpv)
 * [2025-03-26 - 📖 pulse fiction](/~/thoughts/lens/words)
 * [2025-03-23 - 🐳 docker sh -it](03/dockershit)
