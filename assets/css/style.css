@@ -48,3 +48,8 @@ li {
 ul>li::after {
     content: unset;
 }
+
+body {
+    margin: 0;
+    padding: 1em;
+}
