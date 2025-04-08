@@ -64,7 +64,7 @@ WTFPL with one additional clause:
 
 # Links
 
-* [🏠 home](https://bitlpane.net/dev/python/dockershit)
+* [🏠 home](https://bitplane.net/dev/python/dockershit)
 * [🐍 pypi](https://pypi.org/project/dockershit)
 * [🐱 github](https://github.com/bitplane/dockershit)
 * [📖 pydoc](https://bitplane.net/dev/python/dockershit/pydoc)
