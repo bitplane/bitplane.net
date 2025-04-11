@@ -10,8 +10,8 @@ redirect_from: ['/home/gaz/Documents/thoughts/lens/obj/']
 >
 >  * 🔗 Adapted from the [classic](http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html)
 
-The universe is made of fluids; radiation, gas, plasma and liquid. And also a
-tiny bit of solids, which hardly deserve a mention.
+We live in a universe of fluids; of radiation, gas, plasma and liquid. And also
+a tiny bit of solids, which hardly deserve a mention.
 
 From a crust-centric stance, everything is an object. We are objects that eat
 food objects, seek objects give us shelter and - at risk of objectifying - sex.

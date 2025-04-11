@@ -15,12 +15,22 @@ TODO: actually add bookmarks.
   Conway's law in depth.
 * [🎬 Basic Mechanisms in Fire Control Computers](https://youtu.be/UZfJc7IJ2cg) -
   Analogue computers explained by the US Navy.
-* [🐏 nommu.org memory FAQ](https://raw.githubusercontent.com/nommu/nommu.org/refs/heads/gh-pages/memory-faq.txt)
+* [🐏 nommu.org memory FAQ](https://raw.githubusercontent.com/nommu/nommu.org/refs/heads/gh-pages/memory-faq.txt) -
+  A detailed look at memory management.
+* [💣 CDC: Smashing the Stack for Fun and Profit](https://archives.phrack.org/issues/49/14.txt) -
+  The classic article on buffer overflows.
 
 ## Mathematics
 
-* [Counting π](https://prajwalsouza.github.io/Experiments/Colliding-Blocks.html) -
+* [🎱 Counting π](https://prajwalsouza.github.io/Experiments/Colliding-Blocks.html) -
   very strong evidence that dimensionality emerges through 3 things colliding.
+
+## Science
+
+* [🍆 The Talk: A brief explanation of sexual dimorphism](https://www.lesswrong.com/posts/yA8DWsHJeFZhDcQuo/the-talk-a-brief-explanation-of-sexual-dimorphism) -
+  A great article on evolution of the sexes.
+* [🧬 The Origins of Covid - Following the clues](https://nicholaswade.medium.com/origin-of-covid-following-the-clues-6f03564c038) -
+  Nicholas Wade's article about Covid 19, which is still missing from most search engines
 
 ## 🎶 Music
 
