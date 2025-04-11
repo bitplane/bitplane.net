@@ -19,4 +19,4 @@ paper.tex: index.md template.tex /usr/bin/pandoc
 
 # Cleanup intermediate files
 clean:
-	rm -f paper.aux paper.log paper.out paper.pdf paper.tex
+	rm -f paper.aux paper.log paper.out paper.pdf paper.tex paper.toc

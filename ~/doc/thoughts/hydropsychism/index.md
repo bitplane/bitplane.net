@@ -2,7 +2,7 @@
 title: "Hydropsychism: A Water of Mind"
 author: "Gareth Davidson"
 date: "\\today"
-version: "1.1.0"
+version: "1.1.1"
 redirect_from: ['/home/gaz/Documents/thoughts/hydropsychism/']
 ---
 # Abstract
@@ -20,11 +20,12 @@ paradoxes, matches observation and leads to falsifiable predictions.
 
 # Metaphysics
 
-*Cogito, ergo sum* was a decent starting point, but Descartes didn't go far
-enough; there are some other things that I am[^descartes].  I'm in a location, I
-experience my surroundings and the passage of time, I feel, and more
-importantly - I choose how to move; I have will.  And sometimes, the will to
-think.
+Descartes gives us a decent starting point with *Cogito, ergo sum*, but it
+doesn't go far enough. Yes, I think, therefore I must exist, or at least
+thinking must exist. But there are many other things that I am[^descartes]. I
+feel and experience sensations other than thoughts, I'm in a location, I
+experience my surroundings and the passage of time, but more importantly - I
+choose how to move; I have will.  And sometimes, the will to think.
 
 Monists, idealists and panpsychists successfully applied Occam's razor to the
 thinking part, and reasonably concluded that there's no need for two different
@@ -37,17 +38,21 @@ objective world a second-order effect.  Space can be framed so that distance is
 a relative compatibility of the things within it - the likelihood of
 interactions between them - rather than a boundless and ghostly container.  And
 as importantly as before, we know that choice is the cause of our actions, and
-so without evidence to the contrary, we should assume other stuff is its own
-first-mover.
+so without evidence of any other thing that might cause any action whatsoever,
+we should assume by default that other stuff is its own first-mover.
 
-If choice rather than commandment is the cause of actions, then physical laws
-are nothing more than our own observations; all we can observe is the aggregate
-preference of mind-stuff, statistically.
+If we do make this assumption, we no longer have any need for physical laws. If
+choice, rather than commandment, is the cause of actions, then physical laws
+are nothing more than our own observations. And all we can observe is the
+large-scale effects of simple mind-stuff, the results of its aggregate
+preferences, the structures shaped by its choices.
 
-Having left the concept of natural laws behind, and looking back from a
-distance, they resemble a cognitive bias at the heart of scientific tradition;
-the quest to discover the laws of a rule-giver it has long forsaken[^cults].
-This path leads us to a model of an entirely subjective, relative reality, one
+Leaving the concept of natural laws behind us, and looking back at them from a
+distance, they resemble a cognitive bias at the heart of scientific tradition.
+Science's quest to discover the rules of a law giver has continued long after
+he was for forsaken by scientists[^cults].
+
+This path leads us to a model of an entirely subjective, relative reality, one 
 where not only a creator and His laws are unknowable, but one without need for
 a physical realm at all.
 
@@ -149,23 +154,30 @@ water through which ribozymes mediate reactions, having far less of their own.
 Fish don't realize they're in water. The same can be said of organic chemistry.
 
 Our throne of mind was built one drip at a time as nature slurped its way up the
-gradient of complexity. This model's seat of consciousness is one of fluid
-dynamics rather than quantum ones, one made of ordinary physical processes that
-we refer to as physical law. It does not rest on the eternal Platonic forms
+gradient of complexity. This model's seat of consciousness is about fluid
+dynamics rather than quantum ones, it is made of ordinary physical processes
+that we refer to as physical law. It does not rest on the eternal Platonic forms
 of symbolic dualism, nor the ignorance of complexity. No need to *mind the
 gap*[^lol], it's just plain old wet stuff, whatever stuff is anyway.
 
+## The central point
+
 So, aside from determinism being functionally equivalent to evolution denial,
-the central point is that neurons don't provide consciousness, they manipulate
-the fluid around them, changing the texture of a liquid mind-stuff that
-pre-dates evolution.
+this paper's main claim is this:
+
+Neurons don't provide consciousness, they manipulate the fluid around them.
+They vibrate mind into existence by shaping the texture of a liquid mind-stuff
+that pre-dates evolution.
+
+## Two ways
 
 There are two obvious mechanisms that could lead to this, the most simple - and
-the one taken so far - is that fluids as a whole have experience. A less direct
-one is that water's hexagonal structure, when put under pressure from sodium
-ions rushing into gates along neural axons force a decision on its movement,
-causing it to become aware of the shape of the neuron's outer surface, and by
-extension the network as a whole.
+the one taken so far - is that fluids as a whole have experience.
+
+A less direct one is that water's hexagonal structure, when put under pressure
+from sodium ions rushing into gates along neural axons force a decision on its
+movement, causing it to become aware of the shape of the neuron's outer surface,
+and by extension the network as a whole.
 
 These two viewpoints result in very different outcomes. The former needs no
 special quantum behaviour, being pure fluid-dynamics it can be explained in
@@ -180,6 +192,71 @@ relies on unexplained quantum weirdness; collective behaviour in transition
 state of structured water under pressure. This is enticing and leads to
 implications in physics, but is far more difficult to observe and to reason
 about. For this reason, I will focus mostly focus on the low hanging fruit.
+
+# The case against microtubules
+
+Before that though, let's address the issue of microtubules.
+
+## Bias
+
+Microtubules are packed full of highly structured water known to exhibit strange
+quantum effects, and have been a fashionable seat of consciousness among
+respected physicists for some time now[^penrose]. They are however, not the
+obvious choice from first principles.
+
+We should keep in mind that both fashion and respect bait the sort of cognitive
+traps that has left the mystery of mind unsolved for millennia, traps that we
+should take care to avoid.
+
+## Cost
+
+The most obvious way to gauge the importance of a component of a system is, is
+to see if it can function without it. From this perspective, it's safe to assume
+that consciousness is a rather important component of our ability to move
+around. Another way is to look at its costs, the amount of resources spent on
+it.
+
+Being conscious costs us about 20% of our total energy budget, and almost
+none of it is spent on microtubules; most of it is spent on ion pumps -
+specifically, restoring the delicate electrical gradients that allow neurons to
+fire. Myelinated axons, the shielded connections found in white matter deliver
+information more quickly and more cheaply than their unshielded counterparts,
+but it's the more expensive, slower ones that leak information into the bulk
+that make up our grey matter.
+
+This angle of cost is a very strong smell that our capacity for subjective
+experience exists outside the neuron rather than within it.
+
+## Scale
+
+Another appeal to likelihood is to simply consider scale. There's orders of
+magnitude more liquid on the outside of microtubules than there is on the
+inside, and even more on the outside of nerves themselves. The movement
+channelled within -- and walking along -- these structures is a drop in the
+bucket compared to that outside the nerves.
+
+## Connectivity
+
+Microtubules provide local structure to the water within them, but they are not
+directly connected to each other. So models of micro-tubular minds have a
+binding problem; a joined-up self must bridge these gaps using a plausible
+physical mechanism.
+
+Such a mechanism has not materialized, in its place people entertain quantastic
+appeals to science fiction. If it is one day proven that mind it teleported
+through wormholes at the ends of the 'tubes, then, in the spirit of Internet
+wagers, I'll drink a glass of my own aqua vitae on video.
+
+## Causality
+
+* the first nerves/signalling cells had to have the mechanisms of agency inside
+  them, before networks of them existed, it had to evolve in steps.
+
+## Function
+
+* they're fundamentally transmitters of coordinated movement, so where are they
+  transmitting it to? themselves? that seems suspect to me, especially in the
+  information age where the fashion of information warps our lens.
 
 # Predictions for a Fluid Dynamic Model
 
@@ -198,7 +275,6 @@ Let's assume that neuron activation disturbs the fluid physically, amplifying
 and dampening waves through interference patterns at different frequencies.
 That the neural network's signals are the mechanism of vibration, but also
 compute and transmit information about where to exert these pressures.
-
 
 ## Geometric Propagation
 
