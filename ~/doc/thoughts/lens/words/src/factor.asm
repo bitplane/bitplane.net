@@ -2,7 +2,7 @@ section .text
 global _start
 
 _start:
-    mov eax, 1984      ; Factor this number
+    mov eax, 5         ; Factor this number
     mov ebx, 2         ; Start divisor
 
 factor_loop:
@@ -34,5 +34,4 @@ done:
     int 0x80
 
 print_num:
-    ; Minimal routine to print number (could be optimized further)
     ret
