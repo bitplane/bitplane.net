@@ -14,6 +14,11 @@ So most of my C++ work is stuff done for Irrlicht, which I was on the dev team
 for several years - until I gave up on the idea of writing games and moved on to
 more boring, real things.
 
+## Not Irrlicht
+
+* 🌇 [webp support for mediainfo](webp)
+* 🚀 [Pioneer](log/2013/01/pioneer)
+
 ## Games
 
 Some games, none of any note.
