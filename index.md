@@ -15,12 +15,10 @@ The 5th and hopefully final iteration of [my](~) personal website.
 Still transferring content from the internet archive, git, floppy disks, old
 hard drives, phones and so on.
 
-Links may be unstable. See [to-do](/~/doc/todo).
-
 ## grep log
 
 * [2025-03-29 - 📺 yt-mpv](log/2025/03/yt-mpv)
-* [2025-03-26 - 📖 pulse fiction](/~/thoughts/lens/words)
+* [2025-03-26 - 📖 pulse fiction](/~/doc/thoughts/lens/words)
 * [2025-03-23 - 🐳 docker sh -it](log/2025/03/dockershit)
 * [2025-02-21 - 🤔 Hydropsychism - A Water of Mind](log/2025/02/hydropsychism)
 * [2025-02-18 - 🤖 AI workflow notes](log/2025/02/ai)
