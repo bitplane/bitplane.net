@@ -72,3 +72,10 @@ Still not figured out:
 * Figure out how to convert ANSI text into animations when it has no timing
   info (callbacks that look for cursor movements and/or screen resets).
 * Start work on the UI
+
+## Links
+
+* [🏠 home](https://bitplane.net/dev/python/ansi-stdio)
+* [🐈 github](https://github.com/bitplane/ansi-stdio)
+* [🐍 pypi](https://pypi.org/project/ansi-stdio)
+* [📖 pydoc]((https://bitplane.net/dev/python/ansi-stdio/pydoc)
