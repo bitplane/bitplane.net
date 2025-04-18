@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2025
 
+* [2025-04-18 - 📖 A view from above](/~/doc/thoughts/lens/goods)
 * [2025-04-16 - 🌇 mediainfo webp support](04/webp)
 * [2025-04-05 - 🖼️ iso8601](04/iso8601)
 * [2025-03-29 - 📺 yt-mpv](03/yt-mpv)
