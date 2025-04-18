@@ -7,11 +7,11 @@
 > signals and generate lights and sounds, which condition the nervous system
 > for production rather than fertility.
 
-Good is a social construct, and humans are good people - they're wired that way.
-No matter the culture, time or place, they will be good. Human values are
-dynamic, programmed through the faces they see and the voices they hear. Those
-of people who share their destiny. We become good through the smiles and scorn
-of our peers, this is our nature.
+Humans are good people, they're wired that way. Whatever the culture, time or
+place, they will be good. Good is a social construct, human values are dynamic,
+programmed through the faces they see and the voices they hear, of people who
+share their destiny. We become good through the smiles and scorn of our peers,
+this is our nature.
 
 After mass media, the voices you hear aren't your people. They don't come from
 faces that share your destiny. They're broadcast from afar, their good is what's
