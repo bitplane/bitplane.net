@@ -26,7 +26,7 @@ just the means, the ends are the runaway corruption of good itself. It's not a
 human system, it's a system of humans. Like an ant vortex but for human brains,
 it extracts value, converts it into the desire to extract more value. Our value.
 
-The bulk of mass, those with the most fat both set the table and eat themselves;
+The bulk of mass, those with the most both set the table and eat themselves;
 across every major city in every country, this system devours the rich first.
 Trapping, isolating and redirecting labour from the families and societies they
 no longer have, turning it into a thirst for more goods.
