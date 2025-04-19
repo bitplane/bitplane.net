@@ -4,4 +4,3 @@
 * [👻 dualism](ghosts)
 * [👜 fashion](now)
 * [🧠 reason](reason)
-* [⛪ truth](truth)

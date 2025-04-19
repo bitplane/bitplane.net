@@ -19,6 +19,7 @@ might help make us more careful drivers.
 * [📦 objects](obj)
 * [⚖️ law](law)
 * [📚 language](words)
+* [🐍 lies](truth)
 * [👍 good](goods)
 
 ## [work in progress](wip)...
