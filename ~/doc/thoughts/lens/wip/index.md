@@ -1,6 +1,10 @@
-# tbc
+# wip
 
 * [🎲 chance](chance)
-* [👻 dualism](ghosts)
 * [👜 fashion](now)
 * [🧠 reason](reason)
+
+# future
+
+* [👻 dualism](ghosts)
+* [🔢 infinity](nan)
