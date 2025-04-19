@@ -8,8 +8,8 @@ saying what someone else told them. In 1999 Generation X argued in the pub about
 aliens at Area 51 or whether ghosts existed or not, and nobody really knew or
 cared. True believers were either mentally unwell, or thought they knew better
 because their parents bought an encyclopaedia set from a door to door salesman
-for two grand. The final hours of the pre-truth era is one of "Yeah? Well, you
-know, that's just like uh, your opinion, man"
+for two grand. The final hours of the pre-truth era is one of some Dude saying
+"Yeah? Well, you know, that's just like uh, your opinion, man"
 
 Truth with a capital T emerged along with the Internet. Connery was born in
 Edinburgh on a damp and breezy Monday evening, three weeks after another wash-out
