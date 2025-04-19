@@ -23,8 +23,3 @@ might help make us more careful drivers.
 
 ## [work in progress](wip)...
 
-* [🎲 chance]
-* [📅 fashion]
-* [ℂ reason]
-* [🏵️ truth]
-
