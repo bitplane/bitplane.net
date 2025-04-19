@@ -25,9 +25,9 @@ In 2016, Trump's incredible commitment to tradition ushered in the post-truth
 era, a brazen Falseness that outraged millennials. Pre-truthers shrugged,
 he was just doing what happened through Truth and pre-truth before that, with
 less skill. And they can tell when a politician is lying anyway; their lips
-move. If given get a chance to adjust before the next epistemology arrives,
-post-truthers will hopefully become wise to this. But that's not looking very
-likely.
+move. If given a chance to adjust before the next epistemology arrives,
+post-truthers will hopefully become wise to this too. But that's not looking
+very likely.
 
 Because it's personal truths that come next. Fractals of mass-manufactured
 deceit, individualized, coherent and divisive lies driven by the power of
