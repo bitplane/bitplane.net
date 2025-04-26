@@ -2,6 +2,8 @@
 
 * 💾 [lifecap](/dev/sh/lifecap/scrapers) -
   data scrapers for lifecap.
+* ⛅ [met office](https://github.com/bitplane/met-office-scrape) -
+  scraping the met office library.
 
 ## Older
 
