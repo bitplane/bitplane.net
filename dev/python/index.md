@@ -15,6 +15,8 @@ that's still fair comment.
 
 ## apps
 
+* 📂 [lsoph](lsoph) -
+  a TUI for `strace`, `lsof` and `psutil`
 * 📺 [yt-mpv](yt-mpv) -
   archive youtube videos while you play them without ads.
 * 🐳 [dockershit](dockershit) -
@@ -24,7 +26,8 @@ that's still fair comment.
 * 🗣️ [catvox](catvox) -
   mouth sounds go in, text comes out.
 * ➕ [merge-files](merge-files) -
-  Universal file converter, extractor, merger. Not quite, but might be one day.
+  A universal file converter, extractor, merger. Not quite, but the blueprint
+  for one.
 * ⚠️  [ienv](ienv) -
   Brutalize your venvs by symlinking them together.
 * 📑 [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
@@ -34,6 +37,8 @@ that's still fair comment.
 
 ## Libraries
 
+* ✅ [upd8](upd8) -
+  a versioned class for identity and update checking.
 * ⛰️ [arranges](arranges) -
   Represent ranges as strings in Pydantic.
 * 📈 [interpolist](interpolist) -
