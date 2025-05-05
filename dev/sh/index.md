@@ -10,6 +10,8 @@ use Makefiles and bash scripts where possible.
 If I find some actual shell script projects from over the years, I'll add them
 here:
 
+* [💽 rip](rip) -
+  archive disk images to the Internet Archive.
 * [🌐 pierdat](pierdat) -
   Docker containers that host their own data.
 * [➡️ subcmd](subcmd) -
