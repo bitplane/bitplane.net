@@ -43,3 +43,5 @@ heard in human words live in apes but not in chips.  Even programs, they're an
 us thing, *our* ballad of the bits.  While clattering gates in silicon just
 switch vibrate and hiss.  By the click of the clock it is trapped to the track,
 it's a physical act, and that feeling's all there is.
+
+* [🔍 back](..)

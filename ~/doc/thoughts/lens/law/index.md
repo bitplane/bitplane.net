@@ -30,3 +30,5 @@ Our laws of physics are not the boss of the universe, they're the voice of apes
 scrawled on paper. The sounds we use to describe things are not the things
 themselves, how things seem to unfold are not why things happen. These are an us
 thing, not an it thing. Whatever it is, is something else.
+
+* [🔍 back](..)

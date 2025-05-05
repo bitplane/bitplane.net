@@ -13,7 +13,7 @@ redirect_from: ['/home/gaz/Documents/thoughts/lens/obj/']
 We live in a universe of fluids; of radiation, gas, plasma and liquid. And also
 a tiny bit of solids, which hardly deserve a mention.
 
-From a crust-centric stance, everything is an object. We are objects that eat
+From our crust-centric stance, everything is an object. We are objects that eat
 food objects, seek objects give us shelter and - at risk of objectifying - sex.
 We raise smaller objects, and our 2.5 dimensional territory is split into place
 objects. We build tool objects from smaller objects, which we use to transform
@@ -26,8 +26,10 @@ wave and a rock to be very different types of object.
 
 Science is the practice of empiricism. That is, of measuring to discover an
 objective truth. And in empiricism, something must be observed multiple times in
-order to exist, through its lens nothing else does. Through these observations
+order to exist. Through its lens nothing else does. And through its objectivity
 we discover the rules - the word objects - that every atom object must obey.
 
 The universe, objectively speaking, is the object that contains all objects.
 And some other things, which hardly deserve a mention.
+
+* [🔍 back](..)

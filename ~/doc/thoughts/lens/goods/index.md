@@ -53,3 +53,5 @@ avoid these traps we need to know what we are before what we should be.
 
 Our clergy are blind and not fit to lead. We desperately need a better view, a
 systems level view; a view from above.
+
+* [🔍 back](..)
