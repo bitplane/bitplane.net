@@ -82,18 +82,18 @@ If any input is not a regular file (for example, data from a pipe or tty), `wc` 
 * **Direct file arguments:** Suppose `a.txt` has 6 lines, 6 words, 88 bytes; `b.txt` has 60 lines, 236 words, 1772 bytes. Running `wc a.txt b.txt` might produce:
 
   ```
-        6    6   88 a.txt  
-       60  236 1772 b.txt  
-       66  242 1860 total  
+        6    6   88 a.txt
+       60  236 1772 b.txt
+       66  242 1860 total
   ```
 
   Here, `wc` statted both files. It determined that the byte count could be up to 4 digits (1772 for b.txt), word count up to 3 digits, line count up to 2 digits. It then printed each column right-aligned to those widths. Notice how the numbers align in columns.
 * **Including a pipe/stdin:** If you pipe data or use `-` in the file list, `wc` doesn’t know sizes in advance for that stream. In such cases, it ensures a safe width (at least 7). For example, `cat b.txt | wc a.txt -` might yield:
 
   ```
-             6       6      88 a.txt  
-            60     236    1772 -  
-            66     242    1860 total  
+             6       6      88 a.txt
+            60     236    1772 -
+            66     242    1860 total
   ```
 
   The presence of the `-` (stdin) input caused `wc` to use a minimum of 7 character columns for all the numeric fields. You can see the padding: each number now takes up at least 7 spaces, so the single-digit and double-digit numbers are heavily padded. The `a.txt` numbers, which were snug in the previous example, are now pushed to the right with more leading spaces so that they align with the 7-wide format used for the piped data line.
