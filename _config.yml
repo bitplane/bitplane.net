@@ -2,5 +2,7 @@ title: bitplane.net
 markdown: kramdown
 highlighter: rouge
 include: ['~', '~/.ssh']
+url: https://bitplane.net
 plugins:
   - jekyll-redirect-from
+  - jekyll-sitemap
