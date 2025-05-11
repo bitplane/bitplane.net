@@ -23,9 +23,11 @@ it.
 
 Some more recent/useful things:
 
-* 🕵️ [obfuspace](https://github.com/bitplane/obfuspace) -
+* 🔌 [simple9p](https://github.com/simple9p) -
+  a barebones 9p server based on libixp.
+* 🕵️  [obfuspace](https://github.com/bitplane/obfuspace) -
   convert arbitrary data into whitespace.
-* 🌡️ [temper1 driver](https://github.com/bitplane/temper) -
+* 🌡️  [temper1 driver](https://github.com/bitplane/temper) -
   Temperature sensor logger for Linux.
 
 Some old things are here:

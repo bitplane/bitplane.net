@@ -15,6 +15,8 @@ that's still fair comment.
 
 ## apps
 
+* 💽 [blkcache](blkcache) -
+  a userspace disk cache for CDs and DVDs
 * 📂 [lsoph](lsoph) -
   a TUI for `strace`, `lsof` and `psutil`
 * 📺 [yt-mpv](yt-mpv) -
