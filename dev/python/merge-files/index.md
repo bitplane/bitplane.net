@@ -1,3 +1,7 @@
+---
+redirect_from: ['/dev/merge-files']
+---
+
 # ➕ merge\_files
 
 A Python module that merges files together.

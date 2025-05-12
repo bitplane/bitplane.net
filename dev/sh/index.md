@@ -1,3 +1,7 @@
+---
+redirect_from: ['/dev/bash']
+---
+
 # Shell scripting
 
 Does AmigaDOS count as shell scripting? If so I've been doing shell scripts
