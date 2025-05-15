@@ -7,51 +7,61 @@
 > signals and generate lights and sounds, which condition the nervous system
 > for production rather than fertility.
 
-Humans are good people, they're wired that way. Whatever the culture, time or
-place, they will be good. Good is a social construct, human values are dynamic,
-programmed through the faces they see and the voices they hear, of people who
-share their destiny. We become good through the smiles and scorn of our peers,
-this is our nature.
+Humans are good people, they're just wired that way. Whatever the culture, time
+or place, they will be good. But human values are dynamic, socially constructed
+and programmed through experience. Surrounded by people who share our destiny,
+our ideas of good and valuable are programmed into us by the faces we see and
+the voices we hear. We become good through the smiles and scorn of our peers,
+this is our nature, our good.
 
-After mass media, the voices you hear aren't your people. They don't come from
-faces that share your destiny. They're broadcast from afar, their good is what's
-good for the highest bidder. Bidding is done with money, work owed by others,
-and survivorship improves the programming, tunes so all that remains are ones
-that compels us to give our surplus freely. Which we do, because we're good
-people. This nourishes the programming organ, feeds segmentation of people into
-cohorts, and of society, and families, and people from their values.
+After the invention of mass media, the voices you hear aren't your people's.
+They don't come from faces that share your destiny. Broadcast from afar, their
+good is what's good for the highest bidder, not you. Bidding is done with work
+owed by others, money, and is used to bid for more programming. This is a
+feedback loop shaped by survivorship, its cycles are similar to BSE or
+hookworms. It's the survivorship of programming that compels us to give our
+surplus freely. Which we do, because we're good people.
 
-This isn't about people selling us trinkets to take our labour, the goods are
-just the means, the ends are the runaway corruption of good itself. It's not a
-human system, it's a system of humans. Like an ant vortex but for human brains,
-it extracts value, converts it into the desire to extract more value. Our value.
+This in turn nourishes the programming parasite, feeding the segmentation of
+people into cohorts, and of society, and of families, and of people from their
+values.
 
-The bulk of mass, those with the most both set the table and eat themselves;
-across every major city in every country, this system devours the rich first.
-Trapping, isolating and redirecting labour from the families and societies they
-no longer have, turning it into a thirst for more goods.
+This isn't about powerful humans selling trinkets to steal the labour of others.
+That is of course the means, but the ends are a runaway corruption of good
+itself. Those with the most fat steer the hunger, they set the table, defecate
+on it and then devour themselves. Across every major city in every country, the
+system consumes the richest first. Trapping, isolating and redirecting labour
+from the families and societies they no longer have, turning all into a thirst
+for more goods. This is not a human system, it's a system of humans. An ant mill
+of human brains, a vortex of value extraction, converting all desire for good
+into desire to extract more value. Our values, and value, strip mined by a
+strange attractor.
 
-The social sciences didn't see it coming, not even after it had arrived. As
-ethicists in lab coats, they guard good itself. In the business of obscured
-"oughts", an "is" is largely rhetorical; moral philosophy focuses on being wise
-and good, and so they say good, fashionably wise things. Wealth frees women from
-the burden of motherhood is a good thing. Removes their humanity, or makes them
-free to toil for others, less so. A cultural genocide, most privileged first,
-self-administered through a disease that feeds on the values we hold dear would
-be a bad to say if it could even be seen.
+As ethicists in lab coats, the social sciences are guardians of good itself, and
+have failed. In their business of obscured "oughts", an "is" is largely
+rhetorical; moral philosophy focuses on being wise and good, and so they say
+good, fashionably wise things. It's a good thing to say that wealth frees women
+from the burden of motherhood. To say it removes their humanity, or makes them
+free to toil for others, less so. A self-administered genocide, most privileged
+first, delivered through a disease that feeds on the values we all hold dear?
+That would be very bad to say, if it could even be seen.
 
-And it can't. The modern lens of virtue ethics is one of blank-slates and
-prescribed values, not human biology. And through this lens, any
-techno-socio-economic biohazard has three different types of "is" to ignore, and
-one more evolution to deny.
+And it can't be seen. The modern lens of virtue ethicists is one of blank-slates
+and prescribed values, it rejects human biology. Through its lens of oughts, a
+techno-socio-economic biohazard is hazardous to something incidental, and has
+three different types of "is" to ignore, its evolution another to deny.
 
-The future before us is a network of dynamic systems that grow denser and more
-complex each day. Markets, politics, cultures and technologies, words,
-behaviours and ideas. But mostly systems of human animals. AI presents
-opportunities for endless variations of human ant vortices to emerge. And to
-avoid these traps we need to know what we are before what we should be.
+The future before us is not a path, it's a network. A vast web of dynamic
+systems that grows denser and more complex each day. Markets, politics, cultures
+and technologies, words, behaviours and ideas - all systems of human animals,
+and all with their own strange attractors. AI presents opportunities for endless
+variations of human ant mills to emerge, steeper gradients on the funnel walls.
+We might avoid these traps if we knew what we were, before before we decided what
+we ought to be, but we don't. And with flexible values we shit directly into our
+own mouths at an ever increasing pace.
 
-Our clergy are blind and not fit to lead. We desperately need a better view, a
-systems level view; a view from above.
+This isn't just consumption consuming our good, it's an entire class of trap
+that we seem blind to. We could really use an elevated position, maybe a view
+from above.
 
 * [🔍 back](..)
