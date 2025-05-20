@@ -7,13 +7,16 @@ redirect_from: ['/dev/bash']
 Does AmigaDOS count as shell scripting? If so I've been doing shell scripts
 since '93. If not then probably 99 or so when I did [c](../c) in XENIX.
 
-That said, it's probably only since Windows Vista drove me to Linux I became any
-good at it, and it's not something I've written actual projects in. I do tend to
-use Makefiles and bash scripts where possible.
+After Windows Vista drove me to Linux I became okay at it, then proficient by
+doing it daily in Dockerfiles during the DevOps revolution. More recently,
+adopting a modular approach with a bit of help from ChatGPT and Claude, I'm
+actually writing real programs in `sh` and `bash`, using function libraries that
+are merged together when building a release.
 
-If I find some actual shell script projects from over the years, I'll add them
-here:
+## Projects
 
+* [📺 tvmux] -
+  a tmux recorder using asciinema.
 * [💽 rip](rip) -
   archive disk images to the Internet Archive.
 * [🌐 pierdat](pierdat) -
