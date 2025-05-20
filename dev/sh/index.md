@@ -15,7 +15,9 @@ are merged together when building a release.
 
 ## Projects
 
-* [📺 tvmux] -
+* [🎥 sh2mp4](sh2mp4) -
+  convert shell scripts into videos.
+* [📺 tvmux](tvmux) -
   a tmux recorder using asciinema.
 * [💽 rip](rip) -
   archive disk images to the Internet Archive.
