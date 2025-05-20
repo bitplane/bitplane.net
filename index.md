@@ -16,7 +16,13 @@ Still transferring content from the internet archive, git, floppy disks, old
 hard drives, phones and so on.
 
 ## grep log
-
+* [2025-05-20 - 📺 tvmux - recording tmux sessions](/dev/sh/tvmux)
+* [2025-05-14 - 🔌 simple9p - a minimal 9p server](/dev/c/simple9p)
+* [2025-05-11 - 🧊 blkcache - userspace disk cache](/dev/python/blkcache)
+* [2025-05-06 - 🚻 vwc - wc with a live preview](/dev/python/vwc)
+* [2025-04-28 - 💽 rip - an archive.org disk archiver](/dev/sh/rip)
+* [2025-04-26 - ✅ upd8 - versioning python classes](/dev/python/upd8)
+* [2025-04-24 - 📂 lsoph - tui for listing open files](/dev/python/lsoph)
 * [2025-04-18 - 📖 A view from above](/~/doc/thoughts/lens/goods)
 * [2025-04-16 - 🌇 mediainfo webp support](log/2025/04/webp)
 * [2025-03-29 - 📺 yt-mpv](log/2025/03/yt-mpv)
