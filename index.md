@@ -8,18 +8,17 @@ The 5th and hopefully final iteration of [my](~) personal website.
 ## What's here?
 
 * 📦 [/dev](dev)   - Programming projects
-* 📅 [/log](log)   - Index and writings
-* 🏠 [/home](~)    - Stuff that doesn't have a home yet.
-* 🔌 [/mnt](mnt)   - External files
+* 📅 [/log](log)   - Chronological index
+* 🏠 [~](~)        - Files and stuff
+* 🔌 [/mnt](mnt)   - External files. TODO: move to `~`
 
-Still transferring content from the internet archive, git, floppy disks, old
-hard drives, phones and so on.
 
 ## grep log
 
 * [2025-05-20 - 📺 tvmux - recording tmux sessions](/dev/sh/tvmux)
 * [2025-05-20 - 🎥 sh2mp4 - convert shell scripts to videos](/dev/sh/sh2mp4)
 * [2025-05-14 - 🔌 simple9p - a minimal 9p server](/dev/c/simple9p)
+* [2025-05-12 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-11 - 🧊 blkcache - userspace disk cache](/dev/python/blkcache)
 * [2025-05-06 - 🚻 vwc - wc with a live preview](/dev/python/vwc)
 * [2025-04-28 - 💽 rip - an archive.org disk archiver](/dev/sh/rip)
