@@ -15,10 +15,12 @@ The 5th and hopefully final iteration of [my](~) personal website.
 
 ## grep log
 
+
+* [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
+* [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-20 - 📺 tvmux - recording tmux sessions](/dev/sh/tvmux)
 * [2025-05-20 - 🎥 sh2mp4 - convert shell scripts to videos](/dev/sh/sh2mp4)
 * [2025-05-14 - 🔌 simple9p - a minimal 9p server](/dev/c/simple9p)
-* [2025-05-12 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-11 - 🧊 blkcache - userspace disk cache](/dev/python/blkcache)
 * [2025-05-06 - 🚻 vwc - wc with a live preview](/dev/python/vwc)
 * [2025-04-28 - 💽 rip - an archive.org disk archiver](/dev/sh/rip)

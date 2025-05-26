@@ -55,6 +55,7 @@ An incomplete list of languages.
 * [🔨 c++](c++) - Mostly Irrlicht Engine stuff
 * [🖼️ glsl](glsl) - OpenGL Shader Language
 * [☕ java](java) - Mostly Android
+* [📜 javascript](js) - Don't make me hurt you
 * [💬 mirc](mirc) - mIRC scripting in the days of IRC
 * [📱 objective c](objective-c) - Back in the iPhone days
 * [🐍 python](python) - My weapon of choice
