@@ -22,6 +22,3 @@ might one day help us to become more careful drivers.
 * [📚 language](words)
 * [🐍 lies](truth)
 * [👍 good](goods)
-
-## [⚠️ work in progress](wip)...
-
