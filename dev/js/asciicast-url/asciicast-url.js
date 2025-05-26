@@ -88,9 +88,6 @@ async function gzipDecompress(data) {
     return new TextDecoder().decode(result);
 }
 
-function getQueryParam(name) {
-    return new URLSearchParams(window.location.search).get(name);
-}
 
 // Handle GO button click
 goButton.addEventListener('click', async () => {
@@ -118,9 +115,9 @@ goButton.addEventListener('click', async () => {
         statusEl.textContent = 'b62...';
         const encoded = base62Encode(compressed);
         
-        // Create shareable URL
+        // Use hash - no server limits
         const url = new URL(window.location);
-        url.searchParams.set('cast', encoded);
+        url.hash = encoded;
         
         const fullUrl = url.toString();
         
@@ -146,8 +143,8 @@ goButton.addEventListener('click', async () => {
 
 // Main processing function
 async function processAsciicast() {
-    const castParam = getQueryParam('cast');
-    if (!castParam) {
+    const castData = window.location.hash.substring(1);
+    if (!castData) {
         statusEl.textContent = 'Gimme asciicast.';
         uploadContainer.classList.remove('hidden');
         
@@ -172,7 +169,7 @@ async function processAsciicast() {
     
     try {
         statusEl.textContent = 'Decoding base62 data...';
-        const decodedData = base62Decode(castParam);
+        const decodedData = base62Decode(castData);
         statusEl.textContent = 'Decompressing gzip data...';
         const decompressedText = await gzipDecompress(decodedData);
         
