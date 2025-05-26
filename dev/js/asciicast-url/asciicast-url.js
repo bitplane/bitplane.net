@@ -5,6 +5,7 @@ const uploadContainer = document.getElementById('upload-container');
 const asciicastInput = document.getElementById('asciicast-input');
 const goButton = document.getElementById('go-button');
 const shareLink = document.getElementById('share-link');
+const fileInput = document.getElementById('file-input');
 
 const BASE62_CHARS = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -88,6 +89,17 @@ async function gzipDecompress(data) {
     return new TextDecoder().decode(result);
 }
 
+// Handle file selection
+fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        asciicastInput.value = e.target.result;
+    };
+    reader.readAsText(file);
+});
 
 // Handle GO button click
 goButton.addEventListener('click', async () => {

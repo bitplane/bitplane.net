@@ -7,9 +7,9 @@ Plays an asciinema cast file encoded in the URL
 <div id="player-container" class="hidden"></div>
 
 <div id="upload-container" class="hidden">
-    <h2>Upload or Paste Asciicast</h2>
+    <h2>Select or Paste Asciicast</h2>
     <input type="file" id="file-input" accept=".cast,.json">
-    <textarea id="asciicast-input" placeholder="Or paste your asciicast JSON here..." rows="10"></textarea>
+    <textarea id="asciicast-input" placeholder="Paste asciicast data here..." rows="10"></textarea>
     <button id="go-button">GO!</button>
     <div id="link-container" class="hidden">
         <p>Shareable link:</p>
