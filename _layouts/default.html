@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/terminal.min.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/code.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {% include hostname.html %}
     {% if page.features %}{% for feature in page.features %}
     	{% include {{ feature | append: ".html" }} %}    
     {% endfor %}{% endif %}

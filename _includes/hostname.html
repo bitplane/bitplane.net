@@ -1,0 +1,9 @@
+{% capture current_hostname %}{% include /etc/hostname %}{% endcapture %}
+{% capture fqdn_hostname %}{% include /etc/hostname.fqdn %}{% endcapture %}
+{% capture github_hostname %}{% include /etc/hostname.github %}{% endcapture %}
+{% assign current_hostname = current_hostname | strip %}
+{% assign fqdn_hostname = fqdn_hostname | strip %}
+{% assign github_hostname = github_hostname | strip %}
+{% if current_hostname == github_hostname and site.url contains fqdn_hostname %}
+<meta http-equiv="refresh" content="0; url=https://{{ github_hostname }}{{ page.url }}">
+{% endif %}

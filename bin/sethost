@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Read configuration from separate files
+SITE_FQDN=$(cat ./etc/hostname.fqdn)
+SITE_EXPIRY=$(cat ./etc/hostname.expiry)
+SITE_GITHUB=$(cat ./etc/hostname.github)
+
+# Get current date in seconds since epoch
+current_date=$(date +%s)
+
+# Parse expiry date and calculate 7 days before
+expiry_date=$(date -d "$SITE_EXPIRY" +%s)
+seven_days_before=$((expiry_date - 7 * 24 * 60 * 60))
+
+# Calculate the cron schedule (7 days before expiry)
+switch_date=$(date -d "$SITE_EXPIRY - 7 days" +"%d %m")
+cron_day=$(echo $switch_date | cut -d' ' -f1)
+cron_month=$(echo $switch_date | cut -d' ' -f2)
+
+# Remove leading zeros for cron format
+cron_day=$((10#$cron_day))
+cron_month=$((10#$cron_month))
+
+# Determine which hostname to use
+if [ $current_date -ge $seven_days_before ]; then
+    # We're within 7 days of expiry, switch to GitHub Pages
+    hostname="$SITE_GITHUB"
+else
+    # Use the custom domain
+    hostname="$SITE_FQDN"
+fi
+
+# Update hostname file
+echo "$hostname" > ./etc/hostname
+
+# Update CNAME file
+echo "$hostname" > ./CNAME
+
+# Update Jekyll config URL
+sed -i "s|^url:.*|url: https://$hostname|" ./_config.yml
+# If no url line exists, add it after the include line
+if ! grep -q "^url:" ./_config.yml; then
+    sed -i "/^include:/a url: https://$hostname" ./_config.yml
+fi
+
+# Update GitHub Actions workflow schedule if it exists
+workflow_file=".github/workflows/domain-switch.yml"
+if [ -f "$workflow_file" ]; then
+    # Update the cron line using sed
+    sed -i "s/- cron: '.*'  # Schedule updated by sethost script/- cron: '0 0 $cron_day $cron_month *'  # Schedule updated by sethost script/" "$workflow_file"
+fi
+
+echo "Hostname set to: $hostname"
+echo "Workflow scheduled for: $cron_day $cron_month ($(date -d "$SITE_EXPIRY - 7 days" +"%B %d, %Y"))"

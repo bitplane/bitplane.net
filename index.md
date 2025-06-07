@@ -10,11 +10,10 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * 📦 [/dev](dev)   - Programming projects
 * 📅 [/log](log)   - Chronological index
 * 🏠 [~](~)        - Files and stuff
-* 🔌 [/mnt](mnt)   - External files. TODO: move to `~`
+* 🔌 [/mnt](mnt)   - External files
 
 
 ## grep log
-
 
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
 * [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
