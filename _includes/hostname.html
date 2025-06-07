@@ -1,6 +1,6 @@
-{% capture current_hostname %}{% include /etc/hostname %}{% endcapture %}
-{% capture fqdn_hostname %}{% include /etc/hostname.fqdn %}{% endcapture %}
-{% capture github_hostname %}{% include /etc/hostname.github %}{% endcapture %}
+{% capture current_hostname %}{% include ../CNAME %}{% endcapture %}
+{% capture fqdn_hostname %}{% include ../etc/hostname.fqdn %}{% endcapture %}
+{% capture github_hostname %}{% include ../etc/hostname.github %}{% endcapture %}
 {% assign current_hostname = current_hostname | strip %}
 {% assign fqdn_hostname = fqdn_hostname | strip %}
 {% assign github_hostname = github_hostname | strip %}
