@@ -36,6 +36,11 @@ echo "$hostname" > ./etc/hostname
 # Update CNAME file
 echo "$hostname" > ./CNAME
 
+# Update _includes files for Jekyll
+echo "$hostname" > ./_includes/CNAME
+cp ./etc/hostname.fqdn ./_includes/hostname.fqdn
+cp ./etc/hostname.github ./_includes/hostname.github
+
 # Update Jekyll config URL
 sed -i "s|^url:.*|url: https://$hostname|" ./_config.yml
 # If no url line exists, add it after the include line
