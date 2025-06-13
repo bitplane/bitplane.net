@@ -33,7 +33,7 @@ fi
 
 
 # commit hash of an empty git repo
-EMPTY_TREE=$(echo -n 'tree 0\0' | sha1sum | cut -f 1 -d ' ')
+EMPTY_TREE=$(printf "tree 0\0" | sha1sum | cut -f 1 -d ' ')
 
 alias git-dump="git diff $EMPTY_TREE --"
 ```
