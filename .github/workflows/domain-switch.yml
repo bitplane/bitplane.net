@@ -1,14 +1,14 @@
 name: Domain Switch
 
 on:
-  push:
-    paths:
-      - 'bin/sethost'
-      - 'etc/hostname*'
-      - 'CNAME'
-  schedule:
-    - cron: '0 0 12 1 *'  # Schedule updated by sethost script
-  workflow_dispatch: # Allow manual trigger for testing
+  #  push:
+  #  paths:
+  #    - 'bin/sethost'
+  #    - 'etc/hostname*'
+  #    - 'CNAME'
+  #schedule:
+  #  - cron: '0 0 12 1 *'  # Schedule updated by sethost script
+  #workflow_dispatch: # Allow manual trigger for testing
 
 jobs:
   update-hostname:
