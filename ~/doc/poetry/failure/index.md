@@ -1,5 +1,6 @@
 # ⛔ Failure's Prize
 
+```text
 It's been a while
 Too long
 Too short on time to try to start again
@@ -30,3 +31,4 @@ To far too late to get back up again
 So it's goodbye
 So long
 So sorry to my family and friends
+```
