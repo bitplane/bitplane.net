@@ -5,7 +5,7 @@ Userspace transparent block device cache.
 ## ⬇️ Deps
 
 ```
-sudo apt install libndb-bin nbdkit-plugin-python nbdfuse fuse3
+sudo apt install libnbd-bin nbdkit-plugin-python nbdfuse fuse3
 ```
 
 ## ℹ️ Usage
