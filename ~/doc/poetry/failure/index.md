@@ -27,7 +27,7 @@ Men die because that's gone not 'cause they're ill
 
 It's been a while
 Too long
-To far too late to get back up again
+Too far too late to get back up again
 So it's goodbye
 So long
 So sorry to my family and friends
