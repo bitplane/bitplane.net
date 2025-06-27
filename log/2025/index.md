@@ -3,7 +3,6 @@ features: ["date-list"]
 ---
 # 📅 2025
 
-* [2025-06-26 - 🗒️ failure](06/windsor-house)
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
 * [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-20 - 🎥 sh2mp4 - convert shell scripts to videos](/dev/sh/sh2mp4)

@@ -8,3 +8,4 @@
 
 * [👻 dualism](ghosts)
 * [🔢 infinity](nan)
+* [💥 metaethics](ethics)

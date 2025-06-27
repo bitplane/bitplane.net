@@ -26,9 +26,9 @@ our surplus freely.
 
 Which we do, because we're good people.
 
-Our goodness nourishes the programming parasite, feeding the segmentation of
-people into cohorts, and of society, and of families, and of people from their
-values.
+It's our goodness that nourishes the programming parasite, feeding the
+segmentation of people into cohorts, and of society, and of families, and of
+people from their values.
 
 This isn't about powerful humans selling trinkets to steal the labour of others.
 That is of course the means, but the ends are a runaway corruption of good
