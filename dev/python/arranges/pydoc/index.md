@@ -94,6 +94,36 @@ def from_iterable(cls, iterable: Iterable) -> tuple[Segment]
 
 Sort and merge a list of ranges.
 
+<a id="arranges.ranges.Ranges.__hash__"></a>
+
+#### \_\_hash\_\_
+
+```python
+def __hash__()
+```
+
+The hash of the string (which is what these things are)
+
+<a id="arranges.ranges.Ranges.__len__"></a>
+
+#### \_\_len\_\_
+
+```python
+def __len__() -> int
+```
+
+Get the total length of all ranges
+
+<a id="arranges.ranges.Ranges.__bool__"></a>
+
+#### \_\_bool\_\_
+
+```python
+def __bool__() -> bool
+```
+
+True if this range has any elements
+
 <a id="arranges.ranges.Ranges.__eq__"></a>
 
 #### \_\_eq\_\_
@@ -166,6 +196,56 @@ def __and__(other: "Ranges") -> "Ranges"
 
 Return the intersection of this range and the other
 
+<a id="arranges.ranges.Ranges.__le__"></a>
+
+#### \_\_le\_\_
+
+```python
+def __le__(other: "Ranges") -> bool
+```
+
+Subset operator (<=): True if self is a subset of other
+
+<a id="arranges.ranges.Ranges.__lt__"></a>
+
+#### \_\_lt\_\_
+
+```python
+def __lt__(other: "Ranges") -> bool
+```
+
+Proper subset operator (<): True if self is a proper subset of other
+
+<a id="arranges.ranges.Ranges.__ge__"></a>
+
+#### \_\_ge\_\_
+
+```python
+def __ge__(other: "Ranges") -> bool
+```
+
+Superset operator (>=): True if self is a superset of other
+
+<a id="arranges.ranges.Ranges.__gt__"></a>
+
+#### \_\_gt\_\_
+
+```python
+def __gt__(other: "Ranges") -> bool
+```
+
+Proper superset operator (>): True if self is a proper superset of other
+
+<a id="arranges.ranges.Ranges.__sub__"></a>
+
+#### \_\_sub\_\_
+
+```python
+def __sub__(other: "Ranges") -> "Ranges"
+```
+
+Relative complement operator (-): Return elements in self that are not in other
+
 <a id="arranges.ranges.Ranges.__invert__"></a>
 
 #### \_\_invert\_\_
@@ -198,6 +278,28 @@ def __get_pydantic_core_schema__(cls, source_type: Any,
 ```
 
 For automatic validation in pydantic
+
+<a id="arranges.ranges.Ranges.first"></a>
+
+#### first
+
+```python
+@property
+def first()
+```
+
+The start value of the first segment
+
+<a id="arranges.ranges.Ranges.last"></a>
+
+#### last
+
+```python
+@property
+def last()
+```
+
+The last value of the final segment
 
 <a id="arranges.segment"></a>
 
@@ -369,6 +471,46 @@ def intersects(other: "Segment") -> bool
 
 True if this range intersects the other range.
 
+<a id="arranges.segment.Segment.__lt__"></a>
+
+#### \_\_lt\_\_
+
+```python
+def __lt__(other: "Segment") -> bool
+```
+
+Compare segments by (start, stop) tuple
+
+<a id="arranges.segment.Segment.__le__"></a>
+
+#### \_\_le\_\_
+
+```python
+def __le__(other: "Segment") -> bool
+```
+
+Compare segments by (start, stop) tuple
+
+<a id="arranges.segment.Segment.__gt__"></a>
+
+#### \_\_gt\_\_
+
+```python
+def __gt__(other: "Segment") -> bool
+```
+
+Compare segments by (start, stop) tuple
+
+<a id="arranges.segment.Segment.__ge__"></a>
+
+#### \_\_ge\_\_
+
+```python
+def __ge__(other: "Segment") -> bool
+```
+
+Compare segments by (start, stop) tuple
+
 <a id="arranges.segment.Segment.__contains__"></a>
 
 #### \_\_contains\_\_
@@ -423,6 +565,16 @@ When used as an index, return a huge integer rather than infinity.
 
 This is necessary because CPython doesn't allow lengths larger than
 sys.maxsize, and Python has no way to represent infinity as an integer.
+
+<a id="arranges.utils._Boundless.__hash__"></a>
+
+#### \_\_hash\_\_
+
+```python
+def __hash__() -> int
+```
+
+Make this hashable so it can be used in sets
 
 <a id="arranges.utils.inf"></a>
 
