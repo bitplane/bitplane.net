@@ -15,6 +15,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 
 ## grep log
 
+* [2025-07-06 - 🔢 texxd - terminal text editor](/dev/python/texxd)
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
 * [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-20 - 📺 tvmux - recording tmux sessions](/dev/sh/tvmux)
