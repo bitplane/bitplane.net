@@ -14,7 +14,8 @@ that's still fair comment.
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
 ## apps
-
+* 🔢 [texxd](texxd) -
+  a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
   a userspace disk cache for CDs and DVDs.
 * 🚻 [vwc](vwc) -
