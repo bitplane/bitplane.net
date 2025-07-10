@@ -14,6 +14,8 @@ that's still fair comment.
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
 ## apps
+* 📺 [textual-tty](textual-tty) -
+  a terminal for textual and headless rendering.
 * 🔢 [texxd](texxd) -
   a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
