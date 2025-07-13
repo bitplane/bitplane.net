@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2025
 
+* [2025-07-13 - 🌍 tldarc - 200 million domain names](07/tldarc)
 * [2025-07-09 - 📺 textual-tty - a terminal for TUIs](/dev/python/textual-tty)
 * [2025-07-06 - 🔢 texxd - terminal text editor](/dev/python/texxd)
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)

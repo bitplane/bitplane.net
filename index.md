@@ -14,6 +14,8 @@ The 5th and hopefully final iteration of [my](~) personal website.
 
 
 ## grep log
+* [2025-07-13 - 🌍 tldarc - 200 million domain names](log/2025/07/tldarc)
+* [2025-07-09 - 📺 textual-tty - a terminal for TUIs](/dev/python/textual-tty)
 * [2025-07-06 - 🔢 texxd - terminal text editor](/dev/python/texxd)
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
 * [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
