@@ -6,7 +6,7 @@ features: ["date-list"]
 * [2025-07-13 - ⛅ weather - since records began](07/met-office-scrape)
 * [2025-07-13 - 🌍 tldarc - 200 million domain names](07/tldarc)
 * [2025-07-09 - 📺 textual-tty - a terminal for TUIs](/dev/python/textual-tty)
-* [2025-07-06 - 🔢 texxd - terminal text editor](/dev/python/texxd)
+* [2025-07-06 - 🔢 texxd - terminal hex editor](/dev/python/texxd)
 * [2025-05-26 - 📺 asciicast-url - url encode asciicasts](/dev/js/asciicast-url)
 * [2025-05-22 - 🪖 inspection - tmux setup](/dev/sh/inspection)
 * [2025-05-20 - 🎥 sh2mp4 - convert shell scripts to videos](/dev/sh/sh2mp4)

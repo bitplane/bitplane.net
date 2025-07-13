@@ -17,28 +17,29 @@ Some still-active things, or at least not inactive.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
-* [💬 uh-halp](python/uh-halp) -
-  AI helper for the shell.
-* [🐳 dockershit](python/dockershit) -
-  Interactive shell for dockerfile editing.
+* [🗔  textual-tty](python/textual-tty) -
+  A terminal passthrough written in pure python.
+* [💽 blkcache](python/blkcache) -
+  A ddrescue compatible block cache.
 * [🏠 bitplane.net](https://github.com/bitplane/bitplane.net) -
   The Jekyll source for this website.
 
-## 🏆 Worth a look
+## 🏆 Also worth a look
 
 I like these.
 
 * [🤝 arranges](python/arranges) -
   Represent ranges as strings in Pydantic.
-* [🪈 benpipe](https://github.com/bitplane/benpipe) -
-  Convert bencoded data to JSON and back again.
+* [💬 uh-halp](python/uh-halp) -
+  AI helper for the shell.
 * [👾 Irrlicht Engine](c++) -
   Spent a couple of years as a dev on this open source project.
 
 ## 😎 Fun stuff
 
 * [⚠️ ienv](/dev/python/ienv) -
-  Brutalize your venvs by symlinking them together.
+  Brutalize your venvs by symlinking them together. Probably not required now `uv`
+  is a thing.
 * [🎲 schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
 * [🐌 connection-limiter](https://github.com/bitplane/connection-limiter) -
