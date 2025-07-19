@@ -1,11 +1,11 @@
-# arrayfile
+# 📃 arrayfile
 
 A file-backed numeric array using struct.pack. Does not support inserts or
 slicing.
 
 Smaller than relying on numpy though.
 
-## Installation
+## ▶️ Installation
 
 ```bash
 pip install arrayfile
@@ -13,7 +13,7 @@ pip install arrayfile
 
 ## Usage
 
-### Temporary Array
+### 🗑 Temporary Array
 
 This creates an array in your temp dir:
 
@@ -31,7 +31,7 @@ print(f"Values: {[arr[i] for i in range(len(arr))]}")
 arr.close()  # Clean up resources
 ```
 
-### Persistent Array
+### 💽 Persistent Array
 
 You can use the same file, if you want to persist your data across sessions:
 
@@ -55,7 +55,7 @@ arr.append(2000)
 arr.close()
 ```
 
-## Context manager
+## 🔧 Context manager
 
 It has a finalizer in case you forget to call `close()`, but if you like to keep
 your code tidy, you can use a context manager, like so:
@@ -71,4 +71,19 @@ with Array('d', 'measurements.array', 'w+b') as arr:
     for i, value in enumerate(arr):
         print(f"  {i}: {value:.15f}")
 ```
+
+## ⚖️ License
+
+WTFPL with one extra clause:
+
+1. Don't blame me.
+
+Do what you like, but you're on your own.
+
+## 🔗 Links
+
+* [🏠 home](https://bitplane.net/dev/python/arrayfile)
+* [📖 pydoc](https://bitplane.net/dev/python/arrayfile/pydoc)
+* [🐍 pypi](https://pypi.org/project/arrayfile)
+* [🐱 github](https://github.com/bitplane/arrayfile)
 
