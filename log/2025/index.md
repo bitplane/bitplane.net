@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2025
 
+* [2025-07-19 - 📃 arrayfile - an mmapped python array](/dev/python/arrayfile)
 * [2025-07-13 - ⛅ weather - since records began](07/met-office-scrape)
 * [2025-07-13 - 🌍 tldarc - 200 million domain names](07/tldarc)
 * [2025-07-09 - 📺 textual-tty - a terminal for TUIs](/dev/python/textual-tty)

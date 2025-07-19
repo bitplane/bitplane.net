@@ -44,6 +44,8 @@ that's still fair comment.
 
 ## Libraries
 
+* 📃 [arrayfile](arrayfile) -
+  A file-backed array.
 * ✅ [upd8](upd8) -
   a versioned class for identity and update checking.
 * ⛰️ [arranges](arranges) -
