@@ -117,6 +117,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * [2008-02-17 - 👾 impostors](/dev/c++/impostors)
 * [2007-10-24 - 📔 comic book print shader](/dev/glsl)
 * [2007-04-09 - ⚒️ fix Wayback Machine zips](/dev/c/wayback-zip)
+* [2007-04-05 - 🖕 rhserve.com deleted my site](log/2007/04/rhserve)
 * [2007-03-27 - 🌐 bitplane.net v3.0 (e107)](log/2007/03/website)
 * [2007-01-01 - 🕹️ space irrvaders](/dev/c++/irrvaders)
 * [2006-04-13 - 🌐 bitplane.net v2.0 (CMSimple)](log/2006/04/website)
