@@ -168,10 +168,38 @@ Get the command to play back a cast file
 
 ```python
 def get_cast_config(cast_file: Path,
-                    playback_speed: float = 1.0) -> CastConfig
+                    playback_speed: float = 1.0,
+                    base_fps: int = 30) -> CastConfig
 ```
 
 Get complete configuration for recording a cast file
+
+<a id="sh2mp4.args"></a>
+
+# sh2mp4.args
+
+Argument parsing for sh2mp4
+
+<a id="sh2mp4.args.parse_args"></a>
+
+#### parse\_args
+
+```python
+def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace
+```
+
+Parse command line arguments - simple and straightforward
+
+<a id="sh2mp4.args.parse_and_validate_args"></a>
+
+#### parse\_and\_validate\_args
+
+```python
+def parse_and_validate_args(
+        argv: Optional[list[str]] = None) -> argparse.Namespace
+```
+
+Legacy wrapper - just parse args normally
 
 <a id="sh2mp4.fonts"></a>
 
@@ -551,16 +579,6 @@ async def record_command(args) -> int
 ```
 
 Main recording function
-
-<a id="sh2mp4.__main__.create_parser"></a>
-
-#### create\_parser
-
-```python
-def create_parser() -> argparse.ArgumentParser
-```
-
-Create the argument parser
 
 <a id="sh2mp4.__main__.main"></a>
 
