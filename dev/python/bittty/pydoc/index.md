@@ -11,21 +11,7 @@ that provides comprehensive ANSI sequence parsing and terminal state management.
 
 # bittty.tcaps
 
-The Terminal Capability Database.
-
-This module provides the `Terminal` class, which is responsible for loading
-and providing access to terminal capabilities from the system's terminfo
-database.
-
-In this emulator architecture, its primary role is NOT for display. Instead,
-it serves two main purposes:
-1.  **Input Emulation**: It provides the correct key codes to send to the
-    child application (e.g., the byte sequence for the F1 key or arrow keys).
-2.  **Feature Flags**: It tells the parser and screen writer about terminal
-    features (e.g., does this terminal support auto-margins?).
-
-It does NOT generate ANSI escape codes for screen drawing; that task is
-delegated to the Textual renderer.
+This module provides access to terminal capabilities from the terminfo database.
 
 <a id="bittty.tcaps.Terminal"></a>
 
@@ -45,7 +31,7 @@ Stores and provides access to a terminal's capabilities from terminfo.
 def __init__(term_name: str, overrides: str)
 ```
 
-Initializes the terminal definition. Replaces `tty_term_create`.
+Initializes the terminal definition.
 
 This loads the capabilities for the given terminal name from the system's
 terminfo database and then applies any user-provided overrides.
@@ -63,7 +49,7 @@ terminfo database and then applies any user-provided overrides.
 def has(cap: str) -> bool
 ```
 
-Checks if the terminal has a given capability. Replaces `tty_term_has`.
+Checks if the terminal has a given capability.
 
 <a id="bittty.tcaps.Terminal.get_string"></a>
 
@@ -73,7 +59,7 @@ Checks if the terminal has a given capability. Replaces `tty_term_has`.
 def get_string(cap: str) -> str
 ```
 
-Gets a string capability. Replaces `tty_term_string`.
+Gets a string capability.
 
 This is the primary method for retrieving key codes (e.g., "kcuu1" for
 up arrow) to send to the child application.
@@ -86,7 +72,7 @@ up arrow) to send to the child application.
 def get_number(cap: str) -> int
 ```
 
-Gets a numeric capability. Replaces `tty_term_number`.
+Gets a numeric capability.
 
 <a id="bittty.tcaps.Terminal.get_flag"></a>
 
@@ -96,7 +82,7 @@ Gets a numeric capability. Replaces `tty_term_number`.
 def get_flag(cap: str) -> bool
 ```
 
-Gets a boolean flag capability. Replaces `tty_term_flag`.
+Gets a boolean flag capability.
 
 <a id="bittty.tcaps.Terminal.describe"></a>
 
@@ -107,16 +93,12 @@ def describe() -> str
 ```
 
 Returns a descriptive string of all loaded capabilities for debugging.
-Replaces `tty_term_describe`.
 
 <a id="bittty.buffer"></a>
 
 # bittty.buffer
 
-Terminal Buffer: Grid-based terminal content storage.
-
-This module provides the Buffer class that manages terminal screen content
-as a 2D grid of (ansi_code, character) tuples.
+A grid-based terminal buffer.
 
 <a id="bittty.buffer.Buffer"></a>
 
@@ -126,11 +108,7 @@ as a 2D grid of (ansi_code, character) tuples.
 class Buffer()
 ```
 
-A buffer that stores terminal content as a 2D grid.
-
-Each cell contains a tuple of (ansi_code, character) where:
-- ansi_code: ANSI escape sequence for styling (empty string for no styling)
-- character: The actual character to display
+A 2D grid that stores terminal content.
 
 <a id="bittty.buffer.Buffer.__init__"></a>
 
@@ -284,7 +262,7 @@ def get_line(y: int,
              show_mouse: bool = False) -> str
 ```
 
-Get full ANSI sequence for a line (like tmux capture-pane).
+Get full ANSI sequence for a line.
 
 <a id="bittty.buffer.Buffer.get_line_tuple"></a>
 
@@ -301,23 +279,13 @@ def get_line_tuple(y: int,
                    show_mouse: bool = False) -> tuple
 ```
 
-Get line as hashable tuple for caching: (ansi_code, char, ansi_code, char, ...)
+Get line as a hashable tuple for caching.
 
 <a id="bittty.parser"></a>
 
 # bittty.parser
 
-The Terminal Parser: A state machine for processing terminal input streams.
-
-This module provides the `Parser` class, which consumes a stream of bytes
-from a pseudo-terminal (pty) and translates it into high-level calls to a
-`ScreenWriter` API.
-
-It is a direct architectural port of tmux's `input.c`, implementing the same
-finite state machine described by Paul Williams (https://vt100.net/emu/).
-
-The core logic is in the `feed()` method, which processes each byte, moves
-between states, and calls the appropriate handler methods for escape sequences.
+A state machine for processing terminal input streams.
 
 <a id="bittty.parser.Parser"></a>
 
@@ -329,8 +297,8 @@ class Parser()
 
 A state machine that parses a stream of terminal control codes.
 
-The parser is always in one of several states (GROUND, ESCAPE, CSI_ENTRY,
-etc.). Each byte fed to the `feed()` method can cause a transition to a new
+The parser is always in one of several states (e.g. GROUND, ESCAPE, CSI_ENTRY).
+Each byte fed to the `feed()` method can cause a transition to a new
 state and/or execute a handler for a recognized escape sequence.
 
 <a id="bittty.parser.Parser.__init__"></a>
@@ -341,7 +309,7 @@ state and/or execute a handler for a recognized escape sequence.
 def __init__(terminal: Terminal) -> None
 ```
 
-Initializes the parser state. Replaces `input_init()`.
+Initializes the parser state.
 
 **Arguments**:
 
@@ -355,7 +323,7 @@ Initializes the parser state. Replaces `input_init()`.
 def feed(data: str) -> None
 ```
 
-Feeds a chunk of text into the parser. Replaces `input_parse_buffer()`.
+Feeds a chunk of text into the parser.
 
 This is the main entry point. It iterates over the data and passes each
 character to the state machine engine.
@@ -374,11 +342,9 @@ Resets the parser to its initial ground state.
 
 # bittty.terminal
 
-Terminal: Base terminal emulator class.
+A terminal emulator.
 
-This module provides the core Terminal class that manages terminal state,
-process control, and screen buffers. UI frameworks can subclass this to
-create terminal widgets.
+UI frameworks can subclass this to create terminal widgets.
 
 <a id="bittty.terminal.Terminal"></a>
 
@@ -388,7 +354,7 @@ create terminal widgets.
 class Terminal()
 ```
 
-Base terminal emulator with process management and screen buffers.
+A terminal emulator with process management and screen buffers.
 
 This class handles all terminal logic but has no UI dependencies.
 Subclass this to create terminal widgets for specific UI frameworks.
@@ -404,16 +370,6 @@ def get_pty_handler(rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
 ```
 
 Create a platform-appropriate PTY handler.
-
-**Arguments**:
-
-- `rows` - Terminal height in characters
-- `cols` - Terminal width in characters
-  
-
-**Returns**:
-
-  PTY handler object with read/write/resize interface
 
 <a id="bittty.terminal.Terminal.__init__"></a>
 
@@ -467,7 +423,7 @@ Get current screen content as raw buffer data.
 def capture_pane() -> str
 ```
 
-Capture terminal content like tmux capture-pane.
+Capture terminal content.
 
 <a id="bittty.terminal.Terminal.write_text"></a>
 
@@ -891,8 +847,6 @@ Invalid argument
 
 Windows PTY implementation using pywinpty.
 
-This module provides PTY functionality for Windows systems.
-
 <a id="bittty.pty_windows.WinptyProcessWrapper"></a>
 
 ## WinptyProcessWrapper Objects
@@ -1140,10 +1094,6 @@ Async read from PTY. Returns empty string when no data available.
 
 Style merging for ANSI escape sequences.
 
-NOTE: We work directly with ANSI strings for performance.
-No intermediate objects are created in the hot path.
-Everything is string-to-string mapping with heavy caching.
-
 <a id="bittty.style.has_pattern"></a>
 
 #### has\_pattern
@@ -1208,25 +1158,11 @@ def merge_ansi_styles(base: str, new: str) -> str
 
 Merge two ANSI style sequences.
 
-This is the hot path - it directly maps two ANSI strings to a merged result.
-
-**Arguments**:
-
-- `base` - Existing ANSI sequence (e.g., "[31m")
-- `new` - New ANSI sequence to apply (e.g., "[1m")
-  
-
-**Returns**:
-
-  Merged ANSI sequence (e.g., "[31;1m")
-
 <a id="bittty.pty_unix"></a>
 
 # bittty.pty\_unix
 
 Unix/Linux/macOS PTY implementation.
-
-This module provides PTY functionality for Unix-like systems.
 
 <a id="bittty.pty_unix.UnixPTY"></a>
 
@@ -1313,10 +1249,7 @@ Async read from PTY. Returns empty string when no data available.
 
 # bittty.color
 
-ANSI Sequence Cache: LRU-cached functions for generating ANSI escape sequences.
-
-This module provides high-performance ANSI sequence generation by caching
-commonly used combinations of colors and styles.
+Functions for generating ANSI escape sequences.
 
 <a id="bittty.color.get_color_code"></a>
 
@@ -1405,7 +1338,6 @@ def get_combined_code(fg: Optional[int] = None,
 
 Generate a combined ANSI code for colors and styles.
 
-This is the main function to use for complete styling.
 RGB colors take precedence over palette colors.
 
 **Returns**:
