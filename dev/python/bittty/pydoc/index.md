@@ -13,17 +13,17 @@ that provides comprehensive ANSI sequence parsing and terminal state management.
 
 This module provides access to terminal capabilities from the terminfo database.
 
-<a id="bittty.tcaps.Terminal"></a>
+<a id="bittty.tcaps.TermInfo"></a>
 
-## Terminal Objects
+## TermInfo Objects
 
 ```python
-class Terminal()
+class TermInfo()
 ```
 
 Stores and provides access to a terminal's capabilities from terminfo.
 
-<a id="bittty.tcaps.Terminal.__init__"></a>
+<a id="bittty.tcaps.TermInfo.__init__"></a>
 
 #### \_\_init\_\_
 
@@ -41,7 +41,7 @@ terminfo database and then applies any user-provided overrides.
 - `term_name` - The terminal name (e.g., "xterm-256color").
 - `overrides` - A string of user-defined overrides, like in tmux.conf.
 
-<a id="bittty.tcaps.Terminal.has"></a>
+<a id="bittty.tcaps.TermInfo.has"></a>
 
 #### has
 
@@ -51,7 +51,7 @@ def has(cap: str) -> bool
 
 Checks if the terminal has a given capability.
 
-<a id="bittty.tcaps.Terminal.get_string"></a>
+<a id="bittty.tcaps.TermInfo.get_string"></a>
 
 #### get\_string
 
@@ -64,7 +64,7 @@ Gets a string capability.
 This is the primary method for retrieving key codes (e.g., "kcuu1" for
 up arrow) to send to the child application.
 
-<a id="bittty.tcaps.Terminal.get_number"></a>
+<a id="bittty.tcaps.TermInfo.get_number"></a>
 
 #### get\_number
 
@@ -74,7 +74,7 @@ def get_number(cap: str) -> int
 
 Gets a numeric capability.
 
-<a id="bittty.tcaps.Terminal.get_flag"></a>
+<a id="bittty.tcaps.TermInfo.get_flag"></a>
 
 #### get\_flag
 
@@ -84,7 +84,7 @@ def get_flag(cap: str) -> bool
 
 Gets a boolean flag capability.
 
-<a id="bittty.tcaps.Terminal.describe"></a>
+<a id="bittty.tcaps.TermInfo.describe"></a>
 
 #### describe
 
@@ -868,6 +868,26 @@ Handle mouse input, cache position, and send appropriate sequence to PTY.
 - `event_type` - "press", "release", or "move".
 - `modifiers` - A set of active modifiers ("shift", "meta", "ctrl").
 
+<a id="bittty.terminal.Terminal.send"></a>
+
+#### send
+
+```python
+def send(data: str) -> None
+```
+
+Send data to PTY without flushing (for regular input/unsolicited messages).
+
+<a id="bittty.terminal.Terminal.respond"></a>
+
+#### respond
+
+```python
+def respond(data: str) -> None
+```
+
+Send response to PTY with immediate flush (for query responses).
+
 <a id="bittty.terminal.Terminal.start_process"></a>
 
 #### start\_process
@@ -1102,6 +1122,16 @@ async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 
 Async read from PTY. Returns empty string when no data available.
 
+<a id="bittty.pty_windows.WindowsPTY.flush"></a>
+
+#### flush
+
+```python
+def flush() -> None
+```
+
+Flush any buffered output.
+
 <a id="bittty.pty_base"></a>
 
 # bittty.pty\_base
@@ -1209,6 +1239,17 @@ async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
 Async read from PTY. Returns empty string when no data available.
+
+<a id="bittty.pty_base.PTYBase.flush"></a>
+
+#### flush
+
+```python
+@abstractmethod
+def flush() -> None
+```
+
+Flush any buffered output.
 
 <a id="bittty.style"></a>
 
@@ -1391,6 +1432,16 @@ async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
 Async read from PTY. Returns empty string when no data available.
+
+<a id="bittty.pty_unix.UnixPTY.flush"></a>
+
+#### flush
+
+```python
+def flush() -> None
+```
+
+Flush any buffered output.
 
 <a id="bittty.charsets"></a>
 
