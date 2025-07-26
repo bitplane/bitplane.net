@@ -14,8 +14,10 @@ that's still fair comment.
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
 ## apps
+* 🗔 [bittty](bittty) -
+  a pure python terminal emulator.
 * 📺 [textual-tty](textual-tty) -
-  a terminal for textual and headless rendering.
+  a Textual widget for bittty.
 * 🔢 [texxd](texxd) -
   a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
