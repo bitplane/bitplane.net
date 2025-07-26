@@ -145,17 +145,23 @@ Get cell at position.
 #### set\_cell
 
 ```python
-def set_cell(x: int, y: int, char: str, ansi_code: str = "") -> None
+def set_cell(x: int, y: int, char: str, style_or_ansi=None) -> None
 ```
 
 Set a single cell at position.
+
+**Arguments**:
+
+  x, y: Position
+- `char` - Character to store
+- `style_or_ansi` - Either a Style object or ANSI string (for backward compatibility)
 
 <a id="bittty.buffer.Buffer.set"></a>
 
 #### set
 
 ```python
-def set(x: int, y: int, text: str, ansi_code: str = "") -> None
+def set(x: int, y: int, text: str, style_or_ansi=None) -> None
 ```
 
 Set text at position, overwriting existing content.
@@ -165,7 +171,7 @@ Set text at position, overwriting existing content.
 #### insert
 
 ```python
-def insert(x: int, y: int, text: str, ansi_code: str = "") -> None
+def insert(x: int, y: int, text: str, style_or_ansi=None) -> None
 ```
 
 Insert text at position, shifting existing content right.
@@ -189,7 +195,7 @@ def clear_region(x1: int,
                  y1: int,
                  x2: int,
                  y2: int,
-                 ansi_code: str = "") -> None
+                 style_or_ansi=None) -> None
 ```
 
 Clear a rectangular region.
@@ -202,7 +208,7 @@ Clear a rectangular region.
 def clear_line(y: int,
                mode: int = constants.ERASE_FROM_CURSOR_TO_END,
                cursor_x: int = 0,
-               ansi_code: str = "") -> None
+               style_or_ansi=None) -> None
 ```
 
 Clear line content.
@@ -434,6 +440,86 @@ def write_text(text: str, ansi_code: str = "") -> None
 ```
 
 Write text at cursor position.
+
+<a id="bittty.terminal.Terminal.set_g0_charset"></a>
+
+#### set\_g0\_charset
+
+```python
+def set_g0_charset(charset: str) -> None
+```
+
+Set the G0 character set.
+
+<a id="bittty.terminal.Terminal.set_g1_charset"></a>
+
+#### set\_g1\_charset
+
+```python
+def set_g1_charset(charset: str) -> None
+```
+
+Set the G1 character set.
+
+<a id="bittty.terminal.Terminal.set_g2_charset"></a>
+
+#### set\_g2\_charset
+
+```python
+def set_g2_charset(charset: str) -> None
+```
+
+Set the G2 character set.
+
+<a id="bittty.terminal.Terminal.set_g3_charset"></a>
+
+#### set\_g3\_charset
+
+```python
+def set_g3_charset(charset: str) -> None
+```
+
+Set the G3 character set.
+
+<a id="bittty.terminal.Terminal.shift_in"></a>
+
+#### shift\_in
+
+```python
+def shift_in() -> None
+```
+
+Shift In (SI) - switch to G0.
+
+<a id="bittty.terminal.Terminal.shift_out"></a>
+
+#### shift\_out
+
+```python
+def shift_out() -> None
+```
+
+Shift Out (SO) - switch to G1.
+
+<a id="bittty.terminal.Terminal.single_shift_2"></a>
+
+#### single\_shift\_2
+
+```python
+def single_shift_2() -> None
+```
+
+Single Shift 2 (SS2) - use G2 for next character only.
+
+<a id="bittty.terminal.Terminal.single_shift_3"></a>
+
+#### single\_shift\_3
+
+```python
+def single_shift_3() -> None
+```
+
+Single Shift 3 (SS3) - use G3 for next character only.
 
 <a id="bittty.terminal.Terminal.move_cursor"></a>
 
@@ -729,6 +815,16 @@ def input_fkey(num: int, modifier: int = constants.KEY_MOD_NONE) -> None
 
 Convert function key + modifier to standard control codes, then send to input().
 
+<a id="bittty.terminal.Terminal.input_numpad_key"></a>
+
+#### input\_numpad\_key
+
+```python
+def input_numpad_key(key: str) -> None
+```
+
+Convert numpad key to appropriate sequence based on DECNKM mode.
+
 <a id="bittty.terminal.Terminal.input"></a>
 
 #### input
@@ -816,6 +912,18 @@ Line Feed
 #### CR
 
 Carriage Return
+
+<a id="bittty.constants.SO"></a>
+
+#### SO
+
+Shift Out (activate G1)
+
+<a id="bittty.constants.SI"></a>
+
+#### SI
+
+Shift In (activate G0)
 
 <a id="bittty.constants.ESC"></a>
 
@@ -1092,51 +1200,46 @@ Async read from PTY. Returns empty string when no data available.
 
 # bittty.style
 
-Style merging for ANSI escape sequences.
+<a id="bittty.style.Style"></a>
 
-<a id="bittty.style.has_pattern"></a>
-
-#### has\_pattern
+## Style Objects
 
 ```python
-@lru_cache(maxsize=20000)
-def has_pattern(ansi: str, patterns: tuple) -> bool
+@dataclass(frozen=True)
+class Style()
 ```
 
-Check if ANSI sequence contains any of the patterns.
+<a id="bittty.style.Style.merge"></a>
 
-<a id="bittty.style.extract_fg_color"></a>
-
-#### extract\_fg\_color
+#### merge
 
 ```python
-@lru_cache(maxsize=20000)
-def extract_fg_color(ansi: str) -> str
+def merge(other: Style) -> Style
 ```
 
-Extract foreground color parameter from ANSI sequence.
+Merge another style into this one. The other style takes precedence.
 
-<a id="bittty.style.extract_bg_color"></a>
+<a id="bittty.style.Style.diff"></a>
 
-#### extract\_bg\_color
+#### diff
 
 ```python
-@lru_cache(maxsize=20000)
-def extract_bg_color(ansi: str) -> str
+@lru_cache(maxsize=10000)
+def diff(other: "Style") -> str
 ```
 
-Extract background color parameter from ANSI sequence.
+Generate minimal ANSI sequence to transition to another style.
 
 <a id="bittty.style.get_background"></a>
 
 #### get\_background
 
 ```python
-@lru_cache(maxsize=20000)
+@lru_cache(maxsize=10000)
 def get_background(ansi: str) -> str
 ```
 
-Get just the background color from an ANSI sequence.
+Extract just the background color as an ANSI sequence.
 
 **Arguments**:
 
@@ -1152,11 +1255,41 @@ Get just the background color from an ANSI sequence.
 #### merge\_ansi\_styles
 
 ```python
-@lru_cache(maxsize=20000)
+@lru_cache(maxsize=10000)
 def merge_ansi_styles(base: str, new: str) -> str
 ```
 
-Merge two ANSI style sequences.
+Merge two ANSI style sequences, returning a new ANSI sequence.
+
+**Arguments**:
+
+- `base` - Base ANSI sequence
+- `new` - New ANSI sequence to merge
+  
+
+**Returns**:
+
+  Merged ANSI sequence
+
+<a id="bittty.style.style_to_ansi"></a>
+
+#### style\_to\_ansi
+
+```python
+@lru_cache(maxsize=10000)
+def style_to_ansi(style: Style) -> str
+```
+
+Convert a Style object back to an ANSI escape sequence.
+
+**Arguments**:
+
+- `style` - Style object to convert
+  
+
+**Returns**:
+
+  ANSI escape sequence string
 
 <a id="bittty.pty_unix"></a>
 
@@ -1244,6 +1377,22 @@ async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
 Async read from PTY. Returns empty string when no data available.
+
+<a id="bittty.charsets"></a>
+
+# bittty.charsets
+
+Character set mappings for terminal emulation.
+
+<a id="bittty.charsets.get_charset"></a>
+
+#### get\_charset
+
+```python
+def get_charset(designator: str) -> dict
+```
+
+Get character set mapping for a designator.
 
 <a id="bittty.color"></a>
 
