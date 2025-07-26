@@ -785,6 +785,20 @@ def set_cursor(x: Optional[int], y: Optional[int]) -> None
 
 Set cursor position (alias for move_cursor).
 
+<a id="bittty.terminal.Terminal.set_column_mode"></a>
+
+#### set\_column\_mode
+
+```python
+def set_column_mode(columns: int) -> None
+```
+
+Set terminal width for DECCOLM (column mode).
+
+**Arguments**:
+
+- `columns` - 80 for normal mode, 132 for wide mode
+
 <a id="bittty.terminal.Terminal.repeat_last_character"></a>
 
 #### repeat\_last\_character
