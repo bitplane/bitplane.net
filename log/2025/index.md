@@ -2,6 +2,7 @@
 features: ["date-list"]
 ---
 # 📅 2025
+* [2025-08-02 - 📺 tvmux - python rewrite](/dev/python/tvmux)
 * [2025-07-26 - 🗔  bittty - a pure python terminal emulator](/dev/python/bittty)
 * [2025-07-24 - 🎥 sh2mp4 - python rewrite](/dev/python/sh2mp4)
 * [2025-07-19 - 📃 arrayfile - an mmapped python array](/dev/python/arrayfile)

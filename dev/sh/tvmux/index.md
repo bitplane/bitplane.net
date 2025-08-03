@@ -2,6 +2,8 @@
 
 asciinema tmux pane recorder
 
+**DEPRECATED: [PYTHON VERSION](/dev/python/tvmux)**
+
 ## ⁉️ why!?
 
 I wanted to record my terminal development workflow, so I can later summarise it
