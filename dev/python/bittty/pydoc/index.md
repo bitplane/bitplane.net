@@ -1015,7 +1015,7 @@ Move cursor to position.
 def line_feed(is_wrapped: bool = False) -> None
 ```
 
-Perform line feed.
+Perform line feed, with optional carriage return if DECNLM is enabled.
 
 <a id="bittty.terminal.Terminal.carriage_return"></a>
 
