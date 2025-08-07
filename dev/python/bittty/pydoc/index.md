@@ -767,6 +767,73 @@ Get line as a hashable tuple for caching.
 
 A state machine for processing terminal input streams.
 
+<a id="bittty.parser.SS3_APPLICATION"></a>
+
+#### SS3\_APPLICATION
+
+Application keypad mode (3 chars)
+
+<a id="bittty.parser.SS3_CHARSET"></a>
+
+#### SS3\_CHARSET
+
+Single shift 3 for charset (2 chars)
+
+<a id="bittty.parser.compile_tokenizer"></a>
+
+#### compile\_tokenizer
+
+```python
+def compile_tokenizer(patterns)
+```
+
+Compile a tokenizer regex from a dict of patterns.
+
+<a id="bittty.parser.parse_csi_sequence"></a>
+
+#### parse\_csi\_sequence
+
+```python
+def parse_csi_sequence(data)
+```
+
+Parse complete CSI sequence and return params, intermediates, final char.
+
+CSI format: ESC [ [private_chars] [params] [intermediate_chars] final_char
+- private_chars: ? < = > (0x3C-0x3F)
+- params: digits and ; separators
+- intermediate_chars: space to / (0x20-0x2F)
+- final_char: @ to ~ (0x40-0x7E)
+
+**Arguments**:
+
+- `data` - Complete CSI sequence like '[1;2H' or '[?25h'
+  
+
+**Returns**:
+
+- `tuple` - (params_list, intermediate_chars, final_char)
+
+<a id="bittty.parser.parse_string_sequence"></a>
+
+#### parse\_string\_sequence
+
+```python
+def parse_string_sequence(data, sequence_type)
+```
+
+Parse complete string sequence (OSC, DCS, APC, etc.).
+
+**Arguments**:
+
+- `data` - Complete sequence like ']0;title'
+- `sequence_type` - Type of sequence ('osc', 'dcs', etc.)
+  
+
+**Returns**:
+
+- `str` - The string content without escape codes
+
 <a id="bittty.parser.Parser"></a>
 
 ## Parser Objects
@@ -795,18 +862,38 @@ Initializes the parser state.
 
 - `terminal` - A Terminal object that the parser will manipulate.
 
+<a id="bittty.parser.Parser.update_tokenizer"></a>
+
+#### update\_tokenizer
+
+```python
+def update_tokenizer()
+```
+
+Update the tokenizer regex based on current terminal state.
+
+<a id="bittty.parser.Parser.update_pattern"></a>
+
+#### update\_pattern
+
+```python
+def update_pattern(key: str, pattern: str)
+```
+
+Update a specific pattern in the tokenizer.
+
 <a id="bittty.parser.Parser.feed"></a>
 
 #### feed
 
 ```python
-def feed(data: str) -> None
+def feed(chunk: str) -> None
 ```
 
 Feeds a chunk of text into the parser.
 
-This is the main entry point. It iterates over the data and passes each
-character to the state machine engine.
+Uses unified terminator algorithm: every mode has terminators,
+mode=None (printable) terminates on any escape sequence.
 
 <a id="bittty.parser.Parser.reset"></a>
 
@@ -816,7 +903,7 @@ character to the state machine engine.
 def reset() -> None
 ```
 
-Resets the parser to its initial ground state.
+Resets the parser to its initial state.
 
 <a id="bittty.terminal"></a>
 
@@ -1430,6 +1517,18 @@ Horizontal Tab
 #### LF
 
 Line Feed
+
+<a id="bittty.constants.VT"></a>
+
+#### VT
+
+Vertical Tab
+
+<a id="bittty.constants.FF"></a>
+
+#### FF
+
+Form Feed
 
 <a id="bittty.constants.CR"></a>
 
