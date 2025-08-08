@@ -13,73 +13,121 @@ that provides comprehensive ANSI sequence parsing and terminal state management.
 
 PTY implementations for terminal emulation.
 
-This package provides platform-specific PTY implementations and a stdio
-implementation for stream mode operations.
-
 <a id="bittty.pty.base"></a>
 
 # bittty.pty.base
 
 Base PTY interface for terminal emulation.
 
-This module defines the abstract interface that all platform-specific
-PTY implementations must follow.
+This module provides a concrete base class that works with file-like objects,
+with platform-specific subclasses overriding only the byte-level I/O methods.
 
-<a id="bittty.pty.base.PTYBase"></a>
+<a id="bittty.pty.base.high_bits"></a>
 
-## PTYBase Objects
+#### high\_bits
 
 ```python
-class PTYBase(ABC)
+def high_bits(byte: int) -> int
 ```
 
-Abstract base class for PTY implementations.
+how many bits are set on the right side of this byte?
 
-<a id="bittty.pty.base.PTYBase.read"></a>
+<a id="bittty.pty.base.PTY"></a>
+
+## PTY Objects
+
+```python
+class PTY()
+```
+
+A generic PTY that lacks OS integration.
+
+Uses StringIO if no file handles are provided, and subprocess to handle its
+children.
+
+If you use this then you'll have to
+
+<a id="bittty.pty.base.PTY.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(from_process: Optional[BinaryIO] = None,
+             to_process: Optional[BinaryIO] = None,
+             rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
+             cols: int = constants.DEFAULT_TERMINAL_WIDTH)
+```
+
+Initialize PTY with file-like input/output sources.
+
+**Arguments**:
+
+- `from_process` - File-like object to read process output from (or None)
+- `to_process` - File-like object to write user input to (or None)
+- `rows` - Terminal height
+- `cols` - Terminal width
+
+<a id="bittty.pty.base.PTY.read_bytes"></a>
+
+#### read\_bytes
+
+```python
+def read_bytes(size: int) -> bytes
+```
+
+Read raw bytes. Override in subclasses for platform-specific I/O.
+
+<a id="bittty.pty.base.PTY.write_bytes"></a>
+
+#### write\_bytes
+
+```python
+def write_bytes(data: bytes) -> int
+```
+
+Write raw bytes. Override in subclasses for platform-specific I/O.
+
+<a id="bittty.pty.base.PTY.read"></a>
 
 #### read
 
 ```python
-@abstractmethod
 def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
-Read data from the PTY.
+Read data with UTF-8 buffering.
 
-<a id="bittty.pty.base.PTYBase.write"></a>
+<a id="bittty.pty.base.PTY.write"></a>
 
 #### write
 
 ```python
-@abstractmethod
 def write(data: str) -> int
 ```
 
-Write data to the PTY.
+Write string as UTF-8 bytes.
 
-<a id="bittty.pty.base.PTYBase.resize"></a>
+<a id="bittty.pty.base.PTY.resize"></a>
 
 #### resize
 
 ```python
-@abstractmethod
 def resize(rows: int, cols: int) -> None
 ```
 
-Resize the terminal.
+Resize the terminal (base implementation just updates dimensions).
 
-<a id="bittty.pty.base.PTYBase.close"></a>
+<a id="bittty.pty.base.PTY.close"></a>
 
 #### close
 
 ```python
-@abstractmethod
 def close() -> None
 ```
 
-Close the PTY.
+Close the PTY streams.
 
-<a id="bittty.pty.base.PTYBase.closed"></a>
+<a id="bittty.pty.base.PTY.closed"></a>
 
 #### closed
 
@@ -90,50 +138,39 @@ def closed() -> bool
 
 Check if PTY is closed.
 
-<a id="bittty.pty.base.PTYBase.spawn_process"></a>
+<a id="bittty.pty.base.PTY.spawn_process"></a>
 
 #### spawn\_process
 
 ```python
-@abstractmethod
-def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = None) -> subprocess.Popen
+def spawn_process(command: str, env: dict[str, str] = ENV) -> subprocess.Popen
 ```
 
-Spawn a process attached to this PTY.
+Spawn a process connected to PTY streams.
 
-<a id="bittty.pty.base.PTYBase.set_nonblocking"></a>
-
-#### set\_nonblocking
-
-```python
-@abstractmethod
-def set_nonblocking() -> None
-```
-
-Set the PTY to non-blocking mode for async operations.
-
-<a id="bittty.pty.base.PTYBase.read_async"></a>
+<a id="bittty.pty.base.PTY.read_async"></a>
 
 #### read\_async
 
 ```python
-@abstractmethod
 async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
-Async read from PTY. Returns empty string when no data available.
+Async read using thread pool executor.
 
-<a id="bittty.pty.base.PTYBase.flush"></a>
+Uses loop.run_in_executor() as a generic cross-platform approach.
+Unix PTY overrides this with more efficient file descriptor monitoring.
+Windows and other platforms use this thread pool implementation.
+
+<a id="bittty.pty.base.PTY.flush"></a>
 
 #### flush
 
 ```python
-@abstractmethod
 def flush() -> None
 ```
 
-Flush any buffered output.
+Flush output.
 
 <a id="bittty.pty.unix"></a>
 
@@ -146,30 +183,10 @@ Unix/Linux/macOS PTY implementation.
 ## UnixPTY Objects
 
 ```python
-class UnixPTY(PTYBase)
+class UnixPTY(PTY)
 ```
 
 Unix/Linux/macOS PTY implementation.
-
-<a id="bittty.pty.unix.UnixPTY.read"></a>
-
-#### read
-
-```python
-def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Read data from the PTY.
-
-<a id="bittty.pty.unix.UnixPTY.write"></a>
-
-#### write
-
-```python
-def write(data: str) -> int
-```
-
-Write data to the PTY.
 
 <a id="bittty.pty.unix.UnixPTY.resize"></a>
 
@@ -197,30 +214,10 @@ Close the PTY file descriptors.
 
 ```python
 def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = None) -> subprocess.Popen
+                  env: dict[str, str] = UNIX_ENV) -> subprocess.Popen
 ```
 
 Spawn a process attached to this PTY.
-
-<a id="bittty.pty.unix.UnixPTY.set_nonblocking"></a>
-
-#### set\_nonblocking
-
-```python
-def set_nonblocking() -> None
-```
-
-Set the PTY to non-blocking mode for async operations.
-
-<a id="bittty.pty.unix.UnixPTY.read_async"></a>
-
-#### read\_async
-
-```python
-async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Async read from PTY. Returns empty string when no data available.
 
 <a id="bittty.pty.unix.UnixPTY.flush"></a>
 
@@ -230,89 +227,13 @@ Async read from PTY. Returns empty string when no data available.
 def flush() -> None
 ```
 
-Flush any buffered output.
+Flush output using os.fsync() for real PTY file descriptor.
 
-<a id="bittty.pty.stdio"></a>
+More efficient than generic flush() - ensures data is written through
+to the terminal device, not just buffered. Important for interactive
+terminal responsiveness.
 
-# bittty.pty.stdio
-
-Stdio PTY implementation for stream mode.
-
-This implementation handles reading from stdin and writing to stdout
-while also managing a background PTY for process execution.
-
-<a id="bittty.pty.stdio.StdioPTY"></a>
-
-## StdioPTY Objects
-
-```python
-class StdioPTY(PTYBase)
-```
-
-PTY implementation for stdio stream mode.
-
-<a id="bittty.pty.stdio.StdioPTY.read"></a>
-
-#### read
-
-```python
-def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Read data from the background PTY and write to stdout.
-
-<a id="bittty.pty.stdio.StdioPTY.write"></a>
-
-#### write
-
-```python
-def write(data: str) -> int
-```
-
-Write data to the background PTY.
-
-<a id="bittty.pty.stdio.StdioPTY.resize"></a>
-
-#### resize
-
-```python
-def resize(rows: int, cols: int) -> None
-```
-
-Resize the background PTY.
-
-<a id="bittty.pty.stdio.StdioPTY.close"></a>
-
-#### close
-
-```python
-def close() -> None
-```
-
-Close the stdio PTY and background PTY.
-
-<a id="bittty.pty.stdio.StdioPTY.spawn_process"></a>
-
-#### spawn\_process
-
-```python
-def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = None) -> subprocess.Popen
-```
-
-Spawn a process attached to the background PTY and start stdin reading.
-
-<a id="bittty.pty.stdio.StdioPTY.set_nonblocking"></a>
-
-#### set\_nonblocking
-
-```python
-def set_nonblocking() -> None
-```
-
-Set the background PTY to non-blocking mode.
-
-<a id="bittty.pty.stdio.StdioPTY.read_async"></a>
+<a id="bittty.pty.unix.UnixPTY.read_async"></a>
 
 #### read\_async
 
@@ -320,9 +241,69 @@ Set the background PTY to non-blocking mode.
 async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
-Async read from the background PTY and write to stdout.
+Async read from PTY using efficient file descriptor monitoring.
 
-<a id="bittty.pty.stdio.StdioPTY.flush"></a>
+Uses loop.add_reader() with file descriptors for maximum efficiency on Unix.
+This is the most performant approach since Unix supports select/poll on PTY fds.
+
+<a id="bittty.pty.windows"></a>
+
+# bittty.pty.windows
+
+Windows PTY implementation using pywinpty.
+
+<a id="bittty.pty.windows.WinptyFileWrapper"></a>
+
+## WinptyFileWrapper Objects
+
+```python
+class WinptyFileWrapper()
+```
+
+File-like wrapper for winpty.PTY to work with base PTY class.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.read"></a>
+
+#### read
+
+```python
+def read(size: int = -1) -> bytes
+```
+
+Read data as bytes.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.write"></a>
+
+#### write
+
+```python
+def write(data: bytes) -> int
+```
+
+Write bytes data.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.close"></a>
+
+#### close
+
+```python
+def close() -> None
+```
+
+Close the PTY.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.closed"></a>
+
+#### closed
+
+```python
+@property
+def closed() -> bool
+```
+
+Check if closed.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.flush"></a>
 
 #### flush
 
@@ -330,13 +311,7 @@ Async read from the background PTY and write to stdout.
 def flush() -> None
 ```
 
-Flush the background PTY and stdout.
-
-<a id="bittty.pty.windows"></a>
-
-# bittty.pty.windows
-
-Windows PTY implementation using pywinpty.
+Flush - no-op for winpty.
 
 <a id="bittty.pty.windows.WinptyProcessWrapper"></a>
 
@@ -395,30 +370,10 @@ Get the process ID.
 ## WindowsPTY Objects
 
 ```python
-class WindowsPTY(PTYBase)
+class WindowsPTY(PTY)
 ```
 
 Windows PTY implementation using pywinpty.
-
-<a id="bittty.pty.windows.WindowsPTY.read"></a>
-
-#### read
-
-```python
-def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Read data from the PTY.
-
-<a id="bittty.pty.windows.WindowsPTY.write"></a>
-
-#### write
-
-```python
-def write(data: str) -> int
-```
-
-Write data to the PTY.
 
 <a id="bittty.pty.windows.WindowsPTY.resize"></a>
 
@@ -430,56 +385,16 @@ def resize(rows: int, cols: int) -> None
 
 Resize the terminal.
 
-<a id="bittty.pty.windows.WindowsPTY.close"></a>
-
-#### close
-
-```python
-def close() -> None
-```
-
-Close the PTY.
-
 <a id="bittty.pty.windows.WindowsPTY.spawn_process"></a>
 
 #### spawn\_process
 
 ```python
 def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = None) -> subprocess.Popen
+                  env: Optional[Dict[str, str]] = ENV) -> subprocess.Popen
 ```
 
 Spawn a process attached to this PTY.
-
-<a id="bittty.pty.windows.WindowsPTY.set_nonblocking"></a>
-
-#### set\_nonblocking
-
-```python
-def set_nonblocking() -> None
-```
-
-Set the PTY to non-blocking mode for async operations.
-
-<a id="bittty.pty.windows.WindowsPTY.read_async"></a>
-
-#### read\_async
-
-```python
-async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Async read from PTY. Returns empty string when no data available.
-
-<a id="bittty.pty.windows.WindowsPTY.flush"></a>
-
-#### flush
-
-```python
-def flush() -> None
-```
-
-Flush any buffered output.
 
 <a id="bittty.tcaps"></a>
 
