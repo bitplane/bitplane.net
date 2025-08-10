@@ -19,18 +19,20 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 💾 [pymigaguide](https://github.com/bitplane/pymigaguide) - 
+  a TUI and converter for Amiga `.guide` files.
 * 📺 [textual-tty](textual-tty) -
   a Textual widget for bittty.
 * 🔢 [texxd](texxd) -
   a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
-  a userspace disk cache for CDs and DVDs.
+  a userspace disk cache for CDs, DVDs and floppies that are dying.
 * 🚻 [vwc](vwc) -
   `wc` but with a live preview as it counts.
 * 📂 [lsoph](lsoph) -
-  a TUI for `strace`, `lsof` and `psutil`
+  slop-driven TUI for `strace`, `lsof` and `psutil`
 * 📺 [yt-mpv](yt-mpv) -
-  archive youtube videos while you play them without ads.
+  archive youtube videos while you watch them ad-free.
 * 🐳 [dockershit](dockershit) -
   create Dockerfiles in an interactive shell.
 * 🛟 [uh-halp](uh-halp) -
