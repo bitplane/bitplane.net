@@ -93,7 +93,7 @@ that's still fair comment.
 * 🕷️ [Scrapers](scrapers) -
   Numerous data scrapers for various sites.
 
-## Commercial stuff
+## 💷 Commercial stuff
 
 * 🕵️ At NDA PROTECTED CLIENT, I've been writing bots and command line tools and
   libraries in Python.
