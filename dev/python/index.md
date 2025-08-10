@@ -2,25 +2,25 @@
 
 I've been programming in Python since about 2001. I think it was Mo Patel, the
 legend that he is, who showed me the ropes while we were load testing software
-using Facilita Forecast at the Department for Work and Pensions.
+in C++ at the Department for Work and Pensions.
 
 Python's probably my favourite language and has been a constant throughout my
-adult life. Back then I would have called it a modern BASIC, and I still think
-that's still fair comment.
+adult life. Back then I would have called it a modern BASIC. I still think
+that's a fair comment.
 
-## 📈 Stats
+* 📈 [Stats](https://github.com/bitplane/pypi-stats/)
 
 ![stats](stats.svg)
 
-## 👨‍💻 Python dev things
+## 👨‍💻 Devs
 
 * 🎓 [example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
 ## 📦 Apps
 
-* 🗔 [bittty](bittty) -
-  a pure python terminal emulator.
+* 📺 [textual-tty](textual-tty) -
+  a Textual widget for bittty.
 * 🔢 [texxd](texxd) -
   a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
@@ -45,12 +45,12 @@ that's still fair comment.
 * 📑 [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
 * 🪈 [benpipe](https://github.com/bitplane/benpipe) -
-  Convert bencoded data to JSON and back again using stdin/stdout.
+  Pipe bencoded data (torrents) to JSON and back again
 
 ## 📚 Libs
 
-* 📺 [textual-tty](textual-tty) -
-  a Textual widget for bittty.
+* 🗔 [bittty](bittty) -
+  a pure python terminal emulator.
 * 📃 [arrayfile](arrayfile) -
   A file-backed array.
 * ✅ [upd8](upd8) -
