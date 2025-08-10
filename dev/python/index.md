@@ -57,6 +57,8 @@ that's a fair comment.
   A file-backed array.
 * ✅ [upd8](upd8) -
   a versioned class for identity and update checking.
+* 🤷 [shruggingface](https://github.com/bitplane/shruggingface) -
+  ungate those models, they're public domain anyway.
 * ⛰️ [arranges](arranges) -
   Represent ranges as strings in Pydantic.
 * 📈 [interpolist](interpolist) -
