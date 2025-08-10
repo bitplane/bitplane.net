@@ -10,7 +10,7 @@ that's still fair comment.
 
 ## 📈 Stats
 
-![stats](stats.png)
+![stats](stats.svg)
 
 ## 👨‍💻 Python dev things
 
