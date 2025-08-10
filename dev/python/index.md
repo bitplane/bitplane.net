@@ -8,6 +8,10 @@ Python's probably my favourite language and has been a constant throughout my
 adult life. Back then I would have called it a modern BASIC, and I still think
 that's still fair comment.
 
+## 📈 Stats
+
+![stats](stats.png)
+
 ## Python dev things
 
 * 🎓 [example-python-project](https://github.com/bitplane/example-python-project) -
