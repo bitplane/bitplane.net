@@ -1,13 +1,18 @@
 # 🧑‍💻 Software
 
-I started programming [as a kid](basic), and have enjoyed it for about 40 years
-or so. Less than a decade left before I lose my memory, this set of pages acts
+I started programming [as a kid](basic), and have enjoyed it for over 40 years.
+With less than a decade left before I lose my memory, this set of pages acts
 as less volatile storage, if not for code then at least a bit of a record of
 the projects I've worked on.
 
 Note there's a lot of stuff and this is ongoing, so it'll be a while before
-all the links work. The best stuff is in [python](python), [c++](c++) and
-[sh](sh).
+all the links work.
+
+The best stuff is in:
+
+* 🐍 [python](python)
+* 🔨 [c++](c++)
+* 📜 [sh](sh)
 
 --------------------------------------------------------------------------------
 
@@ -17,8 +22,8 @@ Some still-active things, or at least not inactive.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
-* [🗔  textual-tty](python/textual-tty) -
-  A terminal passthrough written in pure python.
+* [🗔  bittty](python/bittty) -
+  A terminal written in pure Python.
 * [💽 blkcache](python/blkcache) -
   A ddrescue compatible block cache.
 * [🏠 bitplane.net](https://github.com/bitplane/bitplane.net) -
