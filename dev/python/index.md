@@ -1,4 +1,4 @@
-# Python stuff
+# 🐍 Python stuff
 
 I've been programming in Python since about 2001. I think it was Mo Patel, the
 legend that he is, who showed me the ropes while we were load testing software
@@ -12,16 +12,15 @@ that's still fair comment.
 
 ![stats](stats.png)
 
-## Python dev things
+## 👨‍💻 Python dev things
 
 * 🎓 [example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
 
-## apps
+## 📦 Apps
+
 * 🗔 [bittty](bittty) -
   a pure python terminal emulator.
-* 📺 [textual-tty](textual-tty) -
-  a Textual widget for bittty.
 * 🔢 [texxd](texxd) -
   a hex editor for the terminal.
 * 🧊 [blkcache](blkcache) -
@@ -48,8 +47,10 @@ that's still fair comment.
 * 🪈 [benpipe](https://github.com/bitplane/benpipe) -
   Convert bencoded data to JSON and back again using stdin/stdout.
 
-## Libraries
+## 📚 Libs
 
+* 📺 [textual-tty](textual-tty) -
+  a Textual widget for bittty.
 * 📃 [arrayfile](arrayfile) -
   A file-backed array.
 * ✅ [upd8](upd8) -
@@ -63,14 +64,14 @@ that's still fair comment.
 * 🗄️ [filefrag](https://github.com/bitplane/pyfilefrag) -
   Python library to access Linux File Extents
 
-## stubs
+## 🦶 Stubs
 
 * ❄️  [freeze-one](https://github.com/bitplane/freeze_one) -
   like `pip freeze | grep package` but safer
 * 🔦 [torch-weightsonly](https://github.com/bitplane/torch_weightsonly) -
   stop torch from spamming when loading a model
 
-### Hax
+## 💣 Hax
 
 * 🐈 [schrodinger's rng](https://github.com/bitplane/schrodingers-rng) -
   Generate proveably random numbers using a smoke alarm and a webcam.
@@ -81,7 +82,7 @@ that's still fair comment.
 * 🐌 [connection-limiter](https://github.com/bitplane/connection-limiter) -
   The hackiest way to limit connections per user to a back-end behind nginx.
 
-## Older projects
+## 🕸️ Older projects
 
 * 🎹 [XBMC IRC](xbmc) -
   an IRC MP3 downloader for XBMC (Kodi).
