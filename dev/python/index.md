@@ -21,6 +21,8 @@ that's a fair comment.
 
 * 💾 [pymigaguide](https://github.com/bitplane/pymigaguide) - 
   a TUI and converter for Amiga `.guide` files.
+* 🔤 [psf2flf](psf2flf) -
+  convert bitmap fonts to figlet fonts.
 * 📺 [textual-tty](textual-tty) -
   a Textual widget for bittty.
 * 🔢 [texxd](texxd) -
