@@ -2,6 +2,7 @@
 features: ["date-list"]
 ---
 # 📅 2025
+* [2025-08-10 - 📊 pypi-stats](08/stats)
 * [2025-08-09 - 📚 pymigaguide - AI slop FTW](08/pymigaguide)
 * [2025-08-02 - 📺 tvmux - python rewrite](/dev/python/tvmux)
 * [2025-07-31 - 🔤 psf2flf - convert bitmap to figlet fonts](/dev/python/psf2flf)
