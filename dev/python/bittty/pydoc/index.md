@@ -7,694 +7,207 @@ bittty: A fast, pure Python terminal emulator library.
 bittty (bitplane-tty) is a high-performance terminal emulator engine
 that provides comprehensive ANSI sequence parsing and terminal state management.
 
-<a id="bittty.pty"></a>
+<a id="bittty.color"></a>
 
-# bittty.pty
+# bittty.color
 
-PTY implementations for terminal emulation.
+Functions for generating ANSI escape sequences.
 
-<a id="bittty.pty.base"></a>
+<a id="bittty.color.get_color_code"></a>
 
-# bittty.pty.base
-
-Base PTY interface for terminal emulation.
-
-This module provides a concrete base class that works with file-like objects,
-with platform-specific subclasses overriding only the byte-level I/O methods.
-
-<a id="bittty.pty.base.high_bits"></a>
-
-#### high\_bits
+#### get\_color\_code
 
 ```python
-def high_bits(byte: int) -> int
+@lru_cache(maxsize=1024)
+def get_color_code(fg: Optional[int] = None, bg: Optional[int] = None) -> str
 ```
 
-how many bits are set on the right side of this byte?
-
-<a id="bittty.pty.base.PTY"></a>
-
-## PTY Objects
-
-```python
-class PTY()
-```
-
-A generic PTY that lacks OS integration.
-
-Uses StringIO if no file handles are provided, and subprocess to handle its
-children.
-
-If you use this then you'll have to
-
-<a id="bittty.pty.base.PTY.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(from_process: Optional[BinaryIO] = None,
-             to_process: Optional[BinaryIO] = None,
-             rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
-             cols: int = constants.DEFAULT_TERMINAL_WIDTH)
-```
-
-Initialize PTY with file-like input/output sources.
+Generate ANSI color code for 256-color palette.
 
 **Arguments**:
 
-- `from_process` - File-like object to read process output from (or None)
-- `to_process` - File-like object to write user input to (or None)
-- `rows` - Terminal height
-- `cols` - Terminal width
+- `fg` - Foreground color (0-255) or None
+- `bg` - Background color (0-255) or None
+  
 
-<a id="bittty.pty.base.PTY.read_bytes"></a>
+**Returns**:
 
-#### read\_bytes
+  ANSI escape sequence for the colors
 
-```python
-def read_bytes(size: int) -> bytes
-```
+<a id="bittty.color.get_rgb_code"></a>
 
-Read raw bytes. Override in subclasses for platform-specific I/O.
-
-<a id="bittty.pty.base.PTY.write_bytes"></a>
-
-#### write\_bytes
+#### get\_rgb\_code
 
 ```python
-def write_bytes(data: bytes) -> int
+@lru_cache(maxsize=512)
+def get_rgb_code(fg_rgb: Optional[Tuple[int, int, int]] = None,
+                 bg_rgb: Optional[Tuple[int, int, int]] = None) -> str
 ```
 
-Write raw bytes. Override in subclasses for platform-specific I/O.
-
-<a id="bittty.pty.base.PTY.read"></a>
-
-#### read
-
-```python
-def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Read data with UTF-8 buffering.
-
-<a id="bittty.pty.base.PTY.write"></a>
-
-#### write
-
-```python
-def write(data: str) -> int
-```
-
-Write string as UTF-8 bytes.
-
-<a id="bittty.pty.base.PTY.resize"></a>
-
-#### resize
-
-```python
-def resize(rows: int, cols: int) -> None
-```
-
-Resize the terminal (base implementation just updates dimensions).
-
-<a id="bittty.pty.base.PTY.close"></a>
-
-#### close
-
-```python
-def close() -> None
-```
-
-Close the PTY streams.
-
-<a id="bittty.pty.base.PTY.closed"></a>
-
-#### closed
-
-```python
-@property
-def closed() -> bool
-```
-
-Check if PTY is closed.
-
-<a id="bittty.pty.base.PTY.spawn_process"></a>
-
-#### spawn\_process
-
-```python
-def spawn_process(command: str, env: dict[str, str] = ENV) -> subprocess.Popen
-```
-
-Spawn a process connected to PTY streams.
-
-<a id="bittty.pty.base.PTY.read_async"></a>
-
-#### read\_async
-
-```python
-async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Async read using thread pool executor.
-
-Uses loop.run_in_executor() as a generic cross-platform approach.
-Unix PTY overrides this with more efficient file descriptor monitoring.
-Windows and other platforms use this thread pool implementation.
-
-<a id="bittty.pty.base.PTY.flush"></a>
-
-#### flush
-
-```python
-def flush() -> None
-```
-
-Flush output.
-
-<a id="bittty.pty.unix"></a>
-
-# bittty.pty.unix
-
-Unix/Linux/macOS PTY implementation.
-
-<a id="bittty.pty.unix.UnixPTY"></a>
-
-## UnixPTY Objects
-
-```python
-class UnixPTY(PTY)
-```
-
-Unix/Linux/macOS PTY implementation.
-
-<a id="bittty.pty.unix.UnixPTY.resize"></a>
-
-#### resize
-
-```python
-def resize(rows: int, cols: int) -> None
-```
-
-Resize the terminal using TIOCSWINSZ ioctl.
-
-<a id="bittty.pty.unix.UnixPTY.close"></a>
-
-#### close
-
-```python
-def close() -> None
-```
-
-Close the PTY file descriptors.
-
-<a id="bittty.pty.unix.UnixPTY.spawn_process"></a>
-
-#### spawn\_process
-
-```python
-def spawn_process(command: str,
-                  env: dict[str, str] = UNIX_ENV) -> subprocess.Popen
-```
-
-Spawn a process attached to this PTY.
-
-<a id="bittty.pty.unix.UnixPTY.flush"></a>
-
-#### flush
-
-```python
-def flush() -> None
-```
-
-Flush output using os.fsync() for real PTY file descriptor.
-
-More efficient than generic flush() - ensures data is written through
-to the terminal device, not just buffered. Important for interactive
-terminal responsiveness.
-
-<a id="bittty.pty.unix.UnixPTY.read_async"></a>
-
-#### read\_async
-
-```python
-async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
-```
-
-Async read from PTY using efficient file descriptor monitoring.
-
-Uses loop.add_reader() with file descriptors for maximum efficiency on Unix.
-This is the most performant approach since Unix supports select/poll on PTY fds.
-
-<a id="bittty.pty.windows"></a>
-
-# bittty.pty.windows
-
-Windows PTY implementation using pywinpty.
-
-<a id="bittty.pty.windows.WinptyFileWrapper"></a>
-
-## WinptyFileWrapper Objects
-
-```python
-class WinptyFileWrapper()
-```
-
-File-like wrapper for winpty.PTY to work with base PTY class.
-
-<a id="bittty.pty.windows.WinptyFileWrapper.read"></a>
-
-#### read
-
-```python
-def read(size: int = -1) -> bytes
-```
-
-Read data as bytes.
-
-<a id="bittty.pty.windows.WinptyFileWrapper.write"></a>
-
-#### write
-
-```python
-def write(data: bytes) -> int
-```
-
-Write bytes data.
-
-<a id="bittty.pty.windows.WinptyFileWrapper.close"></a>
-
-#### close
-
-```python
-def close() -> None
-```
-
-Close the PTY.
-
-<a id="bittty.pty.windows.WinptyFileWrapper.closed"></a>
-
-#### closed
-
-```python
-@property
-def closed() -> bool
-```
-
-Check if closed.
-
-<a id="bittty.pty.windows.WinptyFileWrapper.flush"></a>
-
-#### flush
-
-```python
-def flush() -> None
-```
-
-Flush - no-op for winpty.
-
-<a id="bittty.pty.windows.WinptyProcessWrapper"></a>
-
-## WinptyProcessWrapper Objects
-
-```python
-class WinptyProcessWrapper()
-```
-
-Wrapper to provide subprocess.Popen-like interface for winpty PTY.
-
-<a id="bittty.pty.windows.WinptyProcessWrapper.poll"></a>
-
-#### poll
-
-```python
-def poll()
-```
-
-Check if process is still running.
-
-<a id="bittty.pty.windows.WinptyProcessWrapper.wait"></a>
-
-#### wait
-
-```python
-def wait()
-```
-
-Wait for process to complete.
-
-<a id="bittty.pty.windows.WinptyProcessWrapper.returncode"></a>
-
-#### returncode
-
-```python
-@property
-def returncode()
-```
-
-Get the return code.
-
-<a id="bittty.pty.windows.WinptyProcessWrapper.pid"></a>
-
-#### pid
-
-```python
-@property
-def pid()
-```
-
-Get the process ID.
-
-<a id="bittty.pty.windows.WindowsPTY"></a>
-
-## WindowsPTY Objects
-
-```python
-class WindowsPTY(PTY)
-```
-
-Windows PTY implementation using pywinpty.
-
-<a id="bittty.pty.windows.WindowsPTY.resize"></a>
-
-#### resize
-
-```python
-def resize(rows: int, cols: int) -> None
-```
-
-Resize the terminal.
-
-<a id="bittty.pty.windows.WindowsPTY.spawn_process"></a>
-
-#### spawn\_process
-
-```python
-def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = ENV) -> subprocess.Popen
-```
-
-Spawn a process attached to this PTY.
-
-<a id="bittty.tcaps"></a>
-
-# bittty.tcaps
-
-This module provides access to terminal capabilities from the terminfo database.
-
-<a id="bittty.tcaps.TermInfo"></a>
-
-## TermInfo Objects
-
-```python
-class TermInfo()
-```
-
-Stores and provides access to a terminal's capabilities from terminfo.
-
-<a id="bittty.tcaps.TermInfo.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(term_name: str, overrides: str)
-```
-
-Initializes the terminal definition.
-
-This loads the capabilities for the given terminal name from the system's
-terminfo database and then applies any user-provided overrides.
+Generate ANSI color code for RGB colors.
 
 **Arguments**:
 
-- `term_name` - The terminal name (e.g., "xterm-256color").
-- `overrides` - A string of user-defined overrides, like in tmux.conf.
+- `fg_rgb` - Foreground RGB tuple (r, g, b) or None
+- `bg_rgb` - Background RGB tuple (r, g, b) or None
+  
 
-<a id="bittty.tcaps.TermInfo.has"></a>
+**Returns**:
 
-#### has
+  ANSI escape sequence for the RGB colors
 
-```python
-def has(cap: str) -> bool
-```
+<a id="bittty.color.get_style_code"></a>
 
-Checks if the terminal has a given capability.
-
-<a id="bittty.tcaps.TermInfo.get_string"></a>
-
-#### get\_string
+#### get\_style\_code
 
 ```python
-def get_string(cap: str) -> str
+@lru_cache(maxsize=256)
+def get_style_code(bold: bool = False,
+                   dim: bool = False,
+                   italic: bool = False,
+                   underline: bool = False,
+                   blink: bool = False,
+                   reverse: bool = False,
+                   strike: bool = False,
+                   conceal: bool = False) -> str
 ```
 
-Gets a string capability.
+Generate ANSI style code for text attributes.
 
-This is the primary method for retrieving key codes (e.g., "kcuu1" for
-up arrow) to send to the child application.
+**Returns**:
 
-<a id="bittty.tcaps.TermInfo.get_number"></a>
+  ANSI escape sequence for the styles
 
-#### get\_number
+<a id="bittty.color.get_combined_code"></a>
+
+#### get\_combined\_code
 
 ```python
-def get_number(cap: str) -> int
+@lru_cache(maxsize=2048)
+def get_combined_code(fg: Optional[int] = None,
+                      bg: Optional[int] = None,
+                      fg_rgb: Optional[Tuple[int, int, int]] = None,
+                      bg_rgb: Optional[Tuple[int, int, int]] = None,
+                      bold: bool = False,
+                      dim: bool = False,
+                      italic: bool = False,
+                      underline: bool = False,
+                      blink: bool = False,
+                      reverse: bool = False,
+                      strike: bool = False,
+                      conceal: bool = False) -> str
 ```
 
-Gets a numeric capability.
+Generate a combined ANSI code for colors and styles.
 
-<a id="bittty.tcaps.TermInfo.get_flag"></a>
+RGB colors take precedence over palette colors.
 
-#### get\_flag
+**Returns**:
+
+  Complete ANSI escape sequence or empty string
+
+<a id="bittty.color.reset_code"></a>
+
+#### reset\_code
 
 ```python
-def get_flag(cap: str) -> bool
+@lru_cache(maxsize=1)
+def reset_code() -> str
 ```
 
-Gets a boolean flag capability.
+Get the ANSI reset code.
 
-<a id="bittty.tcaps.TermInfo.describe"></a>
+<a id="bittty.color.get_basic_color_code"></a>
 
-#### describe
+#### get\_basic\_color\_code
 
 ```python
-def describe() -> str
+@lru_cache(maxsize=16)
+def get_basic_color_code(color: int, is_bg: bool = False) -> str
 ```
 
-Returns a descriptive string of all loaded capabilities for debugging.
-
-<a id="bittty.buffer"></a>
-
-# bittty.buffer
-
-A grid-based terminal buffer.
-
-<a id="bittty.buffer.Buffer"></a>
-
-## Buffer Objects
-
-```python
-class Buffer()
-```
-
-A 2D grid that stores terminal content.
-
-<a id="bittty.buffer.Buffer.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(width: int, height: int) -> None
-```
-
-Initialize buffer with given dimensions.
-
-<a id="bittty.buffer.Buffer.get_content"></a>
-
-#### get\_content
-
-```python
-def get_content() -> List[List[Cell]]
-```
-
-Get buffer content as a 2D grid.
-
-<a id="bittty.buffer.Buffer.get_cell"></a>
-
-#### get\_cell
-
-```python
-def get_cell(x: int, y: int) -> Cell
-```
-
-Get cell at position.
-
-<a id="bittty.buffer.Buffer.set_cell"></a>
-
-#### set\_cell
-
-```python
-def set_cell(x: int, y: int, char: str, style_or_ansi=None) -> None
-```
-
-Set a single cell at position.
+Generate ANSI code for basic 16 colors (0-15).
 
 **Arguments**:
 
-  x, y: Position
-- `char` - Character to store
-- `style_or_ansi` - Either a Style object or ANSI string (for backward compatibility)
+- `color` - Color index (0-7 for normal, 8-15 for bright)
+- `is_bg` - True for background, False for foreground
+  
 
-<a id="bittty.buffer.Buffer.set"></a>
+**Returns**:
 
-#### set
+  ANSI escape sequence
 
-```python
-def set(x: int, y: int, text: str, style_or_ansi=None) -> None
-```
+<a id="bittty.color.get_cursor_code"></a>
 
-Set text at position, overwriting existing content.
-
-<a id="bittty.buffer.Buffer.insert"></a>
-
-#### insert
+#### get\_cursor\_code
 
 ```python
-def insert(x: int, y: int, text: str, style_or_ansi=None) -> None
+@lru_cache(maxsize=1)
+def get_cursor_code() -> str
 ```
 
-Insert text at position, shifting existing content right.
+Get ANSI code for cursor display (reverse video).
 
-<a id="bittty.buffer.Buffer.delete"></a>
+<a id="bittty.color.get_clear_line_code"></a>
 
-#### delete
+#### get\_clear\_line\_code
 
 ```python
-def delete(x: int, y: int, count: int = 1) -> None
+@lru_cache(maxsize=1)
+def get_clear_line_code() -> str
 ```
 
-Delete characters at position.
+Get ANSI code to clear to end of line.
 
-<a id="bittty.buffer.Buffer.clear_region"></a>
+<a id="bittty.color.reset_foreground_code"></a>
 
-#### clear\_region
+#### reset\_foreground\_code
 
 ```python
-def clear_region(x1: int,
-                 y1: int,
-                 x2: int,
-                 y2: int,
-                 style_or_ansi=None) -> None
+@lru_cache(maxsize=1)
+def reset_foreground_code() -> str
 ```
 
-Clear a rectangular region.
+Get ANSI code to reset foreground color only.
 
-<a id="bittty.buffer.Buffer.clear_line"></a>
+<a id="bittty.color.reset_background_code"></a>
 
-#### clear\_line
+#### reset\_background\_code
 
 ```python
-def clear_line(y: int,
-               mode: int = constants.ERASE_FROM_CURSOR_TO_END,
-               cursor_x: int = 0,
-               style_or_ansi=None) -> None
+@lru_cache(maxsize=1)
+def reset_background_code() -> str
 ```
 
-Clear line content.
+Get ANSI code to reset background color only.
 
-<a id="bittty.buffer.Buffer.scroll_up"></a>
+<a id="bittty.color.reset_text_attributes"></a>
 
-#### scroll\_up
+#### reset\_text\_attributes
 
 ```python
-def scroll_up(count: int) -> None
+@lru_cache(maxsize=1)
+def reset_text_attributes() -> str
 ```
 
-Scroll content up, removing top lines and adding blank lines at bottom.
+Reset text attributes but preserve background color.
 
-<a id="bittty.buffer.Buffer.scroll_down"></a>
+<a id="bittty.parser"></a>
 
-#### scroll\_down
+# bittty.parser
 
-```python
-def scroll_down(count: int) -> None
-```
+Parser module for terminal escape sequence processing.
 
-Scroll content down, removing bottom lines and adding blank lines at top.
+This module provides a modular parser system that processes terminal escape sequences
+through specialized handlers:
 
-<a id="bittty.buffer.Buffer.scroll_region_up"></a>
+- CSI sequences (cursor movement, styling, modes)
+- OSC sequences (window titles, colors)
+- Simple escape sequences (cursor save/restore, etc.)
+- DCS sequences (device control strings)
 
-#### scroll\_region\_up
-
-```python
-def scroll_region_up(top: int, bottom: int, count: int) -> None
-```
-
-Scroll a specific region up by count lines. BLAZING FAST bulk operation!
-
-<a id="bittty.buffer.Buffer.scroll_region_down"></a>
-
-#### scroll\_region\_down
-
-```python
-def scroll_region_down(top: int, bottom: int, count: int) -> None
-```
-
-Scroll a specific region down by count lines. BLAZING FAST bulk operation!
-
-<a id="bittty.buffer.Buffer.resize"></a>
-
-#### resize
-
-```python
-def resize(width: int, height: int) -> None
-```
-
-Resize buffer to new dimensions.
-
-<a id="bittty.buffer.Buffer.get_line_text"></a>
-
-#### get\_line\_text
-
-```python
-def get_line_text(y: int) -> str
-```
-
-Get plain text content of a line (for debugging/testing).
-
-<a id="bittty.buffer.Buffer.get_line"></a>
-
-#### get\_line
-
-```python
-def get_line(y: int,
-             width: int = None,
-             cursor_x: int = -1,
-             cursor_y: int = -1,
-             show_cursor: bool = False,
-             mouse_x: int = -1,
-             mouse_y: int = -1,
-             show_mouse: bool = False) -> str
-```
-
-Get full ANSI sequence for a line.
-
-<a id="bittty.buffer.Buffer.get_line_tuple"></a>
-
-#### get\_line\_tuple
-
-```python
-def get_line_tuple(y: int,
-                   width: int = None,
-                   cursor_x: int = -1,
-                   cursor_y: int = -1,
-                   show_cursor: bool = False,
-                   mouse_x: int = -1,
-                   mouse_y: int = -1,
-                   show_mouse: bool = False) -> tuple
-```
-
-Get line as a hashable tuple for caching.
+The main Parser class coordinates all these handlers and maintains the state machine.
 
 <a id="bittty.parser.escape"></a>
 
@@ -871,186 +384,6 @@ def reset_terminal(terminal: Terminal) -> None
 
 Reset terminal to initial state.
 
-<a id="bittty.parser.osc"></a>
-
-# bittty.parser.osc
-
-OSC (Operating System Command) sequence handlers.
-
-Handles OSC sequences that start with ESC]. These include window title operations,
-color palette changes, and other system-level commands.
-
-<a id="bittty.parser.osc.dispatch_osc"></a>
-
-#### dispatch\_osc
-
-```python
-@lru_cache(maxsize=500)
-def dispatch_osc(terminal: Terminal, string_buffer: str) -> None
-```
-
-BLAZING FAST OSC dispatcher with LRU caching and inlined handlers! 🚀
-
-3.77x faster than the original through:
-1. **LRU caching**: Smart eviction beats custom cache clearing
-2. **Inlined handlers**: No function call overhead
-3. **Fast paths**: Handle 95% of OSC commands with minimal parsing
-
-<a id="bittty.parser"></a>
-
-# bittty.parser
-
-Parser module for terminal escape sequence processing.
-
-This module provides a modular parser system that processes terminal escape sequences
-through specialized handlers:
-
-- CSI sequences (cursor movement, styling, modes)
-- OSC sequences (window titles, colors)
-- Simple escape sequences (cursor save/restore, etc.)
-- DCS sequences (device control strings)
-
-The main Parser class coordinates all these handlers and maintains the state machine.
-
-<a id="bittty.parser.core"></a>
-
-# bittty.parser.core
-
-Core Parser class with state machine and sequence dispatching.
-
-Main parser that orchestrates all sequence handling using the specialized
-dispatcher modules. Maintains state machine and provides unified feed() interface.
-
-<a id="bittty.parser.core.SS3_APPLICATION"></a>
-
-#### SS3\_APPLICATION
-
-Application keypad mode (3 chars)
-
-<a id="bittty.parser.core.SS3_CHARSET"></a>
-
-#### SS3\_CHARSET
-
-Single shift 3 for charset (2 chars)
-
-<a id="bittty.parser.core.compile_tokenizer"></a>
-
-#### compile\_tokenizer
-
-```python
-def compile_tokenizer(patterns)
-```
-
-Compile a tokenizer regex from a dict of patterns.
-
-<a id="bittty.parser.core.parse_string_sequence"></a>
-
-#### parse\_string\_sequence
-
-```python
-@lru_cache(maxsize=300)
-def parse_string_sequence(data, sequence_type)
-```
-
-BLAZING FAST string sequence parser with LRU caching! 🚀
-
-Optimizations:
-1. **LRU caching**: Smart eviction keeps most recent sequences
-2. **Fast paths**: Handle common OSC/DCS patterns with minimal processing
-3. **Reduced lookups**: Direct character checking instead of dictionary lookup
-4. **Efficient slicing**: Minimize string operations
-
-**Arguments**:
-
-- `data` - Complete sequence like ']0;title'
-- `sequence_type` - Type of sequence ('osc', 'dcs', etc.)
-  
-
-**Returns**:
-
-- `str` - The string content without escape codes
-
-<a id="bittty.parser.core.Parser"></a>
-
-## Parser Objects
-
-```python
-class Parser()
-```
-
-A state machine that parses a stream of terminal control codes.
-
-The parser is always in one of several states (e.g. GROUND, ESCAPE, CSI_ENTRY).
-Each byte fed to the `feed()` method can cause a transition to a new
-state and/or execute a handler for a recognized escape sequence.
-
-<a id="bittty.parser.core.Parser.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(terminal: Terminal) -> None
-```
-
-Initializes the parser state.
-
-**Arguments**:
-
-- `terminal` - A Terminal object that the parser will manipulate.
-
-<a id="bittty.parser.core.Parser.update_tokenizer"></a>
-
-#### update\_tokenizer
-
-```python
-def update_tokenizer()
-```
-
-Update the tokenizer regex based on current terminal state.
-
-<a id="bittty.parser.core.Parser.update_pattern"></a>
-
-#### update\_pattern
-
-```python
-def update_pattern(key: str, pattern: str)
-```
-
-Update a specific pattern in the tokenizer.
-
-<a id="bittty.parser.core.Parser.feed"></a>
-
-#### feed
-
-```python
-def feed(chunk: str) -> None
-```
-
-Feeds a chunk of text into the parser.
-
-Uses unified terminator algorithm: every mode has terminators,
-mode=None (printable) terminates on any escape sequence.
-
-<a id="bittty.parser.core.Parser.dispatch"></a>
-
-#### dispatch
-
-```python
-def dispatch(kind, data) -> None
-```
-
-Main sequence dispatcher - routes sequences to specialized handlers.
-
-<a id="bittty.parser.core.Parser.reset"></a>
-
-#### reset
-
-```python
-def reset() -> None
-```
-
-Resets the parser to its initial state.
-
 <a id="bittty.parser.dcs"></a>
 
 # bittty.parser.dcs
@@ -1072,6 +405,34 @@ Main DCS dispatcher.
 
 Currently minimal implementation - primarily used for passthrough sequences
 like tmux or for potential future sixel graphics support.
+
+<a id="bittty.parser.core"></a>
+
+# bittty.parser.core
+
+Core Parser class with state machine and sequence dispatching (fast state-specific scanners).
+
+<a id="bittty.parser.core.parse_string_sequence"></a>
+
+#### parse\_string\_sequence
+
+```python
+@lru_cache(maxsize=300)
+def parse_string_sequence(data: str, sequence_type: str) -> str
+```
+
+Strip prefix and terminator for OSC/DCS/APC/PM/SOS.
+
+<a id="bittty.parser.core.Parser"></a>
+
+## Parser Objects
+
+```python
+class Parser()
+```
+
+State machine: GROUND → (CSI | STRING[osc|dcs|apc|pm|sos]) → GROUND
+Uses small, state-specific scanners for speed.
 
 <a id="bittty.parser.csi"></a>
 
@@ -1164,6 +525,213 @@ def get_ansi_mode_status(terminal: Terminal, mode: int) -> int
 ```
 
 Get the status of an ANSI mode for DECRQM response.
+
+<a id="bittty.parser.osc"></a>
+
+# bittty.parser.osc
+
+OSC (Operating System Command) sequence handlers.
+
+Handles OSC sequences that start with ESC]. These include window title operations,
+color palette changes, and other system-level commands.
+
+<a id="bittty.parser.osc.dispatch_osc"></a>
+
+#### dispatch\_osc
+
+```python
+@lru_cache(maxsize=500)
+def dispatch_osc(terminal: Terminal, string_buffer: str) -> None
+```
+
+BLAZING FAST OSC dispatcher with LRU caching and inlined handlers! 🚀
+
+3.77x faster than the original through:
+1. **LRU caching**: Smart eviction beats custom cache clearing
+2. **Inlined handlers**: No function call overhead
+3. **Fast paths**: Handle 95% of OSC commands with minimal parsing
+
+<a id="bittty.style"></a>
+
+# bittty.style
+
+<a id="bittty.style.Style"></a>
+
+## Style Objects
+
+```python
+@dataclass(frozen=True)
+class Style()
+```
+
+<a id="bittty.style.Style.merge"></a>
+
+#### merge
+
+```python
+def merge(other: Style) -> Style
+```
+
+Merge another style into this one. The other style takes precedence.
+
+<a id="bittty.style.Style.diff"></a>
+
+#### diff
+
+```python
+@lru_cache(maxsize=10000)
+def diff(other: "Style") -> str
+```
+
+Generate minimal ANSI sequence to transition to another style.
+
+<a id="bittty.style.get_background"></a>
+
+#### get\_background
+
+```python
+@lru_cache(maxsize=10000)
+def get_background(ansi: str) -> str
+```
+
+Extract just the background color as an ANSI sequence.
+
+**Arguments**:
+
+- `ansi` - ANSI escape sequence
+  
+
+**Returns**:
+
+  ANSI sequence with just the background color, or empty string
+
+<a id="bittty.style.merge_ansi_styles"></a>
+
+#### merge\_ansi\_styles
+
+```python
+@lru_cache(maxsize=10000)
+def merge_ansi_styles(base: str, new: str) -> str
+```
+
+Merge two ANSI style sequences, returning a new ANSI sequence.
+
+**Arguments**:
+
+- `base` - Base ANSI sequence
+- `new` - New ANSI sequence to merge
+  
+
+**Returns**:
+
+  Merged ANSI sequence
+
+<a id="bittty.style.style_to_ansi"></a>
+
+#### style\_to\_ansi
+
+```python
+@lru_cache(maxsize=10000)
+def style_to_ansi(style: Style) -> str
+```
+
+Convert a Style object back to an ANSI escape sequence.
+
+**Arguments**:
+
+- `style` - Style object to convert
+  
+
+**Returns**:
+
+  ANSI escape sequence string
+
+<a id="bittty.tcaps"></a>
+
+# bittty.tcaps
+
+This module provides access to terminal capabilities from the terminfo database.
+
+<a id="bittty.tcaps.TermInfo"></a>
+
+## TermInfo Objects
+
+```python
+class TermInfo()
+```
+
+Stores and provides access to a terminal's capabilities from terminfo.
+
+<a id="bittty.tcaps.TermInfo.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(term_name: str, overrides: str)
+```
+
+Initializes the terminal definition.
+
+This loads the capabilities for the given terminal name from the system's
+terminfo database and then applies any user-provided overrides.
+
+**Arguments**:
+
+- `term_name` - The terminal name (e.g., "xterm-256color").
+- `overrides` - A string of user-defined overrides, like in tmux.conf.
+
+<a id="bittty.tcaps.TermInfo.has"></a>
+
+#### has
+
+```python
+def has(cap: str) -> bool
+```
+
+Checks if the terminal has a given capability.
+
+<a id="bittty.tcaps.TermInfo.get_string"></a>
+
+#### get\_string
+
+```python
+def get_string(cap: str) -> str
+```
+
+Gets a string capability.
+
+This is the primary method for retrieving key codes (e.g., "kcuu1" for
+up arrow) to send to the child application.
+
+<a id="bittty.tcaps.TermInfo.get_number"></a>
+
+#### get\_number
+
+```python
+def get_number(cap: str) -> int
+```
+
+Gets a numeric capability.
+
+<a id="bittty.tcaps.TermInfo.get_flag"></a>
+
+#### get\_flag
+
+```python
+def get_flag(cap: str) -> bool
+```
+
+Gets a boolean flag capability.
+
+<a id="bittty.tcaps.TermInfo.describe"></a>
+
+#### describe
+
+```python
+def describe() -> str
+```
+
+Returns a descriptive string of all loaded capabilities for debugging.
 
 <a id="bittty.terminal"></a>
 
@@ -1745,6 +1313,219 @@ def stop_process() -> None
 
 Stop the child process and clean up.
 
+<a id="bittty.buffer"></a>
+
+# bittty.buffer
+
+A grid-based terminal buffer.
+
+<a id="bittty.buffer.Buffer"></a>
+
+## Buffer Objects
+
+```python
+class Buffer()
+```
+
+A 2D grid that stores terminal content.
+
+<a id="bittty.buffer.Buffer.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(width: int, height: int) -> None
+```
+
+Initialize buffer with given dimensions.
+
+<a id="bittty.buffer.Buffer.get_content"></a>
+
+#### get\_content
+
+```python
+def get_content() -> List[List[Cell]]
+```
+
+Get buffer content as a 2D grid.
+
+<a id="bittty.buffer.Buffer.get_cell"></a>
+
+#### get\_cell
+
+```python
+def get_cell(x: int, y: int) -> Cell
+```
+
+Get cell at position.
+
+<a id="bittty.buffer.Buffer.set_cell"></a>
+
+#### set\_cell
+
+```python
+def set_cell(x: int, y: int, char: str, style_or_ansi=None) -> None
+```
+
+Set a single cell at position.
+
+**Arguments**:
+
+  x, y: Position
+- `char` - Character to store
+- `style_or_ansi` - Either a Style object or ANSI string (for backward compatibility)
+
+<a id="bittty.buffer.Buffer.set"></a>
+
+#### set
+
+```python
+def set(x: int, y: int, text: str, style_or_ansi=None) -> None
+```
+
+Set text at position, overwriting existing content.
+
+<a id="bittty.buffer.Buffer.insert"></a>
+
+#### insert
+
+```python
+def insert(x: int, y: int, text: str, style_or_ansi=None) -> None
+```
+
+Insert text at position, shifting existing content right.
+
+<a id="bittty.buffer.Buffer.delete"></a>
+
+#### delete
+
+```python
+def delete(x: int, y: int, count: int = 1) -> None
+```
+
+Delete characters at position.
+
+<a id="bittty.buffer.Buffer.clear_region"></a>
+
+#### clear\_region
+
+```python
+def clear_region(x1: int,
+                 y1: int,
+                 x2: int,
+                 y2: int,
+                 style_or_ansi=None) -> None
+```
+
+Clear a rectangular region.
+
+<a id="bittty.buffer.Buffer.clear_line"></a>
+
+#### clear\_line
+
+```python
+def clear_line(y: int,
+               mode: int = constants.ERASE_FROM_CURSOR_TO_END,
+               cursor_x: int = 0,
+               style_or_ansi=None) -> None
+```
+
+Clear line content.
+
+<a id="bittty.buffer.Buffer.scroll_up"></a>
+
+#### scroll\_up
+
+```python
+def scroll_up(count: int) -> None
+```
+
+Scroll content up, removing top lines and adding blank lines at bottom.
+
+<a id="bittty.buffer.Buffer.scroll_down"></a>
+
+#### scroll\_down
+
+```python
+def scroll_down(count: int) -> None
+```
+
+Scroll content down, removing bottom lines and adding blank lines at top.
+
+<a id="bittty.buffer.Buffer.scroll_region_up"></a>
+
+#### scroll\_region\_up
+
+```python
+def scroll_region_up(top: int, bottom: int, count: int) -> None
+```
+
+Scroll a specific region up by count lines. BLAZING FAST bulk operation!
+
+<a id="bittty.buffer.Buffer.scroll_region_down"></a>
+
+#### scroll\_region\_down
+
+```python
+def scroll_region_down(top: int, bottom: int, count: int) -> None
+```
+
+Scroll a specific region down by count lines. BLAZING FAST bulk operation!
+
+<a id="bittty.buffer.Buffer.resize"></a>
+
+#### resize
+
+```python
+def resize(width: int, height: int) -> None
+```
+
+Resize buffer to new dimensions.
+
+<a id="bittty.buffer.Buffer.get_line_text"></a>
+
+#### get\_line\_text
+
+```python
+def get_line_text(y: int) -> str
+```
+
+Get plain text content of a line (for debugging/testing).
+
+<a id="bittty.buffer.Buffer.get_line"></a>
+
+#### get\_line
+
+```python
+def get_line(y: int,
+             width: int = None,
+             cursor_x: int = -1,
+             cursor_y: int = -1,
+             show_cursor: bool = False,
+             mouse_x: int = -1,
+             mouse_y: int = -1,
+             show_mouse: bool = False) -> str
+```
+
+Get full ANSI sequence for a line.
+
+<a id="bittty.buffer.Buffer.get_line_tuple"></a>
+
+#### get\_line\_tuple
+
+```python
+def get_line_tuple(y: int,
+                   width: int = None,
+                   cursor_x: int = -1,
+                   cursor_y: int = -1,
+                   show_cursor: bool = False,
+                   mouse_x: int = -1,
+                   mouse_y: int = -1,
+                   show_mouse: bool = False) -> tuple
+```
+
+Get line as a hashable tuple for caching.
+
 <a id="bittty.constants"></a>
 
 # bittty.constants
@@ -1952,101 +1733,6 @@ Bad file descriptor
 
 Invalid argument
 
-<a id="bittty.style"></a>
-
-# bittty.style
-
-<a id="bittty.style.Style"></a>
-
-## Style Objects
-
-```python
-@dataclass(frozen=True)
-class Style()
-```
-
-<a id="bittty.style.Style.merge"></a>
-
-#### merge
-
-```python
-def merge(other: Style) -> Style
-```
-
-Merge another style into this one. The other style takes precedence.
-
-<a id="bittty.style.Style.diff"></a>
-
-#### diff
-
-```python
-@lru_cache(maxsize=10000)
-def diff(other: "Style") -> str
-```
-
-Generate minimal ANSI sequence to transition to another style.
-
-<a id="bittty.style.get_background"></a>
-
-#### get\_background
-
-```python
-@lru_cache(maxsize=10000)
-def get_background(ansi: str) -> str
-```
-
-Extract just the background color as an ANSI sequence.
-
-**Arguments**:
-
-- `ansi` - ANSI escape sequence
-  
-
-**Returns**:
-
-  ANSI sequence with just the background color, or empty string
-
-<a id="bittty.style.merge_ansi_styles"></a>
-
-#### merge\_ansi\_styles
-
-```python
-@lru_cache(maxsize=10000)
-def merge_ansi_styles(base: str, new: str) -> str
-```
-
-Merge two ANSI style sequences, returning a new ANSI sequence.
-
-**Arguments**:
-
-- `base` - Base ANSI sequence
-- `new` - New ANSI sequence to merge
-  
-
-**Returns**:
-
-  Merged ANSI sequence
-
-<a id="bittty.style.style_to_ansi"></a>
-
-#### style\_to\_ansi
-
-```python
-@lru_cache(maxsize=10000)
-def style_to_ansi(style: Style) -> str
-```
-
-Convert a Style object back to an ANSI escape sequence.
-
-**Arguments**:
-
-- `style` - Style object to convert
-  
-
-**Returns**:
-
-  ANSI escape sequence string
-
 <a id="bittty.charsets"></a>
 
 # bittty.charsets
@@ -2063,189 +1749,406 @@ def get_charset(designator: str) -> dict
 
 Get character set mapping for a designator.
 
-<a id="bittty.color"></a>
+<a id="bittty.pty.base"></a>
 
-# bittty.color
+# bittty.pty.base
 
-Functions for generating ANSI escape sequences.
+Base PTY interface for terminal emulation.
 
-<a id="bittty.color.get_color_code"></a>
+This module provides a concrete base class that works with file-like objects,
+with platform-specific subclasses overriding only the byte-level I/O methods.
 
-#### get\_color\_code
+<a id="bittty.pty.base.PTY"></a>
+
+## PTY Objects
 
 ```python
-@lru_cache(maxsize=1024)
-def get_color_code(fg: Optional[int] = None, bg: Optional[int] = None) -> str
+class PTY()
 ```
 
-Generate ANSI color code for 256-color palette.
+A generic PTY that lacks OS integration.
+
+Uses StringIO if no file handles are provided, and subprocess to handle its
+children.
+
+If you use this then you'll have to
+
+<a id="bittty.pty.base.PTY.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(from_process: Optional[BinaryIO] = None,
+             to_process: Optional[BinaryIO] = None,
+             rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
+             cols: int = constants.DEFAULT_TERMINAL_WIDTH)
+```
+
+Initialize PTY with file-like input/output sources.
 
 **Arguments**:
 
-- `fg` - Foreground color (0-255) or None
-- `bg` - Background color (0-255) or None
-  
+- `from_process` - File-like object to read process output from (or None)
+- `to_process` - File-like object to write user input to (or None)
+- `rows` - Terminal height
+- `cols` - Terminal width
 
-**Returns**:
+<a id="bittty.pty.base.PTY.read_bytes"></a>
 
-  ANSI escape sequence for the colors
-
-<a id="bittty.color.get_rgb_code"></a>
-
-#### get\_rgb\_code
+#### read\_bytes
 
 ```python
-@lru_cache(maxsize=512)
-def get_rgb_code(fg_rgb: Optional[Tuple[int, int, int]] = None,
-                 bg_rgb: Optional[Tuple[int, int, int]] = None) -> str
+def read_bytes(size: int) -> bytes
 ```
 
-Generate ANSI color code for RGB colors.
+Read raw bytes. Override in subclasses for platform-specific I/O.
 
-**Arguments**:
+<a id="bittty.pty.base.PTY.write_bytes"></a>
 
-- `fg_rgb` - Foreground RGB tuple (r, g, b) or None
-- `bg_rgb` - Background RGB tuple (r, g, b) or None
-  
-
-**Returns**:
-
-  ANSI escape sequence for the RGB colors
-
-<a id="bittty.color.get_style_code"></a>
-
-#### get\_style\_code
+#### write\_bytes
 
 ```python
-@lru_cache(maxsize=256)
-def get_style_code(bold: bool = False,
-                   dim: bool = False,
-                   italic: bool = False,
-                   underline: bool = False,
-                   blink: bool = False,
-                   reverse: bool = False,
-                   strike: bool = False,
-                   conceal: bool = False) -> str
+def write_bytes(data: bytes) -> int
 ```
 
-Generate ANSI style code for text attributes.
+Write raw bytes. Override in subclasses for platform-specific I/O.
 
-**Returns**:
+<a id="bittty.pty.base.PTY.read"></a>
 
-  ANSI escape sequence for the styles
-
-<a id="bittty.color.get_combined_code"></a>
-
-#### get\_combined\_code
+#### read
 
 ```python
-@lru_cache(maxsize=2048)
-def get_combined_code(fg: Optional[int] = None,
-                      bg: Optional[int] = None,
-                      fg_rgb: Optional[Tuple[int, int, int]] = None,
-                      bg_rgb: Optional[Tuple[int, int, int]] = None,
-                      bold: bool = False,
-                      dim: bool = False,
-                      italic: bool = False,
-                      underline: bool = False,
-                      blink: bool = False,
-                      reverse: bool = False,
-                      strike: bool = False,
-                      conceal: bool = False) -> str
+def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
-Generate a combined ANSI code for colors and styles.
+Read data using the C incremental UTF-8 decoder (buffers split code points).
 
-RGB colors take precedence over palette colors.
+<a id="bittty.pty.base.PTY.write"></a>
 
-**Returns**:
-
-  Complete ANSI escape sequence or empty string
-
-<a id="bittty.color.reset_code"></a>
-
-#### reset\_code
+#### write
 
 ```python
-@lru_cache(maxsize=1)
-def reset_code() -> str
+def write(data: str) -> int
 ```
 
-Get the ANSI reset code.
+Write string as UTF-8 bytes.
 
-<a id="bittty.color.get_basic_color_code"></a>
+<a id="bittty.pty.base.PTY.resize"></a>
 
-#### get\_basic\_color\_code
+#### resize
 
 ```python
-@lru_cache(maxsize=16)
-def get_basic_color_code(color: int, is_bg: bool = False) -> str
+def resize(rows: int, cols: int) -> None
 ```
 
-Generate ANSI code for basic 16 colors (0-15).
+Resize the terminal (base implementation just updates dimensions).
 
-**Arguments**:
+<a id="bittty.pty.base.PTY.close"></a>
 
-- `color` - Color index (0-7 for normal, 8-15 for bright)
-- `is_bg` - True for background, False for foreground
-  
-
-**Returns**:
-
-  ANSI escape sequence
-
-<a id="bittty.color.get_cursor_code"></a>
-
-#### get\_cursor\_code
+#### close
 
 ```python
-@lru_cache(maxsize=1)
-def get_cursor_code() -> str
+def close() -> None
 ```
 
-Get ANSI code for cursor display (reverse video).
+Close the PTY streams.
 
-<a id="bittty.color.get_clear_line_code"></a>
+<a id="bittty.pty.base.PTY.closed"></a>
 
-#### get\_clear\_line\_code
+#### closed
 
 ```python
-@lru_cache(maxsize=1)
-def get_clear_line_code() -> str
+@property
+def closed() -> bool
 ```
 
-Get ANSI code to clear to end of line.
+Check if PTY is closed.
 
-<a id="bittty.color.reset_foreground_code"></a>
+<a id="bittty.pty.base.PTY.spawn_process"></a>
 
-#### reset\_foreground\_code
+#### spawn\_process
 
 ```python
-@lru_cache(maxsize=1)
-def reset_foreground_code() -> str
+def spawn_process(command: str, env: dict[str, str] = ENV) -> subprocess.Popen
 ```
 
-Get ANSI code to reset foreground color only.
+Spawn a process connected to PTY streams.
 
-<a id="bittty.color.reset_background_code"></a>
+<a id="bittty.pty.base.PTY.read_async"></a>
 
-#### reset\_background\_code
+#### read\_async
 
 ```python
-@lru_cache(maxsize=1)
-def reset_background_code() -> str
+async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
 ```
 
-Get ANSI code to reset background color only.
+Async read using thread pool executor.
 
-<a id="bittty.color.reset_text_attributes"></a>
+Uses loop.run_in_executor() as a generic cross-platform approach.
+Unix PTY overrides this with more efficient file descriptor monitoring.
+Windows and other platforms use this thread pool implementation.
 
-#### reset\_text\_attributes
+<a id="bittty.pty.base.PTY.flush"></a>
+
+#### flush
 
 ```python
-@lru_cache(maxsize=1)
-def reset_text_attributes() -> str
+def flush() -> None
 ```
 
-Reset text attributes but preserve background color.
+Flush output.
+
+<a id="bittty.pty"></a>
+
+# bittty.pty
+
+PTY implementations for terminal emulation.
+
+<a id="bittty.pty.windows"></a>
+
+# bittty.pty.windows
+
+Windows PTY implementation using pywinpty.
+
+<a id="bittty.pty.windows.WinptyFileWrapper"></a>
+
+## WinptyFileWrapper Objects
+
+```python
+class WinptyFileWrapper()
+```
+
+File-like wrapper for winpty.PTY to work with base PTY class.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.read"></a>
+
+#### read
+
+```python
+def read(size: int = -1) -> str
+```
+
+Read data as strings.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.write"></a>
+
+#### write
+
+```python
+def write(data: str) -> int
+```
+
+Write string data.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.close"></a>
+
+#### close
+
+```python
+def close() -> None
+```
+
+Close the PTY.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.closed"></a>
+
+#### closed
+
+```python
+@property
+def closed() -> bool
+```
+
+Check if closed.
+
+<a id="bittty.pty.windows.WinptyFileWrapper.flush"></a>
+
+#### flush
+
+```python
+def flush() -> None
+```
+
+Flush - no-op for winpty.
+
+<a id="bittty.pty.windows.WinptyProcessWrapper"></a>
+
+## WinptyProcessWrapper Objects
+
+```python
+class WinptyProcessWrapper()
+```
+
+Wrapper to provide subprocess.Popen-like interface for winpty PTY.
+
+<a id="bittty.pty.windows.WinptyProcessWrapper.poll"></a>
+
+#### poll
+
+```python
+def poll()
+```
+
+Check if process is still running.
+
+<a id="bittty.pty.windows.WinptyProcessWrapper.wait"></a>
+
+#### wait
+
+```python
+def wait()
+```
+
+Wait for process to complete.
+
+<a id="bittty.pty.windows.WinptyProcessWrapper.returncode"></a>
+
+#### returncode
+
+```python
+@property
+def returncode()
+```
+
+Get the return code.
+
+<a id="bittty.pty.windows.WinptyProcessWrapper.pid"></a>
+
+#### pid
+
+```python
+@property
+def pid()
+```
+
+Get the process ID.
+
+<a id="bittty.pty.windows.WindowsPTY"></a>
+
+## WindowsPTY Objects
+
+```python
+class WindowsPTY(PTY)
+```
+
+Windows PTY implementation using pywinpty.
+
+Note: This PTY operates in text mode - winpty handles UTF-8 internally.
+The read/write methods work directly with strings for performance,
+with bytes conversion only when needed for compatibility.
+
+<a id="bittty.pty.windows.WindowsPTY.read"></a>
+
+#### read
+
+```python
+def read(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
+```
+
+Read data directly from winpty (text mode, no UTF-8 splitting needed).
+
+<a id="bittty.pty.windows.WindowsPTY.write"></a>
+
+#### write
+
+```python
+def write(data: str) -> int
+```
+
+Write string data directly to winpty (text mode).
+
+<a id="bittty.pty.windows.WindowsPTY.resize"></a>
+
+#### resize
+
+```python
+def resize(rows: int, cols: int) -> None
+```
+
+Resize the terminal.
+
+<a id="bittty.pty.windows.WindowsPTY.spawn_process"></a>
+
+#### spawn\_process
+
+```python
+def spawn_process(command: str,
+                  env: Optional[Dict[str, str]] = ENV) -> subprocess.Popen
+```
+
+Spawn a process attached to this PTY.
+
+<a id="bittty.pty.unix"></a>
+
+# bittty.pty.unix
+
+Unix/Linux/macOS PTY implementation.
+
+<a id="bittty.pty.unix.UnixPTY"></a>
+
+## UnixPTY Objects
+
+```python
+class UnixPTY(PTY)
+```
+
+Unix/Linux/macOS PTY implementation.
+
+<a id="bittty.pty.unix.UnixPTY.resize"></a>
+
+#### resize
+
+```python
+def resize(rows: int, cols: int) -> None
+```
+
+Resize the terminal using TIOCSWINSZ ioctl.
+
+<a id="bittty.pty.unix.UnixPTY.close"></a>
+
+#### close
+
+```python
+def close() -> None
+```
+
+Close the PTY file descriptors.
+
+<a id="bittty.pty.unix.UnixPTY.spawn_process"></a>
+
+#### spawn\_process
+
+```python
+def spawn_process(command: str,
+                  env: dict[str, str] = UNIX_ENV) -> subprocess.Popen
+```
+
+Spawn a process attached to this PTY.
+
+<a id="bittty.pty.unix.UnixPTY.flush"></a>
+
+#### flush
+
+```python
+def flush() -> None
+```
+
+Flush output using os.fsync() for real PTY file descriptor.
+
+More efficient than generic flush() - ensures data is written through
+to the terminal device, not just buffered. Important for interactive
+terminal responsiveness.
+
+<a id="bittty.pty.unix.UnixPTY.read_async"></a>
+
+#### read\_async
+
+```python
+async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
+```
+
+Async read from PTY using efficient file descriptor monitoring.
+
+Uses loop.add_reader() with file descriptors for maximum efficiency on Unix.
+This is the most performant approach since Unix supports select/poll on PTY fds.
 

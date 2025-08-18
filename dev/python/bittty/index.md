@@ -35,6 +35,10 @@ Do wtf you want, but don't blame me when it rips a hole in your trousers.
 
 ## Recent changes
 
+* 🏃 squeeze another 15% performance out of it
+* ✀ fix utf8 and escape code splitting across buffer boundaries
+* 🪟 tests run on Windows runner
+* 📉 added parser benchmarking and tui graphs
 * 🐌 use regex for parsing to speed things up a tad (~2x faster)
 * 📚 document half a billion DEC private modes we don't support
 * 🔙 DECLM - allow `\n` to act like `\r\n` so we don't have to rely on cooked
@@ -45,6 +49,9 @@ Do wtf you want, but don't blame me when it rips a hole in your trousers.
 
 ## bugs / todo
 
+- [ ] Implement [grapheme clustering](https://mitchellh.com/writing/grapheme-clusters-in-terminals)
+  (thanks Xavier G)
+- [ ] `SIGWINCH` handler atomicity + buffer resizes
 - [ ] [architecture](architecture) - pretty big
 - [ ] gui
   - [ ] make a terminal input class, for standalone input
@@ -53,11 +60,10 @@ Do wtf you want, but don't blame me when it rips a hole in your trousers.
 - [ ] performance improvements
   - [ ] reconsider CSI end char approach
   - [ ] line cache for outputs
-  - [.] revisit colours
+  - [.] revisit colours / styles
 - [ ] scrollback buffer
   - [ ] implement `logloglog` for scrollback with wrapping
 - [ ] bugs
-  - [x] corruption in stream - debug it - utf8 split on boundary
   - [ ] scroll region: scroll up in `vim` corrupts outside scroll region
 - [ ] add terminal overlay visuals
   - [ ] bell flash effect
