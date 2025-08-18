@@ -62,6 +62,8 @@ Things that make your world pretty
   Render the scene into a spheremap, for use in lighting effects.
 * 🖼️ [skybox renderer](skybox) -
   Render your scene into a sky box. Same as above, but for performance reasons.
+* 🫠 [mesh deformation](deform) - 
+  Example of deforming 3D meshes.
 
 ## Tools
 

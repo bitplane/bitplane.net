@@ -12,7 +12,6 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * 🏠 [/home](~)    - Files and stuff
 * 🔌 [/mnt](mnt)   - External files
 
-
 ## grep log
 * [2025-08-09 - 📚 pymigaguide - AI slop FTW](log/2025/08/pymigaguide)
 * [2025-08-02 - 📺 tvmux - python rewrite](/dev/python/tvmux)
@@ -128,6 +127,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * [2006-03-17 - 💬 Auto Nuge Repeater](/dev/vb/auto-nudge-repeater)
 * [2005-??-?? - ✍️ seascape](log/2005/seascape)
 * [2005-??-?? - ✍️ infrared](log/2005/infrared)
+* [2005-11-21 - ⚒️ deforming mesh](/dev/c++/deform)
 * [2005-07-24 - 🕹️ Jump or Burn - 3 hour game dev contest](/dev/c++/jumporburn)
 * [2005-06-26 - ✍️ a terrible thing to waste](log/2005/glasto)
 * [2005-03-18 - 📜 remote Google Desktop Search](/dev/python/rgds)
