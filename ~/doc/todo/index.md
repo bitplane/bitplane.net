@@ -1,9 +1,22 @@
 ---
 features: ["date-list"]
-redirect_from: ['/home/gaz/Documents/todo/']
 ---
 
 # todo.md
+
+## Missing repos
+* plansi
+* vldmcp
+* rip
+* logloglog
+* wihlp
+* geo-dist
+* unicode-width-mess
+* texrboard
+* audio-keylogger
+* infra
+* plantuml-docker
+* prometheus-dir-stats
 
 ## Text content
 * **DAD**
@@ -20,7 +33,6 @@ redirect_from: ['/home/gaz/Documents/todo/']
     * youtube
     * webm
 * Update doc publisher
-  * ~~dockershit~~
   * yt-mpv
   * dfused
   * Dockerfile.exe
@@ -37,8 +49,10 @@ redirect_from: ['/home/gaz/Documents/todo/']
   * uh-halp-data
   * vidi18n
   * yapotron
-* objective c writeup
-* Scan Input Magazine if nobody else has, put on archive.org and link it.
+* objective c writeup + projects
+* archive.org
+  * 
+  * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
 * Articles:
@@ -143,10 +157,13 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 
 * Get SVN backup from hard drive at Kath's
 * Amiga
-  * Get Amiga hard drive from mum's with old Amiga games and software
-  * ~~Order USB floppy drive~~
-    * Ugh. Didn't work. Get greaseweazle working
-      * Document the process.
+  * ~~Get Amiga hard drive from mum's~~
+  * Make embeddable archives for each game/app
+    * NSLE
+    * Matchstick Man
+    * QAB
+    * Thrusts
+    * Ultimate Adventure
 * Somehow get that ISA disk from the MS-DOS 8086 box
   * Vector 2d graphics engine
   * `curs` - can't find source.
@@ -157,7 +174,6 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 * Digitize ZX Spectrum games
   * I think I only have one finished game, TUE.
 * Old Linux machines
-  * ~~Gigabyte laptop~~
   * HP Server
   * Bitcoin miner
 
