@@ -19,7 +19,7 @@ that's a fair comment.
 
 ## 📦 Apps
 
-* 💾 [pymigaguide](https://github.com/bitplane/pymigaguide) - 
+* 💾 [pymigaguide](pymigaguide) - 
   a TUI and converter for Amiga `.guide` files.
 * 🔤 [psf2flf](psf2flf) -
   convert bitmap fonts to figlet fonts.
