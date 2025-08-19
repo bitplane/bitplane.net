@@ -37,5 +37,5 @@ using `fuse`, then creates a mmapped disk cache of sectors as they're read.
 ## 🌍 Related
 
 * [🪦 rip](https://github.com/bitplane/rip)
-* [🕷️ scrapers](https://bitplane.net/python/scrapers)
+* [🕷️ scrapers](https://bitplane.net/dev/python/scrapers)
 

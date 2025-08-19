@@ -2,6 +2,12 @@
 
 # blkcache
 
+<a id="blkcache.server"></a>
+
+# blkcache.server
+
+blkcache.server – userspace read-through cache via nbdkit + nbdfuse.
+
 <a id="blkcache.file.device"></a>
 
 # blkcache.file.device
@@ -66,27 +72,107 @@ def sector_size() -> int
 
 Get device sector size using ioctl.
 
-<a id="blkcache.file"></a>
+<a id="blkcache.file.cached"></a>
 
-# blkcache.file
+# blkcache.file.cached
 
-File abstraction package with automatic type detection.
+Cache file abstraction.
 
-Provides File, Device, and Removable classes with a detect() factory
-function that automatically chooses the appropriate class for a given path.
+CacheFile wraps another File and provides read-through caching.
+Opens the backing file in its __enter__ method.
 
-<a id="blkcache.file.detect"></a>
+<a id="blkcache.file.cached.CachedFile"></a>
 
-#### detect
+## CachedFile Objects
 
 ```python
-def detect(path: Path | str) -> Type[File]
+class CachedFile(File)
 ```
 
-Return the most specific file class that can handle this path.
+Passthrough cache that wraps another File instance.
 
-Checks classes in order of specificity: Removable -> Device -> File
-Returns the first class whose check() method returns True.
+<a id="blkcache.file.cached.CachedFile.check"></a>
+
+#### check
+
+```python
+@staticmethod
+def check(path: Path) -> bool
+```
+
+CacheFile doesn't check paths - it's a wrapper.
+
+<a id="blkcache.file.cached.CachedFile.path"></a>
+
+#### path
+
+```python
+@property
+def path() -> Path
+```
+
+Return the backing file's path.
+
+<a id="blkcache.file.cached.CachedFile.size"></a>
+
+#### size
+
+```python
+def size() -> int
+```
+
+Get size from backing file.
+
+<a id="blkcache.file.cached.CachedFile.sector_size"></a>
+
+#### sector\_size
+
+```python
+@property
+def sector_size() -> int
+```
+
+Get sector size from backing file.
+
+<a id="blkcache.file.cached.CachedFile.pread"></a>
+
+#### pread
+
+```python
+def pread(count: int, offset: int) -> bytes
+```
+
+Read with cache - try cache first, then backing file.
+
+<a id="blkcache.file.cached.CachedFile.pwrite"></a>
+
+#### pwrite
+
+```python
+def pwrite(data: bytes, offset: int) -> int
+```
+
+Write through to both cache and backing file.
+
+<a id="blkcache.file.cached.CachedFile.fingerprint"></a>
+
+#### fingerprint
+
+```python
+def fingerprint(head: int = 65_536) -> str
+```
+
+Get fingerprint from backing file.
+
+<a id="blkcache.file.cached.CachedFile.__getattr__"></a>
+
+#### \_\_getattr\_\_
+
+```python
+def __getattr__(name)
+```
+
+Delegate unknown attributes to backing file.
 
 <a id="blkcache.file.mmapped"></a>
 
@@ -263,6 +349,94 @@ def check(path: Path) -> bool
 
 Atomic files can handle any regular file path.
 
+<a id="blkcache.file.removable"></a>
+
+# blkcache.file.removable
+
+Removable device abstraction with media change detection.
+
+Removable class extends Device with functionality for optical drives,
+USB drives, and other removable media that can be ejected or changed.
+
+<a id="blkcache.file.removable.CDROM_GET_BLKSIZE"></a>
+
+#### CDROM\_GET\_BLKSIZE
+
+Get CDROM block size
+
+<a id="blkcache.file.removable.Removable"></a>
+
+## Removable Objects
+
+```python
+class Removable(Device)
+```
+
+Removable device with media change detection.
+
+<a id="blkcache.file.removable.Removable.check"></a>
+
+#### check
+
+```python
+@staticmethod
+def check(path: Path) -> bool
+```
+
+Check if this is a removable block device.
+
+<a id="blkcache.file.removable.Removable.sector_size"></a>
+
+#### sector\_size
+
+```python
+@property
+@lru_cache(maxsize=1)
+def sector_size() -> int
+```
+
+Get sector size with CDROM-specific ioctl support.
+
+<a id="blkcache.file.removable.Removable.watch_for_changes"></a>
+
+#### watch\_for\_changes
+
+```python
+def watch_for_changes(stop_event: threading.Event,
+                      callback=None,
+                      logger=None) -> None
+```
+
+Monitor device for media changes.
+
+**Arguments**:
+
+- `stop_event` - Threading event to signal when to stop monitoring
+- `callback` - Function to call on media change (old_id, new_id)
+- `logger` - Logger for debug messages
+
+<a id="blkcache.file"></a>
+
+# blkcache.file
+
+File abstraction package with automatic type detection.
+
+Provides File, Device, and Removable classes with a detect() factory
+function that automatically chooses the appropriate class for a given path.
+
+<a id="blkcache.file.detect"></a>
+
+#### detect
+
+```python
+def detect(path: Path | str) -> Type[File]
+```
+
+Return the most specific file class that can handle this path.
+
+Checks classes in order of specificity: Removable -> Device -> File
+Returns the first class whose check() method returns True.
+
 <a id="blkcache.file.filemap"></a>
 
 # blkcache.file.filemap
@@ -396,174 +570,6 @@ def status() -> str
 ```
 
 Current status - highest priority status found in transitions.
-
-<a id="blkcache.file.cached"></a>
-
-# blkcache.file.cached
-
-Cache file abstraction.
-
-CacheFile wraps another File and provides read-through caching.
-Opens the backing file in its __enter__ method.
-
-<a id="blkcache.file.cached.CachedFile"></a>
-
-## CachedFile Objects
-
-```python
-class CachedFile(File)
-```
-
-Passthrough cache that wraps another File instance.
-
-<a id="blkcache.file.cached.CachedFile.check"></a>
-
-#### check
-
-```python
-@staticmethod
-def check(path: Path) -> bool
-```
-
-CacheFile doesn't check paths - it's a wrapper.
-
-<a id="blkcache.file.cached.CachedFile.path"></a>
-
-#### path
-
-```python
-@property
-def path() -> Path
-```
-
-Return the backing file's path.
-
-<a id="blkcache.file.cached.CachedFile.size"></a>
-
-#### size
-
-```python
-def size() -> int
-```
-
-Get size from backing file.
-
-<a id="blkcache.file.cached.CachedFile.sector_size"></a>
-
-#### sector\_size
-
-```python
-@property
-def sector_size() -> int
-```
-
-Get sector size from backing file.
-
-<a id="blkcache.file.cached.CachedFile.pread"></a>
-
-#### pread
-
-```python
-def pread(count: int, offset: int) -> bytes
-```
-
-Read with cache - try cache first, then backing file.
-
-<a id="blkcache.file.cached.CachedFile.pwrite"></a>
-
-#### pwrite
-
-```python
-def pwrite(data: bytes, offset: int) -> int
-```
-
-Write through to both cache and backing file.
-
-<a id="blkcache.file.cached.CachedFile.fingerprint"></a>
-
-#### fingerprint
-
-```python
-def fingerprint(head: int = 65_536) -> str
-```
-
-Get fingerprint from backing file.
-
-<a id="blkcache.file.cached.CachedFile.__getattr__"></a>
-
-#### \_\_getattr\_\_
-
-```python
-def __getattr__(name)
-```
-
-Delegate unknown attributes to backing file.
-
-<a id="blkcache.file.removable"></a>
-
-# blkcache.file.removable
-
-Removable device abstraction with media change detection.
-
-Removable class extends Device with functionality for optical drives,
-USB drives, and other removable media that can be ejected or changed.
-
-<a id="blkcache.file.removable.CDROM_GET_BLKSIZE"></a>
-
-#### CDROM\_GET\_BLKSIZE
-
-Get CDROM block size
-
-<a id="blkcache.file.removable.Removable"></a>
-
-## Removable Objects
-
-```python
-class Removable(Device)
-```
-
-Removable device with media change detection.
-
-<a id="blkcache.file.removable.Removable.check"></a>
-
-#### check
-
-```python
-@staticmethod
-def check(path: Path) -> bool
-```
-
-Check if this is a removable block device.
-
-<a id="blkcache.file.removable.Removable.sector_size"></a>
-
-#### sector\_size
-
-```python
-@property
-@lru_cache(maxsize=1)
-def sector_size() -> int
-```
-
-Get sector size with CDROM-specific ioctl support.
-
-<a id="blkcache.file.removable.Removable.watch_for_changes"></a>
-
-#### watch\_for\_changes
-
-```python
-def watch_for_changes(stop_event: threading.Event,
-                      callback=None,
-                      logger=None) -> None
-```
-
-Monitor device for media changes.
-
-**Arguments**:
-
-- `stop_event` - Threading event to signal when to stop monitoring
-- `callback` - Function to call on media change (old_id, new_id)
-- `logger` - Logger for debug messages
 
 <a id="blkcache.backend"></a>
 
@@ -711,10 +717,4 @@ Parse a status line returning (start, size, status).
 # blkcache.main
 
 blkcache – CLI entry-point.
-
-<a id="blkcache.server"></a>
-
-# blkcache.server
-
-blkcache.server – userspace read-through cache via nbdkit + nbdfuse.
 
