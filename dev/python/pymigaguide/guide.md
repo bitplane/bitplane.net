@@ -1,3 +1,6 @@
+---
+features: ["date-list"]
+---
 # AmigaGuide Format Reference
 
 This document summarises the **AmigaGuide** hypertext file format as implemented in our parser.
