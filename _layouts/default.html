@@ -20,11 +20,16 @@
                 {%- for part in url_parts -%}
                     {%- unless part == "" -%}
                         {%- assign path = path | append: "/" | append: part -%}
-                        <a href="{{ path }}" {% if forloop.index != parent -%}
-                                tabindex="-1"
-                           {%- endif -%}>
-                            {{- part -}}
-                        </a>
+                        {%- assign two_digit_test = part | plus: 0 | prepend: "00" | slice: -2, 2 -%}
+                        {%- if part.size == 2 and part == two_digit_test -%}
+                            <span>{{ part }}</span>
+                        {%- else -%}
+                            <a href="{{ path }}" {% if forloop.index != parent -%}
+                                    tabindex="-1"
+                               {%- endif -%}>
+                                {{- part -}}
+                            </a>
+                        {%- endif -%}
                         {%- unless forloop.last -%}
                             <span class="slash">/</span>
                         {%- endunless -%}
