@@ -11,7 +11,7 @@ uvx pymigaguide some.guide
 pipx pymigaguide --help
 
 # install and view in your terminal
-pip instal pymigaguide
+pip install pymigaguide
 pymigaguide whatever.guide --dump --format=txt | less
 ```
 
