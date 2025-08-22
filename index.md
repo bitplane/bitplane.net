@@ -13,8 +13,10 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * 🔌 [/mnt](mnt)   - External files
 
 ## grep log
+* [2025-08-22 - ☎️ py9 resurrected as t9](/dev/python/t9)
 * [2025-08-10 - 📊 pypi-stats](log/2025/08/stats)
 * [2025-08-09 - 📚 pymigaguide - AI slop FTW](log/2025/08/pymigaguide)
+* [2025-08-04 - 📺 textual-asciinema](https://ttygroup.github.com/textual-asciinema)
 * [2025-08-02 - 📺 tvmux - python rewrite](/dev/python/tvmux)
 * [2025-07-31 - 🔤 psf2flf - convert bitmap to figlet fonts](/dev/python/psf2flf)
 * [2025-07-26 - 🗔  bittty - a pure python terminal emulator](/dev/python/bittty)
