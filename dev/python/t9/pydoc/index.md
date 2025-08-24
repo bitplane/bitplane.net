@@ -4,21 +4,6 @@
 
 Import from those modules directly or use the main package imports.
 
-<a id="t9.makepy9"></a>
-
-# t9.makepy9
-
-Py9.py - a predictive text dictionary in the style of Nokia's T9
-
-File Format...
-  Header:
-    String[7]     = "PY9DICT:"
-    Unsigned Long = Number of words
-    Unsigned Long = root node's start position
-
-  Node block:
-    Unsigned Long[4] =
-
 <a id="t9.utils"></a>
 
 # t9.utils
@@ -36,6 +21,27 @@ def getkey(word)
 Convert a word to T9 keypress sequence.
 
 Example: "hello" -> "43556"
+
+<a id="t9.utils.read_wordlist"></a>
+
+#### read\_wordlist
+
+```python
+def read_wordlist(filename)
+```
+
+Read lines from a wordlist file, handling both plain and gzipped files.
+
+Yields stripped non-empty lines from the file.
+
+**Arguments**:
+
+- `filename` - Path to the wordlist file (.txt or .txt.gz)
+  
+
+**Yields**:
+
+- `str` - Each non-empty line from the file, stripped of whitespace
 
 <a id="t9.utils.get_wordlists_dir"></a>
 
