@@ -53,6 +53,84 @@ def get_wordlists_dir()
 
 Get the path to the wordlists directory.
 
+<a id="t9.utils.get_cache_dir"></a>
+
+#### get\_cache\_dir
+
+```python
+def get_cache_dir()
+```
+
+Get the path to the cache directory for dictionaries.
+
+<a id="t9.utils.get_locale"></a>
+
+#### get\_locale
+
+```python
+def get_locale()
+```
+
+Get user's locale as (language, region) tuple.
+
+**Returns**:
+
+- `tuple` - (language, region) or (None, None) if not found
+
+<a id="t9.utils.find_wordlist"></a>
+
+#### find\_wordlist
+
+```python
+def find_wordlist(language, region=None)
+```
+
+Find wordlist file for given language and region.
+
+**Arguments**:
+
+- `language` - Language code (e.g., "en")
+- `region` - Region code (e.g., "GB") or None
+  
+
+**Returns**:
+
+  Path to wordlist file if found, None otherwise
+
+<a id="t9.utils.get_system_wordlist"></a>
+
+#### get\_system\_wordlist
+
+```python
+def get_system_wordlist()
+```
+
+Get system dictionary file, resolving symlinks.
+
+**Returns**:
+
+  Path to system wordlist if found, None otherwise
+
+<a id="t9.utils.find_or_generate_dict"></a>
+
+#### find\_or\_generate\_dict
+
+```python
+def find_or_generate_dict(language=None, region=None)
+```
+
+Find or generate dictionary file using fallback chain.
+
+**Arguments**:
+
+- `language` - Language code or None to auto-detect
+- `region` - Region code or None to auto-detect
+  
+
+**Returns**:
+
+  Path to dictionary file if found/generated, None if failed
+
 <a id="t9.utils.draw_keypad"></a>
 
 #### draw\_keypad
@@ -129,7 +207,7 @@ Draw the complete T9 interface screen.
 #### run\_demo
 
 ```python
-def run_demo(dict_file=None)
+def run_demo(dict_file=None, language=None, region=None)
 ```
 
 Run the T9 demo application.
@@ -293,7 +371,7 @@ Command-line interface for PY9 T9 text input system.
 #### run\_demo
 
 ```python
-def run_demo(dict_file=None)
+def run_demo(dict_file=None, language=None, region=None)
 ```
 
 Run the T9 demo application.
