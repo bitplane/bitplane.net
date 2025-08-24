@@ -423,36 +423,6 @@ defaultmode: mode to start in (NAVIGATE=Predictive, TEXT_LOWER, TEXT_UPPER, NUME
 keydelay: key timeout in TXT mode
 numeric: NOT IMPLEMENTED YET
 
-<a id="t9.input.T9Input.getkey"></a>
-
-#### getkey
-
-```python
-def getkey(word)
-```
-
-Get keystrokes required to type a word (alias for utils.getkey).
-
-<a id="t9.input.T9Input.showmode"></a>
-
-#### showmode
-
-```python
-def showmode()
-```
-
-Get text logo for current input mode.
-
-<a id="t9.input.T9Input.showkeys"></a>
-
-#### showkeys
-
-```python
-def showkeys()
-```
-
-Get help text showing what keys do.
-
 <a id="t9.input.T9Input.gettext"></a>
 
 #### gettext
@@ -579,38 +549,38 @@ Constants for PY9 T9 text input system.
 ## Key Objects
 
 ```python
-class Key(IntEnum)
+class Key(Enum)
 ```
 
-T9 input keys.
+T9 input keys - string values match the actual key characters used.
 
-<a id="t9.constants.Key.MODE"></a>
+<a id="t9.constants.Key.SELECT"></a>
 
-#### MODE
+#### SELECT
 
-Mode switch (was S)
+Mode switch/Select
 
 <a id="t9.constants.Key.UP"></a>
 
 #### UP
 
-Up/Previous word (was U)
+Up/Previous word
 
 <a id="t9.constants.Key.DOWN"></a>
 
 #### DOWN
 
-Down/Delete/Backspace (was D)
+Down/Delete/Backspace
 
 <a id="t9.constants.Key.LEFT"></a>
 
 #### LEFT
 
-Left/Back (was L)
+Left/Back
 
 <a id="t9.constants.Key.RIGHT"></a>
 
 #### RIGHT
 
-Right/Forward (was R)
+Right/Forward
 
