@@ -1,8 +1,8 @@
 # 🐍 Python stuff
 
 I've been programming in Python since about 2001. I think it was Mo Patel, the
-legend that he is, who showed me the ropes while we were load testing software
-in C++ at the Department for Work and Pensions.
+legend that he is, who showed me the ropes while we were doing C/C++ while load
+testing software for the Department for Work and Pensions.
 
 Python's probably my favourite language and has been a constant throughout my
 adult life. Back then I would have called it a modern BASIC. I still think
