@@ -5,7 +5,7 @@ Export your Reddit data for analysis/RAG etc.
 To run:
 
 ```bash
-pipx reddit-exporter your-username
+pipx reddit-export your-username
 ```
 
 Then check the `./data` dir for your JSON export.
@@ -17,6 +17,7 @@ Then check the `./data` dir for your JSON export.
 ## 🔗 Links
 
 * [🏠 home](https://bitplane.net/dev/python/reddit-exporter)
+  * [📚 pydoc](https://bitplane.net/dev/python/reddit-exporter/pydoc)
 * [😺 github](https://github.com/bitplane/reddit-exporter)
 * [🐍 pypi](https://pypi.org/project/reddit-exporter)
 
