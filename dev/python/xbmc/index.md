@@ -10,8 +10,8 @@ in 2005 or so, I posted a DVB tuner card to one of the devs.
 
 Here's some things I was messing about with at the time:
 
- * [IRC](irc) - An MP3 downloader for XBMC
- * [Skins for XBMC](skin) - A skin library from before XBMC supported skins.
- * [Py9](../py9) - An input library for the remote control, in the style of
+ * 🗪 [IRC](irc) - An MP3 downloader for XBMC
+ * 🎢 [Skins for XBMC](skin) - A skin library from before XBMC supported skins.
+ * ☎️ [Py9](../t9) - An input library for the remote control, in the style of
    Nokia T9.
 
