@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 👽 [reddit-export](reddit-export) -
+  dumps your Reddit messages and posts to JSON.
 * 💾 [pymigaguide](pymigaguide) - 
   a TUI and converter for Amiga `.guide` files.
 * 🔤 [psf2flf](psf2flf) -

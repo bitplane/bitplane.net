@@ -2,6 +2,7 @@
 features: ["date-list"]
 ---
 # 📅 2025
+* [2025-08-23 - 👽 reddit exporter](/dev/python/reddit-export)
 * [2025-08-22 - ☎️ py9 resurrected as t9](/dev/python/t9)
 * [2025-08-10 - 📊 pypi-stats](08/stats)
 * [2025-08-09 - 📚 pymigaguide - AI slop FTW](08/pymigaguide)
