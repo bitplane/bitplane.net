@@ -6,7 +6,7 @@ features: ["asciinema"]
 
 Export your Reddit data for analysis/RAG etc.
 
-![video](reddit-export.cast.png)
+![video](https://bitplane.net/dev/python/reddit-export/reddit-export.cast.png)
 
 To run:
 
