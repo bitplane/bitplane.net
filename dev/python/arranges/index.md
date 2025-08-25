@@ -33,11 +33,11 @@ above.
 
 ## 📖 Docs
 
-* [🐍 pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 * [🏗 construction](construction)
 * [♻️ iteration](iteration)
 * [⊃ operators](operators)
 * [🧱 models](models)
+* [🐍 pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 
 See the tests for executable documentation
 

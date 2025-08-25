@@ -2,305 +2,6 @@
 
 # arranges
 
-<a id="arranges.ranges"></a>
-
-# arranges.ranges
-
-<a id="arranges.ranges.Ranges"></a>
-
-## Ranges Objects
-
-```python
-class Ranges(str)
-```
-
-A range set that can be hashed and converted to a string.
-
-<a id="arranges.ranges.Ranges.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(value: Any, stop: range_idx | None = None)
-```
-
-Construct a new string with the canonical form of the range.
-
-<a id="arranges.ranges.Ranges.__new__"></a>
-
-#### \_\_new\_\_
-
-```python
-def __new__(cls, value: Any, stop: range_idx | None = None) -> str
-```
-
-Construct a new string with the canonical form of the range.
-
-This becomes "self" in __init__, so we're always a string
-
-<a id="arranges.ranges.Ranges.construct_str"></a>
-
-#### construct\_str
-
-```python
-@classmethod
-def construct_str(cls, value, stop) -> str
-```
-
-Create a string representation of a range series
-
-<a id="arranges.ranges.Ranges.from_str"></a>
-
-#### from\_str
-
-```python
-@classmethod
-def from_str(cls, value: str) -> tuple[Segment]
-```
-
-Construct from a string.
-
-<a id="arranges.ranges.Ranges.iterable_to_str"></a>
-
-#### iterable\_to\_str
-
-```python
-@classmethod
-def iterable_to_str(cls, iterable: Iterable) -> str
-```
-
-Convert an iterable of ranges to a string
-
-<a id="arranges.ranges.Ranges.from_hashable_iterable"></a>
-
-#### from\_hashable\_iterable
-
-```python
-@classmethod
-@lru_cache
-def from_hashable_iterable(cls, value: tuple[Any]) -> tuple[Segment]
-```
-
-Cache the result of from_iterable
-
-<a id="arranges.ranges.Ranges.from_iterable"></a>
-
-#### from\_iterable
-
-```python
-@classmethod
-def from_iterable(cls, iterable: Iterable) -> tuple[Segment]
-```
-
-Sort and merge a list of ranges.
-
-<a id="arranges.ranges.Ranges.__hash__"></a>
-
-#### \_\_hash\_\_
-
-```python
-def __hash__()
-```
-
-The hash of the string (which is what these things are)
-
-<a id="arranges.ranges.Ranges.__len__"></a>
-
-#### \_\_len\_\_
-
-```python
-def __len__() -> int
-```
-
-Get the total length of all ranges
-
-<a id="arranges.ranges.Ranges.__bool__"></a>
-
-#### \_\_bool\_\_
-
-```python
-def __bool__() -> bool
-```
-
-True if this range has any elements
-
-<a id="arranges.ranges.Ranges.__eq__"></a>
-
-#### \_\_eq\_\_
-
-```python
-def __eq__(other: Any) -> bool
-```
-
-Compare the two lists based on their string representations
-
-<a id="arranges.ranges.Ranges.__contains__"></a>
-
-#### \_\_contains\_\_
-
-```python
-def __contains__(other: Any) -> bool
-```
-
-Are all of the other ranges in our ranges?
-
-<a id="arranges.ranges.Ranges.__iter__"></a>
-
-#### \_\_iter\_\_
-
-```python
-def __iter__()
-```
-
-Iterate over the values in our ranges.
-
-Note that this could be boundless.
-
-<a id="arranges.ranges.Ranges.intersects"></a>
-
-#### intersects
-
-```python
-def intersects(other: Any) -> bool
-```
-
-True if this range overlaps with the other range
-
-<a id="arranges.ranges.Ranges.union"></a>
-
-#### union
-
-```python
-def union(other) -> "Ranges"
-```
-
-Return the union of this range and the other
-
-<a id="arranges.ranges.Ranges.__or__"></a>
-
-#### \_\_or\_\_
-
-```python
-def __or__(other: "Ranges") -> "Ranges"
-```
-
-Return the union of this range and the other
-
-<a id="arranges.ranges.Ranges.__and__"></a>
-
-#### \_\_and\_\_
-
-```python
-def __and__(other: "Ranges") -> "Ranges"
-```
-
-Return the intersection of this range and the other
-
-<a id="arranges.ranges.Ranges.__le__"></a>
-
-#### \_\_le\_\_
-
-```python
-def __le__(other: "Ranges") -> bool
-```
-
-Subset operator (<=): True if self is a subset of other
-
-<a id="arranges.ranges.Ranges.__lt__"></a>
-
-#### \_\_lt\_\_
-
-```python
-def __lt__(other: "Ranges") -> bool
-```
-
-Proper subset operator (<): True if self is a proper subset of other
-
-<a id="arranges.ranges.Ranges.__ge__"></a>
-
-#### \_\_ge\_\_
-
-```python
-def __ge__(other: "Ranges") -> bool
-```
-
-Superset operator (>=): True if self is a superset of other
-
-<a id="arranges.ranges.Ranges.__gt__"></a>
-
-#### \_\_gt\_\_
-
-```python
-def __gt__(other: "Ranges") -> bool
-```
-
-Proper superset operator (>): True if self is a proper superset of other
-
-<a id="arranges.ranges.Ranges.__sub__"></a>
-
-#### \_\_sub\_\_
-
-```python
-def __sub__(other: "Ranges") -> "Ranges"
-```
-
-Relative complement operator (-): Return elements in self that are not in other
-
-<a id="arranges.ranges.Ranges.__invert__"></a>
-
-#### \_\_invert\_\_
-
-```python
-def __invert__()
-```
-
-The inverse of this range
-
-<a id="arranges.ranges.Ranges.validate"></a>
-
-#### validate
-
-```python
-@classmethod
-def validate(cls, value: Any) -> "Ranges"
-```
-
-Validate a value and convert it to a Range
-
-<a id="arranges.ranges.Ranges.__get_pydantic_core_schema__"></a>
-
-#### \_\_get\_pydantic\_core\_schema\_\_
-
-```python
-@classmethod
-def __get_pydantic_core_schema__(cls, source_type: Any,
-                                 handler: GetCoreSchemaHandler) -> CoreSchema
-```
-
-For automatic validation in pydantic
-
-<a id="arranges.ranges.Ranges.first"></a>
-
-#### first
-
-```python
-@property
-def first()
-```
-
-The start value of the first segment
-
-<a id="arranges.ranges.Ranges.last"></a>
-
-#### last
-
-```python
-@property
-def last()
-```
-
-The last value of the final segment
-
 <a id="arranges.segment"></a>
 
 # arranges.segment
@@ -644,4 +345,291 @@ def try_hash(obj: Any) -> int | None
 ```
 
 Try to hash an object. If it can't be hashed, return None
+
+<a id="arranges.ranges"></a>
+
+# arranges.ranges
+
+<a id="arranges.ranges.Ranges"></a>
+
+## Ranges Objects
+
+```python
+class Ranges(str)
+```
+
+A range set that can be hashed and converted to a string.
+
+<a id="arranges.ranges.Ranges.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(value: Any, stop: range_idx | None = None)
+```
+
+Construct a new string with the canonical form of the range.
+
+<a id="arranges.ranges.Ranges.__new__"></a>
+
+#### \_\_new\_\_
+
+```python
+def __new__(cls, value: Any, stop: range_idx | None = None) -> str
+```
+
+Construct a new string with the canonical form of the range.
+
+This becomes "self" in __init__, so we're always a string
+
+<a id="arranges.ranges.Ranges.construct_str"></a>
+
+#### construct\_str
+
+```python
+@classmethod
+def construct_str(cls, value, stop) -> str
+```
+
+Create a string representation of a range series
+
+<a id="arranges.ranges.Ranges.from_str"></a>
+
+#### from\_str
+
+```python
+@classmethod
+def from_str(cls, value: str) -> tuple[Segment]
+```
+
+Construct from a string.
+
+<a id="arranges.ranges.Ranges.iterable_to_str"></a>
+
+#### iterable\_to\_str
+
+```python
+@classmethod
+def iterable_to_str(cls, iterable: Iterable) -> str
+```
+
+Convert an iterable of ranges to a string
+
+<a id="arranges.ranges.Ranges.from_hashable_iterable"></a>
+
+#### from\_hashable\_iterable
+
+```python
+@classmethod
+@lru_cache
+def from_hashable_iterable(cls, value: tuple[Any]) -> tuple[Segment]
+```
+
+Cache the result of from_iterable
+
+<a id="arranges.ranges.Ranges.from_iterable"></a>
+
+#### from\_iterable
+
+```python
+@classmethod
+def from_iterable(cls, iterable: Iterable) -> tuple[Segment]
+```
+
+Sort and merge a list of ranges.
+
+<a id="arranges.ranges.Ranges.__hash__"></a>
+
+#### \_\_hash\_\_
+
+```python
+def __hash__()
+```
+
+The hash of the string (which is what these things are)
+
+<a id="arranges.ranges.Ranges.__len__"></a>
+
+#### \_\_len\_\_
+
+```python
+def __len__() -> int
+```
+
+Get the total length of all ranges
+
+<a id="arranges.ranges.Ranges.__bool__"></a>
+
+#### \_\_bool\_\_
+
+```python
+def __bool__() -> bool
+```
+
+True if this range has any elements
+
+<a id="arranges.ranges.Ranges.__eq__"></a>
+
+#### \_\_eq\_\_
+
+```python
+def __eq__(other: Any) -> bool
+```
+
+Compare the two lists based on their string representations
+
+<a id="arranges.ranges.Ranges.__contains__"></a>
+
+#### \_\_contains\_\_
+
+```python
+def __contains__(other: Any) -> bool
+```
+
+Are all of the other ranges in our ranges?
+
+<a id="arranges.ranges.Ranges.__iter__"></a>
+
+#### \_\_iter\_\_
+
+```python
+def __iter__()
+```
+
+Iterate over the values in our ranges.
+
+Note that this could be boundless.
+
+<a id="arranges.ranges.Ranges.intersects"></a>
+
+#### intersects
+
+```python
+def intersects(other: Any) -> bool
+```
+
+True if this range overlaps with the other range
+
+<a id="arranges.ranges.Ranges.union"></a>
+
+#### union
+
+```python
+def union(other) -> "Ranges"
+```
+
+Return the union of this range and the other
+
+<a id="arranges.ranges.Ranges.__or__"></a>
+
+#### \_\_or\_\_
+
+```python
+def __or__(other: "Ranges") -> "Ranges"
+```
+
+Return the union of this range and the other
+
+<a id="arranges.ranges.Ranges.__and__"></a>
+
+#### \_\_and\_\_
+
+```python
+def __and__(other: "Ranges") -> "Ranges"
+```
+
+Return the intersection of this range and the other
+
+<a id="arranges.ranges.Ranges.__le__"></a>
+
+#### \_\_le\_\_
+
+```python
+def __le__(other: "Ranges") -> bool
+```
+
+Subset operator (<=): True if self is a subset of other
+
+<a id="arranges.ranges.Ranges.__lt__"></a>
+
+#### \_\_lt\_\_
+
+```python
+def __lt__(other: "Ranges") -> bool
+```
+
+Proper subset operator (<): True if self is a proper subset of other
+
+<a id="arranges.ranges.Ranges.__ge__"></a>
+
+#### \_\_ge\_\_
+
+```python
+def __ge__(other: "Ranges") -> bool
+```
+
+Superset operator (>=): True if self is a superset of other
+
+<a id="arranges.ranges.Ranges.__gt__"></a>
+
+#### \_\_gt\_\_
+
+```python
+def __gt__(other: "Ranges") -> bool
+```
+
+Proper superset operator (>): True if self is a proper superset of other
+
+<a id="arranges.ranges.Ranges.__sub__"></a>
+
+#### \_\_sub\_\_
+
+```python
+def __sub__(other: "Ranges") -> "Ranges"
+```
+
+Relative complement operator (-): Return elements in self that are not in other
+
+<a id="arranges.ranges.Ranges.__invert__"></a>
+
+#### \_\_invert\_\_
+
+```python
+def __invert__()
+```
+
+The inverse of this range
+
+<a id="arranges.ranges.Ranges.validate"></a>
+
+#### validate
+
+```python
+@classmethod
+def validate(cls, value: Any) -> "Ranges"
+```
+
+Validate a value and convert it to a Range
+
+<a id="arranges.ranges.Ranges.first"></a>
+
+#### first
+
+```python
+@property
+def first()
+```
+
+The start value of the first segment
+
+<a id="arranges.ranges.Ranges.last"></a>
+
+#### last
+
+```python
+@property
+def last()
+```
+
+The last value of the final segment
 
