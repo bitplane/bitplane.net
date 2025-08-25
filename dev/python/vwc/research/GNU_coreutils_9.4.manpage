@@ -1,0 +1,77 @@
+WC(1)                       General Commands Manual                      WC(1)
+
+NAME
+     wc - word, line, and byte count
+
+SYNOPSIS
+     wc [-c | -m] [-Llw] [file ...]
+
+DESCRIPTION
+     The wc utility displays the number of lines, words, bytes and characters
+     contained in each input file (or standard input, by default) to the
+     standard output.  A line is defined as a string of characters delimited
+     by a <newline> character, and a word is defined as a string of characters
+     delimited by white space characters.  White space characters are the set
+     of characters for which the iswspace(3) function returns true.  If more
+     than one input file is specified, a line of cumulative counts for all the
+     files is displayed on a separate line after the output for the last file.
+
+     The following options are available:
+
+     -c      The number of bytes in each input file is written to the standard
+             output.
+
+     -L      The number of characters in the longest line of each input file
+             is written to the standard output.
+
+     -l      The number of lines in each input file is written to the standard
+             output.
+
+     -m      The number of characters in each input file is written to the
+             standard output.
+
+     -w      The number of words in each input file is written to the standard
+             output.
+
+     When an option is specified, wc only reports the information requested by
+     that option.  The default action is equivalent to all the flags -clw
+     having been specified.
+
+     The following operands are available:
+
+     file    A pathname of an input file.
+
+     If no file names are specified, the standard input is used and no file
+     name is displayed.
+
+     By default, the standard output contains a line for each input file of
+     the form:
+
+           lines    words  bytes   file_name
+
+EXIT STATUS
+     The wc utility exits 0 on success, and >0 if an error occurs.
+
+COMPATIBILITY
+     Historically, the wc utility was documented to define a word as a
+     ``maximal string of characters delimited by <space>, <tab> or <newline>
+     characters''.  The implementation, however, didn't handle non-printing
+     characters correctly so that ``  ^D^E  '' counted as 6 spaces, while
+     ``foo^D^Ebar'' counted as 8 characters.  4BSD systems after 4.3BSD
+     modified the implementation to be consistent with the documentation.
+     This implementation defines a ``word'' in terms of the iswspace(3)
+     function, as required by IEEE Std 1003.2 ("POSIX.2").
+
+     The -L option is a non-standard extension, compatible with the -L option
+     of the GNU and FreeBSD wc utilities.
+
+SEE ALSO
+     iswspace(3)
+
+STANDARDS
+     The wc utility conforms to IEEE Std 1003.2-1992 ("POSIX.2").
+
+HISTORY
+     A wc utility appeared in Version 1 AT&T UNIX.
+
+NetBSD 9.3                     September 1, 2019                    NetBSD 9.3

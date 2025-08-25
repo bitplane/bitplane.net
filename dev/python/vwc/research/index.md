@@ -1,199 +1,209 @@
-Great — I’ll research how GNU `wc` handles each flag and edge case, including buffering, signal behavior, background/suspend handling, and file input quirks. I’ll also examine coreutils source and runtime behavior to ensure precise matching.
+# Useful
 
-The goal will be to produce a fully specced plan for a Cython-friendly, modular implementation of `wc` with live preview updates every 200ms when output is a TTY. I’ll include design notes and annotations for portability (e.g. macOS/BSD differences), and structure the result around best practices with a top-level docstring for `__doc__`.
-
-I’ll let you know when it’s ready.
-
-
-# Deep Dive into GNU `wc` (Word Count) Behavior
-
-## Overview and Default Behavior
-
-GNU Coreutils **`wc`** is a command-line utility that counts lines, words, and bytes (and optionally characters and max line length) for text input. By default, running `wc` on one or more files prints three counts for each input: **newline count**, **word count**, and **byte count**, in that order. If multiple files are provided, `wc` will also output a **total** summary line with the cumulative counts. The default behavior is summarized as follows:
-
-* **No arguments (or `-` as file):** Read from standard input (stdin) and output counts for that input stream. No filename is shown in this case since the data is unnamed.
-* **One file argument:** Print the line, word, and byte counts for that file, followed by the filename. (If only one kind of count is requested via flags, the count is printed with no leading spaces – see *Output Formatting* below.)
-* **Multiple file arguments:** Print counts for each file on separate lines (each line ending with the respective filename), and then a **“total”** line with the sum of those counts.
-
-By default, the three counts appear in the order **lines, words, bytes**, each right-aligned in a column. The utility defines a “word” as a **non-empty sequence of non-whitespace characters** delimited by whitespace or by start/end of input. “Lines” are counted by newline characters (each `'\n'` increments the line count). Notably, if a file does *not* end with a newline, GNU `wc` **does not count the last line** as a line at all (i.e. it counts only complete lines ending in `'\n'`). This means a file with no newline at EOF could show 0 lines even if it contains text.
-
-## Command-Line Options and Flags
-
-GNU `wc` provides several options to control which counts are displayed. You can mix these flags to display multiple counts at once (each specified count will be shown in the fixed column order described later). The flags and their meanings are:
-
-* **`-l, --lines`:** Count newline characters (i.e. **lines**). Each newline in the input increments the line count. A trailing line without a newline terminator is *not* counted as a line.
-* **`-w, --words`:** Count **words** (defined by whitespace separation). A word is a non-empty sequence of characters that is delimited by whitespace (or start/end of file). The definition of whitespace is locale-dependent; in the default GNU behavior, standard space characters count as whitespace. Additionally, GNU `wc` treats certain Unicode space characters (e.g. non-breaking space `U+00A0`, figure space `U+2007`, narrow no-break space `U+202F`, and word joiner `U+2060`) as whitespace delimiters *even if* the current locale does not classify them as such (unless `POSIXLY_CORRECT` is set). This ensures these are not counted as part of words by default.
-* **`-c, --bytes`:** Count **bytes**. This prints the size of the input in bytes (octets). It does **not** depend on locale or encoding and will count every byte, including whitespace and newline, as one. This option is useful for file sizes.
-* **`-m, --chars`:** Count **characters**. This is similar to `-c` but counts *characters* rather than bytes, according to the current locale’s encoding. In UTF-8 or other multi-byte encodings, this will count multi-byte sequences as a single character (if they form a valid character). **Invalid or incomplete byte sequences (encoding errors) are not counted as characters** (they are essentially skipped in the character count), but they are treated as non-whitespace for word-separation purposes. In a single-byte locale (or if the locale doesn’t support multibyte), `-m` is effectively equivalent to `-c`.
-  *Encoding assumptions:* `wc` uses the locale settings (e.g. `LC_CTYPE`) to interpret character encoding. With `-m`, it decodes the input to count characters properly. This means in UTF-8 locales it will correctly count multi-byte UTF-8 characters as one each. Any encoding errors (invalid byte sequences) are handled by counting the bytes as neither whitespace nor valid characters.
-* **`-L, --max-line-length`:** Calculate the **length of the longest line**. For each file, this option finds the maximum *display width* among all its lines, and prints that number. Display width accounts for character width and tab expansion: tabs are treated as moving to the next 8th column, wide characters count as their screen column width, and non-printable characters are given zero width. In effect, GNU `wc -L` measures the longest line in terms of how many columns it would occupy on a terminal. If multiple files are processed, the value reported for `-L` in the **“total”** line is the maximum line length among *all* the files (not a sum, since sum of line lengths isn't meaningful).
-  *Note:* This behavior is a GNU extension. On some platforms (e.g. FreeBSD/macOS), the `-L` option exists but may count differently. BSD `wc -L` reports the length of the longest line in **bytes by default, or in characters if `-m` is also used**, and may not account for tab expansion or wide characters as GNU does.
-* **`--files0-from=F`:** Read input file names from the file **`F`** instead of command arguments. The file `F` should contain a list of filenames separated by ASCII NUL (`\0`) characters. This is useful for handling arbitrary filenames (including those with newlines or spaces) in bulk. If `F` is “`-`”, `wc` will read the list of filenames from stdin. Each file in the list is processed as if it were given as a normal argument.  When using this option, you typically don’t provide other file arguments on the command line (the usage is either `wc [FILES...]` or `wc --files0-from=F` in GNU coreutils).
-
-  * If `--files0-from=-` reads the list from standard input, note that `wc` will **not** treat the content fed into stdin as data to count, but rather as the source of filenames. (In other words, stdin is consumed for the file list, not for counting content, in this mode.) If a NUL-listed filename is `-` (just a single dash), `wc` will interpret that as a request to read from standard input *for content*. This can be tricky: if the file list itself is coming from stdin, then having `-` in that list would refer to the same stdin stream (likely already exhausted by reading the list). In practice, avoid including `-` in a stdin-provided file list. When reading file names from a separate file, a `-` entry will cause `wc` to read from actual stdin for content.
-* **`--total=WHEN`:** Control **when a total summary line is printed**. This option (a GNU extension) lets you override the default behavior of printing a “total” line only when multiple files are processed. `WHEN` can be one of the following:
-
-  * `auto` – (default) Print a total line only if more than one file is processed.
-  * `always` – Always print a total line **even if only one file** is given. For example, `wc --total=always file.txt` will output two lines: one for `file.txt` and one labeled “total” (which in this case will have the same counts as file.txt).
-  * `only` – Print **only the total counts**, suppressing individual file lines. In this mode, `wc` will aggregate counts across all inputs and output one line of numbers. It will omit file names and even the word “total” – just the cumulative numbers are printed (with no leading spaces). This is useful if you only care about the grand total (the format is easier for scripts to parse since it's just numbers).
-  * `never` – **Never** print a total line, even if multiple files are given. Only per-file counts are output for each file. (This mimics POSIX behavior strictly, since POSIX `wc` doesn’t have a toggle but always prints total for multiple files; `--total=never` can be used to suppress that total if needed.)
-
-**Combining options:** You can specify multiple count options together to display more than one kind of count. Each option you include will add its respective column to the output (in the standard column order). For example, `wc -c -w` will print **both** the byte count and the word count. Options do not override one another except in unusual cases – GNU `wc` will accumulate them. (By contrast, some non-GNU implementations treat `-c` and `-m` as mutually exclusive, where one might cancel the other, but GNU does **not cancel** flags; all specified counts are shown.) The only effect of specifying count flags is that **only** those specified counts are shown (the default three are omitted unless their flags are included). If no count-selective flags are given, the default is to show lines, words, and bytes.
-
-## Input Sources: Stdin vs Files vs NUL-Lists
-
-**Single file vs multiple files:** When `wc` is given one or more filenames as arguments, it will process each sequentially. For each input file, it produces one line of output with the counts and then the filename. If **no filename is given**, or if a filename is specified as “`-`”, `wc` reads from **standard input** (stdin). Data from stdin is treated as one continuous stream (one “file” for counting purposes). In the output, stdin data is not labeled with a name (when no filename argument was provided at all), or is labeled as “-” if you explicitly included “-” in the file list.
-
-* If you run `wc` with no files (for example, just `wc` and then type input), it will wait for you to enter text and signal end-of-input (Ctrl-D). Then it prints the counts for what was entered, with no filename at the end (just the numbers).
-* You can mix regular file arguments and `-` to intersperse stdin. For example, `wc file1 - file2` will count `file1`, then count data read from stdin (until EOF) as a second input, then `file2`. The output will have three lines: one for `file1` (labeled “file1”), one for the data read from stdin (labeled “-” as that was the argument), and one for `file2`, plus a total if applicable. Keep in mind that if stdin is a terminal in this scenario, `wc` will pause at that point and wait for you to type input for the “-” entry.
-
-**Using `--files0-from`:** Instead of listing files as separate command-line arguments, you can pass a NUL-separated list of file paths via `--files0-from`. This is especially useful when dealing with a large number of files or filenames containing special characters. For example, one could generate a list of files with `find` and pipe it:
-
-```bash
-find . -name "*.[ch]" -print0 | wc -L --files0-from=-
+```shell
+docker run -it ubuntu          #
+docker run -it madworx/netbsd  # login=root
+docker run -it alpine          #
 ```
 
-This command finds all `.c` or `.h` files and feeds them to `wc -L`. The `-print0 | --files0-from=-` combination ensures that even files with newlines in their names are handled correctly. When using `--files0-from`, each file from the list is processed just like a normal argument. The presence of this option means that `wc` will ignore any file arguments listed after it in the command (the GNU manual syntax shows these as mutually exclusive modes).
+## Core differences
 
-One thing to note is that `--files0-from` can be used to read from standard input by specifying `-` as the file list. In that case, **stdin is consumed for filenames**, and thus cannot simultaneously serve as a data source. If you need to count data from stdin along with other files, you should not use `--files0-from=-` for those same data. Also, if the NUL-separated list (from a file or stdin) contains an entry named exactly “-”, GNU `wc` will interpret that entry as a request to read from stdin (as if you had a “-” file argument). This is normally only useful if the list comes from a file and you truly want to include an on-the-fly stdin stream in the inputs. It’s an edge case and can be confusing if misused.
+### --help and -h
 
-## Byte Counting vs Character Counting
+| Arg     | impl    | ?  | stdout  |
+|---------|---------|----|---------|
+| --help  | GNU     | ✅ |   ✅    |
+| -h      | GNU     | ✅ |   ✅    |
+| --help  | BSD     | ❌ |   ❌    |
+| -h      | BSD     | ❌ |   ❌    |
+| -h      | BusyBox | ❌ |   ❌    |
+| --help  | BusyBox | ✅ |   ❌    |
 
-When counting **bytes** (`-c`) versus **characters** (`-m`), the difference becomes apparent with multibyte encodings (like UTF-8). **Byte count** is straightforward – it’s essentially the file size in bytes (or the total bytes read from a stream). **Character count** requires decoding according to the locale to correctly count multi-byte sequences as one.
+### `-` as a stream
 
-GNU `wc` handles this by reading the input in the current locale’s character encoding and incrementing the char count for each valid character read. If it encounters a byte sequence that does not form a valid character in that encoding, it will **not increment the character count** for that sequence. Those bytes are effectively ignored in the `-m` tally (but still contribute to the byte count, and as mentioned, are considered non-whitespace for word counting logic). This behavior ensures that character counts aren’t inflated by counting error bytes individually. In practice, for a valid UTF-8 text, `wc -m` will produce the number of Unicode code points in the text, which may be less than the byte count if any characters above ASCII are present. For example, a file containing “€” (Euro sign, 3 bytes in UTF-8) will have `--bytes=3` but `--chars=1`.
+| impl    | ?  | \d |
+|---------|----|----|
+| GNU     | ✅ | ✅ |
+| BSD     | ❌ | ❌ |
+| Busybox | ✅ | ❌ |
 
-**Encoding assumptions:** `wc` uses the C library’s multibyte character handling (the locale’s `MB_CUR_MAX`, `mbrtowc()`, etc.) to decode characters. It does not attempt to guess encoding – it relies on the environment (e.g. `LANG` or `LC_ALL` variables on Unix) to be set correctly. If you run `wc -m` in a UTF-8 locale on a UTF-8 file, you get proper char counts. If the locale is C/POSIX (ASCII) and the file has multibyte sequences, those sequences will likely be reported as encoding errors and thus not counted as characters. In such a case, `wc -m` might produce a number lower than `wc -c`.
+### String format
 
-**Word counting and locale:** The definition of what constitutes a word delimiter (whitespace) is also locale-sensitive in subtle ways. GNU `wc` uses the locale’s classification of whitespace characters (via `iswspace` or similar). However, as noted, it specifically treats a few Unicode space characters as whitespace regardless of locale to be more intuitive. This means that in most locales, spaces, tabs, newlines, and other Unicode spaces will break words. Letters and printable symbols count as part of words. An “encoding error” byte (one that can’t form a valid character) is treated as a non-whitespace character, meaning it will be counted within a “word” if it’s between whitespace regions. Essentially, invalid bytes won’t split words apart.
+| impl    |  printf             |
+|---------|---------------------|
+| GNU     | `" %7d %7d %7d %s"` |
+| BSD     | `" %7d %7d %7d %s"` |
+| Busybox | `"%9d %9d %9d %s"`  |
 
-**Lines and multibyte:** Line counting (`-l`) is unaffected by encoding except insofar as the newline character is represented (in ASCII and UTF-8, newline is a single byte `0x0A`; in UTF-16, which `wc` would not directly handle unless piped through something, newline would be two bytes but as multi-byte to wc it appears as separate bytes including 0x0A). In normal usage, every `'\n'` increments the line counter. If the last line of a file is missing a newline terminator, `wc` does *not* add an extra line count. This is because it literally counts newline characters, rather than counting “lines” in a more abstract sense.
+### Total
 
-## Output Formatting and Column Order
+### `-m`
 
-Regardless of which counts are selected, GNU `wc` **always prints them in a specific column order**: **lines, words, characters, bytes, maximum-line-length**, in that sequence. Only the requested fields are shown, but if multiple are requested, they appear in that relative order. For example, `wc -c -l` (lines and bytes) will output the line count first, then the byte count (even though `-c` was listed first in the command). If all options are used, the order would be: lines, words, chars, bytes, max-line-length.
+### `-w`
 
-Each count is formatted as a right-aligned integer in its column. By default, `wc` separates columns by **at least one space**. The numbers are arranged so that, when possible, the digits line up in vertical columns for easy reading. File names (or the word “total”) appear at the end of the line after at least one space separating them from the last number.
+## BSD
 
-**Column width and alignment:** GNU `wc` uses dynamic column sizing. It will pad the numbers with spaces on the left so that the widest number in each column (among all the lines to be printed, including the “total” line) determines the width for that column. Typically, `wc` inspects all the input files *before* processing to estimate how large the counts might get. In fact, the GNU implementation will perform a `stat()` on each input file (when possible) before reading data. From the file size information, it can infer an upper bound on certain counts, which helps decide the field width. For example, if a file is 1,772 bytes, the byte count will definitely be 1772 (3 or 4 digits); the line count cannot exceed 1772 (if every byte was a newline) – so at most 4 digits; the word count also cannot exceed roughly half that (in an extreme alternating pattern) but as a safe upper bound it uses the file size as well. Using these sizes, `wc` will choose a column width that can accommodate the largest possible count. If *all* input files are regular files that were stat’ed, `wc` can often use a minimal width for the columns (just enough for the largest count).
+-h
 
-If any input is not a regular file (for example, data from a pipe or tty), `wc` cannot know the total size ahead of time. In those cases, GNU `wc` **falls back to a default minimum field width of 7 characters** for each count column. This is why sometimes you see `wc` output with seemingly extra padding when using pipes. For instance, compare these scenarios:
+```shell
+netbsd# wc -h
+wc: unknown option -- h
+usage: wc [-c | -m] [-Llw] [file ...]
+```
 
-* **Direct file arguments:** Suppose `a.txt` has 6 lines, 6 words, 88 bytes; `b.txt` has 60 lines, 236 words, 1772 bytes. Running `wc a.txt b.txt` might produce:
+handling -
 
-  ```
-        6    6   88 a.txt
-       60  236 1772 b.txt
-       66  242 1860 total
-  ```
+```shell
+netbsd# yes | head -n10 | wc -
+wc: -: No such file or directory
+```
 
-  Here, `wc` statted both files. It determined that the byte count could be up to 4 digits (1772 for b.txt), word count up to 3 digits, line count up to 2 digits. It then printed each column right-aligned to those widths. Notice how the numbers align in columns.
-* **Including a pipe/stdin:** If you pipe data or use `-` in the file list, `wc` doesn’t know sizes in advance for that stream. In such cases, it ensures a safe width (at least 7). For example, `cat b.txt | wc a.txt -` might yield:
+```shell
+ netbsd# yes | head -n1000 | wc
+    1000    1000    2000
+netbsd# yes | head -n100000 | wc
+  100000  100000  200000
+netbsd# yes | head -n10000000 | wc
+ 10000000 10000000 20000000
+netbsd# yes | head -n100000000 | wc
+ 100000000 100000000 200000000
+netbsd#
+```
 
-  ```
-             6       6      88 a.txt
-            60     236    1772 -
-            66     242    1860 total
-  ```
+## busybox
 
-  The presence of the `-` (stdin) input caused `wc` to use a minimum of 7 character columns for all the numeric fields. You can see the padding: each number now takes up at least 7 spaces, so the single-digit and double-digit numbers are heavily padded. The `a.txt` numbers, which were snug in the previous example, are now pushed to the right with more leading spaces so that they align with the 7-wide format used for the piped data line.
+--help but not -h
 
-In general, you **should not assume a fixed width** for `wc` output in scripts. The GNU manual warns that the field widths vary. Historically, many implementations used a fixed 7-column format for each of the three default counts, but GNU `wc` optimizes the width when possible (while still defaulting to 7 if uncertain). The only guarantee is that there will be at least one space separating fields. Also, as a GNU extension, if only **one count field** is being printed (for example, only lines because you used `-l` alone), then `wc` will **not pad with any leading spaces** in that output. It prints the number as-is (since there’s no alignment needed with other columns) followed by the filename or newline. This makes it easier to use in scripts – e.g., `lines=$(wc -l < file)` yields a clean number without leading blanks.
+```shell
+/ # wc --help
+BusyBox v1.37.0 (2025-01-17 18:12:01 UTC) multi-call binary.
 
-**File name formatting:** After the numeric fields, `wc` prints the file name (if a file was an argument) or `total`. There is always at least one space (usually just one) between the last number and the file name. In the special case of `--total=only`, no “total” label is printed, and leading spaces are suppressed, so it’s just the numbers on one line.
+Usage: wc [-cmlwL] [FILE]...
 
-If output is going to a terminal, `wc` will output a newline at the end of each line of counts (and flush on newline, as usual). If output is redirected to a file or pipe, the buffering may delay printing until all processing is done (see next section on buffering).
+Count lines, words, and bytes for FILEs (or stdin)
 
-## Buffering, Signals, and Progress Updates
+        -c      Count bytes
+        -m      Count characters
+        -l      Count newlines
+        -w      Count words
+        -L      Print longest line length
+/ # echo $?
+0
+/ # wc -h
+wc: unrecognized option: h
+BusyBox v1.37.0 (2025-01-17 18:12:01 UTC) multi-call binary.
 
-**Buffering behavior:** Like most Unix utilities, `wc` uses stdio for output. When the output is a terminal (TTY), stdio typically line-buffers the output, meaning it will flush each line as it’s printed (each newline triggers a flush). Since `wc` prints each result followed by a newline, you normally see each line immediately on the terminal as soon as that file’s counting is done. When output is redirected (for example, piped into another command or into a file), stdio uses block buffering, which means `wc` might buffer multiple lines of output before writing them out – but in practice, `wc` will flush at the end of execution anyway, and each line of results isn’t large, so you usually get the output once `wc` finishes each file or the whole job. In the multiple-files case, `wc` prints each file’s line *immediately after counting that file* (it doesn’t wait to finish all files to start outputting). Thanks to the internal logic with `stat`, it can print with correct alignment without needing to retroactively adjust previous lines.
+Usage: wc [-cmlwL] [FILE]...
 
-**SIGINT (Ctrl+C):** GNU `wc` does not have special signal handling for interruption beyond the default. If you press Ctrl+C during execution, it will typically terminate immediately and not print any partial results. For example, if you are piping a huge input to `wc` and hit Ctrl+C, `wc` will abort and you will likely see no output (or whatever partial line was buffered and not yet flushed, which is usually nothing if it hadn’t finished a file). The program’s exit code will be non-zero (130, typical of an interrupt). In a custom Python implementation, one might consider catching SIGINT to perhaps print a summary of what was counted so far, but the actual GNU `wc` does not do this – it just stops.
+Count lines, words, and bytes for FILEs (or stdin)
 
-**SIGPIPE:** If `wc` is writing output to a pipe (say you piped `wc` into another program) and the downstream program closes early (causing a broken pipe), `wc` will receive SIGPIPE. The default behavior on SIGPIPE is to terminate the process quietly. GNU `wc` doesn’t explicitly handle SIGPIPE; it will just exit when it tries to write and finds the pipe closed. In a Python version, you’d want to handle the `BrokenPipeError` by exiting cleanly (and not dumping a traceback). This is important for scripting (for instance, `head -n1` piped from `wc` might cause `wc` to get a SIGPIPE after writing the first line, and it should exit without error message).
+        -c      Count bytes
+        -m      Count characters
+        -l      Count newlines
+        -w      Count words
+        -L      Print longest line length
+/ # echo $?
+1
+```
 
-**Suspension (Ctrl+Z):** Stopping the process (SIGTSTP) and later resuming (`fg`) doesn’t affect `wc`’s logic – it will continue where it left off. There’s no special handling needed; the OS will freeze and thaw the process state.
+--help always goes to stderr
 
-**TTY-based live progress (flushing every 200ms):** By default, `wc` does not print any progress updates while counting – it only prints final results. However, for a custom implementation, one might introduce a feature to display live progress when working with a large input interactively. For example, if output is a TTY, the program could periodically output the current counts (perhaps overwriting the line or on a new line) so the user can see the count rising in real time. This is not a standard feature of GNU `wc`, but it’s a possible extension. If implementing this, consider the following best practices:
+```shell
+/ # wc --help > tmp.1
+BusyBox v1.37.0 (2025-01-17 18:12:01 UTC) multi-call binary.
 
-* Use `isatty` on `stdout` (or on `stderr` if you plan to show progress there) to detect if the output is a terminal. Only enable live progress updates for interactive terminals, to avoid interfering with pipes or file redirection.
-* Update the counts at a reasonable interval (e.g. every 200 ms). You might spawn a timer or loop that flushes output periodically. One approach is to flush the output buffer explicitly on a timer, but since `wc` normally wouldn’t print partial counts, you’d need to actually print something (like an updated count line).
-* A technique could be to print a carriage return `\r` and an updated count line (without a newline) every 0.2 seconds, so that the line gets overwritten each time, and then print the final newline-terminated result at the end. Ensure to flush after each update so that it actually appears. Python’s `print(..., end='\r', flush=True)` can be helpful for this, or using `sys.stdout.write` and `sys.stdout.flush()`.
-* Be careful to not corrupt the final output format. You might want to print progress to stderr instead of stdout (to keep stdout clean for final counts), or if printing to stdout, erase the line before printing the final numbers. This feature would be purely additive for user experience; it should be clearly commented if added, since it deviates from the traditional behavior.
+Usage: wc [-cmlwL] [FILE]...
 
-In summary, standard `wc` doesn’t do periodic flushing for progress – but a custom implementation can incorporate this as a non-standard enhancement. If doing so, make sure to **throttle the updates** (200 ms is reasonable) to avoid flooding output, and only do it when the output is interactive.
+Count lines, words, and bytes for FILEs (or stdin)
 
-## Structuring the Implementation (for Python/Cython)
+        -c      Count bytes
+        -m      Count characters
+        -l      Count newlines
+        -w      Count words
+        -L      Print longest line length
+/ # echo $?
+0
+```
 
-When writing a Python program to mimic `wc` exactly, it’s important to structure the code for correctness, performance, and maintainability – especially if a future rewrite in Cython (or another low-level approach) is planned. Here are some best practices and considerations:
+padding
+```shell
+/ # yes | head -n1000 | wc
+     1000      1000      2000
+/ # yes | head -n10000 | wc
+    10000     10000     20000
+/ # yes | head -n1000000 | wc
+  1000000   1000000   2000000
+/ # yes | head -n10000000 | wc
+ 10000000  10000000  20000000
+/ # yes | head -n100000000 | wc
+100000000 100000000 200000000
+/ # yes | head -n1000000000 | wc
+1000000000 1000000000 2000000000
 
-* **Modularize the logic:** Separate the code into logical components:
+looks like "%9d "
+```
 
-  * *Argument parsing and setup:* Determine which options are enabled (e.g. using Python’s `argparse` or manual parsing for simplicity). Set flags for which counts to gather, whether to use `--files0-from`, etc. Also handle special options like `--help` or `--version` if needed (GNU `wc` supports those).
-  * *File list acquisition:* If `--files0-from` is used, read the file names from the specified source (file or stdin). Otherwise, use the list of filenames given as arguments (or default to `['-']` if none given, meaning stdin).
-  * *Counting function:* Write a function (or a set of functions) to process a single input stream and compute the counts. This function should be able to handle an open file object or file descriptor, reading in binary mode. It should accumulate line count, word count, char count, byte count, and track max line length as needed. This core logic can be written to be as efficient as possible (since it may be reading large files). In Python, you might do buffered reads (e.g. read in chunks of, say, 64KB) to balance memory and speed.
-  * *Counting in one pass:* For performance and correctness, count all needed metrics in **one pass** through the data. For each chunk of data read:
 
-    * Increment byte count by the length of the chunk (since every byte is read).
-    * Count newlines in the chunk (e.g. using `chunk.count(b'\n')` for speed in Python, which is a C-optimized method) to add to the line count.
-    * For word count, you need to detect transitions from whitespace to non-whitespace. This requires a bit of state: you need to know if the last byte of the previous chunk was part of a word (i.e., the previous byte was non-whitespace) to handle a word that spans the boundary. One approach is to append a whitespace to the start of the chunk (or manage a flag) to simplify boundary logic. Alternatively, process each chunk with a small state machine: if the previous chunk ended in a non-space, mark that, and in the new chunk, treat the beginning as continuation if it starts with non-space.
-    * For character count (`-m`), you may use Python’s decoding. One safe strategy is to use an incremental decoder (`codecs.getincrementaldecoder(locale_encoding)`) to decode bytes to str in streaming fashion. This will handle multibyte sequences that span chunks. You can then simply add `len(decoded_chunk)` to the char count for each chunk. If a sequence is incomplete at the end of the chunk, the incremental decoder will hold it and combine with the next chunk. This approach also naturally handles invalid sequences (you can configure the decoder to ignore or replace errors; since we need to “not count” invalid bytes, ignoring them might be appropriate). Another approach is to manually scan bytes to count characters (especially if you only target UTF-8, you could count leading byte patterns), but using Python’s built-in codec is simpler and likely efficient in C. In a future Cython rewrite, you might replace this with direct C library calls for performance.
-    * For max line length (`-L`), you should track the length of the current line and update the maximum when a line break is encountered. This also needs state across chunks: if a chunk ends without a newline, the line continues in the next chunk. Track the current line’s length (in display columns). To compute display width, you’ll need to expand tabs and account for wide characters:
+## GNU
 
-      * Keep a running count for the current line. When you see a `'\t'` (tab), increment the length to the next multiple of 8 columns (e.g., `length = length - (length % 8) + 8`).
-      * When you decode characters (for `-m` or for `-L` width), determine each character’s display width. Python’s `wcwidth` (via `shutil.get_terminal_size` or `unicodedata.east_asian_width` combined with conditions) could help, but you might use a library or implement a small lookup for common cases. Wide CJK characters return width 2, normal characters 1, combining or non-printables might be 0. The GNU behavior assigns 0 width to non-printable chars.
-      * Update the current line length by that width for each character, and reset to 0 when a newline is encountered (while comparing to a `max_length` variable to possibly update it). This is quite complex in pure Python for full generality; a simpler approach is to approximate by counting bytes or chars, but to match GNU exactly, the tab and wide char logic should be implemented. For a future C/Cython version, one could call `wcwidth(3)` on each wide char or use existing libraries.
-  * *Output formatting:* Once counts for each input are obtained, format the output. Potentially, you can accumulate the results in a list of tuples (lines, words, chars, bytes, maxlen, name). If multiple files, also compute the totals (sums for lines, words, chars, bytes; max for line length). Then prepare the output lines. To match GNU formatting:
+```shell
+$ wc --help
+Usage: wc [OPTION]... [FILE]...
+  or:  wc [OPTION]... --files0-from=F
+Print newline, word, and byte counts for each FILE, and a total line if
+more than one FILE is specified.  A word is a non-zero-length sequence of
+printable characters delimited by white space.
 
-    * Determine which columns to print (based on options). E.g., if only `-l` and `-w` were requested, you’ll only print two columns (line and word).
-    * Calculate the width needed for each column. You can either replicate GNU’s stat-based approach or simply determine from the numbers you have. E.g., find the maximum number of digits in the line-count column among all lines (including the total if it will be printed) – that is the width for that column. Do the same for each column. If `--total=only` was used, you actually skip individual files and just output one line of totals (with no label and no padding for single-column case).
-    * If any unknown-size input was present (like actual stdin data), GNU uses a minimum width of 7 for all three default columns. You might not need to enforce the 7 minimum if you are calculating from actual counts (since by the time you output, you do have the actual counts). However, to mimic *exactly*, you might choose to implement the same rule: if any input was non-regular, and if your calculated max width for any column is less than 7, set it to 7. This ensures your spacing matches GNU in those scenarios. (This is a niche detail; many might omit it, but it is part of the GNU behavior.)
-    * Format each line by right-justifying each number in its field. In Python, you can use string formatting, e.g. `f"{count:>{width}}"` to right-align in a given width. Ensure there’s at least one space between adjacent fields – your width calculation plus right-align should handle that (since if you set width equal to max digits, the numbers will naturally have at least one space before shorter numbers). Then append a space and the filename (or “total”) if applicable.
-    * Take care of the case where only one column is printed: GNU prints that without leading spaces. You can special-case this by not padding if the number of selected count fields is 1. (Or simply set the width to the number of digits, which results in no leading space.)
-  * *Progress updates (if implemented):* If you add a progress output feature (flushing every 200ms), structure it so that it doesn’t interfere with final formatting. For instance, you could have the counting function accept a callback or use a threading.Timer that periodically prints interim counts. This part should be well-isolated and easy to remove or adjust for the Cython version.
-
-* **Minimal system calls:** To keep performance high, especially for a future Cython version, avoid excessive Python-level overhead:
-
-  * Open files in binary mode (`'rb'`) to prevent Python from doing any newline translation or decoding on read – you want raw bytes.
-  * Use large read buffers to minimize the number of read() system calls. For example, reading 64KiB or 128KiB at a time is typically efficient. Python’s default file object buffering is usually 4KiB or 8KiB; you can specify a larger buffer size when opening (`open(filename, 'rb', buffering=131072)` for 128KiB) or use `os.read` in a loop for fine control.
-  * Avoid doing per-byte processing in Python if possible. Use vectorized operations: e.g., `bytes.count(b'\n')` to count newlines in a chunk uses highly optimized C code. Similarly, one can find word boundaries by using `re` or splitting, but those may be overkill; a straightforward loop might actually be needed for word count to handle arbitrary whitespace correctly. If performance is a concern, a Cython or C extension can implement the word count logic (scanning for whitespace transitions) much faster than pure Python.
-  * Reuse objects where possible. For example, reuse a single buffer or bytearray for reading chunks, to avoid allocating new bytes objects repeatedly. In Cython, you could allocate a memory view and read into it.
-  * Use `os.fstat()` on file descriptors to get file size (and file type) ahead of reading, to inform output formatting (just as GNU does using `stat()` calls). This adds a system call per file, but that’s usually negligible compared to reading the file, and it allows you to implement the aligned output width easily. Check `st_mode` to see if it’s a regular file; if not, you know to use the 7-char minimum rule. Also collect `st_size` for regular files to compute digit widths.
-
-* **Memory considerations:** `wc` can handle very large files (many gigabytes). A Python implementation should be careful not to read the entire file into memory at once. The streaming chunk approach addresses this. Also, be mindful of the character decoding if using `-m`: decoding a chunk to a Python string might temporarily use more memory (since Python strings are Unicode and could use more than 1 byte/char). But since it’s chunked, it should be fine. A Cython version could decode and count on the fly without storing the whole string, to be more memory-efficient.
-
-* **Docstring and usage info:** Provide a `__doc__` at the top of your Python script/module that describes how to use it, similar to the `wc --help` output. For example, you might include:
-
-```python
-__doc__ = """Usage: wc [OPTION]... [FILE]...
-Print newline, word, and byte counts for each FILE, and a total line if more than one FILE is specified.
 With no FILE, or when FILE is -, read standard input.
 
+The options below may be used to select which counts are printed, always in
+the following order: newline, word, character, byte, maximum line length.
   -c, --bytes            print the byte counts
   -m, --chars            print the character counts
   -l, --lines            print the newline counts
+      --files0-from=F    read input from the files specified by
+                           NUL-terminated names in file F;
+                           If F is - then read names from standard input
+  -L, --max-line-length  print the maximum display width
   -w, --words            print the word counts
-  -L, --max-line-length  print the length of the longest line
-      --files0-from=F    read input from the files specified by NUL-terminated names in file F;
-                         If F is - then read names from standard input
-      --total=WHEN       when to print a line with total counts: auto, always, only, never
-"""
+      --total=WHEN       when to print a line with total counts;
+                           WHEN can be: auto, always, only, never
+      --help        display this help and exit
+      --version     output version information and exit
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Full documentation <https://www.gnu.org/software/coreutils/wc>
+or available locally via: info '(coreutils) wc invocation'
+$ echo $0
+0
 ```
 
-This mirrors the GNU help text (you can adjust wording to avoid any copyright issues, but the idea is to clearly document the options). Having this as `__doc__` means if someone does `help(your_wc_module)` or runs it with `-h`, they can see usage.
+explicit --help or -h goes to stdout, -uwotm8 to stderr
 
-* **Comments and portability notes:** In the code, add comments where behavior might differ on other platforms or where certain choices were made for GNU compliance. For example, note that *“BSD `wc` treats -c and -m as exclusive; here we allow combination as GNU does.”* Or *“GNU counts only newline-terminated lines; this may differ from some interpretations.”* Also, comment on any assumptions (like *“assuming UTF-8 or locale encoding for char counts”*). These comments will help if someone tries to use the code on another system or compare results.
+```shell
+(💻​) gaz@blade:~$ wc -wot > /tmp/nope
+wc: invalid option -- 'o'
+Try 'wc --help' for more information.
+(💻​) gaz@blade:~$ echo $?
+1
+```
 
-* **Testing against GNU wc:** Because the goal is exact behavior, it’s important to test your implementation against the real GNU `wc` for various scenarios: typical ASCII text, files with multibyte characters, files with no trailing newline, binary data (to see how it handles non-printables in `-L` and such), extremely large files (for performance), multiple file inputs with and without `--total` variations, etc. This will flush out differences, especially in word counting (locale-specific) and max line length calculations.
+ctrl+d
 
-## Platform Differences and Compatibility
+```shell
+(💻​) gaz@blade:~$ wc - - -
+the first
+then press ctrl+d
+      2       5      28 -
+the second, and more ctrl+d
+      1       5      28 -
+the third. and once more
+      1       5      25 -
+      4      15      81 total
+```
 
-GNU `wc` (part of GNU coreutils) has some behaviors and extensions that may not be present in other systems’ versions of `wc`:
+## Mac
 
-* **Options not in POSIX:** `-m` (character count) and `-L` (max line length) are not in the original POSIX standard but are common extensions. GNU supports both. BSD supports `-m` and `-L` (with the semantic differences noted: BSD `-L` measures bytes or chars depending on `-m`). The `--files0-from` and `--total` options are GNU-specific and will not be found in BSD or other Unix variants.
-* **Combining outputs:** GNU’s ability to display multiple counts at once (e.g., lines and bytes together) is standard, but the BSD implementation historically would not allow `-c` and `-m` together (one would override the other). If writing a portable script, be mindful that `wc -c -m` might not work the same on non-GNU systems. Our Python version will follow GNU’s model (showing both if requested).
-* **Output alignment:** POSIX does not specify exact spacing, only that fields are separated by one or more blanks. BSD `wc` tends to use a fixed padding (likely 7 spaces minimum) consistently, whereas GNU `wc` dynamically adjusts spacing and uses the file size heuristic, leading to slightly different formatting in certain cases. Our implementation aims to replicate GNU’s output exactly. If you run it on macOS, the format it produces will look like GNU’s, which might differ from the system `wc`. That’s fine, but it’s worth a comment that *“Output formatting is done in GNU style, which may differ from BSD’s built-in wc.”*
-* **Locale and character counting:** Both GNU and BSD should honor locale for multibyte, but edge cases might exist. For instance, BSD’s `wc` might treat some unusual whitespace differently (GNU’s special-casing of certain Unicode spaces might not apply on BSD without setting a appropriate locale). For portability, one might document that the script assumes a UTF-8 locale for full correctness with `-m` and `-L`. If someone uses it on Windows (with Python), note that text mode vs binary mode differences require using binary mode to avoid CRLF translation altering counts.
-* **Maximum counts:** Traditional `wc` could overflow 32-bit counters on huge files. GNU `wc` uses 64-bit counters, supporting very large files (exceeding 4 billion counts). Our Python implementation will inherently use Python’s big integers, so it can count arbitrarily large values. On 32-bit systems or older implementations, very large files might show “\*\*\*\*\*\*” or wraparound (but this is mostly historical). We should just ensure we handle big numbers (which Python does automatically).
+## History
 
-By structuring the program with clear modular functions and careful attention to these details, the resulting Python (and future Cython) implementation will closely emulate GNU `wc` in behavior and output. Comments should indicate any deliberate differences or tricky aspects (especially those involving locale or platform-specific behaviors). The end result will be a robust `wc` clone in Python, with a well-documented codebase ready for optimization or conversion to C/Cython as needed.
+* [IEEE Std 1003.1-2024](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/wc.html)
