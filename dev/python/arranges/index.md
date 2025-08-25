@@ -5,7 +5,7 @@ in my `merge-files` app, in a way that I can just drop it in as a string field
 type. The reason for this is so the machine-generated command line help is
 flat and readable by humans.
 
-It it kinda grew into a monster so I've split it out into this separate
+It kinda grew into a monster, so I've split it out into this separate
 package. The main feature is a pair of classes that can represent ranges:
 
 * ⛓️ `Segment` is a class that can be treated like a `set` and its constructor is
@@ -20,8 +20,9 @@ package. The main feature is a pair of classes that can represent ranges:
 * ♾️ An `inf` singleton that is a `float` with a value of `math.inf` but has an
   `__index__` that returns `sys.maxsize` and compares equal to infinity and
   `maxsize`, and its string representation is `"inf"`.
+* 📕 A `Dict` that is keyed by `Ranges` and holds one per unique value.
 
-The range class is designed to be used as fields in Pydantic `BaseModel`s,
+The Ranges class is designed to be used as fields in Pydantic `BaseModel`s,
 but can be used anywhere you need a range. They are not designed with speed in
 mind, and comparisons usually use the canonical string form by converting other
 things into `Ranges` objects. Their preferred pronoun is they/them.
@@ -33,18 +34,18 @@ above.
 
 ## 📖 Docs
 
-* [🐍 pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 * [🏗 construction](construction)
 * [♻️ iteration](iteration)
 * [⊃ operators](operators)
 * [🧱 models](models)
+* [🐍 pydocs](https://bitplane.net/dev/python/arranges/pydoc)
 
 See the tests for executable documentation
 
 ### 🔗 Links
 
 * [🐱 github](https://github.com/bitplane/arranges)
-* [🐍 pypi](https://pypi.org/arranges)
+* [🐍 pypi](https://pypi.org/project/arranges/)
 * [🏠 home](https://bitplane.net/dev/python/arranges)
 
 ## ⚠️ Constraints
