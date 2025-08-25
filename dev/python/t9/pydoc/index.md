@@ -4,6 +4,491 @@
 
 Import from those modules directly or use the main package imports.
 
+<a id="t9.corpus.extractor"></a>
+
+# t9.corpus.extractor
+
+Comment extraction and cleaning from Reddit JSON data.
+
+<a id="t9.corpus.extractor.CommentExtractor"></a>
+
+## CommentExtractor Objects
+
+```python
+class CommentExtractor()
+```
+
+Extracts and cleans Reddit comments from JSON files.
+
+<a id="t9.corpus.extractor.CommentExtractor.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__()
+```
+
+Initialize comment extractor.
+
+<a id="t9.corpus.extractor.CommentExtractor.extract_comments_from_file"></a>
+
+#### extract\_comments\_from\_file
+
+```python
+def extract_comments_from_file(json_file: Path) -> Iterator[str]
+```
+
+Extract comment text from a single JSON file.
+
+**Arguments**:
+
+- `json_file` - Path to JSON file containing Reddit data
+  
+
+**Yields**:
+
+  Raw comment text strings
+
+<a id="t9.corpus.extractor.CommentExtractor.extract_comments_from_files"></a>
+
+#### extract\_comments\_from\_files
+
+```python
+def extract_comments_from_files(json_files: List[Path]) -> Iterator[str]
+```
+
+Extract comment text from multiple JSON files.
+
+**Arguments**:
+
+- `json_files` - List of JSON file paths
+  
+
+**Yields**:
+
+  Raw comment text strings
+
+<a id="t9.corpus.extractor.CommentExtractor.clean_comment"></a>
+
+#### clean\_comment
+
+```python
+def clean_comment(comment: str) -> str
+```
+
+Clean a single comment by removing quotes, decoding entities, and cleaning markdown.
+
+**Arguments**:
+
+- `comment` - Raw comment text
+  
+
+**Returns**:
+
+  Cleaned comment text
+
+<a id="t9.corpus.extractor.CommentExtractor.extract_and_clean_comments"></a>
+
+#### extract\_and\_clean\_comments
+
+```python
+def extract_and_clean_comments(json_files: List[Path]) -> List[str]
+```
+
+Extract and clean all comments from JSON files.
+
+**Arguments**:
+
+- `json_files` - List of JSON file paths
+  
+
+**Returns**:
+
+  List of cleaned comment strings
+
+<a id="t9.corpus.extractor.CommentExtractor.save_comments"></a>
+
+#### save\_comments
+
+```python
+def save_comments(comments: List[str], output_file: Path) -> None
+```
+
+Save cleaned comments to a text file.
+
+**Arguments**:
+
+- `comments` - List of cleaned comment strings
+- `output_file` - Path to output file
+
+<a id="t9.corpus.extractor.CommentExtractor.process_json_files"></a>
+
+#### process\_json\_files
+
+```python
+def process_json_files(json_files: List[Path], output_file: Path) -> Path
+```
+
+Complete processing pipeline: extract, clean, and save comments.
+
+**Arguments**:
+
+- `json_files` - List of input JSON files
+- `output_file` - Path to output text file
+  
+
+**Returns**:
+
+  Path to saved output file
+
+<a id="t9.corpus"></a>
+
+# t9.corpus
+
+Corpus generation tools for T9 wordlist creation.
+
+<a id="t9.corpus.cli"></a>
+
+# t9.corpus.cli
+
+CLI commands for corpus generation.
+
+<a id="t9.corpus.cli.cmd_scrape"></a>
+
+#### cmd\_scrape
+
+```python
+def cmd_scrape(args) -> int
+```
+
+Scrape Reddit user data.
+
+**Arguments**:
+
+- `args` - Parsed command line arguments
+  
+
+**Returns**:
+
+  Exit code
+
+<a id="t9.corpus.cli.cmd_extract"></a>
+
+#### cmd\_extract
+
+```python
+def cmd_extract(args) -> int
+```
+
+Extract and clean comments from JSON files.
+
+**Arguments**:
+
+- `args` - Parsed command line arguments
+  
+
+**Returns**:
+
+  Exit code
+
+<a id="t9.corpus.cli.cmd_process"></a>
+
+#### cmd\_process
+
+```python
+def cmd_process(args) -> int
+```
+
+Process corpus text to create frequency wordlist.
+
+**Arguments**:
+
+- `args` - Parsed command line arguments
+  
+
+**Returns**:
+
+  Exit code
+
+<a id="t9.corpus.cli.cmd_generate"></a>
+
+#### cmd\_generate
+
+```python
+def cmd_generate(args) -> int
+```
+
+Complete corpus generation pipeline.
+
+**Arguments**:
+
+- `args` - Parsed command line arguments
+  
+
+**Returns**:
+
+  Exit code
+
+<a id="t9.corpus.cli.add_corpus_commands"></a>
+
+#### add\_corpus\_commands
+
+```python
+def add_corpus_commands(subparsers) -> None
+```
+
+Add corpus subcommands to argument parser.
+
+**Arguments**:
+
+- `subparsers` - ArgumentParser subparsers object
+
+<a id="t9.corpus.scraper"></a>
+
+# t9.corpus.scraper
+
+Reddit corpus data scraper using reddit-export package.
+
+<a id="t9.corpus.scraper.RedditScraper"></a>
+
+## RedditScraper Objects
+
+```python
+class RedditScraper()
+```
+
+Scraper for downloading Reddit user comment data.
+
+<a id="t9.corpus.scraper.RedditScraper.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(output_dir: Path)
+```
+
+Initialize scraper with output directory.
+
+**Arguments**:
+
+- `output_dir` - Directory to save scraped JSON files
+
+<a id="t9.corpus.scraper.RedditScraper.scrape_user"></a>
+
+#### scrape\_user
+
+```python
+def scrape_user(username: str) -> Optional[Path]
+```
+
+Scrape comments for a single Reddit user.
+
+**Arguments**:
+
+- `username` - Reddit username to scrape
+  
+
+**Returns**:
+
+  Path to saved JSON file, or None if failed
+
+<a id="t9.corpus.scraper.RedditScraper.scrape_users"></a>
+
+#### scrape\_users
+
+```python
+def scrape_users(usernames: List[str]) -> List[Path]
+```
+
+Scrape comments for multiple Reddit users.
+
+**Arguments**:
+
+- `usernames` - List of Reddit usernames to scrape
+  
+
+**Returns**:
+
+  List of paths to saved JSON files
+
+<a id="t9.corpus.scraper.RedditScraper.get_scraped_files"></a>
+
+#### get\_scraped\_files
+
+```python
+def get_scraped_files() -> List[Path]
+```
+
+Get list of all scraped JSON files in output directory.
+
+**Returns**:
+
+  List of JSON file paths
+
+<a id="t9.corpus.scraper.RedditScraper.interactive_scrape"></a>
+
+#### interactive\_scrape
+
+```python
+def interactive_scrape() -> List[Path]
+```
+
+Interactive scraping - prompt for usernames.
+
+**Returns**:
+
+  List of paths to saved JSON files
+
+<a id="t9.corpus.processor"></a>
+
+# t9.corpus.processor
+
+Text processing and frequency-based wordlist generation.
+
+<a id="t9.corpus.processor.CorpusProcessor"></a>
+
+## CorpusProcessor Objects
+
+```python
+class CorpusProcessor()
+```
+
+Processes text corpus to create frequency-ordered wordlists.
+
+<a id="t9.corpus.processor.CorpusProcessor.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__()
+```
+
+Initialize corpus processor.
+
+<a id="t9.corpus.processor.CorpusProcessor.split_sentences"></a>
+
+#### split\_sentences
+
+```python
+def split_sentences(text: str) -> str
+```
+
+Split text on sentence endings and remove first word from each line.
+
+This helps avoid proper noun vs sentence-start capitalization issues.
+
+**Arguments**:
+
+- `text` - Input text
+  
+
+**Returns**:
+
+  Text with sentences split and first words removed
+
+<a id="t9.corpus.processor.CorpusProcessor.tokenize_text"></a>
+
+#### tokenize\_text
+
+```python
+def tokenize_text(text: str) -> List[str]
+```
+
+Tokenize text into individual words.
+
+**Arguments**:
+
+- `text` - Input text
+  
+
+**Returns**:
+
+  List of tokenized words
+
+<a id="t9.corpus.processor.CorpusProcessor.count_word_frequencies"></a>
+
+#### count\_word\_frequencies
+
+```python
+def count_word_frequencies(words: List[str]) -> Counter
+```
+
+Count word frequencies (case-insensitive).
+
+**Arguments**:
+
+- `words` - List of words
+  
+
+**Returns**:
+
+  Counter with word frequencies
+
+<a id="t9.corpus.processor.CorpusProcessor.load_dictionary_words"></a>
+
+#### load\_dictionary\_words
+
+```python
+def load_dictionary_words(wordlist_file: Optional[Path] = None) -> Set[str]
+```
+
+Load dictionary words (case-insensitive).
+
+**Arguments**:
+
+- `wordlist_file` - Optional path to wordlist file, uses system dict if None
+  
+
+**Returns**:
+
+  Set of dictionary words in lowercase
+
+<a id="t9.corpus.processor.CorpusProcessor.create_frequency_wordlist"></a>
+
+#### create\_frequency\_wordlist
+
+```python
+def create_frequency_wordlist(corpus_frequencies: Counter,
+                              dictionary_words: Set[str],
+                              output_file: Path) -> int
+```
+
+Create frequency-ordered wordlist.
+
+**Arguments**:
+
+- `corpus_frequencies` - Word frequency counter from corpus
+- `dictionary_words` - Set of valid dictionary words (lowercase)
+- `output_file` - Output file path
+  
+
+**Returns**:
+
+  Total number of words written
+
+<a id="t9.corpus.processor.CorpusProcessor.process_corpus_file"></a>
+
+#### process\_corpus\_file
+
+```python
+def process_corpus_file(corpus_file: Path,
+                        wordlist_file: Optional[Path] = None,
+                        output_file: Optional[Path] = None) -> Path
+```
+
+Complete corpus processing pipeline.
+
+**Arguments**:
+
+- `corpus_file` - Input corpus text file
+- `wordlist_file` - Optional dictionary wordlist file
+- `output_file` - Optional output file path
+  
+
+**Returns**:
+
+  Path to generated frequency wordlist
+
 <a id="t9.utils"></a>
 
 # t9.utils
