@@ -1,6 +1,12 @@
+---
+features: ["asciinema"]
+---
+
 # 👽 reddit data exporter
 
 Export your Reddit data for analysis/RAG etc.
+
+![video](reddit-export.cast.png)
 
 To run:
 
