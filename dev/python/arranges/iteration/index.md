@@ -40,15 +40,15 @@ assert len(full) != math.inf
 assert type(len(full)) is int
 ```
 
-## Truthyness
+## Truthiness
 
 Empty ranges are, of course, Falsey.
 
 ```python
-from arranges import Ranges
+from arranges import Ranges, Segment
 
 assert Ranges(":")
-assert Range(10)
+assert Segment(10)
 
 assert not Ranges("")
 ```

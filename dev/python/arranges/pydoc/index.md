@@ -277,6 +277,46 @@ def __hash__() -> int
 
 Make this hashable so it can be used in sets
 
+<a id="arranges.utils._Boundless.__sub__"></a>
+
+#### \_\_sub\_\_
+
+```python
+def __sub__(other)
+```
+
+Subtraction that preserves _Boundless type
+
+<a id="arranges.utils._Boundless.__rsub__"></a>
+
+#### \_\_rsub\_\_
+
+```python
+def __rsub__(other)
+```
+
+Right subtraction
+
+<a id="arranges.utils._Boundless.__add__"></a>
+
+#### \_\_add\_\_
+
+```python
+def __add__(other)
+```
+
+Addition that preserves _Boundless type
+
+<a id="arranges.utils._Boundless.__radd__"></a>
+
+#### \_\_radd\_\_
+
+```python
+def __radd__(other)
+```
+
+Right addition
+
 <a id="arranges.utils.inf"></a>
 
 #### inf

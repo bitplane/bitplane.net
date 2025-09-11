@@ -1,12 +1,9 @@
-# ⛰️ arranges - range string fields for Pydantic BaseModels
+# ⛰️ arranges - dealing with ranges
 
-I needed a way to parse batches of byte, row and line and other object ranges
-in my `merge-files` app, in a way that I can just drop it in as a string field
-type. The reason for this is so the machine-generated command line help is
-flat and readable by humans.
+A stable string representation for multiple ranges, so they can be used as
+fields, indexes and so on.
 
-It kinda grew into a monster, so I've split it out into this separate
-package. The main feature is a pair of classes that can represent ranges:
+This library provides a few classes:
 
 * ⛓️ `Segment` is a class that can be treated like a `set` and its constructor is
   compatible with `range` and `slice`. It is derived from `str` so is easy to
@@ -25,11 +22,12 @@ package. The main feature is a pair of classes that can represent ranges:
 The Ranges class is designed to be used as fields in Pydantic `BaseModel`s,
 but can be used anywhere you need a range. They are not designed with speed in
 mind, and comparisons usually use the canonical string form by converting other
-things into `Ranges` objects. Their preferred pronoun is they/them.
+things into `Ranges` objects. That said, they use `lru_cache` in most places so
+are usually fast enough. Their preferred pronoun is they/them.
 
 ## 📦 Installation
 
-`pip install arranges` if you want to use them. You'll need Python 3.10 or
+`pip install arranges` if you want to use them. You'll need Python 3.11 or
 above.
 
 ## 📖 Docs

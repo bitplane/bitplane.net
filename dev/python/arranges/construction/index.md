@@ -7,7 +7,7 @@ You can create them from:
 3. sequences of ints or these things, or other sequences
 4. explicitly, like you would create a `range` or `slice`
 
-## Range from a string
+## Ranges from a string
 
 ```python
 from arranges import Ranges
@@ -23,7 +23,7 @@ access_by_index = Ranges("0")  # just the first item
 # Decimal, hexadecimal, octal and binary are supported. Note that octal uses
 # Python's 0o prefix, not 0 like in C.
 gbc_palette = Ranges("0xff68:0xff88")
-skip_bmp_header = Ranges("0o66:end")  # skip "54", "0x36" or "0b1100110" bytes
+skip_bmp_header = Ranges("0o66:end")  # skip "54", "0x36" or "0b00110110" bytes
 
 # "end" and "inf" are the same. You can also use "start" instead of 0.
 the_full_range_again = Ranges("start:inf")
@@ -47,7 +47,7 @@ d[w] = "GIF file width"
 assert d == {"6:8": "GIF file width"}
 ```
 
-## Ranges from a string
+## Ranges with gaps
 
 ```python
 from arranges import Ranges
