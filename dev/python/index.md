@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 🐳 [undockit](undockit) - 
+  run apps in docker containers like they're native apps.
 * 👽 [reddit-export](reddit-export) -
   dumps your Reddit messages and posts to JSON.
 * 💾 [pymigaguide](pymigaguide) - 
