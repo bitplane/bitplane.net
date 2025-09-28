@@ -219,6 +219,16 @@ Get container name for an image ID
 
 Podman backend implementation
 
+<a id="undockit.backend.podman.get_empty_build_context"></a>
+
+#### get\_empty\_build\_context
+
+```python
+def get_empty_build_context() -> Path
+```
+
+Get persistent empty build context directory for caching
+
 <a id="undockit.backend.podman.PodmanBackend"></a>
 
 ## PodmanBackend Objects
