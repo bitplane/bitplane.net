@@ -80,7 +80,7 @@ Abstract base class for container runtime backends
 
 ```python
 @abstractmethod
-def build(dockerfile_path: Path) -> str
+def build(dockerfile_path: Path, quiet: bool = False) -> str
 ```
 
 Build image from dockerfile and return image ID
@@ -88,6 +88,7 @@ Build image from dockerfile and return image ID
 **Arguments**:
 
 - `dockerfile_path` - Path to the dockerfile to build
+- `quiet` - If True, suppress build output (default: False)
   
 
 **Returns**:
@@ -231,7 +232,7 @@ class PodmanBackend(Backend)
 #### build
 
 ```python
-def build(dockerfile_path: Path) -> str
+def build(dockerfile_path: Path, quiet: bool = False) -> str
 ```
 
 Build image from dockerfile using podman build

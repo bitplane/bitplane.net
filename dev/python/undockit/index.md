@@ -45,6 +45,7 @@ whisper --help
 ## Links
 
 * [🏠 home](https://bitplane.net/dev/python/undockit)
+* [🔧 tools](https://bitplane.net/dev/python/undockit/tools)
 * [🐱 github](https://github.com/bitplane/undockit)
 * [🐍 pypi](https://pypi.org/project/undockit)
 * [📖 pydoc](https://bitplane.net/dev/python/undockit/pydoc)
