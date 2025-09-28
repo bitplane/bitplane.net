@@ -2,6 +2,9 @@
 
 Run docker containers like they're native commands.
 
+Using containers to work around the dependency problems rather than security, so
+things actually just work without trying (and failing) to wallpaper your hallway
+through your letterbox.
 
 ## Setup
 
