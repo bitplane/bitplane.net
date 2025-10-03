@@ -7,7 +7,7 @@ uvx yt-mpv install
 ```
 
 Follow instructions to configure internet archive credentials, then drag
-[the links](https://bitplane.net/dev/python/yt-mpb/install) to your bookmarks
+[the links](https://bitplane.net/dev/python/yt-mpv/install) to your bookmarks
 bar. You can watch without archiving (takes a couple of seconds to open), or
 click the watch+archive link to upload after watching. After closing MPV, it'll
 download it again in highest quality in the background, and upload it to
