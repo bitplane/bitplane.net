@@ -13,6 +13,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * 🔌 [/mnt](mnt)   - External files
 
 ## grep log
+* [2025-10-11 - 🗺️ mapillary_downloader - before Meta delete it all](/dev/python/mapillary_downloader)
 * [2025-09-27 - 🐳 undockit - run containers as commands](/dev/python/undockit)
 * [2025-08-23 - 👽 reddit exporter](/dev/python/reddit-export)
 * [2025-08-22 - ☎️ py9 resurrected as t9](/dev/python/t9)
