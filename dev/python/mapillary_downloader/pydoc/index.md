@@ -4,6 +4,45 @@
 
 Mapillary data downloader.
 
+<a id="mapillary_downloader.webp_converter"></a>
+
+# mapillary\_downloader.webp\_converter
+
+WebP image conversion utilities.
+
+<a id="mapillary_downloader.webp_converter.check_cwebp_available"></a>
+
+#### check\_cwebp\_available
+
+```python
+def check_cwebp_available()
+```
+
+Check if cwebp binary is available.
+
+**Returns**:
+
+- `bool` - True if cwebp is found, False otherwise
+
+<a id="mapillary_downloader.webp_converter.convert_to_webp"></a>
+
+#### convert\_to\_webp
+
+```python
+def convert_to_webp(jpg_path)
+```
+
+Convert a JPG image to WebP format, preserving EXIF metadata.
+
+**Arguments**:
+
+- `jpg_path` - Path to the JPG file
+  
+
+**Returns**:
+
+  Path object to the new WebP file, or None if conversion failed
+
 <a id="mapillary_downloader.exif_writer"></a>
 
 # mapillary\_downloader.exif\_writer
@@ -68,6 +107,50 @@ Write EXIF metadata from Mapillary API to downloaded image.
 
   True if successful, False otherwise
 
+<a id="mapillary_downloader.utils"></a>
+
+# mapillary\_downloader.utils
+
+Utility functions for formatting and display.
+
+<a id="mapillary_downloader.utils.format_size"></a>
+
+#### format\_size
+
+```python
+def format_size(bytes_count)
+```
+
+Format bytes as human-readable size.
+
+**Arguments**:
+
+- `bytes_count` - Number of bytes
+  
+
+**Returns**:
+
+  Formatted string (e.g. "1.23 GB", "456.78 MB")
+
+<a id="mapillary_downloader.utils.format_time"></a>
+
+#### format\_time
+
+```python
+def format_time(seconds)
+```
+
+Format seconds as human-readable time.
+
+**Arguments**:
+
+- `seconds` - Number of seconds
+  
+
+**Returns**:
+
+  Formatted string (e.g. "2h 15m", "45m 30s", "30s")
+
 <a id="mapillary_downloader.__main__"></a>
 
 # mapillary\_downloader.\_\_main\_\_
@@ -89,16 +172,6 @@ Main CLI entry point.
 # mapillary\_downloader.downloader
 
 Main downloader logic.
-
-<a id="mapillary_downloader.downloader.format_bytes"></a>
-
-#### format\_bytes
-
-```python
-def format_bytes(bytes_count)
-```
-
-Format bytes as human-readable string.
 
 <a id="mapillary_downloader.downloader.MapillaryDownloader"></a>
 
@@ -130,7 +203,10 @@ Initialize the downloader.
 #### download\_user\_data
 
 ```python
-def download_user_data(username, quality="original", bbox=None)
+def download_user_data(username,
+                       quality="original",
+                       bbox=None,
+                       convert_webp=False)
 ```
 
 Download all images for a user.
@@ -140,6 +216,72 @@ Download all images for a user.
 - `username` - Mapillary username
 - `quality` - Image quality to download (256, 1024, 2048, original)
 - `bbox` - Optional bounding box [west, south, east, north]
+- `convert_webp` - Convert images to WebP format after download
+
+<a id="mapillary_downloader.logging_config"></a>
+
+# mapillary\_downloader.logging\_config
+
+Logging configuration with colored output for TTY.
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter"></a>
+
+## ColoredFormatter Objects
+
+```python
+class ColoredFormatter(logging.Formatter)
+```
+
+Formatter that adds color to log levels when output is a TTY.
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(fmt=None, datefmt=None, use_color=True)
+```
+
+Initialize the formatter.
+
+**Arguments**:
+
+- `fmt` - Log format string
+- `datefmt` - Date format string
+- `use_color` - Whether to use colored output
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter.format"></a>
+
+#### format
+
+```python
+def format(record)
+```
+
+Format the log record with colors if appropriate.
+
+**Arguments**:
+
+- `record` - LogRecord to format
+  
+
+**Returns**:
+
+  Formatted log string
+
+<a id="mapillary_downloader.logging_config.setup_logging"></a>
+
+#### setup\_logging
+
+```python
+def setup_logging(level=logging.INFO)
+```
+
+Set up logging with timestamps and colored output.
+
+**Arguments**:
+
+- `level` - Logging level to use
 
 <a id="mapillary_downloader.client"></a>
 
