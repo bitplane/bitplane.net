@@ -178,6 +178,31 @@ Tar all sequence directories in a collection for faster IA uploads.
 
   Tuple of (tarred_count, total_files_tarred)
 
+<a id="mapillary_downloader.ia_check"></a>
+
+# mapillary\_downloader.ia\_check
+
+Check if collections exist on Internet Archive.
+
+<a id="mapillary_downloader.ia_check.check_ia_exists"></a>
+
+#### check\_ia\_exists
+
+```python
+def check_ia_exists(collection_name)
+```
+
+Check if a collection exists on Internet Archive.
+
+**Arguments**:
+
+- `collection_name` - Name of the collection (e.g., mapillary-username-original-webp)
+  
+
+**Returns**:
+
+  Boolean indicating if the collection exists on IA
+
 <a id="mapillary_downloader.__main__"></a>
 
 # mapillary\_downloader.\_\_main\_\_
@@ -200,6 +225,20 @@ Main CLI entry point.
 
 Main downloader logic.
 
+<a id="mapillary_downloader.downloader.get_cache_dir"></a>
+
+#### get\_cache\_dir
+
+```python
+def get_cache_dir()
+```
+
+Get XDG cache directory for staging downloads.
+
+**Returns**:
+
+  Path to cache directory for mapillary_downloader
+
 <a id="mapillary_downloader.downloader.MapillaryDownloader"></a>
 
 ## MapillaryDownloader Objects
@@ -220,7 +259,9 @@ def __init__(client,
              username=None,
              quality=None,
              workers=None,
-             tar_sequences=True)
+             tar_sequences=True,
+             convert_webp=False,
+             check_ia=True)
 ```
 
 Initialize the downloader.
@@ -228,11 +269,13 @@ Initialize the downloader.
 **Arguments**:
 
 - `client` - MapillaryClient instance
-- `output_dir` - Base directory to save downloads
+- `output_dir` - Base directory to save downloads (final destination)
 - `username` - Mapillary username (for collection directory)
 - `quality` - Image quality (for collection directory)
-- `workers` - Number of parallel workers (default: cpu_count)
+- `workers` - Number of parallel workers (default: half of cpu_count)
 - `tar_sequences` - Whether to tar sequence directories after download (default: True)
+- `convert_webp` - Whether to convert images to WebP (affects collection name)
+- `check_ia` - Whether to check if collection exists on Internet Archive (default: True)
 
 <a id="mapillary_downloader.downloader.MapillaryDownloader.download_user_data"></a>
 
@@ -346,6 +389,21 @@ Set up logging with timestamps and colored output.
 
 - `level` - Logging level to use
 
+<a id="mapillary_downloader.logging_config.add_file_handler"></a>
+
+#### add\_file\_handler
+
+```python
+def add_file_handler(log_file, level=logging.INFO)
+```
+
+Add a file handler to the logger for archival.
+
+**Arguments**:
+
+- `log_file` - Path to log file
+- `level` - Logging level for file handler
+
 <a id="mapillary_downloader.ia_meta"></a>
 
 # mapillary\_downloader.ia\_meta
@@ -364,7 +422,7 @@ Parse username and quality from directory name.
 
 **Arguments**:
 
-- `directory` - Path to collection directory (e.g., mapillary-username-original)
+- `directory` - Path to collection directory (e.g., mapillary-username-original or mapillary-username-original-webp)
   
 
 **Returns**:
@@ -379,11 +437,11 @@ Parse username and quality from directory name.
 def get_date_range(metadata_file)
 ```
 
-Get first and last captured_at dates from metadata.jsonl.
+Get first and last captured_at dates from metadata.jsonl.gz.
 
 **Arguments**:
 
-- `metadata_file` - Path to metadata.jsonl file
+- `metadata_file` - Path to metadata.jsonl.gz file
   
 
 **Returns**:
@@ -398,11 +456,11 @@ Get first and last captured_at dates from metadata.jsonl.
 def count_images(metadata_file)
 ```
 
-Count number of images in metadata.jsonl.
+Count number of images in metadata.jsonl.gz.
 
 **Arguments**:
 
-- `metadata_file` - Path to metadata.jsonl file
+- `metadata_file` - Path to metadata.jsonl.gz file
   
 
 **Returns**:

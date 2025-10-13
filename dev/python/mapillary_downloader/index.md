@@ -17,37 +17,42 @@ First, get your Mapillary API access token from
 [the developer dashboard](https://www.mapillary.com/dashboard/developers)
 
 ```bash
-# Set token via environment variable
+# Set token via environment variable (recommended)
 export MAPILLARY_TOKEN=YOUR_TOKEN
-mapillary-downloader --username SOME_USERNAME --output ./downloads
+mapillary-downloader USERNAME1 USERNAME2 USERNAME3
 
 # Or pass token directly, and have it in your shell history 💩👀
-mapillary-downloader --token YOUR_TOKEN --username SOME_USERNAME --output ./downloads
+mapillary-downloader --token YOUR_TOKEN USERNAME1 USERNAME2
+
+# Download to specific directory
+mapillary-downloader --output ./downloads USERNAME1
 ```
 
-| option        | because                               | default            |
-| ------------- | ------------------------------------- | ------------------ |
-| `--username`  | Mapillary username                    | None (required)    |
-| `--token`     | Mapillary API token (or env var)      | `$MAPILLARY_TOKEN` |
-| `--output`    | Output directory                      | `./mapillary_data` |
-| `--quality`   | 256, 1024, 2048 or original           | `original`         |
-| `--bbox`      | `west,south,east,north`               | `None`             |
-| `--webp`      | Convert to WebP (saves ~70% space)    | `False`            |
-| `--workers`   | Number of parallel download workers   | CPU count          |
-| `--no-tar`    | Don't tar sequence directories        | `False`            |
+| option          | because                                      | default            |
+| --------------- | -------------------------------------------- | ------------------ |
+| `usernames`     | One or more Mapillary usernames              | (required)         |
+| `--token`       | Mapillary API token (or env var)             | `$MAPILLARY_TOKEN` |
+| `--output`      | Output directory                             | `./mapillary_data` |
+| `--quality`     | 256, 1024, 2048 or original                  | `original`         |
+| `--bbox`        | `west,south,east,north`                      | `None`             |
+| `--no-webp`     | Don't convert to WebP                        | `False`            |
+| `--workers`     | Number of parallel download workers          | Half of CPU count  |
+| `--no-tar`      | Don't tar sequence directories               | `False`            |
+| `--no-check-ia` | Don't check if exists on Internet Archive    | `False`            |
 
 The downloader will:
 
-* 📷 Download a user's images organized by sequence
+* 🏛️ Check Internet Archive to avoid duplicate downloads
+* 📷 Download multiple users' images organized by sequence
 * 📜 Inject EXIF metadata (GPS coordinates, camera info, timestamps,
   compass direction)
+* 🗜️ Convert to WebP (by default) to save ~70% disk space
 * 🛟 Save progress so you can safely resume if interrupted
-* 🗜️ Optionally convert to WebP to save space
-* 📦 Tar sequence directories for faster uploads
+* 📦 Tar sequence directories (by default) for faster uploads to Internet Archive
 
 ## WebP Conversion
 
-You'll need `cwebp` to use the `--webp` flag. So install it:
+You'll need the `cwebp` binary installed:
 
 ```bash
 # Debian/Ubuntu
@@ -57,24 +62,25 @@ sudo apt install webp
 brew install webp
 ```
 
+To disable WebP conversion and keep original JPEGs, use `--no-webp`:
+
+```bash
+mapillary-downloader --no-webp USERNAME
+```
+
 ## Sequence Tarball Creation
 
 By default, sequence directories are automatically tarred after download because
 if they weren't, you'd spend more time setting up upload metadata than actually
 uploading files to IA.
 
-To keep individual files instead of creating tars, use the `--no-tar` flag:
-
-```bash
-mapillary-downloader --username WHOEVER --no-tar
-```
+To keep individual files instead of creating tars, use the `--no-tar` flag.
 
 ## Internet Archive upload
 
 I've written a bash tool to rip media then tag, queue, and upload to The
-Internet Archive. The metadata is in the same format. If you copy completed
-download dirs into the `4.ship` dir, they'll find their way into an
-appropriately named item.
+Internet Archive. The metadata is in the same format. If you symlink your
+`./mapillary_data` dir to `rip`'s `4.ship` dir, they'll be queued for upload.
 
 See inlay for details:
 
