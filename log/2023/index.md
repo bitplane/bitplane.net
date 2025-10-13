@@ -21,6 +21,7 @@ features: ["date-list"]
 * [2023-04-18 - 💡 music-and-language](04/music-and-language)
 * [2023-04-18 - 💡 educate-ai](04/educate-ai)
 * [2023-04-12 - 😆 GOD SAVE THE KING](https://youtu.be/uJmsnzfhSGo)
+* [2023-04-06 - 🤖 Open Assistant trained](04/oasst)
 * [2023-03-13 - 💡 great-brain-robbery](03/great-brain-robbery)
 * [2023-03-12 - 🤖 Donald Trump's favourite Pink Floyd album](https://youtu.be/Xh1lK7QzjLo)
 * [2023-03-12 - 💡 joy-of-oblivion](03/joy-of-oblivion)

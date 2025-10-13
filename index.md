@@ -75,6 +75,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * [2023-09-05 - 💈 hair donation](https://www.tiktok.com/@_davidsong_/video/7275415964630535456)
 * [2023-05-28 - 🐍 arranges - Range strings for Pydantic](/dev/python/arranges)
 * [2023-04-12 - 😆 GOD SAVE THE KING](https://youtu.be/uJmsnzfhSGo)
+* [2023-04-06 - 🤖 Open Assistant trained](log/2023/04/oasst)
 * [2023-03-12 - 🤖 Donald Trump's favourite Pink Floyd album](https://youtu.be/Xh1lK7QzjLo)
 * [2023-03-06 - 🐍 ocr-pdf - PDF to JSON](https://github.com/bitplane/ocr-pdf)
 * [2023-02-27 - 🐍 merge-files - universal file merger](https://github.com/bitplane/merge-files)
