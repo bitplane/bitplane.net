@@ -258,7 +258,7 @@ def __init__(client,
              output_dir,
              username=None,
              quality=None,
-             workers=None,
+             max_workers=128,
              tar_sequences=True,
              convert_webp=False,
              check_ia=True)
@@ -272,7 +272,7 @@ Initialize the downloader.
 - `output_dir` - Base directory to save downloads (final destination)
 - `username` - Mapillary username (for collection directory)
 - `quality` - Image quality (for collection directory)
-- `workers` - Number of parallel workers (default: half of cpu_count)
+- `max_workers` - Maximum number of parallel workers (default: 128)
 - `tar_sequences` - Whether to tar sequence directories after download (default: True)
 - `convert_webp` - Whether to convert images to WebP (affects collection name)
 - `check_ia` - Whether to check if collection exists on Internet Archive (default: True)
@@ -285,12 +285,93 @@ Initialize the downloader.
 def download_user_data(bbox=None, convert_webp=False)
 ```
 
-Download all images for a user.
+Download all images for a user using streaming queue-based architecture.
 
 **Arguments**:
 
 - `bbox` - Optional bounding box [west, south, east, north]
 - `convert_webp` - Convert images to WebP format after download
+
+<a id="mapillary_downloader.metadata_reader"></a>
+
+# mapillary\_downloader.metadata\_reader
+
+Streaming metadata reader with filtering.
+
+<a id="mapillary_downloader.metadata_reader.MetadataReader"></a>
+
+## MetadataReader Objects
+
+```python
+class MetadataReader()
+```
+
+Streams metadata.jsonl line-by-line with filtering.
+
+This avoids loading millions of image dicts into memory.
+
+<a id="mapillary_downloader.metadata_reader.MetadataReader.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(metadata_file)
+```
+
+Initialize metadata reader.
+
+**Arguments**:
+
+- `metadata_file` - Path to metadata.jsonl or metadata.jsonl.gz
+
+<a id="mapillary_downloader.metadata_reader.MetadataReader.iter_images"></a>
+
+#### iter\_images
+
+```python
+def iter_images(quality_field=None, downloaded_ids=None)
+```
+
+Stream images from metadata file with filtering.
+
+**Arguments**:
+
+- `quality_field` - Optional field to check exists (e.g., 'thumb_1024_url')
+- `downloaded_ids` - Optional set of already downloaded IDs to skip
+  
+
+**Yields**:
+
+  Image metadata dicts that pass filters
+
+<a id="mapillary_downloader.metadata_reader.MetadataReader.get_all_ids"></a>
+
+#### get\_all\_ids
+
+```python
+def get_all_ids()
+```
+
+Get set of all image IDs in metadata file.
+
+**Returns**:
+
+  Set of image IDs (for building seen_ids)
+
+<a id="mapillary_downloader.metadata_reader.MetadataReader.mark_complete"></a>
+
+#### mark\_complete
+
+```python
+@staticmethod
+def mark_complete(metadata_file)
+```
+
+Append completion marker to metadata file.
+
+**Arguments**:
+
+- `metadata_file` - Path to metadata.jsonl
 
 <a id="mapillary_downloader.worker"></a>
 
@@ -298,13 +379,29 @@ Download all images for a user.
 
 Worker process for parallel image download and conversion.
 
+<a id="mapillary_downloader.worker.worker_process"></a>
+
+#### worker\_process
+
+```python
+def worker_process(work_queue, result_queue, worker_id)
+```
+
+Worker process that pulls from queue and processes images.
+
+**Arguments**:
+
+- `work_queue` - Queue to pull work items from
+- `result_queue` - Queue to push results to
+- `worker_id` - Unique worker identifier
+
 <a id="mapillary_downloader.worker.download_and_convert_image"></a>
 
 #### download\_and\_convert\_image
 
 ```python
 def download_and_convert_image(image_data, output_dir, quality, convert_webp,
-                               access_token)
+                               session)
 ```
 
 Download and optionally convert a single image.
@@ -317,7 +414,7 @@ This function is designed to run in a worker process.
 - `output_dir` - Base output directory path
 - `quality` - Quality level (256, 1024, 2048, original)
 - `convert_webp` - Whether to convert to WebP
-- `access_token` - Mapillary API access token
+- `session` - requests.Session with auth already configured
   
 
 **Returns**:
@@ -501,6 +598,104 @@ Generate Internet Archive metadata for a Mapillary collection.
 **Returns**:
 
   True if successful, False otherwise
+
+<a id="mapillary_downloader.worker_pool"></a>
+
+# mapillary\_downloader.worker\_pool
+
+Adaptive worker pool for parallel processing.
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool"></a>
+
+## AdaptiveWorkerPool Objects
+
+```python
+class AdaptiveWorkerPool()
+```
+
+Worker pool that scales based on throughput.
+
+Monitors throughput every 30 seconds and adjusts worker count:
+- If throughput increasing: add workers (up to max)
+- If throughput plateauing/decreasing: reduce workers
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(worker_func,
+             min_workers=4,
+             max_workers=16,
+             monitoring_interval=10)
+```
+
+Initialize adaptive worker pool.
+
+**Arguments**:
+
+- `worker_func` - Function to run in each worker (must accept work_queue, result_queue)
+- `min_workers` - Minimum number of workers
+- `max_workers` - Maximum number of workers
+- `monitoring_interval` - Seconds between throughput checks
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.start"></a>
+
+#### start
+
+```python
+def start()
+```
+
+Start the worker pool.
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.submit"></a>
+
+#### submit
+
+```python
+def submit(work_item)
+```
+
+Submit work to the pool (blocks if queue is full).
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.get_result"></a>
+
+#### get\_result
+
+```python
+def get_result(timeout=None)
+```
+
+Get a result from the workers.
+
+**Returns**:
+
+  Result from worker, or None if timeout
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.check_throughput"></a>
+
+#### check\_throughput
+
+```python
+def check_throughput(total_processed)
+```
+
+Check throughput and adjust workers if needed.
+
+**Arguments**:
+
+- `total_processed` - Total number of items processed so far
+
+<a id="mapillary_downloader.worker_pool.AdaptiveWorkerPool.shutdown"></a>
+
+#### shutdown
+
+```python
+def shutdown(timeout=2)
+```
+
+Shutdown the worker pool gracefully.
 
 <a id="mapillary_downloader.client"></a>
 
