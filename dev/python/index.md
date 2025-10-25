@@ -59,8 +59,10 @@ that's a fair comment.
 
 ## 📚 Libs
 
-* 🗔 [bittty](bittty) -
+* 🗔  [bittty](bittty) -
   a pure python terminal emulator.
+* 🪵 [logloglog](logloglog) -
+  resizable indexed tailing logs for TUIs.
 * 📃 [arrayfile](arrayfile) -
   A file-backed array.
 * ✅ [upd8](upd8) -
