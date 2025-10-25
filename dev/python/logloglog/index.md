@@ -14,17 +14,22 @@ supports egregious sizes and low seek times?
 ```bash
 # makes log.log.log from /var/log
 make log
+# run the demo
+./demo/textual_demo.py
 ```
+
+## 🔗 links
+
+* [📺 video](https://asciinema.org/a/751364)
+* [🏠 home](https://bitplane.net/dev/python/logloglog)
+  * [📖 pydoc](https://bitplane.net/dev/python/logloglog/pydoc)
+* [🐍 pypi](https://pypi.org/project/logloglog)
+* [🐱 github](https://github.com/bitplane/logloglog)
 
 ## TODO
 
-- [ ] Textual demo
-  - [x] stats in window
-  - [ ] slim demo down
-  - [x] follow last line when at end
+- [x] Textual demo
 - [x] Async/non-blocking design
-  - [x] Make log processing async to avoid blocking
-  - [x] Support streaming updates
 - [ ] Multiple display backends
 - [ ] Python logging integration
   - [ ] Direct logger handlers
