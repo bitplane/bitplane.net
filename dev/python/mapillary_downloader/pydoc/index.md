@@ -4,6 +4,129 @@
 
 Mapillary data downloader.
 
+<a id="mapillary_downloader.ia_stats"></a>
+
+# mapillary\_downloader.ia\_stats
+
+Internet Archive statistics for mapillary_downloader collections.
+
+<a id="mapillary_downloader.ia_stats.search_ia_collections"></a>
+
+#### search\_ia\_collections
+
+```python
+def search_ia_collections()
+```
+
+Search IA for all mapillary_downloader collections.
+
+**Returns**:
+
+  List of dicts with: identifier, description, item_size, uploader
+
+<a id="mapillary_downloader.ia_stats.parse_collection_info"></a>
+
+#### parse\_collection\_info
+
+```python
+def parse_collection_info(identifier)
+```
+
+Parse username, quality, webp from collection identifier.
+
+**Returns**:
+
+  dict with username, quality, is_webp or None if invalid
+
+<a id="mapillary_downloader.ia_stats.extract_image_count"></a>
+
+#### extract\_image\_count
+
+```python
+def extract_image_count(description)
+```
+
+Extract image count from IA description field.
+
+Description format: "Contains 12,345 images in..."
+
+<a id="mapillary_downloader.ia_stats.load_cache"></a>
+
+#### load\_cache
+
+```python
+def load_cache()
+```
+
+Load cached collection data.
+
+**Returns**:
+
+  dict of {collection_id: {size, uploader, images, quality, username}}
+
+<a id="mapillary_downloader.ia_stats.update_cache"></a>
+
+#### update\_cache
+
+```python
+def update_cache(ia_collections)
+```
+
+Update cache with new IA search results.
+
+Merges new collections into existing cache.
+
+**Returns**:
+
+  Updated cache dict
+
+<a id="mapillary_downloader.ia_stats.aggregate_stats"></a>
+
+#### aggregate\_stats
+
+```python
+def aggregate_stats(cache)
+```
+
+Aggregate statistics from cached collection data.
+
+**Returns**:
+
+  dict with total and per-quality stats
+
+<a id="mapillary_downloader.ia_stats.format_stats"></a>
+
+#### format\_stats
+
+```python
+def format_stats(stats)
+```
+
+Format statistics as human-readable text.
+
+**Arguments**:
+
+- `stats` - Dict from aggregate_stats()
+  
+
+**Returns**:
+
+  Formatted string
+
+<a id="mapillary_downloader.ia_stats.show_stats"></a>
+
+#### show\_stats
+
+```python
+def show_stats(refresh=True)
+```
+
+Show archive.org statistics for mapillary_downloader collections.
+
+**Arguments**:
+
+- `refresh` - If True, fetch fresh data from IA. If False, use cache only.
+
 <a id="mapillary_downloader.webp_converter"></a>
 
 # mapillary\_downloader.webp\_converter
@@ -152,6 +275,55 @@ Format seconds as human-readable time.
 **Returns**:
 
   Formatted string (e.g. "2h 15m", "45m 30s", "30s")
+
+<a id="mapillary_downloader.utils.safe_json_save"></a>
+
+#### safe\_json\_save
+
+```python
+def safe_json_save(file_path, data)
+```
+
+Atomically save JSON data to file.
+
+Writes to temp file, then atomic rename to prevent corruption.
+
+**Arguments**:
+
+- `file_path` - Path to JSON file
+- `data` - Data to serialize to JSON
+
+<a id="mapillary_downloader.utils.http_get_with_retry"></a>
+
+#### http\_get\_with\_retry
+
+```python
+def http_get_with_retry(url,
+                        params=None,
+                        max_retries=5,
+                        base_delay=1.0,
+                        timeout=60)
+```
+
+HTTP GET with exponential backoff retry.
+
+**Arguments**:
+
+- `url` - URL to fetch
+- `params` - Optional query parameters
+- `max_retries` - Maximum retry attempts (default: 5)
+- `base_delay` - Initial delay in seconds (default: 1.0)
+- `timeout` - Request timeout in seconds (default: 60)
+  
+
+**Returns**:
+
+  requests.Response object
+  
+
+**Raises**:
+
+- `requests.RequestException` - If all retries exhausted
 
 <a id="mapillary_downloader.tar_sequences"></a>
 
