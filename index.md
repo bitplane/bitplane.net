@@ -13,6 +13,7 @@ The 5th and hopefully final iteration of [my](~) personal website.
 * 🔌 [/mnt](mnt)   - External files
 
 ## grep log
+* [2025-10-30 - 🧥 dejensen - remove pauses from video presentations](/dev/python/dejensen)
 * [2025-10-11 - 🗺️ mapillary\_downloader - before Meta delete it all](/dev/python/mapillary_downloader)
 * [2025-10-11 - 🤖 Claude's keyboard notification](log/2025/10/claude)
 * [2025-09-27 - 🐳 undockit - run containers as commands](/dev/python/undockit)

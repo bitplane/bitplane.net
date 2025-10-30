@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 🧥 [dejensen](dejensen) -
+  remove pauses from presentation videos.
 * 🗺️ [mapillary_downloader](mapillary_downloader) -
   download your Mapillary data before Meta delete it.
 * 🐳 [undockit](undockit) - 
