@@ -339,7 +339,9 @@ Tar sequence directories for efficient Internet Archive uploads.
 def tar_sequence_directories(collection_dir)
 ```
 
-Tar all sequence directories in a collection for faster IA uploads.
+Tar all date directories in a collection for faster IA uploads.
+
+Organizes by capture date (YYYY-MM-DD) for incremental archive.org uploads.
 
 **Arguments**:
 
