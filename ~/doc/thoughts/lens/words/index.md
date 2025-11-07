@@ -4,15 +4,15 @@ redirect_from: ['/home/gaz/Documents/thoughts/lens/words/']
 # 📚 Pulse Fiction
 
 ```
-On a dusty shelf
-in the library of mind
-sits a book not very wide.
-Its title is short fiction,
-and every book's inside.
+On a dusty shelf in the library of mind
+sits a book
+not very wide.
+Its title is short fiction, and
+every book's inside.
 When you open up the pages
 it presents a strange surprise:
 every letter's different,
-it's stories in disguise.
+they're stories in disguise.
 
 To the untrained eye
 or those without time
@@ -33,7 +33,7 @@ well
 it's just a point to be told. 
 
 It's a statement by its maker:
-that words aren't ink or paper.
+words aren't ink or paper.
 They're heard in your head,
 as they're seen and they're read.
 As to read, interact,
