@@ -18,7 +18,7 @@ To the untrained eye
 or those without time
 it's a random stream of glyphs,
 but if you learn (or make) a language,
-you could map a stories onto this.
+you could map a story onto this.
 If you shared this tongue with others,
 they too could understand;
 they could read your story
