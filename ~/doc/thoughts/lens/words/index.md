@@ -37,9 +37,10 @@ words aren't ink or paper.
 They're heard in your head,
 as they're seen and they're read.
 As to read, interact,
-is a physical act,
-it stirs us.
-it moves us.
+is a physical act.
+
+It stirs us.
+It moves us.
 
 Binary's look is a lot like this book,
 without a language map it's a long stream of crap
