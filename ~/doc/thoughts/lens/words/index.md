@@ -5,10 +5,9 @@ redirect_from: ['/home/gaz/Documents/thoughts/lens/words/']
 
 ```
 On a dusty shelf in the library of mind
-sits a book
-not very wide.
-Its title is short fiction, and
-every book's inside.
+sits a book not very wide.
+Its title is short fiction,
+and every book's inside.
 When you open up the pages
 it presents a strange surprise:
 every letter's different,
