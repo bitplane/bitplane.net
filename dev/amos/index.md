@@ -18,34 +18,37 @@ shit.
 
 ## Ramblings about multimedia
 
-The 90s were a beautiful time for multimedia. Moving from a time where hard
-drives were an expensive luxury, low bandwidth cassette tape and low capacity
-floppy disks ruled the day.
+The 90s were a beautiful time for multimedia. The end of a time when drives
+were an expensive luxury, one where low bandwidth cassette tape and low
+capacity floppy disks ruled the day.
 
-In the good old days graphics and audio weren't just created, they were
-engineered. You'd carefully craft the palette as well as paint the pixels,
-knowing that 16 colours looked naff, 64 were painfully slow, and 32 needed some
-tricks to make things fast enough. You could swap the colours out in realtime
-very quickly - abuse duplicate colours and swap them out for animation effects
-as the electron beam scanned down each line. Compression mattered, bytes were
-counted, sizes aligned to hardware widths, you had to keep ahead of the scan
-line when filling the graphics card's output memory or you'd get tearing, lest
-take the speed and RAM hit of double-buffering. Apparently the reason BMP files
-are upside down is because a subtraction operation took less cycles than an
-addition. It probably wasn't, but I like the sound of that.
+In the good old days graphics and audio weren't produced, they were engineered.
+You'd carefully craft the palette as well as paint the pixels, knowing that 16
+colours looked naff, 64 were painfully slow, and 32 needed some tricks to make
+things fast enough. You could swap the colours out in realtime very quickly -
+abuse duplicate values and switch them for animation effects as the electron
+beam scanned down each line. Compression mattered, bytes were counted, sizes
+aligned to hardware widths. You had to keep ahead of the scan line while
+streaming into the graphics card's memory, otherwise you'd get tearing, or take
+the speed and RAM hit of double-buffering. I once heard the reason why BMP files
+are upside down is because a subtraction operation took less cycles
+than an addition. It isn't true, but it's believable.
 
-Audio was similar, chip tune was standard. You couldn't just record into a mic
-at 11khz mono and get 30 seconds of audio on a floppy disk; you want a couple
-of tunes in your game. So instruments would be crafted by breaking them up into
-start, loop, end, and pitch shifted on the fly by banging the metal, interleaved
-to fake more than 2 channels, and the snare drum would take up more space than
-everything else combined.
+Audio was similar, chip tune was standard. You couldn't just record 11khz mono
+into a mic - you'd fill a floppy disk with 30 seconds of audio and you'd want a
+couple of tunes in your game. So instruments would be crafted by breaking them
+up into start, loop and end, shaped by an envelope and pitch shifted on the fly
+by banging the metal, interleaved to fake more than 2 channels. The snare drum
+would take up more space than everything else combined, entropy was expensive.
 
-Then the CD came along and the public were wowed by the voice acting and full
-motion video, while we looked on in utter disgust. With 800 times as much space,
-we went from an era of extreme resource constraints to one of egregious bloat
-and wastefulness. From one of precision engineering and craftmanship, to
-filler.
+Then the CD came along. The public were wowed by the voice acting and
+full-motion video, while we looked on in utter disgust. With 800 times as much
+space, we went from an era of extreme resource constraints to one of egregious
+bloat and wastefulness. From one of precision engineering and craftmanship, to
+filler. Yet on the cusp of that change, BASIC programmers like me could churn
+out hundreds of screens in [DPaint](/log/2005/seascape) without tiling, and
+[make games](eggit) and share them with the kids in school. The hypocrisy,
+empowerment and the loss of craftmanship were real.
 
 ## Some projects
 
