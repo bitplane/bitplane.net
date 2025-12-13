@@ -29,7 +29,7 @@ from this site's 25 (of 40) year trove.
 * [2005-03-18 📜 Remote Google Desktop Search - from when that was a thing](/dev/python/rgds)
 * [2004-05-15 🪟 file2bmp - mail filter evasion - today a sackable offence](/log/2004/05/file2bmp)
 * [2004-04-25 🤖 XBMCIRC - how we used to pirate music in the old days](/dev/python/xbmc)
-* [2001-06-10 ⚒️ filestore.mdb - crude but effective mail filter evasion](/log/2001/06/filestore)
+* [2001-06-10 ⚒️ filestore.mdb - crude but effective mail filter evasion](/dev/vb/filestore)
 * [2001-07-01 📁 collapsedirs-vbs - splat files for scraper data](https://github.com/bitplane/collapsedirs-vbs)
 * [2001-06-01 ⚙️ inieditor-vbs - actually very useful at the time](/dev/vb/iniedit)
 
