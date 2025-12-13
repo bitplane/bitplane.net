@@ -1,0 +1,23 @@
+#!/bin/bash
+# Check for subdirectories with index.md that aren't linked from parent index.md
+
+dir="${1:-.}"
+
+if [[ ! -f "$dir/index.md" ]]; then
+    echo "No index.md found in $dir" >&2
+    exit 1
+fi
+
+parent_index="$dir/index.md"
+
+for subdir in "$dir"/*/; do
+    [[ -d "$subdir" ]] || continue
+    [[ -f "$subdir/index.md" ]] || continue
+
+    subdir_name=$(basename "$subdir")
+
+    if ! grep -q "($subdir_name)" "$parent_index" && \
+       ! grep -q "($subdir_name/" "$parent_index"; then
+        echo "$subdir_name"
+    fi
+done

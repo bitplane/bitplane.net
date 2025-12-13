@@ -1,7 +1,10 @@
-# 🖼️ Impostors in Irrlicht
+# 👾 Impostors in Irrlicht
 
+* [📦 download](ImpostorsTest.zip)
+* [🐱 github](https://github.com/bitplane/irrlicht-impostors)
+* [🔗 original postmortem](https://irrlicht.sourceforge.io/forum/viewtopic.php?p=224337#p224337)
+* [🫖 Niko's blog](https://www.irrlicht3d.org/?t=751)
 * [⏯ video](https://www.youtube.com/watch?v=cHAfqwagk7I)
-* TODO: source code is on an old hard drive
 
 ## Concept
 

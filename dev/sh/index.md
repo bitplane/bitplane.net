@@ -29,3 +29,5 @@ are merged together when building a release.
   Some Windows Blue Screen of Death scripts.
 * [📷 lifecap](lifecap) -
   Capture your life for local AI agent processing.
+* [🪖 inspection](inspection) -
+  tmux setup for inspecting things.

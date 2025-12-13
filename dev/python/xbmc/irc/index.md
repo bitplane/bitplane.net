@@ -1,6 +1,6 @@
-# XBMC IRC
+# 🤖 XBMC IRC
 
-People used to download their media from IRC at the time, and as a bit of a 
+People used to download their media from IRC at the time, and as a bit of a
 muso, my contribution was to create a GUI for MP3 file sharing over IRC. The
 idea was that you use the remote to search for files, download them, and
 anything you did download was then shared with others in the channel. The bots,
@@ -18,7 +18,9 @@ crap taste in music in the images because I wanted it to be popular (it wasn't).
 | ![1](1.jpg) | ![2](2.jpg) |
 | ![3](3.jpg) | ![4](4.jpg) |
 
-And here's [the code](xbmcirc014.rar), in a RAR file, as it was back then.
+* [📦 download](xbmcirc014.rar)
+* [🐱 github](https://github.com/bitplane/XBMCIRC)
+* [🔗 announcement](https://forum.kodi.tv/showthread.php?tid=3069)
 
 ## Docs
 

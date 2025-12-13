@@ -1,4 +1,7 @@
-# Windows RSRC loader
+# 📦 Windows RSRC Loader
+
+* [🐱 github](https://github.com/bitplane/irrlicht-rsrc)
+* [🔗 announcement](https://irrlicht.sourceforge.io/forum/viewtopic.php?p=199362)
 
 If you're gonna support loading resources like icons and sounds in other
 people's binaries, like if you have your own GUI toolkit and want icons in it,
@@ -11,5 +14,3 @@ filesystem. Writing parsers is a lot more fun than you'd actually imagine.
 
 This makes the [.ico and .cur texture loader](../ico-loader) work with EXE and
 DLL files.
-
-TODO: find source code and link it.

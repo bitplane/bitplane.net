@@ -1,6 +1,8 @@
 # 🥛 Milk Scanner
 
-A 3D scanner using a tray of milk. I can't find the link right now but it 
+* [🐱 github](https://github.com/bitplane/milk-scanner)
+
+A 3D scanner using a tray of milk. I can't find the link right now but it
 wasn't the first, and I can't remember if it was an independent invention or
 not.
 
@@ -28,8 +30,8 @@ it gradually submerging into the milk:
 [⏯
 ![screenshot](milkscan1.webp)](https://youtu.be/XBiYmA2Ik9M)
 
-Take the output and run it through an edge detection filter, then this program 
-[TODO: find code and link it here]
+Take the output and run it through an edge detection filter, then
+[this program](https://github.com/bitplane/milk-scanner)
 
 This looks at each pixel and records when it turned white. The longer it takes,
 the closer to the surface it is. Divide by the total time, and you have a depth

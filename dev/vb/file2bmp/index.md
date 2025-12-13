@@ -1,4 +1,4 @@
-# Mail Filter Evasion: File 2 Bitmap
+# 🪟 Mail Filter Evasion: File 2 Bitmap
 
 So Microsoft stopped shipping Access with Office, making my
 [filestore.mdb](../filestore) hack useless on most machines in the office. But
@@ -10,4 +10,5 @@ to pass files around instead:
 I had to XOR the files because the mail filter had got a bit better in the 3
 years since filestore.mdb
 
-[download](file2bmp.zip)
+* [📦 download](file2bmp.zip)
+* [🐱 github](https://github.com/bitplane/file2bmp)

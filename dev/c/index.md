@@ -23,7 +23,7 @@ it.
 
 Some more recent/useful things:
 
-* 🔌 [simple9p](https://github.com/simple9p) -
+* 🔌 [simple9p](simple9p) -
   a barebones 9p server based on libixp.
 * 🕵️  [obfuspace](https://github.com/bitplane/obfuspace) -
   convert arbitrary data into whitespace.

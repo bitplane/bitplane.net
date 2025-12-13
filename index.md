@@ -14,5 +14,5 @@ The 5th and hopefully final iteration of [my](~) personal website.
 
 ## grep log
 
-{% include_relative log.md %}
+{% include_relative _log.md %}
 

@@ -16,7 +16,7 @@ more boring, real things.
 
 ## Not Irrlicht
 
-* 🌇 [webp support for mediainfo](webp)
+* 🌇 [webp support for mediainfo](mediainfo-webp)
 * 🚀 [Pioneer](log/2013/01/pioneer)
 
 ## Games
@@ -88,3 +88,7 @@ Things that make your world pretty
   A loader for Stanford Polygon with blistering performance due to ugly hacks.
 * 🪟 [rsrc-loader](rsrc-loader) -
   Load resources from Windows DLL and EXE files.
+* 📦 [rpm-loader](rpm-loader) -
+  Extract gzipped data from RPM files.
+* 🖌️ [proctex](proctex) -
+  Procedural texture toolkit for Irrlicht.

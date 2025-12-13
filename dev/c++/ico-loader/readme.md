@@ -1,13 +1,11 @@
-# .ico and .cur loader
+# 🖼️ ICO and CUR Loader
+
+* [📦 download](CIcoLoader.zip)
+* [🐱 github](https://github.com/bitplane/irrlicht-ico)
+* [🔗 announcement](https://irrlicht.sourceforge.io/forum/viewtopic.php?t=34269)
 
 Loads Windows icons and cursors in a cross-platform way for Irrlicht
 Engine graphics apps/games.
-
-Download: [CIcoLoader.zip](CIcoLoader.zip)
-
-Source online:
-
-[link](https://sourceforge.net/p/irrext/code/HEAD/tree/trunk/extensions/io/IArchiveLoader/ICO/)
 
 ## Docs
 

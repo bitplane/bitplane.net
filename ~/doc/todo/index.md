@@ -5,15 +5,12 @@ features: ["date-list"]
 # todo.md
 
 ## Missing repos
-* plansi
 * vldmcp
 * texrboard
-* logloglog
 * wihlp
 * rip
 * geo-dist
 * unicode-width-mess
-* audio-keylogger
 * infra
 * plantuml-docker
 * prometheus-dir-stats
@@ -86,14 +83,8 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * mesh deformation contest
   * speed modelling
     * Need to find that chest.obj
-  * ~~Milk Scanner~~
-    * Need the code
   * UFO Game
   * Thumbnailer
-  * Spheremap renderer
-  * RSRC Loader
-  * Figlet
-  * Impostors
   * Batching Mesh
   * Beam Node
 
@@ -155,9 +146,9 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 
 ## Software
 
-* Get SVN backup from hard drive at Kath's
+* Write WebGL RenderMonkey .rfx parser/viewer
+* ~~Get SVN backup from hard drive at Kath's~~
 * Amiga
-  * ~~Get Amiga hard drive from mum's~~
   * Make embeddable archives for each game/app
     * NSLE
     * Matchstick Man
@@ -180,3 +171,5 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ## Data
 
 * Pull Mapillary images using the API and put them on archive.org.
+  * continue to gather volunteers and add them to the collection
+  * write a stats update cronjob

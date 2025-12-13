@@ -56,7 +56,7 @@ that's a fair comment.
   Brutalize your venvs by symlinking them together.
 * 📑 [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
-* 🪈 [benpipe](https://github.com/bitplane/benpipe) -
+* 🪈 [benpipe](benpipe) -
   Pipe bencoded data (torrents) to JSON and back again
 
 ## 📚 Libs
@@ -77,8 +77,18 @@ that's a fair comment.
   A list that fills in missing values.
 * 📱 [t9](t9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
-* 🗄️ [filefrag](https://github.com/bitplane/pyfilefrag) -
+* 🗄️ [filefrag](filefrag) -
   Python library to access Linux File Extents
+* ⌨️ [audio-keylogger](audio-keylogger) -
+  Train a model to reconstruct keypresses from audio.
+* 👾 [plansi](plansi) -
+  Play videos as ANSI in the terminal.
+* 🗺️ [virtual-earth-grabber](virtual-earth-grabber) -
+  Microsoft Virtual Earth satellite image grabber.
+* 📺 [tvmux](tvmux) -
+  Recording tmux sessions.
+* 🎥 [sh2mp4](sh2mp4) -
+  Convert shell scripts to videos.
 
 ## 🦶 Stubs
 
