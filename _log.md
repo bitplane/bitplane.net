@@ -1,3 +1,4 @@
+* [2026-01-08 - 🗒️ Mapillary Update](log/2026/01/mapillary)
 * [2025-12-13 - 🌐 Site project update](log/2025/12/projects)
 * [2025-10-30 - 🧥 dejensen - remove pauses from video presentations](/dev/python/dejensen)
 * [2025-10-11 - 🤖 Claude's keyboard notification](log/2025/10/claude)
