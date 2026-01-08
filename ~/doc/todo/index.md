@@ -96,8 +96,6 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
   * Wikimedia commons
   * Microsoft PhotoSynth
   * ~~Drawings~~
-    * I think there's one or two more that aren't nudes
-      * Niamh
     * Get Wacom Bamboo date + update
 * Document life events
   * ZX Spectrum
@@ -147,7 +145,6 @@ Real URL   https://bitplane.net/dev/vb/loadrunner-citrix/
 ## Software
 
 * Write WebGL RenderMonkey .rfx parser/viewer
-* ~~Get SVN backup from hard drive at Kath's~~
 * Amiga
   * Make embeddable archives for each game/app
     * NSLE
