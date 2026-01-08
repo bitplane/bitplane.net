@@ -1,4 +1,4 @@
-# Graphics tablet
-
-TODO: work out when you got a Wacom Bamboo Fun graphics tablet, and insert
-these pics into the log.
+| | |
+|---|---|
+| ![cup](cup.webp) | ![doc](doc.webp) |
+| ![plant](plant.webp) | ![shoe](shoe.webp) |
