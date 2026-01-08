@@ -10,4 +10,4 @@ Maybe 3 players on screen at once was too optimistic.
 [⏯
 ![amiga:thrusts.hdf.zip](thrusts.gif)](https://youtu.be/qjaxq99wKQk)
 
-* [🚀 download](thrusts.adf.zip)
+* [🚀 download](thrusts.hdf.zip)

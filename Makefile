@@ -1,3 +1,3 @@
 
 all:
-	bin/log > log.md
+	bin/log > _log.md

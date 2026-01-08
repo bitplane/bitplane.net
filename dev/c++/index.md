@@ -17,7 +17,7 @@ more boring, real things.
 ## Not Irrlicht
 
 * 🌇 [webp support for mediainfo](mediainfo-webp)
-* 🚀 [Pioneer](log/2013/01/pioneer)
+* 🚀 [Pioneer](/log/2013/01/pioneer)
 
 ## Games
 

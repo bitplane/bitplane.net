@@ -406,7 +406,7 @@ believing we were the bag, it turns out he may have been right all along.
 [^blood]: Unknown, *A neutrophil chasing Staphylococcus aureus*. Available at [youtube.com](https://youtu.be/3KrCmBNiJRI).
 [^cells]: Harvard University, XVIVO, *The Inner Life of the Cell Animation*, 2006. Available at [xvivo.com](https://xvivo.com/examples/the-inner-life-of-the-cell/).
 [^brambles]: BBC Studios, *The Private Life of Plants*, 2007. Clip available at [youtube.com](https://youtu.be/TkwXa7Cvfr8).
-[^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/~/thoughts/evolution-denial)
+[^denial]: Gareth Davidson, *Computationalism is Evolution Denial*, 2024. Available at [bitplane.net](https://bitplane.net/~/doc/thoughts/evolution-denial)
 [^elife]: Karl Sims, *Evolving 3D Morphology and Behavior by Competition*, 1994. Available at [Karl Sims' website](http://www.karlsims.com/evolved-virtual-creatures.html).
 [^lol]: Read as if Dawkins or Chalmers had a side hustle as safety announcers for the London underground.
 [^dna]: Martin Egli et al., "Neutrons take a deep dive into water networks surrounding DNA," *Nucleic Acids Research*, 2021. Available at [phys.org](https://phys.org/news/2021-11-neutrons-deep-networks-dna.html)

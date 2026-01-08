@@ -1,7 +1,7 @@
 # This [e107] page has moved permanently [to gallery2]
 
 If you do a Google search for some of my really old code, like my
-[Python T9 Dictionary](/dev/python/py9) or
+[Python T9 Dictionary](/dev/python/t9) or
 [XBMC IRC MP3 downloader](/dev/python/xbmc/irc), you’ll notice that my pagerank
 has been carried over to SVN and the
 [gallery](https://web.archive.org/web/20091207064353/http://gallery.bitplane.net/).
