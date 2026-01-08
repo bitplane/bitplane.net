@@ -28,4 +28,4 @@ By Quality:
 And here's the links:
 
 * [🏛️ archive.org collection](https://archive.org/details/mapillary-images)
-* [🏠 project](/dev/python/mapillary-downloader)
+* [🏠 project](/dev/python/mapillary_downloader)
