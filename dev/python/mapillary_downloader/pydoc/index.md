@@ -4,6 +4,283 @@
 
 Mapillary data downloader.
 
+<a id="mapillary_downloader.tar_sequences"></a>
+
+# mapillary\_downloader.tar\_sequences
+
+Tar sequence directories for efficient Internet Archive uploads.
+
+<a id="mapillary_downloader.tar_sequences.tar_sequence_directories"></a>
+
+#### tar\_sequence\_directories
+
+```python
+def tar_sequence_directories(collection_dir)
+```
+
+Tar all date directories in a collection for faster IA uploads.
+
+Organizes by capture date (YYYY-MM-DD) for incremental archive.org uploads.
+
+**Arguments**:
+
+- `collection_dir` - Path to collection directory (e.g., mapillary-user-quality/)
+  
+
+**Returns**:
+
+  Tuple of (tarred_count, total_files_tarred)
+
+<a id="mapillary_downloader.ia_meta"></a>
+
+# mapillary\_downloader.ia\_meta
+
+Internet Archive metadata generation for Mapillary collections.
+
+<a id="mapillary_downloader.ia_meta.parse_collection_name"></a>
+
+#### parse\_collection\_name
+
+```python
+def parse_collection_name(directory)
+```
+
+Parse username and quality from directory name.
+
+**Arguments**:
+
+- `directory` - Path to collection directory (e.g., mapillary-username-original or mapillary-username-original-webp)
+  
+
+**Returns**:
+
+  Tuple of (username, quality) or (None, None) if parsing fails
+
+<a id="mapillary_downloader.ia_meta.get_date_range"></a>
+
+#### get\_date\_range
+
+```python
+def get_date_range(metadata_file)
+```
+
+Get first and last captured_at dates from metadata.jsonl.gz.
+
+**Arguments**:
+
+- `metadata_file` - Path to metadata.jsonl.gz file
+  
+
+**Returns**:
+
+  Tuple of (first_date, last_date) as ISO format strings, or (None, None)
+
+<a id="mapillary_downloader.ia_meta.count_images"></a>
+
+#### count\_images
+
+```python
+def count_images(metadata_file)
+```
+
+Count number of images in metadata.jsonl.gz.
+
+**Arguments**:
+
+- `metadata_file` - Path to metadata.jsonl.gz file
+  
+
+**Returns**:
+
+  Number of images
+
+<a id="mapillary_downloader.ia_meta.write_meta_tag"></a>
+
+#### write\_meta\_tag
+
+```python
+def write_meta_tag(meta_dir, tag, values)
+```
+
+Write metadata tag files in rip format.
+
+**Arguments**:
+
+- `meta_dir` - Path to .meta directory
+- `tag` - Tag name
+- `values` - Single value or list of values
+
+<a id="mapillary_downloader.ia_meta.generate_ia_metadata"></a>
+
+#### generate\_ia\_metadata
+
+```python
+def generate_ia_metadata(collection_dir)
+```
+
+Generate Internet Archive metadata for a Mapillary collection.
+
+**Arguments**:
+
+- `collection_dir` - Path to collection directory (e.g., ./mapillary_data/mapillary-username-original)
+  
+
+**Returns**:
+
+  True if successful, False otherwise
+
+<a id="mapillary_downloader.ia_check"></a>
+
+# mapillary\_downloader.ia\_check
+
+Check if collections exist on Internet Archive.
+
+<a id="mapillary_downloader.ia_check.check_ia_exists"></a>
+
+#### check\_ia\_exists
+
+```python
+def check_ia_exists(collection_name)
+```
+
+Check if a collection exists on Internet Archive.
+
+**Arguments**:
+
+- `collection_name` - Name of the collection (e.g., mapillary-username-original-webp)
+  
+
+**Returns**:
+
+  Boolean indicating if the collection exists on IA
+
+<a id="mapillary_downloader.xmp_writer"></a>
+
+# mapillary\_downloader.xmp\_writer
+
+XMP metadata writer for panoramic Mapillary images.
+
+<a id="mapillary_downloader.xmp_writer.build_xmp_packet"></a>
+
+#### build\_xmp\_packet
+
+```python
+def build_xmp_packet(metadata)
+```
+
+Build XMP packet with GPano metadata.
+
+**Arguments**:
+
+- `metadata` - Dictionary with width, height, and optionally compass_angle
+  
+
+**Returns**:
+
+  XMP XML string
+
+<a id="mapillary_downloader.xmp_writer.write_xmp_to_image"></a>
+
+#### write\_xmp\_to\_image
+
+```python
+def write_xmp_to_image(image_path, metadata)
+```
+
+Write XMP GPano metadata to a JPEG image for panoramas.
+
+Only writes metadata if is_pano is True in the metadata dict.
+
+**Arguments**:
+
+- `image_path` - Path to the JPEG image file
+- `metadata` - Dictionary of metadata from Mapillary API
+  
+
+**Returns**:
+
+  True if XMP was written, False if skipped or failed
+
+<a id="mapillary_downloader.logging_config"></a>
+
+# mapillary\_downloader.logging\_config
+
+Logging configuration with colored output for TTY.
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter"></a>
+
+## ColoredFormatter Objects
+
+```python
+class ColoredFormatter(logging.Formatter)
+```
+
+Formatter that adds color to log levels when output is a TTY.
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(fmt=None, datefmt=None, use_color=True)
+```
+
+Initialize the formatter.
+
+**Arguments**:
+
+- `fmt` - Log format string
+- `datefmt` - Date format string
+- `use_color` - Whether to use colored output
+
+<a id="mapillary_downloader.logging_config.ColoredFormatter.format"></a>
+
+#### format
+
+```python
+def format(record)
+```
+
+Format the log record with colors if appropriate.
+
+**Arguments**:
+
+- `record` - LogRecord to format
+  
+
+**Returns**:
+
+  Formatted log string
+
+<a id="mapillary_downloader.logging_config.setup_logging"></a>
+
+#### setup\_logging
+
+```python
+def setup_logging(level=logging.INFO)
+```
+
+Set up logging with timestamps and colored output.
+
+**Arguments**:
+
+- `level` - Logging level to use
+
+<a id="mapillary_downloader.logging_config.add_file_handler"></a>
+
+#### add\_file\_handler
+
+```python
+def add_file_handler(log_file, level=logging.INFO)
+```
+
+Add a file handler to the logger for archival.
+
+**Arguments**:
+
+- `log_file` - Path to log file
+- `level` - Logging level for file handler
+
 <a id="mapillary_downloader.ia_stats"></a>
 
 # mapillary\_downloader.ia\_stats
@@ -22,7 +299,26 @@ Search IA for all mapillary_downloader collections.
 
 **Returns**:
 
-  List of dicts with: identifier, description, item_size, uploader
+  List of dicts with: identifier, description, item_size, collection
+
+<a id="mapillary_downloader.ia_stats.fetch_uploader"></a>
+
+#### fetch\_uploader
+
+```python
+def fetch_uploader(identifier)
+```
+
+Fetch uploader email from item metadata.
+
+**Arguments**:
+
+- `identifier` - IA item identifier
+  
+
+**Returns**:
+
+  Uploader email or None
 
 <a id="mapillary_downloader.ia_stats.parse_collection_info"></a>
 
@@ -99,7 +395,7 @@ Aggregate statistics from cached collection data.
 #### format\_stats
 
 ```python
-def format_stats(stats)
+def format_stats(stats, cache)
 ```
 
 Format statistics as human-readable text.
@@ -107,6 +403,7 @@ Format statistics as human-readable text.
 **Arguments**:
 
 - `stats` - Dict from aggregate_stats()
+- `cache` - Dict of collection data
   
 
 **Returns**:
@@ -126,6 +423,70 @@ Show archive.org statistics for mapillary_downloader collections.
 **Arguments**:
 
 - `refresh` - If True, fetch fresh data from IA. If False, use cache only.
+
+<a id="mapillary_downloader.__main__"></a>
+
+# mapillary\_downloader.\_\_main\_\_
+
+CLI entry point.
+
+<a id="mapillary_downloader.__main__.main"></a>
+
+#### main
+
+```python
+def main()
+```
+
+Main CLI entry point.
+
+<a id="mapillary_downloader.worker"></a>
+
+# mapillary\_downloader.worker
+
+Worker process for parallel image download and conversion.
+
+<a id="mapillary_downloader.worker.worker_process"></a>
+
+#### worker\_process
+
+```python
+def worker_process(work_queue, result_queue, worker_id)
+```
+
+Worker process that pulls from queue and processes images.
+
+**Arguments**:
+
+- `work_queue` - Queue to pull work items from
+- `result_queue` - Queue to push results to
+- `worker_id` - Unique worker identifier
+
+<a id="mapillary_downloader.worker.download_and_convert_image"></a>
+
+#### download\_and\_convert\_image
+
+```python
+def download_and_convert_image(image_data, output_dir, quality, convert_webp,
+                               session)
+```
+
+Download and optionally convert a single image.
+
+This function is designed to run in a worker process.
+
+**Arguments**:
+
+- `image_data` - Image metadata dict from API
+- `output_dir` - Base output directory path
+- `quality` - Quality level (256, 1024, 2048, original)
+- `convert_webp` - Whether to convert to WebP
+- `session` - requests.Session with auth already configured
+  
+
+**Returns**:
+
+  Tuple of (image_id, bytes_downloaded, success, error_msg)
 
 <a id="mapillary_downloader.webp_converter"></a>
 
@@ -167,6 +528,79 @@ Convert a JPG image to WebP format, preserving EXIF metadata.
 **Returns**:
 
   Path object to the new WebP file, or None if conversion failed
+
+<a id="mapillary_downloader.downloader"></a>
+
+# mapillary\_downloader.downloader
+
+Main downloader logic.
+
+<a id="mapillary_downloader.downloader.get_cache_dir"></a>
+
+#### get\_cache\_dir
+
+```python
+def get_cache_dir()
+```
+
+Get XDG cache directory for staging downloads.
+
+**Returns**:
+
+  Path to cache directory for mapillary_downloader
+
+<a id="mapillary_downloader.downloader.MapillaryDownloader"></a>
+
+## MapillaryDownloader Objects
+
+```python
+class MapillaryDownloader()
+```
+
+Handles downloading Mapillary data for a user.
+
+<a id="mapillary_downloader.downloader.MapillaryDownloader.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(client,
+             output_dir,
+             username=None,
+             quality=None,
+             max_workers=128,
+             tar_sequences=True,
+             convert_webp=False,
+             check_ia=True)
+```
+
+Initialize the downloader.
+
+**Arguments**:
+
+- `client` - MapillaryClient instance
+- `output_dir` - Base directory to save downloads (final destination)
+- `username` - Mapillary username (for collection directory)
+- `quality` - Image quality (for collection directory)
+- `max_workers` - Maximum number of parallel workers (default: 128)
+- `tar_sequences` - Whether to tar sequence directories after download (default: True)
+- `convert_webp` - Whether to convert images to WebP (affects collection name)
+- `check_ia` - Whether to check if collection exists on Internet Archive (default: True)
+
+<a id="mapillary_downloader.downloader.MapillaryDownloader.download_user_data"></a>
+
+#### download\_user\_data
+
+```python
+def download_user_data(bbox=None, convert_webp=False)
+```
+
+Download all images for a user using streaming queue-based architecture.
+
+**Arguments**:
+
+- `bbox` - Optional bounding box [west, south, east, north]
+- `convert_webp` - Convert images to WebP format after download
 
 <a id="mapillary_downloader.exif_writer"></a>
 
@@ -302,7 +736,8 @@ def http_get_with_retry(url,
                         params=None,
                         max_retries=5,
                         base_delay=1.0,
-                        timeout=60)
+                        timeout=60,
+                        session=None)
 ```
 
 HTTP GET with exponential backoff retry.
@@ -314,6 +749,7 @@ HTTP GET with exponential backoff retry.
 - `max_retries` - Maximum retry attempts (default: 5)
 - `base_delay` - Initial delay in seconds (default: 1.0)
 - `timeout` - Request timeout in seconds (default: 60)
+- `session` - Optional requests.Session for connection pooling
   
 
 **Returns**:
@@ -324,147 +760,6 @@ HTTP GET with exponential backoff retry.
 **Raises**:
 
 - `requests.RequestException` - If all retries exhausted
-
-<a id="mapillary_downloader.tar_sequences"></a>
-
-# mapillary\_downloader.tar\_sequences
-
-Tar sequence directories for efficient Internet Archive uploads.
-
-<a id="mapillary_downloader.tar_sequences.tar_sequence_directories"></a>
-
-#### tar\_sequence\_directories
-
-```python
-def tar_sequence_directories(collection_dir)
-```
-
-Tar all date directories in a collection for faster IA uploads.
-
-Organizes by capture date (YYYY-MM-DD) for incremental archive.org uploads.
-
-**Arguments**:
-
-- `collection_dir` - Path to collection directory (e.g., mapillary-user-quality/)
-  
-
-**Returns**:
-
-  Tuple of (tarred_count, total_files_tarred)
-
-<a id="mapillary_downloader.ia_check"></a>
-
-# mapillary\_downloader.ia\_check
-
-Check if collections exist on Internet Archive.
-
-<a id="mapillary_downloader.ia_check.check_ia_exists"></a>
-
-#### check\_ia\_exists
-
-```python
-def check_ia_exists(collection_name)
-```
-
-Check if a collection exists on Internet Archive.
-
-**Arguments**:
-
-- `collection_name` - Name of the collection (e.g., mapillary-username-original-webp)
-  
-
-**Returns**:
-
-  Boolean indicating if the collection exists on IA
-
-<a id="mapillary_downloader.__main__"></a>
-
-# mapillary\_downloader.\_\_main\_\_
-
-CLI entry point.
-
-<a id="mapillary_downloader.__main__.main"></a>
-
-#### main
-
-```python
-def main()
-```
-
-Main CLI entry point.
-
-<a id="mapillary_downloader.downloader"></a>
-
-# mapillary\_downloader.downloader
-
-Main downloader logic.
-
-<a id="mapillary_downloader.downloader.get_cache_dir"></a>
-
-#### get\_cache\_dir
-
-```python
-def get_cache_dir()
-```
-
-Get XDG cache directory for staging downloads.
-
-**Returns**:
-
-  Path to cache directory for mapillary_downloader
-
-<a id="mapillary_downloader.downloader.MapillaryDownloader"></a>
-
-## MapillaryDownloader Objects
-
-```python
-class MapillaryDownloader()
-```
-
-Handles downloading Mapillary data for a user.
-
-<a id="mapillary_downloader.downloader.MapillaryDownloader.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(client,
-             output_dir,
-             username=None,
-             quality=None,
-             max_workers=128,
-             tar_sequences=True,
-             convert_webp=False,
-             check_ia=True)
-```
-
-Initialize the downloader.
-
-**Arguments**:
-
-- `client` - MapillaryClient instance
-- `output_dir` - Base directory to save downloads (final destination)
-- `username` - Mapillary username (for collection directory)
-- `quality` - Image quality (for collection directory)
-- `max_workers` - Maximum number of parallel workers (default: 128)
-- `tar_sequences` - Whether to tar sequence directories after download (default: True)
-- `convert_webp` - Whether to convert images to WebP (affects collection name)
-- `check_ia` - Whether to check if collection exists on Internet Archive (default: True)
-
-<a id="mapillary_downloader.downloader.MapillaryDownloader.download_user_data"></a>
-
-#### download\_user\_data
-
-```python
-def download_user_data(bbox=None, convert_webp=False)
-```
-
-Download all images for a user using streaming queue-based architecture.
-
-**Arguments**:
-
-- `bbox` - Optional bounding box [west, south, east, north]
-- `convert_webp` - Convert images to WebP format after download
 
 <a id="mapillary_downloader.metadata_reader"></a>
 
@@ -547,232 +842,6 @@ Append completion marker to metadata file.
 
 - `metadata_file` - Path to metadata.jsonl
 
-<a id="mapillary_downloader.worker"></a>
-
-# mapillary\_downloader.worker
-
-Worker process for parallel image download and conversion.
-
-<a id="mapillary_downloader.worker.worker_process"></a>
-
-#### worker\_process
-
-```python
-def worker_process(work_queue, result_queue, worker_id)
-```
-
-Worker process that pulls from queue and processes images.
-
-**Arguments**:
-
-- `work_queue` - Queue to pull work items from
-- `result_queue` - Queue to push results to
-- `worker_id` - Unique worker identifier
-
-<a id="mapillary_downloader.worker.download_and_convert_image"></a>
-
-#### download\_and\_convert\_image
-
-```python
-def download_and_convert_image(image_data, output_dir, quality, convert_webp,
-                               session)
-```
-
-Download and optionally convert a single image.
-
-This function is designed to run in a worker process.
-
-**Arguments**:
-
-- `image_data` - Image metadata dict from API
-- `output_dir` - Base output directory path
-- `quality` - Quality level (256, 1024, 2048, original)
-- `convert_webp` - Whether to convert to WebP
-- `session` - requests.Session with auth already configured
-  
-
-**Returns**:
-
-  Tuple of (image_id, bytes_downloaded, success, error_msg)
-
-<a id="mapillary_downloader.logging_config"></a>
-
-# mapillary\_downloader.logging\_config
-
-Logging configuration with colored output for TTY.
-
-<a id="mapillary_downloader.logging_config.ColoredFormatter"></a>
-
-## ColoredFormatter Objects
-
-```python
-class ColoredFormatter(logging.Formatter)
-```
-
-Formatter that adds color to log levels when output is a TTY.
-
-<a id="mapillary_downloader.logging_config.ColoredFormatter.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(fmt=None, datefmt=None, use_color=True)
-```
-
-Initialize the formatter.
-
-**Arguments**:
-
-- `fmt` - Log format string
-- `datefmt` - Date format string
-- `use_color` - Whether to use colored output
-
-<a id="mapillary_downloader.logging_config.ColoredFormatter.format"></a>
-
-#### format
-
-```python
-def format(record)
-```
-
-Format the log record with colors if appropriate.
-
-**Arguments**:
-
-- `record` - LogRecord to format
-  
-
-**Returns**:
-
-  Formatted log string
-
-<a id="mapillary_downloader.logging_config.setup_logging"></a>
-
-#### setup\_logging
-
-```python
-def setup_logging(level=logging.INFO)
-```
-
-Set up logging with timestamps and colored output.
-
-**Arguments**:
-
-- `level` - Logging level to use
-
-<a id="mapillary_downloader.logging_config.add_file_handler"></a>
-
-#### add\_file\_handler
-
-```python
-def add_file_handler(log_file, level=logging.INFO)
-```
-
-Add a file handler to the logger for archival.
-
-**Arguments**:
-
-- `log_file` - Path to log file
-- `level` - Logging level for file handler
-
-<a id="mapillary_downloader.ia_meta"></a>
-
-# mapillary\_downloader.ia\_meta
-
-Internet Archive metadata generation for Mapillary collections.
-
-<a id="mapillary_downloader.ia_meta.parse_collection_name"></a>
-
-#### parse\_collection\_name
-
-```python
-def parse_collection_name(directory)
-```
-
-Parse username and quality from directory name.
-
-**Arguments**:
-
-- `directory` - Path to collection directory (e.g., mapillary-username-original or mapillary-username-original-webp)
-  
-
-**Returns**:
-
-  Tuple of (username, quality) or (None, None) if parsing fails
-
-<a id="mapillary_downloader.ia_meta.get_date_range"></a>
-
-#### get\_date\_range
-
-```python
-def get_date_range(metadata_file)
-```
-
-Get first and last captured_at dates from metadata.jsonl.gz.
-
-**Arguments**:
-
-- `metadata_file` - Path to metadata.jsonl.gz file
-  
-
-**Returns**:
-
-  Tuple of (first_date, last_date) as ISO format strings, or (None, None)
-
-<a id="mapillary_downloader.ia_meta.count_images"></a>
-
-#### count\_images
-
-```python
-def count_images(metadata_file)
-```
-
-Count number of images in metadata.jsonl.gz.
-
-**Arguments**:
-
-- `metadata_file` - Path to metadata.jsonl.gz file
-  
-
-**Returns**:
-
-  Number of images
-
-<a id="mapillary_downloader.ia_meta.write_meta_tag"></a>
-
-#### write\_meta\_tag
-
-```python
-def write_meta_tag(meta_dir, tag, values)
-```
-
-Write metadata tag files in rip format.
-
-**Arguments**:
-
-- `meta_dir` - Path to .meta directory
-- `tag` - Tag name
-- `values` - Single value or list of values
-
-<a id="mapillary_downloader.ia_meta.generate_ia_metadata"></a>
-
-#### generate\_ia\_metadata
-
-```python
-def generate_ia_metadata(collection_dir)
-```
-
-Generate Internet Archive metadata for a Mapillary collection.
-
-**Arguments**:
-
-- `collection_dir` - Path to collection directory (e.g., ./mapillary_data/mapillary-username-original)
-  
-
-**Returns**:
-
-  True if successful, False otherwise
-
 <a id="mapillary_downloader.worker_pool"></a>
 
 # mapillary\_downloader.worker\_pool
@@ -798,10 +867,7 @@ Monitors throughput every 30 seconds and adjusts worker count:
 #### \_\_init\_\_
 
 ```python
-def __init__(worker_func,
-             min_workers=4,
-             max_workers=16,
-             monitoring_interval=10)
+def __init__(worker_func, max_workers=16, monitoring_interval=10)
 ```
 
 Initialize adaptive worker pool.
@@ -809,7 +875,6 @@ Initialize adaptive worker pool.
 **Arguments**:
 
 - `worker_func` - Function to run in each worker (must accept work_queue, result_queue)
-- `min_workers` - Minimum number of workers
 - `max_workers` - Maximum number of workers
 - `monitoring_interval` - Seconds between throughput checks
 
