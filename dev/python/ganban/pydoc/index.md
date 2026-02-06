@@ -2,6 +2,274 @@
 
 # ganban
 
+<a id="ganban.model"></a>
+
+# ganban.model
+
+Reactive model tree.
+
+<a id="ganban.model.node"></a>
+
+# ganban.model.node
+
+Reactive tree nodes with change notification and bubbling.
+
+<a id="ganban.model.node.Node"></a>
+
+## Node Objects
+
+```python
+class Node()
+```
+
+Reactive dict-like tree node.
+
+Stores data in an internal dict, accessed via attribute syntax.
+Setting a value to None deletes the key. Dict values are
+auto-wrapped as child Nodes. Changes fire watchers and bubble
+up through the parent chain.
+
+<a id="ganban.model.node.Node.watch"></a>
+
+#### watch
+
+```python
+def watch(key: str, callback: Callback) -> Callable[[], None]
+```
+
+Watch a key for changes. Returns an unwatch callable.
+
+<a id="ganban.model.node.Node.keys"></a>
+
+#### keys
+
+```python
+def keys()
+```
+
+Return children keys.
+
+<a id="ganban.model.node.Node.items"></a>
+
+#### items
+
+```python
+def items()
+```
+
+Return children items.
+
+<a id="ganban.model.node.Node.values"></a>
+
+#### values
+
+```python
+def values()
+```
+
+Return children values.
+
+<a id="ganban.model.node.Node.path"></a>
+
+#### path
+
+```python
+@property
+def path() -> str
+```
+
+Dotted path from root to this node.
+
+<a id="ganban.model.node.ListNode"></a>
+
+## ListNode Objects
+
+```python
+class ListNode()
+```
+
+Ordered, id-keyed collection with change notification.
+
+Items are accessed by string id. Setting to None deletes.
+Dicts are auto-wrapped as Nodes. Changes fire watchers and
+bubble up through the parent chain.
+
+<a id="ganban.model.node.ListNode.watch"></a>
+
+#### watch
+
+```python
+def watch(key: str, callback: Callback) -> Callable[[], None]
+```
+
+Watch an item id for changes. Returns an unwatch callable.
+
+<a id="ganban.model.node.ListNode.path"></a>
+
+#### path
+
+```python
+@property
+def path() -> str
+```
+
+Dotted path from root to this node.
+
+<a id="ganban.model.node.ListNode.keys"></a>
+
+#### keys
+
+```python
+def keys()
+```
+
+Return ordered keys.
+
+<a id="ganban.model.node.ListNode.items"></a>
+
+#### items
+
+```python
+def items()
+```
+
+Return ordered (key, value) pairs.
+
+<a id="ganban.model.loader"></a>
+
+# ganban.model.loader
+
+Load a ganban board from git into a Node tree.
+
+<a id="ganban.model.loader.load_board"></a>
+
+#### load\_board
+
+```python
+def load_board(repo_path: str, branch: str = BRANCH_NAME) -> Node
+```
+
+Load a complete board from a git branch as a Node tree.
+
+<a id="ganban.model.writer"></a>
+
+# ganban.model.writer
+
+Save a ganban board (Node tree) to git without touching the working tree.
+
+<a id="ganban.model.writer.MergeRequired"></a>
+
+## MergeRequired Objects
+
+```python
+@dataclass
+class MergeRequired()
+```
+
+Returned by check_for_merge when the branch has diverged.
+
+<a id="ganban.model.writer.save_board"></a>
+
+#### save\_board
+
+```python
+def save_board(board: Node,
+               message: str = "Update board",
+               branch: str = BRANCH_NAME,
+               parents: list[str] | None = None) -> str
+```
+
+Save a board to git and return the new commit hash.
+
+<a id="ganban.model.writer.check_for_merge"></a>
+
+#### check\_for\_merge
+
+```python
+def check_for_merge(board: Node,
+                    branch: str = BRANCH_NAME) -> MergeRequired | None
+```
+
+Check if saving would require a merge.
+
+<a id="ganban.model.writer.check_remote_for_merge"></a>
+
+#### check\_remote\_for\_merge
+
+```python
+def check_remote_for_merge(board: Node,
+                           remote: str = "origin",
+                           branch: str = BRANCH_NAME) -> MergeRequired | None
+```
+
+Check if a remote has changes that need merging.
+
+<a id="ganban.model.writer.try_auto_merge"></a>
+
+#### try\_auto\_merge
+
+```python
+def try_auto_merge(board: Node,
+                   merge_info: MergeRequired,
+                   message: str = "Merge changes",
+                   branch: str = BRANCH_NAME) -> str | None
+```
+
+Attempt an automatic merge if there are no conflicts.
+
+Returns the new merge commit hash if successful, None if there are conflicts.
+
+<a id="ganban.model.writer.create_card"></a>
+
+#### create\_card
+
+```python
+def create_card(board: Node,
+                title: str,
+                body: str = "",
+                column: Node | None = None,
+                position: int | None = None) -> tuple[str, Node]
+```
+
+Create a new card and add it to the board.
+
+Returns (card_id, card_node).
+
+<a id="ganban.model.writer.create_column"></a>
+
+#### create\_column
+
+```python
+def create_column(board: Node,
+                  name: str,
+                  order: str | None = None,
+                  hidden: bool = False) -> Node
+```
+
+Create a new column and add it to the board.
+
+Returns the created column Node.
+
+<a id="ganban.model.writer.slugify"></a>
+
+#### slugify
+
+```python
+def slugify(text: str) -> str
+```
+
+Convert text to a URL-friendly slug.
+
+<a id="ganban.model.writer.build_column_path"></a>
+
+#### build\_column\_path
+
+```python
+def build_column_path(order: str, name: str, hidden: bool = False) -> str
+```
+
+Build column directory path from components.
+
 <a id="ganban.ids"></a>
 
 # ganban.ids
@@ -131,21 +399,80 @@ Does not touch the working tree. Returns the commit hash.
 
 Entry point for ganban CLI.
 
-<a id="ganban.loader"></a>
+<a id="ganban.ui.confirm"></a>
 
-# ganban.loader
+# ganban.ui.confirm
 
-Load a ganban board from git tree.
+Compact inline confirmation widget.
 
-<a id="ganban.loader.load_board"></a>
+<a id="ganban.ui.confirm.ConfirmButton"></a>
 
-#### load\_board
+## ConfirmButton Objects
 
 ```python
-async def load_board(repo_path: str, branch: str = BRANCH_NAME) -> Board
+class ConfirmButton(Static)
 ```
 
-Load a complete board from a git branch.
+A button that shows a confirm/cancel menu on click.
+
+Shows a single icon (default: 🗑️). When clicked, opens a context menu
+with ❌ (cancel) and ✅ (confirm). Emits Confirmed message on confirm.
+
+<a id="ganban.ui.confirm.ConfirmButton.Confirmed"></a>
+
+## Confirmed Objects
+
+```python
+class Confirmed(Message)
+```
+
+Emitted when the action is confirmed.
+
+<a id="ganban.ui.due"></a>
+
+# ganban.ui.due
+
+Due date widget with inline editing.
+
+<a id="ganban.ui.due.DueDateLabel"></a>
+
+## DueDateLabel Objects
+
+```python
+class DueDateLabel(Static)
+```
+
+Shows due date text, swaps to delete icon on hover.
+
+<a id="ganban.ui.due.DueDateLabel.Confirmed"></a>
+
+## Confirmed Objects
+
+```python
+class Confirmed(Message)
+```
+
+Emitted when delete is confirmed.
+
+<a id="ganban.ui.due.DueDateWidget"></a>
+
+## DueDateWidget Objects
+
+```python
+class DueDateWidget(Container)
+```
+
+Inline due date display with calendar picker.
+
+<a id="ganban.ui.due.DueDateWidget.Changed"></a>
+
+## Changed Objects
+
+```python
+class Changed(Message)
+```
+
+Emitted when due date changes.
 
 <a id="ganban.ui.menu"></a>
 
@@ -182,6 +509,57 @@ class MenuSeparator(Static)
 ```
 
 A horizontal separator line.
+
+<a id="ganban.ui.menu.MenuRow"></a>
+
+## MenuRow Objects
+
+```python
+class MenuRow(Horizontal)
+```
+
+A horizontal row of menu items within a vertical menu.
+
+<a id="ganban.ui.menu.MenuRow.active_item"></a>
+
+#### active\_item
+
+```python
+@property
+def active_item() -> MenuItem | None
+```
+
+The currently active (last-focused) item in this row.
+
+<a id="ganban.ui.menu.MenuRow.get_focusable_items"></a>
+
+#### get\_focusable\_items
+
+```python
+def get_focusable_items() -> list[MenuItem]
+```
+
+Return enabled items in this row.
+
+<a id="ganban.ui.menu.MenuRow.navigate"></a>
+
+#### navigate
+
+```python
+def navigate(direction: int) -> MenuItem | None
+```
+
+Move active index by direction (+1/-1). Return new item, or None at edge.
+
+<a id="ganban.ui.menu.MenuRow.activate"></a>
+
+#### activate
+
+```python
+def activate(item: MenuItem) -> None
+```
+
+Set the given item as the active one.
 
 <a id="ganban.ui.menu.MenuList"></a>
 
@@ -221,7 +599,9 @@ Notify when we have actual dimensions.
 def get_focusable_items() -> list[MenuItem]
 ```
 
-Return list of enabled menu items.
+Return list of items for vertical navigation.
+
+Each MenuRow is collapsed to its active item.
 
 <a id="ganban.ui.menu.ContextMenu"></a>
 
@@ -283,25 +663,35 @@ def action_focus_next() -> None
 
 Focus the next enabled item in current menu (wraps around).
 
-<a id="ganban.ui.menu.ContextMenu.action_select_or_enter"></a>
+<a id="ganban.ui.menu.ContextMenu.action_select_item"></a>
 
-#### action\_select\_or\_enter
+#### action\_select\_item
 
 ```python
-def action_select_or_enter() -> None
+def action_select_item() -> None
 ```
 
 Select leaf item or enter submenu.
 
-<a id="ganban.ui.menu.ContextMenu.action_close_submenu"></a>
+<a id="ganban.ui.menu.ContextMenu.action_navigate_right"></a>
 
-#### action\_close\_submenu
+#### action\_navigate\_right
 
 ```python
-def action_close_submenu() -> None
+def action_navigate_right() -> None
 ```
 
-Move focus back to parent item.
+Move right in row, or enter submenu / select.
+
+<a id="ganban.ui.menu.ContextMenu.action_navigate_left"></a>
+
+#### action\_navigate\_left
+
+```python
+def action_navigate_left() -> None
+```
+
+Move left in row, or close submenu.
 
 <a id="ganban.ui.menu.ContextMenu.action_close"></a>
 
@@ -332,6 +722,62 @@ def on_click(event: Click) -> None
 ```
 
 Dismiss menu when clicking outside.
+
+<a id="ganban.ui.menu.ContextMenu.on_calendar_menu_item_selected"></a>
+
+#### on\_calendar\_menu\_item\_selected
+
+```python
+def on_calendar_menu_item_selected(event) -> None
+```
+
+Handle calendar menu item selection.
+
+<a id="ganban.ui.color"></a>
+
+# ganban.ui.color
+
+Color picker for columns.
+
+<a id="ganban.ui.color.ColorSwatch"></a>
+
+## ColorSwatch Objects
+
+```python
+class ColorSwatch(MenuItem)
+```
+
+A colored menu item that uses outline for focus instead of background.
+
+<a id="ganban.ui.color.build_color_menu"></a>
+
+#### build\_color\_menu
+
+```python
+def build_color_menu() -> list[MenuRow]
+```
+
+Build a 4x4 color picker grid with clear in place of black.
+
+<a id="ganban.ui.color.ColorButton"></a>
+
+## ColorButton Objects
+
+```python
+class ColorButton(Static)
+```
+
+A button that opens a color picker menu.
+
+<a id="ganban.ui.color.ColorButton.ColorSelected"></a>
+
+## ColorSelected Objects
+
+```python
+class ColorSelected(Message)
+```
+
+Posted when a color is selected.
 
 <a id="ganban.ui"></a>
 
@@ -447,6 +893,26 @@ Editor finished - discard changes.
 
 Markdown document editor widget.
 
+<a id="ganban.ui.edit.document.DocHeader"></a>
+
+## DocHeader Objects
+
+```python
+class DocHeader(Container)
+```
+
+Editable document title with rule underneath.
+
+<a id="ganban.ui.edit.document.DocHeader.TitleChanged"></a>
+
+## TitleChanged Objects
+
+```python
+class TitleChanged(Message)
+```
+
+Emitted when the title changes.
+
 <a id="ganban.ui.edit.document.MarkdownDocEditor"></a>
 
 ## MarkdownDocEditor Objects
@@ -455,7 +921,7 @@ Markdown document editor widget.
 class MarkdownDocEditor(Container)
 ```
 
-Two-panel editor for MarkdownDoc content.
+Two-panel editor for markdown sections content.
 
 <a id="ganban.ui.edit.document.MarkdownDocEditor.Changed"></a>
 
@@ -467,16 +933,6 @@ class Changed(Message)
 
 Emitted when the document content changes.
 
-<a id="ganban.ui.edit.document.MarkdownDocEditor.on_editable_text_changed"></a>
-
-#### on\_editable\_text\_changed
-
-```python
-def on_editable_text_changed(event: EditableText.Changed) -> None
-```
-
-Update doc when title changes.
-
 <a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_heading_changed"></a>
 
 #### on\_section\_editor\_heading\_changed
@@ -486,7 +942,7 @@ def on_section_editor_heading_changed(
         event: SectionEditor.HeadingChanged) -> None
 ```
 
-Update doc when a section heading changes.
+Update sections when a section heading changes.
 
 <a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_body_changed"></a>
 
@@ -496,7 +952,7 @@ Update doc when a section heading changes.
 def on_section_editor_body_changed(event: SectionEditor.BodyChanged) -> None
 ```
 
-Update doc when a body changes.
+Update sections when a body changes.
 
 <a id="ganban.ui.edit"></a>
 
@@ -679,6 +1135,115 @@ def focus(scroll_visible: bool = True) -> None
 
 Focus the widget - enters edit mode if not already editing.
 
+<a id="ganban.ui.cal"></a>
+
+# ganban.ui.cal
+
+Calendar widget for date selection.
+
+<a id="ganban.ui.cal.date_diff"></a>
+
+#### date\_diff
+
+```python
+def date_diff(target: date, reference: date) -> str
+```
+
+Return compact string showing difference between dates.
+
+Examples: "1d", "-3d", "2m", "-1m", "5y", "-2y"
+Uses days for <60 days, months for <24 months, years otherwise.
+
+<a id="ganban.ui.cal.NavButton"></a>
+
+## NavButton Objects
+
+```python
+class NavButton(Static)
+```
+
+Navigation button for calendar.
+
+<a id="ganban.ui.cal.CalendarDay"></a>
+
+## CalendarDay Objects
+
+```python
+class CalendarDay(Static)
+```
+
+A single day cell.
+
+<a id="ganban.ui.cal.CalendarDay.Clicked"></a>
+
+## Clicked Objects
+
+```python
+class Clicked(Message)
+```
+
+Posted when this day is clicked.
+
+<a id="ganban.ui.cal.Calendar"></a>
+
+## Calendar Objects
+
+```python
+class Calendar(Container)
+```
+
+Date picker widget.
+
+<a id="ganban.ui.cal.Calendar.DateSelected"></a>
+
+## DateSelected Objects
+
+```python
+class DateSelected(Message)
+```
+
+Emitted when a date is selected.
+
+<a id="ganban.ui.cal.CalendarMenuItem"></a>
+
+## CalendarMenuItem Objects
+
+```python
+class CalendarMenuItem(Container)
+```
+
+Menu item containing a calendar picker.
+
+<a id="ganban.ui.cal.CalendarMenuItem.Selected"></a>
+
+## Selected Objects
+
+```python
+class Selected(Message)
+```
+
+Posted when a date is selected, signals menu to close.
+
+<a id="ganban.ui.cal.DateButton"></a>
+
+## DateButton Objects
+
+```python
+class DateButton(Static)
+```
+
+A button that opens a calendar menu for date selection.
+
+<a id="ganban.ui.cal.DateButton.DateSelected"></a>
+
+## DateSelected Objects
+
+```python
+class DateSelected(Message)
+```
+
+Emitted when a date is selected.
+
 <a id="ganban.ui.board"></a>
 
 # ganban.ui.board
@@ -770,7 +1335,7 @@ Show context menu on right-click on board header.
 #### action\_save
 
 ```python
-async def action_save() -> None
+def action_save() -> None
 ```
 
 Save the board to git.
@@ -1002,7 +1567,7 @@ Git-based kanban board TUI.
 #### action\_quit
 
 ```python
-async def action_quit() -> None
+def action_quit() -> None
 ```
 
 Save and quit.
@@ -1043,16 +1608,6 @@ class ColumnPlaceholder(Static)
 
 Placeholder showing where a dragged column will drop.
 
-<a id="ganban.ui.drag_managers.renumber_links"></a>
-
-#### renumber\_links
-
-```python
-def renumber_links(column) -> None
-```
-
-Renumber all links in a column to sequential zero-padded positions.
-
 <a id="ganban.ui.drag_managers.CardDragManager"></a>
 
 ## CardDragManager Objects
@@ -1079,22 +1634,12 @@ Manages column drag-and-drop state and operations.
 
 Column widgets for ganban UI.
 
-<a id="ganban.ui.column.ColumnHeader"></a>
-
-## ColumnHeader Objects
-
-```python
-class ColumnHeader(DraggableMixin, Static)
-```
-
-Draggable column header.
-
 <a id="ganban.ui.column.ColumnWidget"></a>
 
 ## ColumnWidget Objects
 
 ```python
-class ColumnWidget(Vertical)
+class ColumnWidget(DraggableMixin, Vertical)
 ```
 
 A single column on the board.
@@ -1140,16 +1685,6 @@ class DeleteRequested(Message)
 
 Posted when column should be deleted.
 
-<a id="ganban.ui.column.ColumnWidget.on_drag_started"></a>
-
-#### on\_drag\_started
-
-```python
-def on_drag_started(event: DragStarted) -> None
-```
-
-Convert header DragStarted to ColumnWidget.DragStarted.
-
 <a id="ganban.ui.column.ColumnWidget.on_editable_text_changed"></a>
 
 #### on\_editable\_text\_changed
@@ -1190,296 +1725,39 @@ class ColumnCreated(Message)
 
 Posted when a new column is created.
 
-<a id="ganban.writer"></a>
-
-# ganban.writer
-
-Save a ganban board to git without touching the working tree.
-
-<a id="ganban.writer.MergeRequired"></a>
-
-## MergeRequired Objects
-
-```python
-@dataclass
-class MergeRequired()
-```
-
-Returned by check_for_merge when the branch has diverged.
-
-<a id="ganban.writer.MergeRequired.base"></a>
-
-#### base
-
-common ancestor commit
-
-<a id="ganban.writer.MergeRequired.ours"></a>
-
-#### ours
-
-our commit (what board was loaded from)
-
-<a id="ganban.writer.MergeRequired.theirs"></a>
-
-#### theirs
-
-their commit (current branch tip)
-
-<a id="ganban.writer.check_for_merge"></a>
-
-#### check\_for\_merge
-
-```python
-def check_for_merge(board: Board,
-                    branch: str = BRANCH_NAME) -> MergeRequired | None
-```
-
-Check if saving would require a merge.
-
-Returns MergeRequired with the 3 commit hashes if branch has diverged,
-or None if a simple save is possible.
-
-The caller can then:
-1. Load all 3 boards: load_board(repo, commit=base/ours/theirs)
-2. Compare them to find conflicts
-3. Build a resolved board
-4. Save with: save_board(resolved, parents=[ours, theirs])
-
-<a id="ganban.writer.check_remote_for_merge"></a>
-
-#### check\_remote\_for\_merge
-
-```python
-def check_remote_for_merge(board: Board,
-                           remote: str = "origin",
-                           branch: str = BRANCH_NAME) -> MergeRequired | None
-```
-
-Check if a remote has changes that need merging.
-
-Call this after fetching to see if the remote tracking branch has diverged
-from the board's current commit.
-
-**Arguments**:
-
-- `board` - The current board state
-- `remote` - Remote name (e.g., "origin")
-- `branch` - Branch name on the remote
-  
-
-**Returns**:
-
-  MergeRequired if remote has diverged, None if up to date.
-
-<a id="ganban.writer.save_board"></a>
-
-#### save\_board
-
-```python
-async def save_board(board: Board,
-                     message: str = "Update board",
-                     branch: str = BRANCH_NAME,
-                     parents: list[str] | None = None) -> str
-```
-
-Save a board to git and return the new commit hash.
-
-This creates blobs, trees, and a commit without modifying the working tree.
-
-**Arguments**:
-
-- `board` - The board state to save
-- `message` - Commit message
-- `branch` - Branch name to update
-- `parents` - Explicit parent commits. If None, uses board.commit.
-  For merge commits, pass [ours_commit, theirs_commit].
-  
-
-**Returns**:
-
-  The new commit hash
-
-<a id="ganban.writer.try_auto_merge"></a>
-
-#### try\_auto\_merge
-
-```python
-def try_auto_merge(board: Board,
-                   merge_info: MergeRequired,
-                   message: str = "Merge changes",
-                   branch: str = BRANCH_NAME) -> str | None
-```
-
-Attempt an automatic merge if there are no conflicts.
-
-**Arguments**:
-
-- `board` - The board with our changes
-- `merge_info` - The MergeRequired from check_for_merge
-- `message` - Commit message for the merge
-- `branch` - Branch to update
-  
-
-**Returns**:
-
-  The new merge commit hash if successful, None if there are conflicts.
-
-<a id="ganban.writer.create_card"></a>
-
-#### create\_card
-
-```python
-def create_card(board: Board,
-                title: str,
-                body: str = "",
-                column: Column | None = None,
-                position: int | None = None) -> Card
-```
-
-Create a new card and add it to the board.
-
-**Arguments**:
-
-- `board` - The board to add the card to
-- `title` - Card title
-- `body` - Card body text
-- `column` - Column to add the card to (default: first column)
-- `position` - Position in column (default: end of column)
-  
-
-**Returns**:
-
-  The created Card
-
-<a id="ganban.writer.create_column"></a>
-
-#### create\_column
-
-```python
-def create_column(board: Board,
-                  name: str,
-                  order: str | None = None,
-                  hidden: bool = False) -> Column
-```
-
-Create a new column and add it to the board.
-
-**Arguments**:
-
-- `board` - The board to add the column to
-- `name` - Column display name
-- `order` - Sort order prefix (default: auto-increment from highest)
-- `hidden` - Whether column is hidden (prefix with .)
-  
-
-**Returns**:
-
-  The created Column
-
-<a id="ganban.writer.slugify"></a>
-
-#### slugify
-
-```python
-def slugify(text: str) -> str
-```
-
-Convert text to a URL-friendly slug.
-
-<a id="ganban.writer.build_column_path"></a>
-
-#### build\_column\_path
-
-```python
-def build_column_path(order: str, name: str, hidden: bool = False) -> str
-```
-
-Build column directory path from components.
-
 <a id="ganban.parser"></a>
 
 # ganban.parser
 
 Parse markdown documents with front-matter.
 
-<a id="ganban.parser.parse_markdown"></a>
+<a id="ganban.parser.parse_sections"></a>
 
-#### parse\_markdown
-
-```python
-def parse_markdown(text: str) -> MarkdownDoc
-```
-
-Parse a markdown document into a MarkdownDoc.
-
-<a id="ganban.parser.serialize_markdown"></a>
-
-#### serialize\_markdown
+#### parse\_sections
 
 ```python
-def serialize_markdown(doc: MarkdownDoc) -> str
+def parse_sections(text: str) -> tuple[list[tuple[str, str]], dict]
 ```
 
-Serialize a MarkdownDoc back to markdown text.
+Parse markdown into an ordered list of (title, body) sections plus meta.
 
-<a id="ganban.models"></a>
+Returns (sections, meta) where:
+- sections is a list of (title, body) tuples
+- First section is the h1 (title may be "" if no h1)
+- Subsequent sections are h2s
+- meta is the front-matter dict (or {})
 
-# ganban.models
+<a id="ganban.parser.serialize_sections"></a>
 
-Data models for ganban boards.
-
-<a id="ganban.models.MarkdownDoc"></a>
-
-## MarkdownDoc Objects
+#### serialize\_sections
 
 ```python
-@dataclass
-class MarkdownDoc()
+def serialize_sections(sections: list[tuple[str, str]],
+                       meta: dict | None = None) -> str
 ```
 
-Parsed markdown document with optional front-matter.
+Serialize sections and meta back to markdown text.
 
-<a id="ganban.models.Card"></a>
-
-## Card Objects
-
-```python
-@dataclass
-class Card()
-```
-
-A card file in .all/
-
-<a id="ganban.models.CardLink"></a>
-
-## CardLink Objects
-
-```python
-@dataclass
-class CardLink()
-```
-
-A symlink in a column pointing to a card.
-
-<a id="ganban.models.Column"></a>
-
-## Column Objects
-
-```python
-@dataclass
-class Column()
-```
-
-A column directory on the board.
-
-<a id="ganban.models.Board"></a>
-
-## Board Objects
-
-```python
-@dataclass
-class Board()
-```
-
-The full board state.
+First section becomes # heading, rest become ## headings.
+Meta becomes YAML front-matter if non-empty.
 

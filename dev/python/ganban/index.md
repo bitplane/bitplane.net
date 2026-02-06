@@ -1,6 +1,45 @@
 # ganban
 
-git-based Trello replacement TUI
+git-based Kanban TUI
+
+## What is this?
+
+Note: this is the plan. half of this isn't working yet. half of it is, and I'm
+not saying which half.
+
+`ganban` is a Kanban board that lives in git. It sits in an orphan branch so web
+UIs don't offer to merge it. In `ganban`, our tasks stay with the code and we
+don't need to rely on external services and API keys. It's just files in a dir.
+
+The board's columns are directories named `id.slug` like `1.backlog`. They
+don't need a numeric id, they're ordered alphanumerically so the TUI has the
+same order as `ls -l`. The TUI will renumber them for you if you move columns
+around.
+
+Cards on a board are symlinks to Markdown docs in the `./.all` dir, which holds
+the actual data. The links are ordered in the same way as cards. Keeping them in
+`.all` gives them stable IDs, so you can link to them. `ganban` will round up
+stray files and replace them with a link, so you don't need to remember `ln`'s
+weird syntax.
+
+The first `# heading`, if it's present, will override the title of a card. Any
+`## subheading` becomes a section, and the TUI can choose a custom editor for
+sections with special names. This is how comments and todo lists work.
+
+You can also add metadata like labels, a due date, assignee, story points - or
+anything else you like - using front-matter. Metadata works on columns too, by
+editing the `index.md` file in their dir. And the board of course, which can
+have a title and settings in its metadata.
+
+When running as a service, `ganban` will sync from remotes that the repo has,
+periodically pushing to upstream and resolving conflicts the best it can. This
+creates a kind of mesh network for your board.
+
+If you don't like the terminal, you can use the web UI (which looks just like
+the TUI.) If you're a robot that isn't good at UIs, `ganban -d` will sync in the
+background as you work. If the daemons haunt you, `ganban --sync` for manual
+syncing. If you're a bot, there's context-friendly instructions for use in the
+board's default `index.md`.
 
 ## Overview
 
