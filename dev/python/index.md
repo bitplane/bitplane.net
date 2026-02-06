@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* ✅ [ganban](ganban) -
+  a Kanban board that lives in git.
 * 🧥 [dejensen](dejensen) -
   remove pauses from presentation videos.
 * 🗺️ [mapillary_downloader](mapillary_downloader) -
