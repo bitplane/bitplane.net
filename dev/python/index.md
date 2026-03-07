@@ -22,7 +22,7 @@ that's a fair comment.
 * ✅ [ganban](ganban) -
   a Kanban board that lives in git.
 * 🧥 [dejensen](dejensen) -
-  remove pauses from presentation videos.
+  remove... annoying... pauses... from... presentation... videos.
 * 🗺️ [mapillary_downloader](mapillary_downloader) -
   download your Mapillary data before Meta delete it.
 * 🐳 [undockit](undockit) - 
@@ -59,7 +59,7 @@ that's a fair comment.
 * 📑 [ocr-pdf](https://github.com/bitplane/ocr-pdf) -
   Use Optical Character Recognition to convert a PDF to TXT.
 * 🪈 [benpipe](benpipe) -
-  Pipe bencoded data (torrents) to JSON and back again
+  Pipe bencoded data (torrents) to JSON and back again.
 
 ## 📚 Libs
 
@@ -80,7 +80,7 @@ that's a fair comment.
 * 📱 [t9](t9) -
   A Python implementation of Nokia's T9, from back when that was a thing.
 * 🗄️ [filefrag](filefrag) -
-  Python library to access Linux File Extents
+  Python library to access Linux File Extents.
 * ⌨️ [audio-keylogger](audio-keylogger) -
   Train a model to reconstruct keypresses from audio.
 * 👾 [plansi](plansi) -
@@ -120,10 +120,10 @@ that's a fair comment.
   Tiny script to convert favicons to PNGs on the fly and cache them.
 * 🕷️ [Scrapers](scrapers) -
   Numerous data scrapers for various sites.
-
+  
 ## 💷 Commercial stuff
 
-* 🕵️ At NDA PROTECTED CLIENT, I've been writing bots and command line tools and
+* 📼 At NDA PROTECTED CLIENT, I've been writing bots and command line tools and
   libraries in Python.
 
 * 💳 For [First Response Finance](https://www.firstresponsefinance.co.uk/), I
@@ -140,14 +140,11 @@ that's a fair comment.
 * 🦻 At [Sonocent](https://glean.co/), I wrote a BI platform to support business
   experiments.
 
-* 🩺 At NHS Digital, I worked on the SPINE 2 project doing various things, probably
-  the biggest TDD Python codebase in the world.
+* 🩺 At NHS Digital, I worked on the SPINE 2 project doing various things,
+  probably the biggest TDD Python codebase in the world.
 
 * 🎻 Someone on bitcointalk paid me 6 Bitcoins to write a data scraper for a
   violin sale site. I wish I'd kept them, they were worth $36 at the time.
 
-* 🃏 At BetFair, I used [funkload](https://github.com/nuxeo/funkload) for
-  performance testing and submitted a couple of bug fixes and made some pretty
-  nice results visualization/reporting/diffing tools for perf tools in CI.
-  Didn't get permission to share the reporting tools, so all that survives is
-  a bug report!
+* 🃏 At BetFair, I made some pretty nice visualization/reporting/diffing tools
+  [funkload](https://github.com/nuxeo/funkload) for CI performance testing.
