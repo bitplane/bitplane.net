@@ -165,6 +165,31 @@ Parse an Amiga .info file and return a DiskObject.
 
 - `ValueError` - If the file doesn't start with the expected magic number.
 
+<a id="amigainfo.save"></a>
+
+# amigainfo.save
+
+Write DiskObject dataclasses back to Amiga .info file bytes.
+
+<a id="amigainfo.save.save"></a>
+
+#### save
+
+```python
+def save(obj: DiskObject) -> bytes
+```
+
+Serialize a DiskObject to Amiga .info file bytes.
+
+**Arguments**:
+
+- `obj` - A DiskObject to serialize.
+  
+
+**Returns**:
+
+  Raw bytes of the .info file.
+
 <a id="amigainfo.models"></a>
 
 # amigainfo.models

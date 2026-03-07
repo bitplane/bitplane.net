@@ -1,6 +1,6 @@
 # amigainfo
 
-A Python library for loading and converting Amiga `.info` icon files.
+A Python library for loading, saving and converting Amiga `.info` icon files.
 
 Supports all four generations of the format:
 
@@ -18,7 +18,7 @@ pip install amigainfo
 ## Library usage
 
 ```python
-from amigainfo import load, to_image
+from amigainfo import load, save, to_image
 
 # Load and render the best available image
 obj = load(open("MyApp.info", "rb").read())
@@ -29,6 +29,11 @@ img.save("MyApp.png")
 print(obj.type)          # IconType.TOOL
 print(obj.default_tool)  # "SYS:Utilities/MultiView"
 print(obj.tooltypes)     # ["PUBSCREEN=Workbench", ...]
+
+# Modify and save back
+obj.default_tool = "SYS:Utilities/NewTool"
+obj.tooltypes.append("DONOTWAIT")
+open("MyApp.info", "wb").write(save(obj))
 
 # Render a specific format or state
 from amigainfo import classic_to_image, WB_1X
@@ -88,14 +93,15 @@ tool), and planar bitmap image data. Later formats append additional image data:
 |--------|-----|-----------|---------|
 | Classic | OS 1.x-3.1 | Planar bitmaps (1-8 bitplanes) | System Workbench palette |
 | NewIcons | Mid-90s | Chunky pixels encoded in ToolTypes | Embedded in data |
-| GlowIcons | OS 3.5+ | RLE-compressed indexed color (IFF) | Embedded in data |
-| ARGB | OS 4 | zlib-compressed 32-bit ARGB | Full color |
+| GlowIcons | OS 3.5+ | RLE-compressed indexed colour (IFF) | Embedded in data |
+| ARGB | OS 4 | zlib-compressed 32-bit ARGB | Full colour |
 
 Each file can contain up to two images: normal and selected (highlighted) states.
 
 ## Data model
 
-The `load()` function returns a `DiskObject` with all parsed data accessible:
+The `load()` function returns a `DiskObject` with all parsed data accessible.
+The `save()` function serializes it back to `.info` bytes:
 
 ```
 DiskObject
@@ -115,8 +121,8 @@ DiskObject
 Classic icons don't store palette data, they rely on the system Workbench
 palette. Two palettes are included:
 
-- `WB_1X` — OS 1.x, 4 colors (blue, white, black, orange)
-- `WB_2X` — OS 2.x/3.x, 8 colors (the standard Workbench palette)
+- `WB_1X` — OS 1.x, 4 colours (blue, white, black, orange)
+- `WB_2X` — OS 2.x/3.x, 8 colours (the standard Workbench palette)
 
 The default is `WB_2X`. The `to_image()` function auto-selects based on
 `gadget.user_data` (OS 2.x+ icons set this to 1).
