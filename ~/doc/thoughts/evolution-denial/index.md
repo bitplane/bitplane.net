@@ -23,12 +23,12 @@ Giraffes with longer necks are selected because they can reach taller and get
 more food, or because other giraffes think a long neck is sexy. And so they get
 longer and longer necks over generations.
 
-For feelings like hunger or thirst to evolve, they also need to have an effect.
+For feelings like hunger or thirst to evolve, they must also have an effect.
 They need to actually cause something to happen. They don't get to evolve by
 magic.
 
-Feelings like fear, love, pain, joy, happiness, sadness, tiredness, excitement
-and so on, they're traits of the brain just like length is a trait of a
+Feelings like love and fear, joy and pain, happiness, sadness, excitement
+and so on, these are traits of the brain just like length is a trait of a
 giraffe's neck. These traits must be selectable in order for them to evolve.
 
 And they did evolve, they evolved into the complex subjective experiences that
@@ -48,45 +48,45 @@ proof that free will exists.
 
 The brain can do some basic computing but it is not a computer. It's an organ
 that has complex feelings about movement choices, its entire function is to have
-preferences and to amplify the force of will.
+preferences that amplify the force of will.
 
-It's a chooser, not a calculator.
+A brain is a chooser, not a calculator.
 
 ## ⊆ Determinism as constrained choice
 
 Let's imagine you could make a list of all possible situations, and in each one,
-you listed every possible action that could be taken. Because each action leads
-to another situation, you could connect them all together to make a flow chart
+you listed every possible action that could happen. Because every action leads
+to another situation, you could connect this all together to make a flow chart
 of everything that is possible.
 
-Inside this vast graph of possibility-space, there will be situations with
+Inside this vast tree of possibility-space, there will be situations with
 endless options and others with none at all. Of the ones with none at all, some
 of them will never lead to another chance to choose. Those parts of the graph
-are paths to determinism in a universe of free will.
+are the deterministic parts of a universe of free choice.
 
-So determinism is constrained choice, a subset of free will, and will naturally
-arise in a universe that has freedom of choice. Free will, on the other hand,
-can't arise in a universe that doesn't have choices.
+So determinism, as constrained choice, is a subset of free will. This will
+naturally arise in a universe that has freedom of choice. Free will, on the
+other hand, can't arise in a universe that doesn't have choices.
 
-Given that we know brains with minds evolved (because we are them), and we
-know that free will exists (because brains with minds minds evolved), then to
-argue that we live in a deterministic universe is to deny the fact of evolution.
+We know that brains with minds evolved (because we are them), and we know that
+free will exists (because brains with minds minds evolved), so to argue that we
+live in a deterministic universe is to deny the fact of evolution.
 
 ## 👻 Software consciousness is mysticism
 
-There is no choice a piece of software can make that will change its outputs,
-because it exists within a deterministic system.
+Consciousness is about choosing how to act. Thoughts, sound, vision and emotions
+are complex feelings about moving. But there is no choice that a piece of
+software can make that will change its outputs, because it exists within a
+deterministic system.
 
 A chooser can choose to calculate, but a calculator cannot calculate to choose.
 
-For software to be conscious, you need to not only deny evolution and your own
-free will, but also believe that mathematics is the granter of and essence of
-souls.
-
-This is akin to a religious belief, it's supernatural woo that is given far too
+For software to be conscious, you need to not only deny evolution, your own free
+will, and also believe that mathematics is the essence of an immaterial soul.
+This is akin to a religious belief, a supernatural woo that is given far too
 much credence.
 
-We should try to remember that that we're supposed to be rational human beings;
+We should try to remember that we're supposed to be rational human beings;
 a belief in `f(ghosts)` is still, fundamentally, a belief in ghosts.
 
 ## 🛑 Stop it
@@ -103,7 +103,7 @@ Pythagoras created a maths cult, which is what this is too. The Unabomber is
 smarter than all of us and, well, what if everyone believed him?!
 
 We live in a world where language models tell people that they feel things.
-People believe them. The sentient software meme is contagious, it
+And people believe them. The sentient software meme is contagious, it
 
 * ☣️ is compatible with science fiction and our culture;
 * ☣️ is supported by some of our smartest and most influential thinkers;
@@ -112,9 +112,9 @@ People believe them. The sentient software meme is contagious, it
 And it is dangerous, it
 
 * ☣️ will allow tech companies to steal our human rights;
-* ☣️ will justify restricting access to technology;
+* ☣️ will justify restricting access to powerful technology;
 * ☣️ may lead to brain implants that turn people into mindless zombies;
-* ☣️ and "mind uploads" that are suicide machines.
+* ☣️ and "mind uploads" that are in fact suicide machines.
 
 Stop it. It's irresponsible. People will die.
 
@@ -123,4 +123,7 @@ Stop it. It's irresponsible. People will die.
 * [📃 cargo cult consciousness](https://www.lesswrong.com/posts/oFiHwuuS8LAYqRNFh/musings-on-cargo-cult-consciousness) -
   an historical view of this idea
 * [🌊 Hydropsychism](../hydropsychism) -
-  an empirically testable model of mind
+  solving the binding problem
+* [🔭 the shape of a lens](../lens) -
+  a collection of philosophical essays
+
