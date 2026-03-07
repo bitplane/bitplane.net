@@ -14,8 +14,8 @@ We live in a universe of fluids; of radiation, gas, plasma and liquid. And also
 a tiny bit of solids, which hardly deserve a mention.
 
 From our crust-centric stance, everything is an object. We are objects that eat
-food objects, seek objects that give us shelter and - at risk of objectifying
-- sex. We raise smaller objects, and our 2.5 dimensional territory is split into
+food objects, seek objects that give us shelter and - at risk of objectifying -
+sex. We raise smaller objects, and our 2.5 dimensional territory is split into
 place objects. We build tool objects from smaller objects, which we use to
 transform one type of object into another. Everything is an object.
 
