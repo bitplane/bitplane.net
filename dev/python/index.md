@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 🖼️ [amigainfo](amigainfo) -
+  convert Amiga .info files
 * ✅ [ganban](ganban) -
   a Kanban board that lives in git.
 * 🧥 [dejensen](dejensen) -
