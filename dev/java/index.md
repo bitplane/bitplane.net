@@ -1,3 +1,7 @@
+---
+redirect_from: ['/projects/android']
+---
+
 # Java
 
 I'm not a fan of Java, never have been. This could be because of a traumatic
@@ -9,8 +13,9 @@ language of FizzBuzz Enterprise Edition, or that I feel like a downtrodden verb
 in the
 [Kingdom of Nouns](https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html).
 
-But I still wrote some stuff in it anyway, mostly a few Android apps that are
-no longer used by anyone.
+But I still wrote some stuff in it anyway, mostly Android apps. Nowadays the
+only one in use is the Microphone one, which I refuse to sell despite multiple
+marketing companies wanting access to my users' microphones.
 
 * [🖼️ Anonypic](anonypic) -
   Upload images to the now defunct BayImg image host.
