@@ -85,6 +85,16 @@ Falls back to normal state if selected is not available.
 
 - `ValueError` - If no image data is available.
 
+<a id="amigainfo.render.png_to_image"></a>
+
+#### png\_to\_image
+
+```python
+def png_to_image(data: bytes) -> Image.Image
+```
+
+Render a PNG icon image to a Pillow RGBA Image.
+
 <a id="amigainfo.render.argb_to_image"></a>
 
 #### argb\_to\_image
@@ -339,6 +349,17 @@ class ARGBImages()
 ```
 
 32-bit ARGB images from IFF FORM ICON ARGB chunks (OS4).
+
+<a id="amigainfo.models.PNGImages"></a>
+
+## PNGImages Objects
+
+```python
+@dataclass
+class PNGImages()
+```
+
+OS4 PNG icon images. Two concatenated PNG files.
 
 <a id="amigainfo.models.DiskObject"></a>
 
