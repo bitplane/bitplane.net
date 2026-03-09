@@ -8,10 +8,10 @@ say something about how that worked.
 ## Budget computing
 
 The Speccy's crude operating system was a BASIC command line interpreter,
-complimented by a simple line editor. When you switched the thing on, the
-machine's cheap capacitors whistled with a high pitched coil whine inaudible to
-adults, the screen flashed black as the memory's graphics region was reset, and
-about a second later you were presented with Sinclair BASIC's operating system:
+complemented by a simple line editor. When you switched the thing on, its cheap
+capacitors whistled with a high pitched coil whine inaudible to adults, the
+screen flashed black as the memory's graphics region was reset, and about a
+second later you were presented with Sinclair BASIC's operating system:
 
 ![OS](spectrum.png)
 
@@ -39,9 +39,9 @@ home computers to bring the glory of computing into the home.
 
 So, gaming was both the killer app and also a grubby, degenerate, secondary
 function, kind of like porn was to the early Internet. And like that conflict
-caused Flash Player to dominate the web for a decade, this one led to a user
-experience that few would stand for today: To load a game, you'd instruct the
-thing to do the loading; you had to enter the `LOAD` keyword into the CLI.
+caused Flash and QuickTime to dominate the early web, this led to a user
+experience few would stand for today: To load a game, you'd instruct the thing
+to do the loading; you had to enter the `LOAD` keyword into the CLI.
 
 This sounds simple enough, but the ZX Spectrum's budget constraints came with
 quirks, making this process not only famously awkward but also different to
@@ -68,16 +68,16 @@ and squidge down the key with the word `LOAD` on it.
 
 ![keyboard](zx-buttons.webp)
 
-If you didn't spot it, `LOAD` was *conveniently* located on the J key. And nex
+If you didn't spot it, `LOAD` was *conveniently* located on the J key. And next
 we just tap `ENTER`, right?
 
 Nope! You also had to pass the name of the program you wanted to load. Not that
 anyone actually used this name filter, tapes were slow and filtering by name
 would mean sitting for 4 minutes listening to some other program's memory dump.
 I like to think it was a psyop by Steve Vickers to teach programming by stealth.
-Maybe it wasn't, but it certainly worked that way. Plus, unlike the `LOAD`
-keyword, there were other commands that had *optional* string parameters. It was
-an act of spite: this thing did't want you to load games.
+Unlike the `LOAD` keyword, there were other commands that had *optional* string
+parameters. It felt like an act of spite: this thing didn't want you to load
+games.
 
 If, like everyone, you didn't care about the program's name, then you just
 entered an empty string: a pair of empty double quotes. These, even more
@@ -113,7 +113,7 @@ G key. So we did.
 ```
 
 And that's how I became an illiterate programmer. I couldn't spell `LOAD` or
-`CLEAR` on my own at the age of 6, but I could see what colour there were and
+`CLEAR` on my own at the age of 6, but I could see what colour they were and
 that they were different to the other allowed keywords. `BEEP` is written as
 `bip` when you're 6, but you can read `BEEP` and it made music if you gave it
 some numbers.
@@ -134,7 +134,7 @@ If you're 6 years old, don't know what "input" means and call your keys
 all over your buttons catching the ones you press. Legs actually, because only
 humans have arms.
 
-To me, `INKEY$` is a cartoon octopus printed on 4 inches of thin card. One with
+To me, `INKEY$` is a cartoon octopus printed on 4 inches of thin card with
 SEE INLAY FOR DETAILS written along the side.
 
 Ah.. memories!
