@@ -1,4 +1,5 @@
-* [2026-03-07 - ℹ️  `amigainfo` - load Amiga icons](/dev/python/amigainfo)
+* [2026-03-09 - `propack` - RNS ProPack in Python](/dev/python/propack)
+* [2026-03-07 - `amigainfo` - load Amiga icons](/dev/python/amigainfo)
 * [2026-01-08 - 🗒️ Mapillary Update](log/2026/01/mapillary)
 * [2025-12-13 - 🌐 Site project update](log/2025/12/projects)
 * [2025-10-30 - 🧥 dejensen - remove pauses from video presentations](/dev/python/dejensen)

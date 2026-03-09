@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 📦 [propack](propack) -
+  RNS ProPack implementation in Python, for those old Amiga files.
 * 🖼️ [amigainfo](amigainfo) -
   convert Amiga .info files
 * ✅ [ganban](ganban) -
