@@ -138,7 +138,9 @@ def classic_to_image(
 ) -> Image.Image
 ```
 
-Render a classic planar image to a Pillow RGB Image.
+Render a classic planar image to a Pillow RGBA Image.
+
+Palette index 0 is treated as transparent.
 
 **Arguments**:
 
