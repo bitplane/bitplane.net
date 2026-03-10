@@ -54,3 +54,10 @@ propack scan rom.bin
 # Extract all embedded RNC blocks
 propack extract rom.bin -o output_dir/
 ```
+
+## 🔗 Links
+
+* [🏠 home](https://bitplane.net/dev/python/propack)
+* [🐍 pypi](https://pypi.org/project/propack)
+* [🐱 github](https://github.com/bitplane/propack)
+
