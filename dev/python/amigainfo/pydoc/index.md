@@ -147,6 +147,15 @@ Palette index 0 is treated as transparent.
 - `img` - A ClassicImage with planar bitmap data.
 - `palette` - Color palette to use. Defaults to the WB 2.x palette.
 
+<a id="amigainfo.pillow_plugin"></a>
+
+# amigainfo.pillow\_plugin
+
+Pillow plugin for Amiga Workbench .info icon files.
+
+Registers the WBINFO format so that ``Image.open("icon.info")`` works
+after ``import amigainfo``.
+
 <a id="amigainfo.load"></a>
 
 # amigainfo.load
