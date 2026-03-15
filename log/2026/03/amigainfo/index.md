@@ -105,6 +105,8 @@ of icons, I cooked up this library and command line tool. So now anyone can
 convert Workbench icons or dump their meta out with `pipx run amigainfo --help`,
 and can also load, edit and save them by importing `amigainfo`.
 
+![amigainfo](amigainfo.cast.png)
+
 * [🏠 project page](https://bitplane.net/dev/python/amigainfo)
 * [🐍 pypi package](https://pypi.org/project/amigainfo)
 * [🐱 source code](https://github.com/bitplane/amigainfo)
