@@ -1,3 +1,6 @@
+---
+features: ["asciinema"]
+---
 # ℹ️ Amiga Workbench .info files
 
 Between a bit of contract work and a new job, I went back to my Amiga disk and
@@ -78,6 +81,8 @@ but these weren't ALL THE THINGS. So I downloaded [AmiNet](https://aminet.net/)
 and extracted every archive I could find, snagging 300,000 .info files and
 plopped them into a git repo, which I triumphantly shared about a bit for the
 common good. Yes my mum is proud of me.
+
+![info.cast](info.cast.png)
 
 This isn't anywhere near ALL THE THINGS though, there were extraction errors
 caused by the LHA extractor and non-ASCII file names (feels like dangerous RAM
