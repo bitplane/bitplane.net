@@ -141,6 +141,8 @@ errors when things are corrupted, tries to be defensive against DoS attacks and
 memory corruption. If they like the code, maybe everything will know what's in
 a `.info` file from now on:
 
+![mediainfo](mediainfo.cast.png)
+
 * [ℹ️ MediaInfoLib PR](https://github.com/MediaArea/MediaInfoLib/pull/2547)
 
 ## 🧙 ImageMagick support
