@@ -43,7 +43,7 @@ format.
 
 ![OS4](os4.webp)
 
-Somewhere along the way, a new hack called PowerIcons became offical among
+Somewhere along the way, a new hack called PowerIcons became official among
 OS4, MorphOS and AROS. These are two concatenated PNG files with .info metadata
 embedded inside an `icOn` chunk in the first image. It was heresy.
 
@@ -114,11 +114,11 @@ and code review burden for such a niche format is probably not worth their time.
 So I made it a Pillow plugin, which registers a Workbench .info loader when you
 import the library. This will be linked on their site after the next release.
 
-There's a potential side-quest here drumming up support for a pypi classifier
-for 
+There's a potential side-quest here drumming up support for a pypi trove
+classifier for `Framework :: Pillow`.
 
-* [🛏️ pillow PR](https://github.com/python-pillow/Pillow/pull/9459)
-
+* [🛏️ pillow docs PR](https://github.com/python-pillow/Pillow/pull/9459)
+* [🔗 classifer issue](https://github.com/python-pillow/Pillow/issues/8892)
 
 ## `mediainfo` contribs
 
