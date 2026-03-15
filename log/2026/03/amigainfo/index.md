@@ -12,7 +12,7 @@ But there wasn't an easy way to open, convert or work with them out of the box
 in modern Linux, which led to the sort of rabbit hole that eats your last week
 of freedom, and then some.
 
-## The file format
+## 📂 The file format
 
 `.info` files are actually 4 stacked things and one adjacent one.
 
@@ -50,7 +50,7 @@ embedded inside an `icOn` chunk in the first image. It was heresy.
 That's mostly the story, and about the right amount of cruft for 20 years of
 uneven advances in raster graphics.
 
-## .info as a MIME type
+## 📧 .info as a MIME type
 
 Despite the format being [well documented](http://www.evillabs.net/index.php/Amiga_Icon_Formats)
 and parsing code being available
@@ -69,7 +69,7 @@ tools, as listed in [WikiData](https://www.wikidata.org/wiki/Q28205479).
 * [🪄 libmagic rule submission](https://bugs.astron.com/view.php?id=726)
 * [🇬🇧The National Archives](https://www.nationalarchives.gov.uk/contact-us/submit-information-for-pronom/)
 
-## All the .info files?
+## 📦 All the .info files?
 
 In order to prove my tool actually loads the things, I'd need some test data.
 So I started off with
@@ -91,7 +91,7 @@ won't. 300k is probably more than enough, if you believe in "probably" and
 * [🏛️ archive.org backup](https://archive.org/details/Amiga_Info_Files)
 
 
-## Writing a CLI
+## 🐍 Writing a CLI
 
 My main gripe was that I couldn't just install a command line tool from a
 package manager and view them in `chafa`, or load them in Python and do fun
@@ -105,7 +105,7 @@ and can also load, edit and save them by importing `amigainfo`.
 * [🐱 source code](https://github.com/bitplane/amigainfo)
 
 
-## ...and a Pillow plugin
+## 🛏️ ...and a Pillow plugin
 
 Along the way I figured out that Pillow supports plugins. Ideally I'd have
 offered this up to Pillow, but I figured it's a busy project and the maintenance
@@ -120,7 +120,7 @@ classifier for `Framework :: Pillow`.
 * [🛏️ pillow docs PR](https://github.com/python-pillow/Pillow/pull/9459)
 * [🔗 classifer issue](https://github.com/python-pillow/Pillow/issues/8892)
 
-## `mediainfo` contribs
+## ℹ️ `mediainfo` contribs
 
 I'd had a bit of fun in the past adding
 [webp support](https://github.com/MediaArea/MediaInfoLib/pull/2262) to
@@ -138,7 +138,7 @@ a `.info` file from now on:
 
 * [ℹ️ MediaInfoLib PR](https://github.com/MediaArea/MediaInfoLib/pull/2547)
 
-## ImageMagick support
+## 🧙 ImageMagick support
 
 A more ambitious challenge would be to rewrite the lot, or at least the non-PNG
 and Workbench metadata parts so anyone, anywhere can convert them to any format
@@ -155,7 +155,7 @@ well, ImageMagick might also get `.info` support outside of my fork.
 
 * [🧙 ImageMagick PR](https://github.com/ImageMagick/ImageMagick/pull/8606)
 
-## In summary...
+## 🧒 In summary...
 
 Diving back into something you loved as a child is always going to be fun, and
 it's a bit sad getting to the end of a deep dive like this, with only bugfixes
