@@ -26,7 +26,7 @@ gubbins. Icon files were seek-friendly, mutated as you moved them about, and
 also contained ToolTypes, which are like environment variables or args passed to
 the target program.
 
-![AmigaOS icons](wb13.webp)
+![AmigaOS icons](wb13.png)
 
 At the start of the 90s more colourful desktops arrived, and with them came a
 hack called NewIcons. This plugin unofficially extended the icon format by
