@@ -55,8 +55,8 @@ uneven advances in raster graphics.
 Despite the format being [well documented](http://www.evillabs.net/index.php/Amiga_Icon_Formats)
 and parsing code being available
 [in](https://github.com/aros-development-team/AROS/blob/master/workbench/libs/icon/diskobjio.c)
-[several](https://github.com/steffest/Amiga-Icon-Editor)
-[across](https://github.com/harbaum/infotool)
+[places](https://github.com/steffest/Amiga-Icon-Editor)
+[around](https://github.com/harbaum/infotool)
 [the](https://github.com/jwilk-mirrors/netpbm)
 [web](https://github.com/nicodex/HelloAmi/blob/master/Libs/icon.library.asm),
 `file` didn't report the correct MIME type, and the format wasn't listed in
