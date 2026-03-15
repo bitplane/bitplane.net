@@ -34,7 +34,7 @@ embedding image data into the ToolType texts, remaining backwards compatible.
 These icons held RGB information but were downsampled to the current palette on
 use. And it was good, if a bit slow.
 
-![NewIcons](newicons.webp)
+![NewIcons](newicons.png)
 
 With OS3.5, we got support for IFF - but not ILBM - icons: faster, prettier and
 more consistent. Later still, after the fall of Commodore and IFF's
