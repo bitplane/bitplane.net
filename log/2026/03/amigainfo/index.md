@@ -121,6 +121,8 @@ and code review burden for such a niche format is probably not worth their time.
 So I made it a Pillow plugin, which registers a Workbench .info loader when you
 import the library. This will be linked on their site after the next release.
 
+![PIL](pil.cast.png)
+
 There's a potential side-quest here drumming up support for a pypi trove
 classifier for `Framework :: Pillow`.
 
