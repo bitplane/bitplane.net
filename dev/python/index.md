@@ -67,6 +67,8 @@ that's a fair comment.
 
 ## 📚 Libs
 
+* 🖼️ [pillow-degas](pillow-degs) -
+  Load Atari DEGAS images in Pillow
 * 🗔  [bittty](bittty) -
   a pure python terminal emulator.
 * 🪵 [logloglog](logloglog) -
