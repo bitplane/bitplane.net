@@ -1,13 +1,11 @@
-# crunchmania
+# 📦 crunchmania
 
 A Python decompressor for [Crunch-Mania](https://amiga.resource.cx/exp/crunchmania)
 files from the Amiga era.
 
-[![PyPI](https://img.shields.io/pypi/v/crunchmania)](https://pypi.org/project/crunchmania/)
-
-- [Home page](https://bitplane.net/dev/python/crunchmania)
-- [PyPI](https://pypi.org/project/crunchmania/)
-- [GitHub](https://github.com/bitplane/crunchmania)
+* [🏠 home](https://bitplane.net/dev/python/crunchmania)
+* [🐍 pypi](https://pypi.org/project/crunchmania/)
+* [🐱 github](https://github.com/bitplane/crunchmania)
 
 ## The format
 
