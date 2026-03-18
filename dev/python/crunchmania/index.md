@@ -1,9 +1,12 @@
 # 📦 crunchmania
 
+![pic](https://bitplane.net/dev/python/crunchmania/crunch-mania.png)
+
 A Python decompressor for [Crunch-Mania](https://amiga.resource.cx/exp/crunchmania)
 files from the Amiga era.
 
 * [🏠 home](https://bitplane.net/dev/python/crunchmania)
+  * [📖 pydoc](https://bitplane.net/dev/python/crunchmania/pydoc)
 * [🐍 pypi](https://pypi.org/project/crunchmania/)
 * [🐱 github](https://github.com/bitplane/crunchmania)
 
