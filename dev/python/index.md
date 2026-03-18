@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 📃 [CFF MOST](cff-most) -
+  disassembled m68k machine code to read old docs.
 * 📦 [propack](propack) -
   RNS ProPack implementation in Python, for those old Amiga files.
 * 🖼️ [amigainfo](amigainfo) -

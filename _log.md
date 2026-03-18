@@ -1,3 +1,4 @@
+* [2026-03-18 - 📃 CFF MOST compressor/decompressor](/dev/python/cff-most)
 * [2026-03-17 - 🛏️ pillow-degas - load Atari DEGAS images](/dev/python/pillow-degas)
 * [2026-03-16 - 🗒️ Mapillary Update](log/2026/03/mapillary)
 * [2026-03-15 - ℹ️ amigainfo - load Amiga icons](log/2026/03/amigainfo)
