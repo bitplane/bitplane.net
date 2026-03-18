@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 📦 [Crunch-Mania](crunchmania) -
+  another Amiga compression format.
 * 📃 [CFF MOST](cff-most) -
   disassembled m68k machine code to read old docs.
 * 📦 [propack](propack) -

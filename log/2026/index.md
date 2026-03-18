@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2026
 
+* [2026-03-18 - 📦 Crunch-Mania](/dev/python/crunchmania)
 * [2026-03-18 - 📃 CFF MOST compressor/decompressor](/dev/python/cff-most)
 * [2026-03-17 - 🛏️ pillow-degas - load Atari DEGAS images](/dev/python/pillow-degas)
 * [2026-03-16 - 🗒️ Mapillary Update](03/mapillary)
