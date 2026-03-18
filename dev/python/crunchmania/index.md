@@ -9,6 +9,7 @@ files from the Amiga era.
   * [📖 pydoc](https://bitplane.net/dev/python/crunchmania/pydoc)
 * [🐍 pypi](https://pypi.org/project/crunchmania/)
 * [🐱 github](https://github.com/bitplane/crunchmania)
+* [📦 test data](https://github.com/bitplane/crunch-mania-test-data)
 
 ## The format
 
