@@ -71,6 +71,8 @@ that's a fair comment.
 
 ## 📚 Libs
 
+* 👾 [amos-abk](amos-abk) -
+  Load AMOS banks to extract sprites and other goodies.
 * 🖼️ [pillow-degas](pillow-degs) -
   Load Atari DEGAS images in Pillow
 * 🗔  [bittty](bittty) -
