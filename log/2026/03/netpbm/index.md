@@ -153,7 +153,7 @@ for us to play with.
 So we'll pinch his test data again and write a magic rule, and link this one in
 to PRONOM like the others:
 
-* [🪄 libmagic rules]
+* [🪄 libmagic rules](https://bugs.astron.com/view.php?id=744)
 * 🗄️ PRONOM ref: 
 
 ---
