@@ -88,7 +88,8 @@ Once the IANA registration is complete and/or detection rules are in libmagic,
 will likely follow suit. If not, I'll give them a nudge.
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=742)
-* [🌍 IANA submission](https://tools.iana.org/public-view/viewticket/1448324) 
+* 🌍 IANA [submission](https://tools.iana.org/public-view/viewticket/1448324)
+  [📨](https://mailarchive.ietf.org/arch/msg/media-types/5MUlMUJHMANhwVwAKLqAI0Z0NlA/)
 * [🐛 MegaMimes PR](https://github.com/kobbyowen/MegaMimes/pull/4)
 * [🌍 WikiData src links](https://www.wikidata.org/wiki/Q28049637)
 * 🐛 PRONOM correction ref: TNA1774192312Q50
