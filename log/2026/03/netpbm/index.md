@@ -94,7 +94,7 @@ will likely follow suit. If not, I'll give them a nudge.
   [📨](https://mailarchive.ietf.org/arch/msg/media-types/5MUlMUJHMANhwVwAKLqAI0Z0NlA/)
 * [🐛 MegaMimes PR](https://github.com/kobbyowen/MegaMimes/pull/4)
 * [🌍 WikiData src links](https://www.wikidata.org/wiki/Q28049637)
-* 🐛 PRONOM correction ref: TNA1774192312Q50
+* 🐛 PRONOM: TNA1774192312Q50
 
 ---
 
@@ -129,7 +129,7 @@ during the era of early swashbuckling video if compression was faster.
 So, let's fix the omission:
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=743)
-* 🗄️ PRONOM ref:TNA1774396137A87
+* 🗄️ PRONOM: TNA1774396137A87
 
 ---
 
@@ -157,7 +157,7 @@ So we'll pilfer his test data again and write a magic rule, and link this one in
 to PRONOM like the others:
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=744)
-* 🗄️ PRONOM addition ref: TNA1774653669Q59
+* 🗄️ PRONOM: TNA1774653669Q59
 
 ---
 
@@ -220,18 +220,36 @@ Let's fix some of this:
 
 ---
 
+## JBIG (Joint Bi-level Image experts Group)
+
+![jbig/bie](bie.png)
+
+[JBIG1](https://www.itu.int/rec/T-REC-T.82) is a black and white image
+compression standard used for fax and scanned documents. The standalone file
+format is called a BIE (Bi-level Image Entity). Files use `.jbg`, `.jbig`, or
+`.bie` extensions - all the same format. The reference implementation is Markus
+Kuhn's [jbigkit](https://www.cl.cam.ac.uk/~mgk25/jbigkit/).
+
+`image/x-jbig` is the de-facto MIME used by both
+[freedesktop](https://gitlab.freedesktop.org/xdg/shared-mime-info) and
+[Apache Tika](https://github.com/apache/tika), it's in
+[PRONOM](https://www.nationalarchives.gov.uk/pronom/fmt/399),a
+[Wikidata](https://www.wikidata.org/wiki/Q747833), and
+[ArchiveTeam's wiki](http://justsolve.archiveteam.org/wiki/JBIG).
+
+So, it's well-known, but files are misidentified by `file` as `Targa image data`
+because like Targa there's no magic string. I wrote a detection rule which is
+too fragile for libmagic. Crappy file extension detection is all we have in
+`pillow-netpbm` for now. Oh, and two of Sembiance's
+[JBIG test files](https://sembiance.com/fileFormatSamples/image/jbig/) are
+mislabelled JPEGs, so I guess I can help there at least.
+
+* [🐛 dexvert data bug](https://github.com/Sembiance/dexvert/issues/41)
+* [🪄 magic rule file](https://github.com/bitplane/pillow-netpbm/blob/master/tests/data/jbig/jbig.magic)
+
+---
+
 # WIP: research + notes from here on
-
----
-
-
----
-
-### JBIG → wrongly matched as Targa
-
-Standalone JBIG/BIE files are misidentified as `Targa image data`. Targa
-detection in libmagic is notoriously loose. JBIG rules only exist within TIFF
-compression detection, not for standalone `.jbig`/`.bie` files.
 
 ---
 
