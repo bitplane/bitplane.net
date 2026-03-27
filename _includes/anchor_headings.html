@@ -1,0 +1,25 @@
+{% assign nodes = include.html | split: '<h' %}
+{% for _node in nodes %}
+  {% assign node = _node | strip %}
+  {% if node == "" %}{% continue %}{% endif %}
+
+  {% assign level = node | slice: 0, 1 | times: 1 %}
+  {% if level == 0 %}
+    {% assign firstChunk = node | split: '>' | first %}
+    {% unless firstChunk contains '<' %}<h{% endunless %}{{ node }}
+    {% continue %}
+  {% endif %}
+
+  {% assign _idWorkspace = node | split: 'id="' %}
+  {% if _idWorkspace[1] %}
+    {% assign html_id = _idWorkspace[1] | split: '"' | first %}
+    {% assign closingTag = '</h' | append: level | append: '>' %}
+    {% assign parts = node | split: closingTag %}
+    {% assign tagAndContent = parts[0] %}
+    {% assign tagOpen = tagAndContent | split: '>' | first | append: '>' %}
+    {% assign content = tagAndContent | remove: tagOpen %}
+    <h{{ tagOpen }}<a href="#{{ html_id }}">{{ content }}</a></h{{ level }}>{{ parts | last }}
+  {% else %}
+    <h{{ node }}
+  {% endif %}
+{% endfor %}
