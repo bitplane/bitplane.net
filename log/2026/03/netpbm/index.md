@@ -1,18 +1,20 @@
-# 🖼️ Snakes in a netpbm
+# 🖼️ Adventures in netpbm
 
 Continuing on a journey of computing archaeology, it's time to extend Pillow
 with a plugin that can load images that are supported by
 [netpbm](https://en.wikipedia.org/wiki/Netpbm).
 
-The first step here was to write a bridge for the `anyto*` applications, but it
-turned out it wasn't so reliable - the tools rely on `file` and many ancient
-and obscure formats lack proper libmagic detection, there's a lack of test data
-for them, and being obscure they didn't get a lot of real world usage.
+The first step was a bridge for the `anyto*` applications, but it turned out it
+wasn't so reliable - the tools rely on `file` and many ancient and obscure
+formats lack proper libmagic detection, there's a lack of test data for them,
+and being obscure they didn't get a lot of real world usage. So I ended up
+having to write my own detection rules, which was a bit of a pig.
 
-I grabbed a bit of test data for formats I really care about, created synthetic
-test data for as many as I could using netpbm itself, pushed an alpha release to
-pypi and asked for it to be added to Pillow's docs, so everyone in Pythonland
-can open the majority of files with as little friction as possible.
+I grabbed a bit of test data for formats I really care about (like
+[SEASCAPE.IFF](/log/2005/seascape)), created synthetic test data for as many as
+I could using netpbm itself, pushed an alpha release to pypi and asked for it to
+be added to Pillow's docs, so everyone in Pythonland can open the majority of
+files with as little friction as possible.
 
 This was the easy part.
 
@@ -22,14 +24,14 @@ This was the easy part.
 * [🐱 github source](https://github.com/bitplane/pillow-netpbm)
 * [🛏️ Pillow pull request](https://github.com/python-pillow/Pillow/pull/9482)
 
-Then it's time to submit fixes for `file` detection rule issues, link in MIME
+Then it was time to submit fixes for `file` detection rule issues, link in MIME
 types wherever they're wrong around the web, open bug reports and pull requests
-to steer various projects towards consistency, update wikidata, submit new types
-and amendments to PRONOM, collect more test data and add more tests as I find
-bugs in my bridge. And of course document the research and work here as I go,
-partly because I have a lack of interesting things to write about, and a short
-memory, but also to link sources for future archivists, and for the trophy
-cabinet too 🏆.
+to steer various projects towards consistency, update wikidata where I could be
+bothered, submit new types and amendments to PRONOM, collect more test data and
+add more tests as I find bugs in my bridge. And of course document the research
+and work here as I go, partly because I have a lack of interesting things to
+write about, and a short memory, but also to link sources for future archivists,
+and for the trophy cabinet 🏆.
 
 ---
 
@@ -96,17 +98,18 @@ will likely follow suit. If not, I'll give them a nudge.
 
 ---
 
-## Fractal Image And Sequence Codec (FIASCO)
+## FIASCO (Fractal Image And Sequence Codec)
 
 ![fiasco](fiasco.webp)
 
-This novel fractal video format was created by Ullrich Hafner as part of his
-[PhD thesis](https://www.semanticscholar.org/paper/FIASCO%E2%80%94An-Open-Source-Fractal-Image-and-Sequence-Hafner/68d43f493618ab61503f20696bc442cd00799dee)
-back in '94-'99. It uses Weighted Finite Automata to compress the data, and the
-results are superb - it crushes other formats of the time at low bitrates, the
-above image would be unrecognisable as a 3.7K JPEG.
+This novel fractal video format was created back in '94-'99 by Ullrich Hafner
+as part of his
+[PhD thesis](https://www.semanticscholar.org/paper/FIASCO%E2%80%94An-Open-Source-Fractal-Image-and-Sequence-Hafner/68d43f493618ab61503f20696bc442cd00799dee).
+It uses Weighted Finite Automata to compress the data, and the results are
+superb - it crushes other formats of the time at low bitrates, the above heavily
+compressed image would be unrecognisable as a 3.7K JPEG.
 
-There's actually two file types that share a similar magic: one is the
+There's actually two file types here that share a similar magic: one is the
 compressed binary data containing an image or some video, the other is an ASCII
 basis dictionary used during compression. Writing an image loader means I only
 care about the first type, but detection rules deserve to support both. netpbm
@@ -118,10 +121,10 @@ The files detect as `data` as they lack a detection rule. There's also no PRONOM
 identifier and no MIME type, but since it is known by both
 [ArchiveTeam](http://fileformats.archiveteam.org/wiki/FIASCO) and
 [Wikidata](https://www.wikidata.org/wiki/Q27979385), and was even mentioned in
-[Linux Journal](https://www.linuxjournal.com/article/4367), it deserves
-both detection rules and a PRONOM identifier. TBH the format really deserved
+[Linux Journal](https://www.linuxjournal.com/article/4367), that warrants both
+detection rules and a PRONOM identifier. TBH the format really deserved
 wide support back in the 2000s, I suspect it would have out-performed DivX
-during the era of early swashbuckling video.
+during the era of early swashbuckling video if compression was faster.
 
 So, let's fix the omission:
 
@@ -143,18 +146,77 @@ called
 which, unlike netpbm, is supported by both XnView and Konvertor.
 
 MRF has no MIME type registered and nobody is using `image/x-mrf` anywhere in
-the wild. It's unsupported by libmagic and unknown by PRONOM. But it does have
-both a [Wikidata entry](https://www.wikidata.org/wiki/Q28206609) and an
-[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/MRF_(Monochrome_Recursive_Format),
+the wild. It's unsupported by libmagic and unknown by PRONOM. But again has a
+[Wikidata entry](https://www.wikidata.org/wiki/Q28206609) and an
+[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/MRF_(Monochrome_Recursive_Format)),
 and of course Sembiance has
-[some test data](https://sembiance.com/fileFormatSamples/image/monochromeRecursiveFormat/)
+[more test data](https://sembiance.com/fileFormatSamples/image/monochromeRecursiveFormat/)
 for us to play with.
 
-So we'll pinch his test data again and write a magic rule, and link this one in
+So we'll pilfer his test data again and write a magic rule, and link this one in
 to PRONOM like the others:
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=744)
-* 🗄️ PRONOM ref: 
+* 🗄️ PRONOM addition ref: TNA1774653669Q59
+
+---
+
+## YBM Face File
+
+![ybm](ybm.png)
+
+Created by Bennet Yee at CMU around 1988 for his `face` and `xbm` programs -
+small monochrome portraits in the early Unix tradition of user avatars. Jamie
+Zawinski and Jef Poskanzer wrote the netpbm converters in 1991. The name
+doesn't seem to be official — "YBM" appears to be a netpbm convention for
+"Yee BitMap", to distinguish it from X BitMap (XBM).
+
+The format is simple: a 6-byte header (`!!` magic, BE 16-bit width, BE
+16-bit height), then 1bpp bitmap data packed into 16-bit BE words with reversed
+bit order. It has a [Wikidata entry](https://www.wikidata.org/wiki/Q28207564)
+and an [ArchiveTeam page](http://fileformats.archiveteam.org/wiki/YBM), but no
+PRONOM identifier or MIME type. Sembiance has
+[test data](https://sembiance.com/fileFormatSamples/image/ybm/), of course.
+
+The 2-byte magic `!!` followed by two 16-bit big-endian ints is too generic for
+a reliable libmagic rule, since it lacks a way to do bit-twiddling arithmetic to
+make sure the file is the proper size. So rather than matching almost everything
+starting with `!!` and positive matches being so rare, we'll skip submission to
+libmagic. I did make a rule file anyway, and submitted the format details to
+PRONOM for posterity.
+
+* [🪄 magic rule file](https://github.com/bitplane/pillow-netpbm/blob/master/tests/data/ybm/ybm.magic)
+* 🗄️ PRONOM: TNA1774654680B32
+
+---
+
+## NEO (Atari NEOchrome)
+
+![neo](neo.png)
+
+[NEOchrome](https://en.wikipedia.org/wiki/NEOchrome) was Atari Corporation's
+own paint program, released in 1985 by Dave Staugas and Jim Eisenstein. Images
+are planar 16 colour files very similar to Atari DEGAS but with extra header
+data and a size of exactly 32128 bytes.
+
+Unfortunately, the header partially overlaps with DEGAS files. This causes
+false detection as DEGAS in libmagic and scrambles images in
+[my own degas loader](/dev/python/pillow-degas). netpbm's anytopnm doesn't do
+automatic detection of DEGAS or NEOchrome images, which is also worth flagging.
+
+The format has an [ArchiveTeam entry](http://fileformats.archiveteam.org/wiki/NEOchrome)
+but no PRONOM identifier. [Wikidata](https://www.wikidata.org/wiki/Q28049507)
+lists both `image/x-neo` and `image/x-neochrome` as unregistered MIME types, but
+I couldn't find evidence of the latter being used; dexvert and ksquirrel use
+`image/x-neo`. Sembiance's dexvert test data contains
+[14 test files](https://sembiance.com/fileFormatSamples/image/neochrome/) for us
+to plunder, including the one above.
+
+Let's fix some of this:
+
+* [🛏️ release pillow-degas v0.2.0](https://pypi.org/project/pillow-degas/0.2.0/)
+* [🪄 libmagic bug report](https://bugs.astron.com/view.php?id=746)
+* 🗄️ PRONOM: TODO
 
 ---
 
@@ -162,30 +224,6 @@ to PRONOM like the others:
 
 ---
 
-## YBM Face File
-
-Only 2 bytes (`!!`), may need extra validation to avoid false positives. YBM
-files are 2 bytes of magic, 2 bytes width (LE), 2 bytes height (LE), then
-bitmap data.
-
-TODO: research the format and loader
-
-```magic
-0       string  !!      YBM face image data
-!:ext   ybm
-```
-
-
-
-## Misidentified formats
-
----
-
-### Atari Neochrome → wrongly matched as DEGAS
-
-File reports `Atari DEGAS Elite bitmap 320x200x16` for `.neo` files. Similar
-Atari header layout but distinct format. Neochrome has a different structure
-but no unique magic that distinguishes it within the first 16 bytes.
 
 ---
 
