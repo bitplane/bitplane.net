@@ -1,6 +1,16 @@
 <html>
 <head>
+    {%- assign _h1s = content | split: '<h1' -%}
+    {%- if _h1s.size > 1 -%}
+      {%- assign _h1_text = _h1s[1] | split: '</h1>' | first | split: '>' | last | strip -%}
+      {%- assign _emoji = _h1_text | split: ' ' | first -%}
+    {%- endif -%}
+    {%- if _emoji.size <= 2 and _emoji.size > 0 -%}
+    <title>{{ page.title | escape | remove: _emoji }}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ _emoji }}</text></svg>">
+    {%- else -%}
     <title>{{ page.title | escape }}</title>
+    {%- endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ '/assets/css/terminal.min.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/code.css' | relative_url }}">
@@ -8,14 +18,6 @@
     {% if page.features %}{% for feature in page.features %}
     	{% include {{ feature | append: ".html" }} %}
     {% endfor %}{% endif %}
-    {%- assign _h1s = content | split: '<h1' -%}
-    {%- if _h1s.size > 1 -%}
-      {%- assign _h1_text = _h1s[1] | split: '</h1>' | first | split: '>' | last | strip -%}
-      {%- assign _emoji = _h1_text | split: ' ' | first -%}
-      {%- if _emoji.size <= 2 -%}
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ _emoji }}</text></svg>">
-      {%- endif -%}
-    {%- endif -%}
 </head>
 <body>
     <header>
