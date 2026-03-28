@@ -6,12 +6,12 @@ with a plugin that can load images that are supported by
 
 The first step was a bridge for the `anyto*` applications, but it turned out it
 wasn't so reliable - the tools rely on `file` and many ancient and obscure
-formats lack proper libmagic detection, there's a lack of test data for them,
-and being obscure they didn't get a lot of real world usage. So I ended up
-having to write my own detection rules, which was a bit of a pig.
+formats lack proper libmagic detection, some types of test data is hard to come
+by. So I ended up having to write my own detection rules, which was a bit of a
+pig.
 
 I grabbed a bit of test data for formats I really care about (like
-[SEASCAPE.IFF](/log/2005/seascape)), created synthetic test data for as many as
+[seascape.iff](/log/2005/seascape)), created synthetic test data for as many as
 I could using netpbm itself, pushed an alpha release to pypi and asked for it to
 be added to Pillow's docs, so everyone in Pythonland can open the majority of
 files with as little friction as possible.
@@ -24,14 +24,16 @@ This was the easy part.
 * [🐱 github source](https://github.com/bitplane/pillow-netpbm)
 * [🛏️ Pillow pull request](https://github.com/python-pillow/Pillow/pull/9482)
 
-Then it was time to submit fixes for `file` detection rule issues, link in MIME
-types wherever they're wrong around the web, open bug reports and pull requests
-to steer various projects towards consistency, update wikidata where I could be
-bothered, submit new types and amendments to PRONOM, collect more test data and
-add more tests as I find bugs in my bridge. And of course document the research
-and work here as I go, partly because I have a lack of interesting things to
-write about, and a short memory, but also to link sources for future archivists,
-and for the trophy cabinet 🏆.
+Then it was time to find test data around the web, figure out detection rules
+for data that `file` didn't support, add functions where that's infeasible, link
+in MIME types wherever they're wrong around the web, expand my test coverage and
+open bug reports and pull requests to help steer various projects towards
+consistency, update wikidata where I could be bothered, submit new types and
+amendments to PRONOM, find bugs in my bridge and CI pipeline. And of course
+document the research and work here as I go, partly because I have a short
+memory, partly a lack of interesting things to write about, and a short memory,
+but also to link sources for future archivists, and a short memory, and also for
+the trophy cabinet 🏆.
 
 ---
 
@@ -64,30 +66,32 @@ with VSLIDE. While the specs have been removed from
 [AutoDesk's website](https://web.archive.org/web/20191223211310/http://www.autodesk.com/techpubs/autocad/acadr14/dxf/slide_file_format_al_u05_b.htm),
 [Martin Reddy](http://www.martinreddy.net/gfx/2d/SLD.txt) has a backup.
 
-Most of my test files were taken from Robert Schultz's awesome
+This is when I discovered Robert Schultz's awesome
 [test data collection](https://sembiance.com/fileFormatSamples/image/autoCADSlide/),
-and were detected as `data` by `file` - which usually means no detection rule.
-Its [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/105) lists
+which I'm now mining for test data. These were detected as `data` by `file` -
+which means no detection rule. Its
+[PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/105) lists
 3 different MIME types (`application/sld`, `application/x-sld` and
 `image/x-sld`), and AutoDesk never actually registered an
 `image/vnd.sld` with IANA. Unsurprising since other people registered their
-other formats on their behalf. PRONOM's first entry has a weak collision with
-`application/vnd.ogc.sld+xml`, and this ambiguity has bled through into
+other formats on their behalf, but they were registered and I always wanted to
+do that. PRONOM's first entry has a weak collision with
+`application/vnd.ogc.sld+xml`, and the bad MIME bleeds through into
 [Archive Team's wiki](http://justsolve.archiveteam.org/wiki/Ext:sld), and across
-github
-like in [MegaMimes](https://github.com/kobbyowen/MegaMimes) and
+github like in [MegaMimes](https://github.com/kobbyowen/MegaMimes) and
 [Vitam](https://github.com/ProgrammeVitam/vitam-ui), presumably via
 [DNSCore](https://github.com/da-nrw/DNSCore)'s seed data repo.
 
-Fixing as much of this as possible, I contacted PRONOM, fixed the wiki, sent a
-PR to MegaMimes, submitted a libmagic rules file, updated WikiData sources with
-links to existing usage, started the IANA registration process for
-`image/vnd.sld` to replace the `image/x-sld` I was lobbying for.
+Fixing as much of this as possible, I contacted PRONOM, sent a PR to MegaMimes,
+submitted a libmagic rules file, updated WikiData sources with links to existing
+usage, started the IANA registration process for `image/vnd.sld` to replace the
+`image/x-sld` I've been lobbying for. 40 years late, but better late than never
+right?
 
 Once the IANA registration is complete and/or detection rules are in libmagic, 
 [Apache Tika](https://issues.apache.org/jira/projects/TIKA) and
 [freedesktop shared-mime-info](https://gitlab.freedesktop.org/xdg/shared-mime-info/-/issues)
-will likely follow suit. If not, I'll give them a nudge.
+will one day follow suit. If not, I'll give them a nudge.
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=742)
 * 🌍 IANA [submission](https://tools.iana.org/public-view/viewticket/1448324)
@@ -115,7 +119,7 @@ basis dictionary used during compression. Writing an image loader means I only
 care about the first type, but detection rules deserve to support both. netpbm
 uses the `.wfa` extension for compressed files, while the standalone
 [FIASCO tools](https://github.com/l-tamas/Fiasco) use `.fco` for both types.
-So we'll support both in `pillow-netpbm`.
+So we'll document both in `pillow-netpbm` and detect by magic.
 
 The files detect as `data` as they lack a detection rule. There's also no PRONOM
 identifier and no MIME type, but since it is known by both
@@ -153,8 +157,8 @@ and of course Sembiance has
 [more test data](https://sembiance.com/fileFormatSamples/image/monochromeRecursiveFormat/)
 for us to play with.
 
-So we'll pilfer his test data again and write a magic rule, and link this one in
-to PRONOM like the others:
+So we'll pilfer his test data again and write a magic rule, use the rule in the
+detector, and link this one in to PRONOM like the others:
 
 * [🪄 libmagic rules](https://bugs.astron.com/view.php?id=744)
 * 🗄️ PRONOM: TNA1774653669Q59
@@ -166,10 +170,10 @@ to PRONOM like the others:
 ![ybm](ybm.png)
 
 Created by Bennet Yee at CMU around 1988 for his `face` and `xbm` programs -
-small monochrome portraits in the early Unix tradition of user avatars. Jamie
-Zawinski and Jef Poskanzer wrote the netpbm converters in 1991. The name
-doesn't seem to be official — "YBM" appears to be a netpbm convention for
-"Yee BitMap", to distinguish it from X BitMap (XBM).
+small monochrome portraits for UNIX user avatars. Jamie Zawinski and Jef
+Poskanzer wrote the netpbm converters in 1991. The name doesn't seem to be
+official - "YBM" appears to be a netpbm convention for "Yee BitMap", to
+distinguish it from X BitMap (XBM).
 
 The format is simple: a 6-byte header (`!!` magic, BE 16-bit width, BE
 16-bit height), then 1bpp bitmap data packed into 16-bit BE words with reversed
@@ -181,8 +185,8 @@ PRONOM identifier or MIME type. Sembiance has
 The 2-byte magic `!!` followed by two 16-bit big-endian ints is too generic for
 a reliable libmagic rule, since it lacks a way to do bit-twiddling arithmetic to
 make sure the file is the proper size. So rather than matching almost everything
-starting with `!!` and positive matches being so rare, we'll skip submission to
-libmagic. I did make a rule file anyway, and submitted the format details to
+starting with `!!` and rarely ever see a positive match, we'll skip submission
+to libmagic. I did make a rule file anyway, and submitted the format details to
 PRONOM for posterity.
 
 * [🪄 magic rule file](https://github.com/bitplane/pillow-netpbm/blob/master/tests/data/ybm/ybm.magic)
@@ -233,7 +237,7 @@ Kuhn's [jbigkit](https://www.cl.cam.ac.uk/~mgk25/jbigkit/).
 `image/x-jbig` is the de-facto MIME used by both
 [freedesktop](https://gitlab.freedesktop.org/xdg/shared-mime-info) and
 [Apache Tika](https://github.com/apache/tika), it's in
-[PRONOM](https://www.nationalarchives.gov.uk/pronom/fmt/399),a
+[PRONOM](https://www.nationalarchives.gov.uk/pronom/fmt/399),
 [Wikidata](https://www.wikidata.org/wiki/Q747833), and
 [ArchiveTeam's wiki](http://justsolve.archiveteam.org/wiki/JBIG).
 
@@ -249,16 +253,27 @@ mislabelled JPEGs, so I guess I can help there at least.
 
 ---
 
+## CompuServe RLE
+
+![cis/rle](cis.png)
+
+Back in the 80s before GIF killed it, Compuserve had a 7-bit image format for
+use over serial links. Basically ESC G followed by M or H for medium or high
+resolution, then alternating lengths of off and on pixels with space being zero.
+
+`file` identifies these as "ASCII text with escape sequences", which they are.
+But we can do better than that since ESC G isn't used for anything else. It's a
+well-known format with no MIME type and a missing magic rule, so I won't link to
+all the things, just add the magic rule:
+
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=747)
+
+---
+
 # WIP: research + notes from here on
 
 ---
 
-### CompuServe RLE → "ASCII text with escape sequences"
-
-ESC-based encoding, hard to detect without pattern matching on escape
-sequences.
-
----
 
 ### FaceSaver → "ASCII text"
 
