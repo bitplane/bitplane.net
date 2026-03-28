@@ -6,8 +6,16 @@
     <link rel="stylesheet" href="{{ '/assets/css/code.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     {% if page.features %}{% for feature in page.features %}
-    	{% include {{ feature | append: ".html" }} %}    
+    	{% include {{ feature | append: ".html" }} %}
     {% endfor %}{% endif %}
+    {%- assign _h1s = content | split: '<h1' -%}
+    {%- if _h1s.size > 1 -%}
+      {%- assign _h1_text = _h1s[1] | split: '</h1>' | first | split: '>' | last | strip -%}
+      {%- assign _emoji = _h1_text | split: ' ' | first -%}
+      {%- if _emoji.size <= 2 -%}
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ _emoji }}</text></svg>">
+      {%- endif -%}
+    {%- endif -%}
 </head>
 <body>
     <header>
