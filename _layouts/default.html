@@ -5,7 +5,7 @@
       {%- assign _h1_text = _h1s[1] | split: '</h1>' | first | split: '>' | last | strip -%}
       {%- assign _emoji = _h1_text | split: ' ' | first -%}
     {%- endif -%}
-    {%- if _emoji.size <= 2 and _emoji.size > 0 -%}
+    {%- if _emoji.size <= 3 and _emoji.size > 0 -%}
     <title>{{ page.title | escape | remove: _emoji }}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ _emoji }}</text></svg>">
     {%- else -%}
