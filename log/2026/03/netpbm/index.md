@@ -270,14 +270,29 @@ all the things, just add the magic rule:
 
 ---
 
-# WIP: research + notes from here on
+## Usenix FaceSaver
+
+![facesaver](facesaver.png)
+
+FaceSaver was a system by Metron Computerware for capturing and distributing
+grayscale face photos of [USENIX](https://en.wikipedia.org/wiki/USENIX)
+conference attendees, starting in 1987. It's an internet message format text
+file with headers like `FirstName:` and `E-mail:`, and hex-encoded pixel data as
+the body. So, it detects as ASCII text. The above picture is
+[RMS](https://stallman.org/) attending USENIX 1990, the original file
+contains his MIT AI lab email address - legendary piece of test data.
+
+We have a [Wikidata entry](https://www.wikidata.org/wiki/Q28206101) and
+a mention on [ArchiveTeam's wiki](http://fileformats.archiveteam.org/wiki/FaceSaver),
+but no MIME, PRONOM, or libmagic rule. Easy enough to detect -let's fix the last
+two:
+
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=748)
+* 🗄️ PRONOM: TODO
 
 ---
 
-
-### FaceSaver → "ASCII text"
-
-Text-based header format. Could match on `FirstName:` or `PicData:` strings.
+## WIP: research + notes from here on
 
 ---
 
