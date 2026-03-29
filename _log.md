@@ -87,6 +87,7 @@
 * [2015-11-27 - 📷 Amazon recommendedations](log/2015/11/recommendations)
 * [2015-09-25 - 📷 trollcam](log/2015/09/trollcam)
 * [2015-09-07 - 🚪 kittygate](log/2015/09/kittygate)
+* [2015-05-02 - 🦒 georgina.svg](log/2015/05/64-zoo-legs)
 * [2014-09-20 - 🕑 blackboard clock v2](log/2014/09/blackboard-v2)
 * [2014-06-12 - 🍼 naming is hard, dadding is harder](log/2014/06/jess)
 * [2014-03-01 - 🕐 blackboard clock v1](log/2014/03/blackboard-clock)
