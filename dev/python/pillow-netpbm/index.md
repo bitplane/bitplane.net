@@ -14,7 +14,7 @@ the rest fall back to file extension matching.
 | Amiga IFF ILBM | `ilbmtoppm` | .iff .ilbm .lbm | match | yes |
 | Amiga Info Icon | `infotopam` | .info | magic | yes |
 | ATK Raster | `atktopbm` | .raster | magic | yes |
-| Atari Compressed Spectrum | `spctoppm` | .spc | ext | no |
+| Atari Compressed Spectrum | `spctoppm` | .spc | ext | yes |
 | Atari Degas | `pi1toppm` | .pi1 | ext | yes |
 | Atari Degas Elite | `pc1toppm` | .pc1 | magic | yes |
 | Atari Degas Low-Res | `pi3topbm` | .pi3 | ext | yes |
@@ -24,7 +24,7 @@ the rest fall back to file extension matching.
 | AVS X Image | `avstopam` | .avs | ext | yes |
 | CMU Window Manager Bitmap | `cmuwmtopbm` | | magic | yes |
 | CompuServe RLE | `cistopbm` | .cis | ext | yes |
-| Fiasco Wavelet | `fiascotopnm` | .wfa | magic | yes |
+| Fiasco Wavelet | `fiascotopnm` | .wfa .fco | magic | yes |
 | FITS | `fitstopnm` | .fits .fit .fts | magic | yes |
 | Garmin SRF | `srftopam` | .srf | magic | yes |
 | GEM Raster | `gemtopnm` | .gem | ext | yes |
@@ -32,37 +32,38 @@ the rest fall back to file extension matching.
 | Group 3 Fax | `g3topbm` | .g3 | ext | yes |
 | HIPS | `hipstopgm` | .hips | ext | no |
 | HP PaintJet | `pjtoppm` | .pj | ext | yes |
-| Img-whatnot | `imgtoppm` | .img | ext | no |
 | Interleaf | `leaftoppm` | .leaf | magic | yes |
 | JBIG | `jbigtopnm` | .jbig .jbg .bie | ext | yes |
-| Kodak Photo CD | `hpcdtoppm` | .pcd | ext | no |
 | Lisp Machine Bitmap | `lispmtopgm` | | magic | yes |
 | MacPaint | `macptopbm` | .macp | ext | yes |
 | MGR Bitmap | `mgrtopbm` | .mgr | match | yes |
 | Microdesign | `mdatopbm` | .mda | match | yes |
 | MRF | `mrftopbm` | .mrf | magic | yes |
-| MTV Ray Tracer | `mtvtoppm` | .mtv | ext | no |
+| MTV Ray Tracer | `mtvtoppm` | .mtv | ext | yes |
 | Palm DB Image | `pdbimgtopam` | .pdb | ext | yes |
-| PostScript Image Data | `psidtopgm` | .psid | ext | no |
-| QRT Ray Tracer | `qrttoppm` | .qrt | ext | no |
+| QRT Ray Tracer | `qrttoppm` | .qrt .dis | ext | yes |
 | SBIG CCD Camera | `sbigtopgm` | .sbig | ext | yes |
 | SBIG ST-4 CCD Camera | `st4topgm` | .st4 | ext | yes |
 | Solitaire | `sirtopnm` | .sir | magic | yes |
-| Sony Mavica 411 | `411toppm` | .411 | ext | no |
+| Sony Mavica 411 | `411toppm` | .411 | ext | yes |
 | SPOT Satellite | `spottopgm` | .spot | ext | no |
 | Sun Icon | `sunicontopnm` | .icon | ext | yes |
 | SVG | `svgtopam` | .svg | ext | yes |
-| TeX PK Font Bitmap | `pktopbm` | .pk | magic | no |
 | Usenix FaceSaver | `fstopgm` | .fs | ext | yes |
 | Utah RLE | `rletopnm` | .rle | magic | yes |
-| Wavefront RLA | `rlatopam` | .rla | ext | no |
 | Wireless Bitmap | `wbmptopbm` | .wbmp | ext | yes |
-| X IMage | `ximtoppm` | .xim | ext | no |
+| X IMage | `ximtoppm` | .xim | ext | yes |
 | X Window Dump | `xwdtopnm` | .xwd | match | yes |
 | XV Thumbnail | `xvminitoppm` | | magic | yes |
 | Xerox Doodle Brush | `brushtopbm` | .brush | ext | no |
 | YBM Face File | `ybmtopbm` | .ybm | magic | yes |
-| Zeiss Confocal | `zeisstopnm` | .lsm | ext | no |
+
+## Known issues
+
+- **FIASCO multi-frame sequences**: FIASCO supports video (multiple frames in
+  one file). The bridge currently only handles single-frame images because
+  `fiascotopnm` can't output multi-frame sequences to stdout. Video files will
+  fail to open.
 
 ## Excluded formats
 
@@ -70,6 +71,7 @@ The following netpbm converters are not supported by this plugin:
 
 | Converter | Format | Reason |
 |-----------|--------|--------|
+| `hpcdtoppm` | Kodak Photo CD | Pillow handles PCD natively |
 | `cameratopam` | Camera RAW (NEF, CR2) | Segfaults on NEF files, "File seek failed" on CR2 |
 | `ddbugtopbm` | Diddle/DiddleBug sketch DB | Reads stdin only, writes multiple `.pbm` files to CWD |
 | `pcdovtoppm` | Kodak Photo CD Overview | Shell script pipeline, not a single-binary converter |
@@ -79,3 +81,8 @@ The following netpbm converters are not supported by this plugin:
 | `eyuvtoppm` | Encoder YUV | Headerless format, dimensions not in file |
 | `yuvtoppm` | YUV 4:1:1 | Headerless format, dimensions not in file |
 | `yuy2topam` | YUY2 Video Frame | Headerless format, dimensions not in file |
+| `psidtopgm` | PostScript Image Data | Requires manual width/height/bps args, not a standalone file format |
+| `imgtoppm` | Img-whatnot | `.img` extension clashes with many formats; no test data, origin server defunct |
+| `pktopbm` | TeX PK Font Bitmap | Writes multiple PBM files (one per glyph), not a single-image converter |
+| `rlatopam` | Wavefront RLA | Broken on 64-bit: `sizeof(long)` misaligns header read, `numChan` never assigned |
+| `zeisstopnm` | Zeiss Confocal (LSM) | TIFF-based format, Pillow handles it natively |
