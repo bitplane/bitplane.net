@@ -1,4 +1,4 @@
-# new consciousness idea
+# 💡 new consciousness idea
 
 NOTE: this was part of the seeds for [this](/~/doc/thoughts/)
 

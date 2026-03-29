@@ -1,4 +1,4 @@
-# C++
+# 🔨 C++
 
 C++ gets a lot of flack, and there's good reasons for it. But despite its
 dispatch, dreaded diamond and SOLIDesque flaws, it was popular enough to have

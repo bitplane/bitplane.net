@@ -1,4 +1,4 @@
-# PHP file list using mod_rewrite
+# 📂 PHP file list using mod_rewrite
 
 I've noticed that most of the traffic to this site is actually people visiting
 my permanent and temporary file dumps, which until today were literally a bunch

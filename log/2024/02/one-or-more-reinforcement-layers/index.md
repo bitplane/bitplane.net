@@ -1,4 +1,4 @@
-# A Series of Reinforcement Tubes
+# 🪠 A Series of Reinforcement Tubes
 
 Ages ago I remember this How It's Made video for hose pipe and there were
 excessive layers of rubber being added to the thing. It was surreal.

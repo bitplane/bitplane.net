@@ -1,4 +1,4 @@
-# My first ascension!
+# 🎉 My first ascension!
 
 After playing [nethack](https://nethack.org) for about three years, bitplane
 the wizard finally

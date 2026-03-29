@@ -1,4 +1,4 @@
-# C
+# 🔨 C
 
 I took a C programming course in 1998, using XENIX machines where 16 students
 were plugged into a single 486 PC. Understanding pointers and recursion were

@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/Documents/poetry/the-march-of-progress/']
 ---
-# A limerick
+# 💩 A limerick
 
 ```text
 Politics push and policies pull,

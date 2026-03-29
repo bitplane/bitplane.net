@@ -1,4 +1,4 @@
-# Why I won’t be joining the Pirate Party UK
+# 🗳️ Why I won’t be joining the Pirate Party UK
 
 When I discovered The Pirate Party UK a couple of months ago, I thought it was
 going to be exciting and revolutionary new party for the people of the Internet.

@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/', '/home/']
 ---
-# gaz
+# 📁 gaz
 
 * 📁 [.ssh](ssh)
 * 🌍 [Bookmarks](link)

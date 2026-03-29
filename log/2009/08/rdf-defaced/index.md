@@ -1,4 +1,4 @@
-# RDF Defaced
+# 💩 RDF Defaced
 
 Last night I got an email from the admin of the Richard Dawkins Foundation
 forums inviting me to join a warez site, which was rather strange. Of course it

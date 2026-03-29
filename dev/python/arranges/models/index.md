@@ -1,4 +1,4 @@
-# Use in Pydantic models
+# ℹ️ Use in Pydantic models
 
 You'll need Pydantic >=2.3:
 

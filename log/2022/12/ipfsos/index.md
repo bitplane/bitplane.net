@@ -1,4 +1,4 @@
-# A Distributed Operating System
+# 💡 A Distributed Operating System
 
 What if your distro and desktop weren't on your computer? They were on all your computers.
 

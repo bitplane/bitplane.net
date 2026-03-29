@@ -1,4 +1,4 @@
-# A bitcoin treasure hunt
+# 🔍 A bitcoin treasure hunt
 
 On this day I sent £20 to a Bitcoin wallet, wrote the private key to the
 underside of a drawer in a hotel room. I left a clue in the room's Gideons

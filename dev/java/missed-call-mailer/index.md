@@ -1,4 +1,4 @@
-# MC Mail
+# ☎️ MC Mail
 
 MC Mail delivers missed call alerts to your email address when your phone is
 on silent, so you don't miss an important call when you're sat in front of

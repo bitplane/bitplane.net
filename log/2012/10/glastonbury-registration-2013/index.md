@@ -1,5 +1,4 @@
-
-# Yet another Glastonbury ticket fiasco
+# 💩 Yet another Glastonbury ticket fiasco
 
 Once again we have tickets for Glastonbury Festival, and once again there’s
 well-founded accusations of foul play as technical festivalgoers barged through

@@ -1,10 +1,10 @@
-# wip
+# Work in Progress
 
 * [🎲 chance](chance)
 * [👜 fashion](now)
 * [🧠 reason](reason)
 
-# future
+## future
 
 * [👻 dualism](ghosts)
 * [🔢 infinity](nan)

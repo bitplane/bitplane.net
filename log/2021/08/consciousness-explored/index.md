@@ -1,4 +1,4 @@
-# The case for physicalist idealism
+# 🤔 The case for physicalist idealism
 
 Assuming that:
 
@@ -21,7 +21,7 @@ fundamental particle, or an event that happens in the universe that gives the
 impression that such particles actually exist (like a particle colliding with
 another).
 
-# The simplest beholder
+## The simplest beholder
 
 Given that the universe is made of subjective experience, it's got to feel
 like something. In my experience as a mammalian brain experiences can be
@@ -31,7 +31,7 @@ dimension is likely to be an invention of evolution rather than a natural, but
 it might not. Good or bad feeling might be one of the natural states of the
 universe. Or it might be something else.
 
-# Testing the untestable
+## Testing the untestable
 
 Okay so here's the actual idea.
 
@@ -46,7 +46,7 @@ organisms, making educated guesses about what things feel like to them, and
 comparing their neural complexity to see which things are closest the base
 level.
 
-# The implications
+## The implications
 
 Say we were to make a runaway friendly AI that does great good in the universe
 by reducing the amount of pain and suffering, it might discover that matter

@@ -1,4 +1,4 @@
-# Why
+# 💡 Why
 
 You want to be able to prove someone claimed something at a specific time. For legal
 reasons, for archival reasons, or to back up claims made by an LLM.

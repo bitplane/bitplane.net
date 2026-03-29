@@ -1,4 +1,4 @@
-# Be Internet rebranding fiasco
+# 💩 Be Internet rebranding fiasco
 
 My ISP,
 [Be Internet](https://web.archive.org/web/20091207064343/http://www.bethere.co.uk/)

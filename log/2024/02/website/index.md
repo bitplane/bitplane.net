@@ -1,4 +1,4 @@
-# New website
+# ℹ️ New website
 
 Started the process of restoring my website. This 5th, and hopefully final
 iteration is written in Markdown and hosted on GitHub Pages, but as it's a git

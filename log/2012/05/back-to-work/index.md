@@ -1,4 +1,4 @@
-# On software aptitude tests
+# 📜 On software aptitude tests
 
 Last Monday I decided to pull out all the stops and actually get a job, meaning
 stop playing Minecraft, update my CV and pass it to a dozen or so agencies who

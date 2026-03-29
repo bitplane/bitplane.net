@@ -1,4 +1,4 @@
-# Is music the key to language?
+# 💭 Is music the key to language?
 
 Another shower thought. We presumably had song before we had language, since other
 animals have song without fully developed language. Could pre-training a model on

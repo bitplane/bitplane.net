@@ -1,4 +1,4 @@
-# A Common Sense Code of Conduct
+# 🖕 A Common Sense Code of Conduct
 
 When it comes to software licensing I tend to go with the WTFPL, which is in my
 opinion the greatest software license ever written:
