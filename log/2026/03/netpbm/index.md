@@ -292,13 +292,33 @@ two:
 
 ---
 
-## WIP: research + notes from here on
+## Sun Icon
+
+![sun-icon](sun-icon.png)
+
+The icon and cursor format for [SunView](https://en.wikipedia.org/wiki/SunView)
+from the mid-1980s. These are identified as ASCII text by `file`, and have a
+a C-style comment header (`/* Format_version=1, Width=64, ... */`) followed by
+comma-separated hex values. Usually monochrome 64x64 bitmaps, though 8-bit
+grayscale was added later for OpenWindows.
+
+So, no libmagic rule, only icons in Sembiance's 
+[test data](https://sembiance.com/fileFormatSamples/image/sunIcon/). No PRONOM
+identifier and no MIME type. Has a [Wikidata](https://www.wikidata.org/wiki/Q28206547)
+entry and [ArchiveTeam](http://fileformats.archiveteam.org/wiki/Sun_icon) wiki
+page.
+
+Let's submit a detection rule with `image/x-sun-icon` to match the existing
+`image/x-sun-rasterfile` convention, add to PRONOM, steal some test data from an
+early version of Solaris and update the wiki page.
+
+* [🪄 libmagic submission] todo
+* [💾 test data](https://github.com/bitplane/sunos-icon-test-data)
+* 🗄️ PRONOM: todo
 
 ---
 
-### Sun Icon → "ASCII text"
-
-Text-based C-style format. Could match on `/* Format_version=` string.
+## WIP: research + notes from here on
 
 ---
 
