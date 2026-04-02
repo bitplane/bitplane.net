@@ -322,9 +322,30 @@ early version of Solaris and update the wiki page.
 
 ---
 
-### SBIG ST-4 → "ISO-8859 text"
+## SBIG CCDOPS
 
-Raw scientific image data misread as text.
+![sbig](sbig.webp)
+
+[SBIG](https://en.wikipedia.org/wiki/Santa_Barbara_Instrument_Group) sold CCD
+cameras for amateur astronomy starting in 1988. Their CCDOPS software used a
+"Type 3" image format: a 2048-byte ASCII header starting with `ST-N Image`
+(where N is the camera model), followed by 14-bit or 16-bit little-endian pixel
+data with optional delta compression. The header contains exposure time, focal
+length, aperture, and other metadata in `Key = Value` pairs separated by the unusual LF-CR line
+endings.
+
+`file` identifies these as "data" — no libmagic rule exists. The `ST-` prefix
+followed by a model number and ` Image` makes a reliable detection signature.
+No PRONOM identifier, no MIME type, no Wikidata or ArchiveTeam entries. SBIG was
+acquired by [Diffraction Limited](https://diffractionlimited.com/) in 2014 and
+the format documentation has gone offline with sbig.com. Modern SBIG cameras use
+FITS instead.
+
+John Walker of [Fourmilab](https://www.fourmilab.ch/) wrote `sbigtopgm` in 1998.
+
+* [🪄 magic rule]
+* PRONOM
+* ArchiveTeam Wiki
 
 ---
 
