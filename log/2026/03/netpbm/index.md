@@ -284,8 +284,8 @@ contains his MIT AI lab email address - legendary piece of test data.
 
 We have a [Wikidata entry](https://www.wikidata.org/wiki/Q28206101) and
 a mention on [ArchiveTeam's wiki](http://fileformats.archiveteam.org/wiki/FaceSaver),
-but no MIME, PRONOM, or libmagic rule. Easy enough to detect -let's fix the last
-two:
+but no MIME, PRONOM, or libmagic rule. Easy enough to detect - let's fix the
+last two:
 
 * [🪄 libmagic submission](https://bugs.astron.com/view.php?id=748)
 * 🗄️ PRONOM: TODO
@@ -318,65 +318,153 @@ early version of Solaris and update the wiki page.
 
 ---
 
-## WIP: research + notes from here on
-
----
-
 ## SBIG CCDOPS
 
 ![sbig](sbig.webp)
 
 [SBIG](https://en.wikipedia.org/wiki/Santa_Barbara_Instrument_Group) sold CCD
 cameras for amateur astronomy starting in 1988. Their CCDOPS software used a
-"Type 3" image format: a 2048-byte ASCII header starting with `ST-N Image`
-(where N is the camera model), followed by 14-bit or 16-bit little-endian pixel
-data with optional delta compression. The header contains exposure time, focal
-length, aperture, and other metadata in `Key = Value` pairs separated by the unusual LF-CR line
-endings.
+format with a 2048-byte ASCII header starting with `ST-N Image`(where N is the
+camera model), followed by 14-bit or 16-bit little-endian pixel
+data with optional delta compression. The header contains metadata in
+`Key = Value` pairs separated by LF-CR (wut?!) line endings.
 
-`file` identifies these as "data" — no libmagic rule exists. The `ST-` prefix
-followed by a model number and ` Image` makes a reliable detection signature.
-No PRONOM identifier, no MIME type, no Wikidata or ArchiveTeam entries. SBIG was
-acquired by [Diffraction Limited](https://diffractionlimited.com/) in 2014 and
-the format documentation has gone offline with sbig.com. Modern SBIG cameras use
-FITS instead.
+`file` identifies these as "data" as there's no libmagic rule. There's no
+PRONOM identifier or MIME type, no Wikidata and no ArchiveTeam wiki entry. The
+format docs have been offline since 2014 when SBIG was bought by
+[Diffraction Limited](https://diffractionlimited.com/). This is crappy of them,
+but SBIG cameras use FITS instead nowadays - so whatever 🤷
 
-John Walker of [Fourmilab](https://www.fourmilab.ch/) wrote `sbigtopgm` in 1998.
+Let's add a magic rule, PRONOM entry and a page in the wiki:
 
-* [🪄 magic rule]
-* PRONOM
-* ArchiveTeam Wiki
+* [🪄 libmagic submission] todo
+* PRONOM todo
+* ArchiveTeam Wiki page todo
 
 ---
 
-## Broken/incomplete rules
+## Interleaf
+
+![interleaf](interleaf.webp)
+
+[Interleaf](https://en.wikipedia.org/wiki/Interleaf) was an aerospace/defense
+doc system bought out by BroadVision around 2000. The software is long gone, but
+the image format has lived on in netpbm's `leaftoppm` and `ppmtoleaf` since '94.
+
+`Magdir/interleaf` matches the document format but not the image format, so
+`file` thinks images are "data". Netpbm, Sebiance's
+[samples](https://sembiance.com/fileFormatSamples/image/interleafImage/) and
+[wikipedia](https://en.wikipedia.org/wiki/List_of_file_signatures) 
+confirm a magic of `\x89OPS` for the images. There's an 
+[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/Interleaf_image) but
+no PRONOM identifier, no MIME type, and no Wikidata entry.
+
+Let's fix it everywhere:
+
+* [🪄 libmagic submission] TODO
+* 🗄️ PRONOM: TODO
+* wikidata: todo
 
 ---
 
-### Interleaf
-
-Existing Magdir rule uses `\x88OPS` but netpbm's `leaftoppm` (and our test
-file) expects `\x89OPS`. May be a format variant that needs adding to the
-existing rule.
+## WIP / notes
 
 ---
 
-### GEM Raster
+## GEM Raster
 
-Rules exist in Magdir but compete with DEGAS detection. Our valid GEM file
-comes back as "data" — the condition tree seems to exclude it.
+![gem](gem.webp)
+
+[GEM](https://en.wikipedia.org/wiki/GEM_(desktop_environment)) was Digital
+Research's graphical desktop environment, first released in 1985 for the IBM PC
+and later the Atari ST. Its raster image format (IMG) was used by GEM Paint and
+Ventura Publisher. The format is well-standardized for monochrome images, but
+color support spawned several incompatible variants: XIMG, STTT, TIMG, and
+HyperPaint.
+
+GEM has an [ArchiveTeam page](http://fileformats.archiveteam.org/wiki/GEM_Raster),
+a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/159), and
+libmagic rules already exist in `Magdir/images` — but they're broken. Every GEM
+file comes back as "data". The root cause: GEM v1 images share a `0x0001`
+version word with Atari DEGAS mid-res bitmaps, and the existing rule tree nests
+the GEM header-size checks as siblings of DEGAS file-size tests that use
+`>>-0 offset` (end-of-file). This corrupts the offset context for the GEM
+checks that follow — they end up reading from past the end of the file instead
+of from the header.
+
+The fix is straightforward: give GEM v1 its own top-level `0 beshort 0x0001`
+entry, independent of DEGAS. Since this touches the same block as the
+[NEOchrome fix](#neo-atari-neochrome), I've combined both into a single updated
+patch. Sembiance has a generous
+[collection](https://sembiance.com/fileFormatSamples/image/gem/) of over 100
+GEM files to test with, including XIMG and TIMG variants — though netpbm's
+`gemtopnm` only handles v1.
+
+* [🪄 libmagic patch](https://bugs.astron.com/view.php?id=746) (updated)
 
 ---
 
-### MacPaint
+## MacPaint
 
-Rules exist but require `PNTGMPNT` at offset 65 (resource fork magic).
-Headerless/data-fork-only MacPaint files are not detected.
+![macpaint](macpaint.webp)
+
+[MacPaint](https://en.wikipedia.org/wiki/MacPaint) was the original bitmap
+editor for the Macintosh, created by Bill Atkinson and released in 1984. Images
+are always 576x720 monochrome, PackBits compressed. The format comes in three
+flavors: MacBinary-wrapped (128-byte finder header, `PNTGMPNT` type/creator at
+offset 65), versioned (4-byte version number + 304 bytes of brush/pattern data),
+and null-header (512 bytes of zeros before the pixel data).
+
+libmagic's existing rule in `Magdir/apple` detects the MacBinary variant via
+`PNTGMPNT` at offset 65, but the other two variants come back as "data". The
+versioned files start with `0x00000002` or `0x00000003` followed by `0xFFFFFFFF`
+(default brush patterns) — distinctive enough for a magic rule. The null-header
+variant is indistinguishable from any other file that starts with zeros.
+
+The format has a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/161)
+and uses `image/x-macpaint` as its MIME type. Sembiance has a good
+[collection](https://sembiance.com/fileFormatSamples/image/macPaint/) of 31
+files across all three variants.
+
+* [🪄 libmagic submission] TODO
 
 ---
 
-### Group 3 Fax
+## Group 3 Fax
 
-Rules exist in Magdir's `modem` file but raw G3 detection is
-fragile/conditional. Our test file comes back as "data".
+![g3](g3.webp)
 
+[CCITT Group 3](https://en.wikipedia.org/wiki/Group_3_fax_format) is the
+standard fax compression format, using Modified Huffman coding for monochrome
+scan lines. Raw G3 files have no header, no magic bytes, and no signature of
+any kind — just Huffman-coded pixel data starting with an EOL marker. The first
+byte varies depending on the content of the first scan line.
+
+libmagic's existing rule in `Magdir/modem` attempts detection via `0x0100` or
+`0x1400` (common first EOL byte patterns), then runs a deep exclusion tree to
+avoid false positives against TrueType fonts, DEGAS bitmaps, GEM images,
+Panorama databases, and various other formats that happen to start with similar
+bytes. It catches some files but misses most — three of our four Sembiance test
+files come back as "data". There's no fix here that wouldn't also produce false
+positives; raw G3 is fundamentally undetectable by content.
+
+netpbm's `g3topbm` only supports MH (Modified Huffman) compression, not MR or
+MMR. It's also worth noting that many ".fax" files in the wild are actually
+TIFF-wrapped G3, not raw — Sembiance's CROW.FAX is a TIFF with
+`compression=bi-level group 3`.
+
+The format has a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-cmp/14),
+MIME type `image/g3fax`, and an
+[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/CCITT_Group_3).
+Extension-only detection is all we can do in `pillow-netpbm`.
+
+---
+
+## The rest
+
+So, this was the lowish hanging fruit and historical formats that kind of matter,
+there's a bunch more that I couldn't find test data for, but I think 3 weeks of
+shovelling reports onto other projects is enough. It's slow work and puts an
+unfair burden on others, given the pace at which I work. So I think I'll go back
+to silo-mode for a while - at least until some of the above are merged or
+rejected.
