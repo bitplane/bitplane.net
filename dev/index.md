@@ -18,7 +18,7 @@ The best stuff is in:
 
 ## 🗓️ Recent
 
-Some still-active things, or at least not inactive.
+Some still-active things, or at least not that inactive.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
   A template for Python projects developed in vim/vscode on Mac/Linux.
@@ -67,4 +67,5 @@ An incomplete list of languages.
 * [🐍 python](python) - My weapon of choice
 * [🕸️ php](php) - Personal Home Page?
 * [💎 ruby](ruby) - A couple of Rails things.
+* [🦀 rust](rust) - New, but crusty.
 * [💩 vb](vb) - Visual Basic 6, VBA, VBS
