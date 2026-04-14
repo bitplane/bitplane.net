@@ -2,6 +2,20 @@
 
 # crunchmania
 
+<a id="crunchmania.pack"></a>
+
+# crunchmania.pack
+
+<a id="crunchmania.pack.pack"></a>
+
+#### pack
+
+```python
+def pack(data: bytes | bytearray, sampled: bool = False) -> bytes
+```
+
+Compress data using Crunch-Mania standard mode (CrM!/Crm!).
+
 <a id="crunchmania.header"></a>
 
 # crunchmania.header
