@@ -73,7 +73,7 @@ that's a fair comment.
 
 * 👾 [amos-abk](amos-abk) -
   Load AMOS banks to extract sprites and other goodies.
-* 🖼️ [pillow-degas](pillow-degs) -
+* 🖼️ [pillow-degas](pillow-degas) -
   Load Atari DEGAS images in Pillow
 * 🗔  [bittty](bittty) -
   a pure python terminal emulator.
