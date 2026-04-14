@@ -1,5 +1,6 @@
 * [2026-04-12 - 🦀 amiga-lzx - LZX compression in Rust](/dev/rust/amiga-lzx)
 * [2026-04-11 - 🧊 freeze/melt in 2026](log/2026/04/freeze)
+* [2026-04-11 - 🐘 zoo for Linux](https://github.com/bitplane/zoo)
 * [2026-03-19 - 👾 amos-abk - loading AMOS sprite banks](/dev/python/amos-abk)
 * [2026-03-18 - 📦 Crunch-Mania](/dev/python/crunchmania)
 * [2026-03-18 - 📃 CFF MOST compressor/decompressor](/dev/python/cff-most)
