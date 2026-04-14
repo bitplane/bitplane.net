@@ -2,7 +2,7 @@
 
 Codec and command line tool for CFF MOST files.
 
-This is for the Amiga compressed text and image viewer written byRichard Wynn
+This is for the Amiga compressed text and image viewer written by Richard Wynn
 in 1988-1989, found on MEGADISC collections. Not to be confused with `most` by
 John E. Davis, or the other `most` by Uwe Roehm.
 
