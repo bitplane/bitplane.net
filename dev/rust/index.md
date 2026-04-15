@@ -6,4 +6,4 @@ it's kinda dangerous to write C/C++ code, so let's do more Rust in future
 
 * [🔌 qemount](qemount)
 * [📦 amiga-lzx](amiga-lzx)
-
+* [📦 crunchmania](crunchmania)
