@@ -32,6 +32,8 @@ You played into the MIC port with cables connected to a radio cassette player,
 directly into the headphone/mic port, using a splitter cable to separate the 
 mono MIC and EAR channels.
 
+![tape](tape.webp)
+
 ## A conflict of interest
 
 The main reason to buy a home computer was to play games, but engineers built
