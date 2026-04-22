@@ -1,3 +1,7 @@
+---
+redirect_from: ['/log/2026/03/netpbm/']
+---
+
 # 🖼️ Adventures in netpbm
 
 Continuing on a journey of computing archaeology, it's time to extend Pillow
@@ -44,7 +48,9 @@ the trophy cabinet 🏆.
 A nice simple file format to load, a properly registered MIME type - at least
 for the data format itself (`application/andrew-inset`) - with test data
 available in the [project's source](https://www.cs.cmu.edu/~AUIS/) since the
-90's.
+90's. It has an
+[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/CMU_Andrew_Toolkit_image)
+but didn't have a Wikidata entry.
 
 `netpbm` can load and save these, but `file` thinks all Andrew files are
 LaTeX documents, and the example raster files are buried in the distro's source
@@ -54,6 +60,7 @@ Let's fix both of those things:
 
 * [🖼️ test data repo](https://github.com/bitplane/atk-raster-test-data)
 * [🐛 libmagic bug report](https://bugs.astron.com/view.php?id=740)
+* [🌍 WikiData entry](https://www.wikidata.org/wiki/Q139502479)
 
 ---
 
@@ -220,7 +227,7 @@ Let's fix some of this:
 
 * [🛏️ release pillow-degas v0.2.0](https://pypi.org/project/pillow-degas/0.2.0/)
 * [🪄 libmagic bug report](https://bugs.astron.com/view.php?id=746)
-* 🗄️ PRONOM: TODO
+* 🗄️ PRONOM: TNA1776854663K81
 
 ---
 
@@ -263,8 +270,9 @@ resolution, then alternating lengths of off and on pixels with space being zero.
 
 `file` identifies these as "ASCII text with escape sequences", which they are.
 But we can do better than that since ESC G isn't used for anything else. It's a
-well-known format with no MIME type and a missing magic rule, so I won't link to
-all the things, just add the magic rule:
+[well-known format](https://www.wikidata.org/wiki/Q28205858) with no MIME type
+and a missing magic rule, so I won't link to all the things, just add the magic
+rule:
 
 * [🪄 libmagic submission](https://bugs.astron.com/view.php?id=747)
 
@@ -288,7 +296,7 @@ but no MIME, PRONOM, or libmagic rule. Easy enough to detect - let's fix the
 last two:
 
 * [🪄 libmagic submission](https://bugs.astron.com/view.php?id=748)
-* 🗄️ PRONOM: TODO
+* 🗄️ PRONOM: TNA1776855177C92
 
 ---
 
@@ -304,7 +312,7 @@ grayscale was added later for OpenWindows.
 
 So, no libmagic rule, only icons in Sembiance's 
 [test data](https://sembiance.com/fileFormatSamples/image/sunIcon/). No PRONOM
-identifier and no MIME type. Has a [Wikidata](https://www.wikidata.org/wiki/Q28206547)
+identifier and no MIME type. Has a [Wikidata](https://www.wikidata.org/wiki/Q28205626)
 entry and [ArchiveTeam](http://fileformats.archiveteam.org/wiki/Sun_icon) wiki
 page.
 
@@ -312,9 +320,9 @@ Let's submit a detection rule with `image/x-sun-icon` to match the existing
 `image/x-sun-rasterfile` convention, add to PRONOM, steal some test data from an
 early version of Solaris and update the wiki page.
 
-* [🪄 libmagic submission] todo
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=759)
 * [💾 test data](https://github.com/bitplane/sunos-icon-test-data)
-* 🗄️ PRONOM: todo
+* 🗄️ PRONOM: TNA1776856152V67
 
 ---
 
@@ -329,23 +337,28 @@ camera model), followed by 14-bit or 16-bit little-endian pixel
 data with optional delta compression. The header contains metadata in
 `Key = Value` pairs separated by LF-CR (wut?!) line endings.
 
-`file` identifies these as "data" as there's no libmagic rule. There's no
-PRONOM identifier or MIME type, no Wikidata and no ArchiveTeam wiki entry. The
-format docs have been offline since 2014 when SBIG was bought by
-[Diffraction Limited](https://diffractionlimited.com/). This is crappy of them,
-but SBIG cameras use FITS instead nowadays - so whatever 🤷
+`file` identifies these as "data" as there's no libmagic rule. There's a
+[Wikidata entry](https://www.wikidata.org/wiki/Q28207241) and a sparse
+[ArchiveTeam page](http://justsolve.archiveteam.org/wiki/SBIG_CCDOPS_image)
+that explicitly asks for expansion, but no PRONOM identifier or MIME type. The
+separate Application Note spec has been offline for years since SBIG was bought
+by [Diffraction Limited](https://diffractionlimited.com/), though the
+[CCDOPS Version 3.5 manual](https://cdn.diffractionlimited.com/downloads/legacy/opsman3.pdf)
+is still hosted and contains the full Type 3 spec in Appendix A. A bit crappy of
+them, but SBIG cameras use FITS instead nowadays - so whatever 🤷
 
-Let's add a magic rule, PRONOM entry and a page in the wiki:
+Sembiance has a [single sample](https://sembiance.com/fileFormatSamples/image/sbigCCDOPS/)
+to work from, and we can generate them with netpbm. So let's add a magic rule
+and a PRONOM entry:
 
-* [🪄 libmagic submission] todo
-* PRONOM todo
-* ArchiveTeam Wiki page todo
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=756)
+* 🗄️ PRONOM TNA1776867677I97
 
 ---
 
 ## Interleaf
 
-![interleaf](interleaf.webp)
+![interleaf](leaf.webp)
 
 [Interleaf](https://en.wikipedia.org/wiki/Interleaf) was an aerospace/defense
 doc system bought out by BroadVision around 2000. The software is long gone, but
@@ -356,24 +369,20 @@ the image format has lived on in netpbm's `leaftoppm` and `ppmtoleaf` since '94.
 [samples](https://sembiance.com/fileFormatSamples/image/interleafImage/) and
 [wikipedia](https://en.wikipedia.org/wiki/List_of_file_signatures) 
 confirm a magic of `\x89OPS` for the images. There's an 
-[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/Interleaf_image) but
-no PRONOM identifier, no MIME type, and no Wikidata entry.
+[ArchiveTeam page](http://fileformats.archiveteam.org/wiki/Interleaf_image) and
+a [Wikidata entry](https://www.wikidata.org/wiki/Q28206373), but no PRONOM
+identifier and no MIME type.
 
-Let's fix it everywhere:
+Let's fix it in PRONOM and `file`:
 
-* [🪄 libmagic submission] TODO
-* 🗄️ PRONOM: TODO
-* wikidata: todo
-
----
-
-## WIP / notes
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=757)
+* 🗄️ PRONOM: TNA1776869372T15
 
 ---
 
 ## GEM Raster
 
-![gem](gem.webp)
+![gem](gem.png)
 
 [GEM](https://en.wikipedia.org/wiki/GEM_(desktop_environment)) was Digital
 Research's graphical desktop environment, first released in 1985 for the IBM PC
@@ -383,8 +392,9 @@ color support spawned several incompatible variants: XIMG, STTT, TIMG, and
 HyperPaint.
 
 GEM has an [ArchiveTeam page](http://fileformats.archiveteam.org/wiki/GEM_Raster),
-a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/159), and
-libmagic rules already exist in `Magdir/images` — but they're broken. Every GEM
+a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/159), a
+[Wikidata entry](https://www.wikidata.org/wiki/Q28206162), and libmagic rules
+already exist in `Magdir/images` — but they're broken. Every GEM
 file comes back as "data". The root cause: GEM v1 images share a `0x0001`
 version word with Atari DEGAS mid-res bitmaps, and the existing rule tree nests
 the GEM header-size checks as siblings of DEGAS file-size tests that use
@@ -406,33 +416,34 @@ GEM files to test with, including XIMG and TIMG variants — though netpbm's
 
 ## MacPaint
 
-![macpaint](macpaint.webp)
+![macpaint](mac.png)
 
 [MacPaint](https://en.wikipedia.org/wiki/MacPaint) was the original bitmap
 editor for the Macintosh, created by Bill Atkinson and released in 1984. Images
 are always 576x720 monochrome, PackBits compressed. The format comes in three
-flavors: MacBinary-wrapped (128-byte finder header, `PNTGMPNT` type/creator at
+flavours: MacBinary-wrapped (128-byte finder header, `PNTGMPNT` type/creator at
 offset 65), versioned (4-byte version number + 304 bytes of brush/pattern data),
 and null-header (512 bytes of zeros before the pixel data).
 
 libmagic's existing rule in `Magdir/apple` detects the MacBinary variant via
 `PNTGMPNT` at offset 65, but the other two variants come back as "data". The
 versioned files start with `0x00000002` or `0x00000003` followed by `0xFFFFFFFF`
-(default brush patterns) — distinctive enough for a magic rule. The null-header
-variant is indistinguishable from any other file that starts with zeros.
+(default brush patterns). The null-header variant is indistinguishable from any
+other file that starts with zeros, so we can't detect that one.
 
-The format has a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/161)
-and uses `image/x-macpaint` as its MIME type. Sembiance has a good
+The format has a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-fmt/161),
+a [Wikidata entry](https://www.wikidata.org/wiki/Q28206528), and uses
+`image/x-macpaint` as its MIME type. Sembiance has a good
 [collection](https://sembiance.com/fileFormatSamples/image/macPaint/) of 31
 files across all three variants.
 
-* [🪄 libmagic submission] TODO
+* [🪄 libmagic submission](https://bugs.astron.com/view.php?id=758)
 
 ---
 
 ## Group 3 Fax
 
-![g3](g3.webp)
+![g3](g3.png)
 
 [CCITT Group 3](https://en.wikipedia.org/wiki/Group_3_fax_format) is the
 standard fax compression format, using Modified Huffman coding for monochrome
@@ -444,8 +455,9 @@ libmagic's existing rule in `Magdir/modem` attempts detection via `0x0100` or
 `0x1400` (common first EOL byte patterns), then runs a deep exclusion tree to
 avoid false positives against TrueType fonts, DEGAS bitmaps, GEM images,
 Panorama databases, and various other formats that happen to start with similar
-bytes. It catches some files but misses most — three of our four Sembiance test
-files come back as "data". There's no fix here that wouldn't also produce false
+bytes. It catches some files but misses most — three of our four
+[Sembiance test files](https://sembiance.com/fileFormatSamples/image/faxGroup3/)
+come back as "data". There's no fix here that wouldn't also produce false
 positives; raw G3 is fundamentally undetectable by content.
 
 netpbm's `g3topbm` only supports MH (Modified Huffman) compression, not MR or
@@ -454,7 +466,8 @@ TIFF-wrapped G3, not raw — Sembiance's CROW.FAX is a TIFF with
 `compression=bi-level group 3`.
 
 The format has a [PRONOM entry](https://www.nationalarchives.gov.uk/PRONOM/x-cmp/14),
-MIME type `image/g3fax`, and an
+a [Wikidata entry](https://www.wikidata.org/wiki/Q28234649), MIME type
+`image/g3fax`, and an
 [ArchiveTeam page](http://fileformats.archiveteam.org/wiki/CCITT_Group_3).
 Extension-only detection is all we can do in `pillow-netpbm`.
 
@@ -462,9 +475,10 @@ Extension-only detection is all we can do in `pillow-netpbm`.
 
 ## The rest
 
-So, this was the lowish hanging fruit and historical formats that kind of matter,
-there's a bunch more that I couldn't find test data for, but I think 3 weeks of
-shovelling reports onto other projects is enough. It's slow work and puts an
-unfair burden on others, given the pace at which I work. So I think I'll go back
-to silo-mode for a while - at least until some of the above are merged or
-rejected.
+So, this was the lowish hanging fruit and historical formats that kind of
+matter, there's a bunch more that I couldn't find test data for, but I think 3
+weeks of shovelling reports onto other projects is enough. It's slow work and
+puts an unfair burden on others. So I think I'll work silo-mode for a while
+and work on some other obscure formats - at least until the backlogs are cleared
+and I've had a break from pissing everyone off!
+
