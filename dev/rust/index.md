@@ -5,5 +5,6 @@ I get the concepts and the borrow checker upsets me. At this point in history
 it's kinda dangerous to write C/C++ code, so let's do more Rust in future
 
 * [🔌 qemount](qemount)
+* [📦 oldrar](oldrar)
 * [📦 amiga-lzx](amiga-lzx)
 * [📦 crunchmania](crunchmania)

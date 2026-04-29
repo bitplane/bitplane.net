@@ -1,3 +1,4 @@
+* [2026-04-29 - 📦 oldrar - rar 1.3-1.4 in rust](/dev/rust/oldrar)
 * [2026-04-25 - 💾 mkfs.\*](log/2026/04/mkfs)
 * [2026-04-22 - 🛏️ pillow-netpbm - loading ancient images](log/2026/04/netpbm)
 * [2026-04-12 - 🦀 amiga-lzx - LZX compression in Rust](/dev/rust/amiga-lzx)
