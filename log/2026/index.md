@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2026
 
+* [2026-05-05 - 👾 pillow-zx-spectrum - thumbnail your tapes](/dev/python/pillow-zx-spectrum)
 * [2026-04-29 - 📦 oldrar - rar 1.3-1.4 in rust](/dev/rust/oldrar)
 * [2026-04-25 - 💾 mkfs.\*](04/mkfs)
 * [2026-04-22 - 🛏️ pillow-netpbm - loading ancient images](04/netpbm)
