@@ -1,7 +1,13 @@
 # `pillow_zx_spectrum`
 
-| ![Jetpac](https://bitplane.net/dev/python/pillow-zx-spectrum/jetpac.png) | ![Treasure Island Dizzy](https://bitplane.net/dev/python/pillow-zx-spectrum/dizzy.png) | ![Daley Thompson's Decathlon](https://bitplane.net/dev/python/pillow-zx-spectrum/decathlon.png) | ![Jet Set Willy II](https://bitplane.net/dev/python/pillow-zx-spectrum/willy.png) |
-| --- | --- | --- | --- |
+<table>
+<tr>
+<td><img src="https://bitplane.net/dev/python/pillow-zx-spectrum/jetpac.png" alt="Jetpac"></td>
+<td><img src="https://bitplane.net/dev/python/pillow-zx-spectrum/dizzy.png" alt="Treasure Island Dizzy"></td>
+<td><img src="https://bitplane.net/dev/python/pillow-zx-spectrum/decathlon.png" alt="Daley Thompson's Decathlon"></td>
+<td><img src="https://bitplane.net/dev/python/pillow-zx-spectrum/willy.png" alt="Jet Set Willy II"></td>
+</tr>
+</table>
 
 Pillow loaders for ZX Spectrum loading screens, extracted from tape, disk
 and snapshot files in the wild.
