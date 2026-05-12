@@ -1,3 +1,5 @@
+# 💡 Shazam Compression
+
 Say we wanted an archive of all radio. Most of it is repeats, so it ought to
 be possible to use audio-fingerprinting to remove those repeats.
 

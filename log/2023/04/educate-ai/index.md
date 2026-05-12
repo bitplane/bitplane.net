@@ -1,3 +1,5 @@
+# 💡 educate ai
+
 It seems like we have artificial general knowledge, but not artificial general
 understanding; language models have very good breadth but they fail to make
 links between things. They spout all the right words but lack actual

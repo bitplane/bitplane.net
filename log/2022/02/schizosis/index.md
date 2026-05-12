@@ -1,3 +1,5 @@
+# 💡 Schizosis
+
 Like noise cancelling headphones, but with a (laser) mic outside the building
 and a directional speaker a measurable distance away.
 

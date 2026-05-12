@@ -1,3 +1,5 @@
+# 💡 Crackable Chat
+
 P2P chat that's crackable, by layering random cyphers
 derived from the main key. The number of layers varies in
 a nondeterministic way, making each message cost between

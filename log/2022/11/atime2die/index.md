@@ -1,3 +1,5 @@
+# 💡 atime2die
+
 Make docker containers smaller by having exhaustive test coverage,
 then removing every file that wasn't accessed during tests.
 

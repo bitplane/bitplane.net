@@ -1,3 +1,5 @@
+# 💡 Toasternet
+
 * Buy 100 toasters from AliExpress
 * Put Pi Zeroes into them
 * Code on them that searches for wifi networks, and sends disconnect packets

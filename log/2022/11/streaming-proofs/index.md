@@ -1,3 +1,5 @@
+# 💡 Streaming proofs
+
 How to prevent fake video in the age of AI and gov/mil control over tech?
 Embed metadata from multiple orgs, corps, hardware, communities from
 competing/enemy nation states.

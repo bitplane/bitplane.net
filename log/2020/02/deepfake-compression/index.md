@@ -1,3 +1,5 @@
+# 💡 Deepfake Compression
+
 Can we use deep fakes as a compression algorithm for video conference calls?
 
 Assumptions

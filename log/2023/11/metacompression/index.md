@@ -1,3 +1,5 @@
+# 💡 Metacompression
+
 make an app that has all libpng, zlib etc versions and
 heuristics for detection of version, compression ratio
 block size etc.
