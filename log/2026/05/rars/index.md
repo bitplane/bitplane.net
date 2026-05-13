@@ -1,12 +1,15 @@
 # 🦀 rars in Rust, bro
 
-I've done a few different reverse engineering projects with LLMs now, and
-figured it was time to push the clankers to their limits.
+I've done a [few](https://bitplane.net/dev/python/cff-most/)
+[different](https://bitplane.net/dev/rust/amiga-lzx/)
+[reverse-engineering](https://bitplane.net/dev/python/crunchmania/)
+[projects](https://bitplane.net/log/2026/04/mkfs/) with LLMs, and
+figured it's time to push the clankers to their limits.
 
-A RAR compressor for every version of RAR ought to have taken me 5 years, which
-is why nobody ever bothered. It took 5 weeks of evenings and weekends of
-clanking with OpenAI Codex 5.5 and Claude Opus 4.7, costing roughly £40 in
-heavily subsidised tokens.
+A RAR compressor for every version of RAR ought to have taken about 5 years,
+which is why nobody has ever bothered. Today, it takes 5 weeks of evenings and
+weekends, clanking OpenAI Codex 5.5 and Claude Opus 4.7, and cost roughly £40 in
+(heavily subsidised) tokens.
 
 Yes it's 55k lines of slop, no it's not that fast, and it almost earned me an
 OpenAI ban. But it works.
