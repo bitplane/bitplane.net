@@ -183,7 +183,7 @@ mostly with the DOS version of RAR, ones that tripped it up on at least 3
 occasions. Putting a comment in the source would have prevented this.
 
 Another thing, Claude's reviews, specially the UAT reviews, got deep into the
-details but missed the most obvious thing - that the UX was a terrible mass of
+details but missed the most obvious thing - that the UX was a terrible blob of
 machine readable noise. It caught inconsistencies and errors, but until I
 specifically said "tell me why this is shit UX", it didn't recommend anything to
 do with that despite UX being the main goal. This applies to other areas too,
