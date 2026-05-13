@@ -5,7 +5,8 @@ figured it was time to push the clankers to their limits.
 
 A RAR compressor for every version of RAR ought to have taken me 5 years, which
 is why nobody ever bothered. It took 5 weeks of evenings and weekends of
-clanking, and cost roughly £40 in subsidised tokens.
+clanking with OpenAI Codex 5.5 and Claude Opus 4.7, costing roughly £40 in
+heavily subsidised tokens.
 
 Yes it's 55k lines of slop, no it's not that fast, and it almost earned me an
 OpenAI ban. But it works.
@@ -21,8 +22,8 @@ even an internal VM, but its USP was always superior compression. It's a
 middle-aged format that never stopped growing up, it's as big as a house.
 
 `unrar` comes with source code but that code is not actually free, and
-somewhat ironically RAR's author isn't a big fan of piracy. So ideally I'd need
-to implement my version from spec, which doesn't really exist.
+somewhat ironically RAR's author Eugene Roshal isn't a big fan of piracy. So
+ideally I'd need to implement my version from spec, which doesn't really exist.
 
 The monstrous task of creating one involved pulling code from free
 decompressor sources in the wild - unar, libarchive, UNRARLIB, plus
@@ -179,11 +180,12 @@ mostly with the DOS version of RAR, ones that tripped it up on at least 3
 occasions. Putting a comment in the source would have prevented this.
 
 Another thing, Claude's reviews, specially the UAT reviews, got deep into the
-details but missed the most obvious thing - that the UX was terrible. It caught
-inconsistencies and errors, but until I specifically said "tell me why this is
-shit UX", it didn't recommend anything to do with that despite it being the main
-goal. This applies to other areas too, they have blind spots by default that
-can probably be solved with agent skills or a bit of "uwotm8" in the prompts.
+details but missed the most obvious thing - that the UX was a terrible mass of
+machine readable noise. It caught inconsistencies and errors, but until I
+specifically said "tell me why this is shit UX", it didn't recommend anything to
+do with that despite UX being the main goal. This applies to other areas too,
+they have blind spots by default that can probably be solved with agent skills
+or a bit of "uwotm8" in the prompts.
 
 ---
 
@@ -218,6 +220,6 @@ cargo install rars-cli
 And the links are here:
 
 * [🏠 home](https://bitplane.net/rust/rars)
-* [🦀 crate](https://crates.io/crates/rars)
+* [🦀 crate](https://crates.io/crates/rars-cli)
 * [🐱 source](https://github.com/bitplane/rars)
 
