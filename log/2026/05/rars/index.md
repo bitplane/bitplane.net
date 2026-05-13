@@ -185,6 +185,8 @@ shit UX", it didn't recommend anything to do with that despite it being the main
 goal. This applies to other areas too, they have blind spots by default that
 can probably be solved with agent skills or a bit of "uwotm8" in the prompts.
 
+---
+
 ## What did we learn?
 
 So the TL;DR is:
@@ -192,10 +194,12 @@ So the TL;DR is:
 0. Working from spec actually works.
 1. Modern models are very good at Rust.
 2. Autonomous research is extremely powerful.
-3. Tests and docs shape the context through mass and steering.
+3. Tests, docs and comments shape the context through mass and steering.
 4. Bring your own architecture, or pay a refactoring fee.
 5. Don't expect decent performance or novel insights just yet.
 6. Bots can overlook the obvious.
+
+---
 
 ## 🦀 rars
 
@@ -204,6 +208,14 @@ two megabytes in size and somewhat worse than WinRAR on compression.
 
 But, it works, and the world now has a free software RAR implementation. So that
 was worth the effort.
+
+You can install `rars` like so:
+
+```bash
+cargo install rars-cli
+```
+
+And the links are here:
 
 * [🏠 home](https://bitplane.net/rust/rars)
 * [🦀 crate](https://crates.io/crates/rars)
