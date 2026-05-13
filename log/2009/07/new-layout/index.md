@@ -1,4 +1,4 @@
-# New website layout
+# 🌍 New website layout
 
 So I’ve finally decided to bite the bullet and install WordPress.
 I’ve never been much of a fan of the blog format, but over the past couple of
