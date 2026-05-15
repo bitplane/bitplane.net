@@ -1,17 +1,17 @@
-# INKEY$ and his 8 legs
+# 🐙 INKEY$ and his 8 legs
 
-Back in the 80s, kids who had a ZX Spectrum or ZX-81 actually learned to program
+Back in the 80s, some kids who had a ZX Spectrum or ZX-81 learned to program
 before they could read and write. This doesn't sound very believable, but it's
-the main reason Eben Upton and co. created the Raspberry Pi, so I thought I'd
+the main reason Eben Upton and co. created the Raspberry Pi. I thought I'd
 say something about how that worked.
 
 ## Budget computing
 
 The Speccy's crude operating system was a BASIC command line interpreter,
-complemented by a simple line editor. When you switched the thing on, its cheap
-capacitors whistled with a high pitched coil whine inaudible to adults, the
-screen flashed black as the memory's graphics region was reset, and about a
-second later you were presented with Sinclair BASIC's operating system:
+with a simple line editor. When you switched the thing on, its cheap capacitors
+whistled with a coil whine inaudible to adults, the screen flashed black as the
+memory's graphics region was reset, and about a second later you were presented
+with Sinclair BASIC's operating system:
 
 ![OS](spectrum.png)
 
@@ -21,46 +21,48 @@ for affordable home computing.
 
 A power button wasn't the only missing feature - budget home computers of the
 80s outsourced their peripherals to existing consumer electronics. Cathode ray
-tube monitors were expensive, and ones with digital inputs had no other
-function. So, like gaming machines before it in the 70's, the Spectrum came with
-an RF modulator. You'd connect it to the family TV's aerial port with a coaxial
-cable and tune it in the best you could.
+tube monitors were expensive, ones with digital inputs cost twice as much and
+had no other function. So, like gaming machines before it in the 70's, the
+Spectrum came with an RF modulator. You'd connect it to the family TV's aerial
+port with a coaxial cable, and tune it in the best you could.
 
 More expensive computers had disk drives, but on machines like the Spectrum,
-Commodore 64 and Amstrad CPC series, games were stored on audio cassette tapes.
-You played into the MIC port with cables connected to a radio cassette player,
-directly into the headphone/mic port, using a splitter cable to separate the 
-mono MIC and EAR channels.
+Commodore 64 and Amstrad CPC series, games came on audio cassette tapes.
+You split the mono EAR and MIC channels with a splitter cable, plugging them
+into your mum's radio cassette player, then played the game into the machine's
+EAR port while carefully avoiding the record switch.
 
 ![tape](tape.webp)
 
 ## A conflict of interest
 
-The main reason to buy a home computer was to play games, but engineers built
-home computers to bring the glory of computing into the home.
+Engineers built home computers to bring the glory of computing into the home,
+but the main reason to buy one was to play games.
 
-So, gaming was both the killer app and also a grubby, degenerate, secondary
-function, kind of like porn was to the early Internet. And like that conflict
-caused Flash and QuickTime to dominate the early web, this led to a user
-experience few would stand for today: To load a game, you'd instruct the thing
-to do the loading; you had to enter the `LOAD` keyword into the CLI.
+So gaming was the killer app and also a grubby, degenerate, secondary
+function, kind of like porn was to the early Internet. Just like that conflict
+caused Flash and QuickTime to dominate the early web, this one led to a user
+experience few would stand for today: To load a game, you'd actually instruct
+the thing to do the loading; you had to enter the `LOAD` keyword into the CLI.
 
-This sounds simple enough, but the ZX Spectrum's budget constraints came with
-quirks, making this process not only famously awkward but also different to
-every other home computer.
+This sounds simple enough, but Spectrum's budget constraints came with more
+quirks, quirks that made the process famously awkward and different to every
+other home computer.
 
 ## The ZX character set
 
 Short on RAM, CPU and long on ideas, the boffins at Nine Tiles decided that
-their BASIC interpreter could do without the text part of their lexical parser
-and instead dealt in tokens. So they assigned all possible functions to an
+their BASIC interpreter could do without the text part of a lexical parser,
+it instead dealt with tokens. They assigned all possible functions to an
 extended character set. Characters `0xA5` to `0xFF` became entire words rather
 than a single character, and to input them, the text cursor switched between
-modes depending on context. A flashing `K` for keyword input, an `L` for
-letters and so on. This acted as extended forms of the SHIFT key, not quite
-as many as modern Macs, but enough to be just as confusing.
+modes depending on context. A flashing `K` meant keyword input, an `L` for
+letters and so on. These modes acted as extended forms of the SHIFT key, not
+as many as the modern Mac's 8-bit chorded keyboard, but enough to be pretty
+confusing.
 
-Here's the output of a BASIC program that prints the set, taken from Wikipedia:
+Here's the output of a BASIC program that prints the "letters" of the ZX
+character set, taken from Wikipedia:
 
 ![charset](characters.png)
 
@@ -82,10 +84,10 @@ parameters. It felt like an act of spite: this thing didn't want you to load
 games.
 
 If, like everyone, you didn't care about the program's name, then you just
-entered an empty string: a pair of empty double quotes. These, even more
-conveniently than `LOAD`, were inserted by holding down the aptly named
-`SYMBOL SHIFT` and squishing the P key twice. Then you finally pressed `ENTER`
-and clunked down the play mechanism on your cassette player.
+entered an empty string: a pair of double quotes. These, even more conveniently
+than `LOAD`, were inserted by holding down the aptly named `SYMBOL SHIFT` and
+squishing the P key twice. Then you finally pressed `ENTER` and clunked down the
+play mechanism on your cassette player.
 
 If the tape wasn't too worn, too stretched and hadn't got too hot or too damp,
 it wasn't wound too tight, and wasn't an 8th generation copy from a chain of
@@ -100,8 +102,8 @@ That 4 minutes felt like a whole day.
 
 The looming 4 minute eternity made the flashing `K` cursor an open invitation
 to play with the other keys. If you pressed P it typed `PRINT`, and if you put
-some letters between the quotes after it then it'd whatever you wrote to the
-screen (in CAPS, because the `CAPS SHIFT` key was for the exotic and alien
+some letters between the quotes after it then it'd print whatever you wrote to
+the screen (in CAPS, because the `CAPS SHIFT` key was for the exotic and alien
 lower-case letters, a rare sight on the device).
 
 If you wanted some real fun, you could put a number before the keyword and it'd
