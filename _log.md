@@ -1,4 +1,4 @@
-* [2026-05-23 - 📃 awkdown - a POSIX CommonMark parser](/dev/awk/awkdown)
+* [2026-05-23 - 📃 awkdown - a POSIX markdown parser](/dev/awk/awkdown)
 * [2026-05-12 - 🦀 rars - all the rar implementations](log/2026/05/rars)
 * [2026-05-05 - 👾 pillow-zx-spectrum - thumbnail your tapes](/dev/python/pillow-zx-spectrum)
 * [2026-04-29 - 📦 oldrar - rar 1.3-1.4 in rust](/dev/rust/oldrar)
