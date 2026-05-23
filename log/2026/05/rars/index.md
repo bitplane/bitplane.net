@@ -222,7 +222,7 @@ cargo install rars-cli
 
 And the links are here:
 
-* [🏠 home](https://bitplane.net/rust/rars)
+* [🏠 home](https://bitplane.net/dev/rust/rars)
 * [🦀 crate](https://crates.io/crates/rars-cli)
 * [🐱 source](https://github.com/bitplane/rars)
 
