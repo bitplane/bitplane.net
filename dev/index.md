@@ -55,6 +55,7 @@ I like these.
 An incomplete list of languages.
 
 * [👾 amos](amos) - Games and stuff for the Amiga
+* [📜 awk](awk) - awkward
 * [📜 shell](sh) - Bourne again
 * [📺 basic](basic) - The 8-bit days. ZX BASIC, Amstrad CPC 464/6128
 * [🔧 c](c) - "High level", they said...
