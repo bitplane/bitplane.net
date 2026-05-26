@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const hexOffset = offset.toString(16).padStart(8, "0");
-        output.appendData(`${hexOffset}  ${"04 ".repeat(bytesPerLine)} |................|\n`);
+        const randomBytes = "04 ".repeat(bytesPerLine / 2).trimEnd();
+        output.appendData(`${hexOffset}  ${randomBytes}  ${randomBytes} |................|\n`);
         offset += bytesPerLine;
 
         setTimeout(addLine, delay);
