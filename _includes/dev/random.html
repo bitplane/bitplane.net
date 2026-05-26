@@ -3,18 +3,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const pre = document.querySelector("pre");
     if (!pre) return;
 
+    const maxBytes = 1024 * 1024;
+    const bytesPerLine = 16;
+    const delay = 10;
     let offset = 0;
+    let output = document.createTextNode("");
 
     function addLine() {
-        let hexOffset = offset.toString(16).padStart(8, '0');
-        pre.textContent += `${hexOffset}  ${"04 ".repeat(16)} |................|\n`;
-        offset += 16;
+        if (offset >= maxBytes) {
+            pre.appendChild(document.createTextNode(":"));
+            return;
+        }
 
-        setTimeout(addLine, 10); // Add a new line every 10ms
+        const hexOffset = offset.toString(16).padStart(8, "0");
+        output.appendData(`${hexOffset}  ${"04 ".repeat(bytesPerLine)} |................|\n`);
+        offset += bytesPerLine;
+
+        setTimeout(addLine, delay);
     }
 
-    pre.textContent = ""; // Clear original content
+    pre.textContent = "";
+    pre.appendChild(output);
 
-    setTimeout(addLine, 10);
+    setTimeout(addLine, delay);
 });
 </script>
