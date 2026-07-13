@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2026
 
+* [2026-07-13 - 🔠 sn8kfonts - figLET TeleText fonts with kerning](sn8kfonts)
 * [2026-05-23 - 📃 awkdown - a POSIX markdown parser](/dev/awk/awkdown)
 * [2026-05-12 - 🦀 rars - all the rar implementations](05/rars)
 * [2026-05-05 - 👾 pillow-zx-spectrum - thumbnail your tapes](/dev/python/pillow-zx-spectrum)
