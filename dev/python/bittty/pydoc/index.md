@@ -7,404 +7,946 @@ bittty: A fast, pure Python terminal emulator library.
 bittty (bitplane-tty) is a high-performance terminal emulator engine
 that provides comprehensive ANSI sequence parsing and terminal state management.
 
-<a id="bittty.color"></a>
+Vocabulary: the `Board` is the machine (devices, registers, video memory, the
+child process). A terminal (bittty.terminals) is the chrome a human looks at,
+plugged into the board's display port. `Terminal` is deliberately not exported
+here — import it from bittty.terminals.
 
-# bittty.color
+<a id="bittty.terminals.probe"></a>
 
-Functions for generating ANSI escape sequences.
+# bittty.terminals.probe
 
-<a id="bittty.color.get_color_code"></a>
+Capability probing for the passthrough client.
 
-#### get\_color\_code
+Ask the real outer terminal what it can do, then hand a TerminalCaps up to the
+backend. Uses a DA1-terminated handshake: fire all the queries plus a Primary DA
+request, then read until the (universally answered) DA reply arrives, so optional
+queries that go unanswered never make us hang. Non-tty or timeout ⇒ env/config
+caps only.
+
+Nothing here reads capabilities the backend then trusts blindly — TerminalCaps is
+purely physical facts (colour depth, pixel geometry, background). Graphics-mode
+reconciliation is deferred with the graphics families.
+
+<a id="bittty.terminals.probe.color_depth_from_env"></a>
+
+#### color\_depth\_from\_env
 
 ```python
-@lru_cache(maxsize=1024)
-def get_color_code(fg: Optional[int] = None, bg: Optional[int] = None) -> str
+def color_depth_from_env(env) -> str
 ```
 
-Generate ANSI color code for 256-color palette.
+Best-effort colour depth from COLORTERM / TERM (no query exists for this).
+
+<a id="bittty.terminals.probe.parse_probe_replies"></a>
+
+#### parse\_probe\_replies
+
+```python
+def parse_probe_replies(buf: str, env) -> TerminalCaps
+```
+
+Build TerminalCaps from a probe-reply buffer, unioned with env (probe wins).
+
+<a id="bittty.terminals.probe.probe_caps"></a>
+
+#### probe\_caps
+
+```python
+def probe_caps(stdin_fd,
+               write,
+               env=None,
+               timeout: float = 0.5) -> TerminalCaps
+```
+
+Query the real terminal and return TerminalCaps; env-only on a non-tty/timeout.
+
+`write` is a callable that writes a str to the outer terminal (and flushes).
+
+<a id="bittty.terminals.base"></a>
+
+# bittty.terminals.base
+
+The Terminal abstract base: the chrome a human looks at.
+
+A concrete terminal *is-a* Terminal and *has-a* Board (composition). It plugs
+itself into the board's display port, pushes TerminalCaps up, and receives
+discrete side-effects through present(), which dispatches each PresentEvent to
+a typed hook. Every hook defaults to a no-op, so adding a new event type can
+never break an existing terminal — it just grows the surface with another
+optional override.
+
+The board never imports this module: the boundary only ever runs
+terminal -> board, never the reverse.
+
+<a id="bittty.terminals.base.Terminal"></a>
+
+## Terminal Objects
+
+```python
+class Terminal()
+```
+
+Abstract base for terminals (chrome). Compose a Board; override the hooks you need.
+
+<a id="bittty.terminals.base.Terminal.attach"></a>
+
+#### attach
+
+```python
+def attach() -> None
+```
+
+Plug this terminal into its board's display port.
+
+<a id="bittty.terminals.base.Terminal.detach"></a>
+
+#### detach
+
+```python
+def detach() -> None
+```
+
+Unplug from the board's display port.
+
+<a id="bittty.terminals.base.Terminal.set_caps"></a>
+
+#### set\_caps
+
+```python
+def set_caps(caps: TerminalCaps) -> None
+```
+
+Push the real terminal's capabilities down to the board.
+
+<a id="bittty.terminals.base.Terminal.present"></a>
+
+#### present
+
+```python
+def present(event: PresentEvent) -> None
+```
+
+Route a present event to its typed hook (unknown types are ignored).
+
+<a id="bittty.terminals.stdio"></a>
+
+# bittty.terminals.stdio
+
+StdioTerminal: the reference terminal, whose venue is this process's stdio.
+
+Composes a Board (never subclasses it) and drives the real outer terminal:
+raw-mode stdin, ANSI rendering to stdout, resize handling, and mouse mirroring.
+Discrete side-effects arrive through the Terminal hooks (on_bell/on_title/
+on_mouse_mode).
+
+<a id="bittty.terminals.stdio.StdioTerminal"></a>
+
+## StdioTerminal Objects
+
+```python
+class StdioTerminal(Terminal)
+```
+
+Render a bittty Board to the real terminal this program is running in.
+
+<a id="bittty.terminals.stdio.StdioTerminal.get_default_shell"></a>
+
+#### get\_default\_shell
+
+```python
+def get_default_shell() -> str
+```
+
+Get the default shell command for the current platform.
+
+<a id="bittty.terminals.stdio.StdioTerminal.on_bell"></a>
+
+#### on\_bell
+
+```python
+def on_bell() -> None
+```
+
+Ring the outer terminal's bell.
+
+<a id="bittty.terminals.stdio.StdioTerminal.on_title"></a>
+
+#### on\_title
+
+```python
+def on_title(title: str, icon_title: str) -> None
+```
+
+Mirror the window title onto the outer terminal.
+
+<a id="bittty.terminals.stdio.StdioTerminal.on_mouse_mode"></a>
+
+#### on\_mouse\_mode
+
+```python
+def on_mouse_mode(mode: str, sgr: bool) -> None
+```
+
+Mirror the child's requested mouse-tracking mode onto the outer terminal.
+
+<a id="bittty.terminals.stdio.StdioTerminal.disable_host_mouse"></a>
+
+#### disable\_host\_mouse
+
+```python
+def disable_host_mouse() -> None
+```
+
+Turn off host-terminal mouse reporting.
+
+<a id="bittty.terminals.stdio.StdioTerminal.setup_terminal"></a>
+
+#### setup\_terminal
+
+```python
+def setup_terminal() -> None
+```
+
+Put the host terminal into raw mode, clear it, and ask for focus events.
+
+<a id="bittty.terminals.stdio.StdioTerminal.restore_terminal"></a>
+
+#### restore\_terminal
+
+```python
+def restore_terminal() -> None
+```
+
+Restore the host terminal to its original state.
+
+<a id="bittty.terminals.stdio.StdioTerminal.probe_capabilities"></a>
+
+#### probe\_capabilities
+
+```python
+def probe_capabilities() -> None
+```
+
+Ask the outer terminal what it can do and push TerminalCaps to the backend.
+
+<a id="bittty.terminals.stdio.StdioTerminal.render_screen"></a>
+
+#### render\_screen
+
+```python
+def render_screen() -> None
+```
+
+Render the current terminal state to stdout.
+
+<a id="bittty.terminals.stdio.StdioTerminal.handle_pty_data"></a>
+
+#### handle\_pty\_data
+
+```python
+def handle_pty_data(data: str) -> None
+```
+
+Feed child output into the emulator and mark the screen dirty.
+
+Rendering happens on the run loop's tick, not per PTY chunk — a repaint
+per chunk backpressures a flooding child (it blocks writing to the PTY
+while we paint), turning a 66ms `find` into a 750ms one.
+
+<a id="bittty.terminals.stdio.StdioTerminal.handle_sgr_mouse_sequence"></a>
+
+#### handle\_sgr\_mouse\_sequence
+
+```python
+def handle_sgr_mouse_sequence(sequence: str) -> bool
+```
+
+Parse a host SGR mouse report and re-inject it through bittty.
+
+<a id="bittty.terminals.stdio.StdioTerminal.handle_focus"></a>
+
+#### handle\_focus
+
+```python
+def handle_focus(focused: bool) -> None
+```
+
+A host focus event: the backend owns the state; we just repaint.
+
+<a id="bittty.terminals.stdio.StdioTerminal.handle_input"></a>
+
+#### handle\_input
+
+```python
+def handle_input(data: str) -> None
+```
+
+Forward host input to bittty, intercepting SGR mouse reports and focus events.
+
+<a id="bittty.terminals.stdio.StdioTerminal.flush_pending_input"></a>
+
+#### flush\_pending\_input
+
+```python
+def flush_pending_input() -> None
+```
+
+Release a held partial prefix that never became a mouse report.
+
+A lone ESC keypress matches the start of the mouse-report prefix, so
+handle_input buffers it; when no follow-up arrives within an input-loop
+tick it was a real ESC and must reach the child.
+
+<a id="bittty.terminals.stdio.StdioTerminal.handle_resize"></a>
+
+#### handle\_resize
+
+```python
+def handle_resize() -> None
+```
+
+Re-read the host size and resize the emulator (called from a SIGWINCH handler).
+
+<a id="bittty.terminals.stdio.StdioTerminal.input_loop"></a>
+
+#### input\_loop
+
+```python
+async def input_loop() -> None
+```
+
+Read host input and forward it.
+
+<a id="bittty.terminals.stdio.StdioTerminal.run"></a>
+
+#### run
+
+```python
+async def run() -> None
+```
+
+Main loop: start the shell, pump input, render until it exits.
+
+<a id="bittty.terminals.stdio.StdioTerminal.cleanup"></a>
+
+#### cleanup
+
+```python
+def cleanup() -> None
+```
+
+Tear down the child and restore the host terminal.
+
+<a id="bittty.terminals"></a>
+
+# bittty.terminals
+
+Terminals: the chrome a human looks at, named by venue.
+
+Kept in its own package so the board never imports terminal code —
+the "board is never subclassed by a terminal" rule, enforced structurally.
+
+<a id="bittty.video"></a>
+
+# bittty.video
+
+Video memory: the 2D cell grid the blitter writes and terminals render.
+
+A Board has two pages of it (primary and alternate).
+
+<a id="bittty.video.Video"></a>
+
+## Video Objects
+
+```python
+class Video()
+```
+
+A 2D grid that stores terminal content.
+
+<a id="bittty.video.Video.__init__"></a>
+
+#### \_\_init\_\_
+
+```python
+def __init__(width: int, height: int) -> None
+```
+
+Initialize buffer with given dimensions.
+
+<a id="bittty.video.Video.set_line_attribute"></a>
+
+#### set\_line\_attribute
+
+```python
+def set_line_attribute(y: int, attribute: str) -> None
+```
+
+Set a line's DECDHL/DECDWL/DECSWL attribute.
+
+<a id="bittty.video.Video.get_line_attribute"></a>
+
+#### get\_line\_attribute
+
+```python
+def get_line_attribute(y: int) -> str
+```
+
+Return a line's width/height attribute (single by default).
+
+<a id="bittty.video.Video.reset_line_attributes"></a>
+
+#### reset\_line\_attributes
+
+```python
+def reset_line_attributes() -> None
+```
+
+Return every line to single-width, single-height (RIS).
+
+<a id="bittty.video.Video.get_content"></a>
+
+#### get\_content
+
+```python
+def get_content() -> List[List[Cell]]
+```
+
+Get buffer content as a 2D grid.
+
+<a id="bittty.video.Video.get_cell"></a>
+
+#### get\_cell
+
+```python
+def get_cell(x: int, y: int) -> Cell
+```
+
+Get cell at position.
+
+<a id="bittty.video.Video.set_cell"></a>
+
+#### set\_cell
+
+```python
+def set_cell(x: int, y: int, char: str, style_or_ansi=None) -> None
+```
+
+Set a single cell at position.
 
 **Arguments**:
 
-- `fg` - Foreground color (0-255) or None
-- `bg` - Background color (0-255) or None
-  
+  x, y: Position
+- `char` - Character to store
+- `style_or_ansi` - Either a Style object or ANSI string (for backward compatibility)
 
-**Returns**:
+<a id="bittty.video.Video.set"></a>
 
-  ANSI escape sequence for the colors
-
-<a id="bittty.color.get_rgb_code"></a>
-
-#### get\_rgb\_code
+#### set
 
 ```python
-@lru_cache(maxsize=512)
-def get_rgb_code(fg_rgb: Optional[Tuple[int, int, int]] = None,
-                 bg_rgb: Optional[Tuple[int, int, int]] = None) -> str
+def set(x: int, y: int, text: str, style_or_ansi=None) -> None
 ```
 
-Generate ANSI color code for RGB colors.
+Set text at position, overwriting existing content.
 
-**Arguments**:
+<a id="bittty.video.Video.insert"></a>
 
-- `fg_rgb` - Foreground RGB tuple (r, g, b) or None
-- `bg_rgb` - Background RGB tuple (r, g, b) or None
-  
-
-**Returns**:
-
-  ANSI escape sequence for the RGB colors
-
-<a id="bittty.color.get_style_code"></a>
-
-#### get\_style\_code
+#### insert
 
 ```python
-@lru_cache(maxsize=256)
-def get_style_code(bold: bool = False,
-                   dim: bool = False,
-                   italic: bool = False,
-                   underline: bool = False,
-                   blink: bool = False,
-                   reverse: bool = False,
-                   strike: bool = False,
-                   conceal: bool = False) -> str
+def insert(x: int, y: int, text: str, style_or_ansi=None) -> None
 ```
 
-Generate ANSI style code for text attributes.
+Insert text at position, shifting existing content right.
 
-**Returns**:
+<a id="bittty.video.Video.delete"></a>
 
-  ANSI escape sequence for the styles
-
-<a id="bittty.color.get_combined_code"></a>
-
-#### get\_combined\_code
+#### delete
 
 ```python
-@lru_cache(maxsize=2048)
-def get_combined_code(fg: Optional[int] = None,
-                      bg: Optional[int] = None,
-                      fg_rgb: Optional[Tuple[int, int, int]] = None,
-                      bg_rgb: Optional[Tuple[int, int, int]] = None,
-                      bold: bool = False,
-                      dim: bool = False,
-                      italic: bool = False,
-                      underline: bool = False,
-                      blink: bool = False,
-                      reverse: bool = False,
-                      strike: bool = False,
-                      conceal: bool = False) -> str
+def delete(x: int, y: int, count: int = 1) -> None
 ```
 
-Generate a combined ANSI code for colors and styles.
+Delete characters at position.
 
-RGB colors take precedence over palette colors.
+<a id="bittty.video.Video.clear_region"></a>
 
-**Returns**:
-
-  Complete ANSI escape sequence or empty string
-
-<a id="bittty.color.reset_code"></a>
-
-#### reset\_code
+#### clear\_region
 
 ```python
-@lru_cache(maxsize=1)
-def reset_code() -> str
+def clear_region(x1: int,
+                 y1: int,
+                 x2: int,
+                 y2: int,
+                 style_or_ansi=None) -> None
 ```
 
-Get the ANSI reset code.
+Clear a rectangular region.
 
-<a id="bittty.color.get_basic_color_code"></a>
+<a id="bittty.video.Video.clear_line"></a>
 
-#### get\_basic\_color\_code
+#### clear\_line
 
 ```python
-@lru_cache(maxsize=16)
-def get_basic_color_code(color: int, is_bg: bool = False) -> str
+def clear_line(y: int,
+               mode: int = constants.ERASE_FROM_CURSOR_TO_END,
+               cursor_x: int = 0,
+               style_or_ansi=None) -> None
 ```
 
-Generate ANSI code for basic 16 colors (0-15).
+Clear line content.
 
-**Arguments**:
+<a id="bittty.video.Video.scroll_up"></a>
 
-- `color` - Color index (0-7 for normal, 8-15 for bright)
-- `is_bg` - True for background, False for foreground
-  
-
-**Returns**:
-
-  ANSI escape sequence
-
-<a id="bittty.color.get_cursor_code"></a>
-
-#### get\_cursor\_code
+#### scroll\_up
 
 ```python
-@lru_cache(maxsize=1)
-def get_cursor_code() -> str
+def scroll_up(count: int) -> None
 ```
 
-Get ANSI code for cursor display (reverse video).
+Scroll content up, removing top lines and adding blank lines at bottom.
 
-<a id="bittty.color.get_clear_line_code"></a>
+<a id="bittty.video.Video.scroll_down"></a>
 
-#### get\_clear\_line\_code
+#### scroll\_down
 
 ```python
-@lru_cache(maxsize=1)
-def get_clear_line_code() -> str
+def scroll_down(count: int) -> None
 ```
 
-Get ANSI code to clear to end of line.
+Scroll content down, removing bottom lines and adding blank lines at top.
 
-<a id="bittty.color.reset_foreground_code"></a>
+<a id="bittty.video.Video.scroll_region_up"></a>
 
-#### reset\_foreground\_code
+#### scroll\_region\_up
 
 ```python
-@lru_cache(maxsize=1)
-def reset_foreground_code() -> str
+def scroll_region_up(top: int, bottom: int, count: int) -> None
 ```
 
-Get ANSI code to reset foreground color only.
+Scroll a specific region up by count lines. BLAZING FAST bulk operation!
 
-<a id="bittty.color.reset_background_code"></a>
+<a id="bittty.video.Video.scroll_region_down"></a>
 
-#### reset\_background\_code
+#### scroll\_region\_down
 
 ```python
-@lru_cache(maxsize=1)
-def reset_background_code() -> str
+def scroll_region_down(top: int, bottom: int, count: int) -> None
 ```
 
-Get ANSI code to reset background color only.
+Scroll a specific region down by count lines. BLAZING FAST bulk operation!
 
-<a id="bittty.color.reset_text_attributes"></a>
+<a id="bittty.video.Video.resize"></a>
 
-#### reset\_text\_attributes
+#### resize
 
 ```python
-@lru_cache(maxsize=1)
-def reset_text_attributes() -> str
+def resize(width: int, height: int) -> None
 ```
 
-Reset text attributes but preserve background color.
+Resize buffer to new dimensions.
 
-<a id="bittty.parser"></a>
+<a id="bittty.video.Video.get_line_text"></a>
 
-# bittty.parser
-
-Parser module for terminal escape sequence processing.
-
-This module provides a modular parser system that processes terminal escape sequences
-through specialized handlers:
-
-- CSI sequences (cursor movement, styling, modes)
-- OSC sequences (window titles, colors)
-- Simple escape sequences (cursor save/restore, etc.)
-- DCS sequences (device control strings)
-
-The main Parser class coordinates all these handlers and maintains the state machine.
-
-<a id="bittty.parser.escape"></a>
-
-# bittty.parser.escape
-
-Simple escape sequence handlers.
-
-Handles simple escape sequences that start with ESC followed by a single character
-(not CSI, OSC, or other multi-character sequences). These include cursor operations,
-character set designations, and terminal mode changes.
-
-<a id="bittty.parser.escape.handle_ris"></a>
-
-#### handle\_ris
+#### get\_line\_text
 
 ```python
-def handle_ris(terminal: Terminal, data: str) -> None
+def get_line_text(y: int) -> str
 ```
 
-RIS - Reset to Initial State (ESC c).
+Get plain text content of a line (for debugging/testing).
 
-<a id="bittty.parser.escape.handle_ind"></a>
+<a id="bittty.video.Video.get_line"></a>
 
-#### handle\_ind
+#### get\_line
 
 ```python
-def handle_ind(terminal: Terminal, data: str) -> None
+def get_line(y: int,
+             width: int = None,
+             cursor_x: int = -1,
+             cursor_y: int = -1,
+             show_cursor: bool = False,
+             mouse_x: int = -1,
+             mouse_y: int = -1,
+             show_mouse: bool = False) -> str
 ```
 
-IND - Index (ESC D) - Line feed.
+Get full ANSI sequence for a line.
 
-<a id="bittty.parser.escape.handle_ri"></a>
+<a id="bittty.video.Video.get_line_tuple"></a>
 
-#### handle\_ri
+#### get\_line\_tuple
 
 ```python
-def handle_ri(terminal: Terminal, data: str) -> None
+def get_line_tuple(y: int,
+                   width: int = None,
+                   cursor_x: int = -1,
+                   cursor_y: int = -1,
+                   show_cursor: bool = False,
+                   mouse_x: int = -1,
+                   mouse_y: int = -1,
+                   show_mouse: bool = False) -> tuple
 ```
 
-RI - Reverse Index (ESC M) - Reverse line feed.
+Get line as a hashable tuple for caching.
 
-<a id="bittty.parser.escape.handle_decsc"></a>
+<a id="bittty.connections"></a>
 
-#### handle\_decsc
+# bittty.connections
+
+Connections and the board-side ports they plug into.
+
+A port is a jack on the board, and both are full-duplex. The host port carries
+bytes both ways (a serial line: PTY, pipe, socket). The display port carries
+typed events both ways: present events down to the terminal (chrome), input
+events up from it.
+
+<a id="bittty.connections.Connection"></a>
+
+## Connection Objects
 
 ```python
-def handle_decsc(terminal: Terminal, data: str) -> None
+@runtime_checkable
+class Connection(Protocol)
 ```
 
-DECSC - Save Cursor (ESC 7).
+A cable implementation (PTY, pipe, socket) that accepts terminal input/reply data.
 
-<a id="bittty.parser.escape.handle_decrc"></a>
+<a id="bittty.connections.Connection.write"></a>
 
-#### handle\_decrc
+#### write
 
 ```python
-def handle_decrc(terminal: Terminal, data: str) -> None
+def write(data: str)
 ```
 
-DECRC - Restore Cursor (ESC 8).
+Write data to the connected host.
 
-<a id="bittty.parser.escape.handle_deckpam"></a>
+<a id="bittty.connections.Presentable"></a>
 
-#### handle\_deckpam
+## Presentable Objects
 
 ```python
-def handle_deckpam(terminal: Terminal, data: str) -> None
+@runtime_checkable
+class Presentable(Protocol)
 ```
 
-DECKPAM - Application Keypad Mode (ESC =).
+A terminal (chrome) that receives discrete present events from the board.
 
-<a id="bittty.parser.escape.handle_deckpnm"></a>
+<a id="bittty.connections.Presentable.present"></a>
 
-#### handle\_deckpnm
+#### present
 
 ```python
-def handle_deckpnm(terminal: Terminal, data: str) -> None
+def present(event: "PresentEvent") -> None
 ```
 
-DECKPNM - Numeric Keypad Mode (ESC >).
+Handle one present event.
 
-<a id="bittty.parser.escape.handle_st"></a>
+<a id="bittty.connections.HostPort"></a>
 
-#### handle\_st
+## HostPort Objects
 
 ```python
-def handle_st(terminal: Terminal, data: str) -> None
+class HostPort()
 ```
 
-ST - String Terminator (ESC \) - Already handled by sequence patterns.
+The board's jack toward the child program; a Connection (PTY, pipe) plugs in.
 
-<a id="bittty.parser.escape.handle_ss2"></a>
+Full duplex: write() is the transmit pin (replies and encoded input toward
+the child); connect() starts the receive pump, feeding the child's output
+into a sink — the board wires it to its parser.
 
-#### handle\_ss2
+<a id="bittty.connections.HostPort.attach"></a>
+
+#### attach
 
 ```python
-def handle_ss2(terminal: Terminal, data: str) -> None
+def attach(connection: Connection) -> None
 ```
 
-SS2 - Single Shift 2 (ESC N).
+Attach a connection to this host port (transmit side only).
 
-<a id="bittty.parser.escape.handle_ss3"></a>
+<a id="bittty.connections.HostPort.detach"></a>
 
-#### handle\_ss3
+#### detach
 
 ```python
-def handle_ss3(terminal: Terminal, data: str) -> None
+def detach() -> None
 ```
 
-SS3 - Single Shift 3 (ESC O).
+Detach the current connection.
 
-<a id="bittty.parser.escape.handle_nel"></a>
+<a id="bittty.connections.HostPort.connect"></a>
 
-#### handle\_nel
+#### connect
 
 ```python
-def handle_nel(terminal: Terminal, data: str) -> None
+def connect(connection: Connection,
+            on_data: Callable[[str], None],
+            on_idle: Optional[Callable[[], bool]] = None,
+            on_closed: Optional[Callable[[], None]] = None) -> None
 ```
 
-NEL - Next Line (ESC E).
+Plug in a duplex connection and start pumping its receive side.
 
-<a id="bittty.parser.escape.handle_hts"></a>
+on_data receives each decoded chunk. on_idle fires when a read returns
+nothing — return True to stop the pump (the board reaps its dead child
+there). on_closed fires when the connection errors out.
 
-#### handle\_hts
+<a id="bittty.connections.HostPort.disconnect"></a>
+
+#### disconnect
 
 ```python
-def handle_hts(terminal: Terminal, data: str) -> None
+def disconnect() -> None
 ```
 
-HTS - Horizontal Tab Set (ESC H).
+Stop the receive pump and unplug the connection.
 
-<a id="bittty.parser.escape.handle_ri_alt"></a>
+<a id="bittty.connections.HostPort.connected"></a>
 
-#### handle\_ri\_alt
+#### connected
 
 ```python
-def handle_ri_alt(terminal: Terminal, data: str) -> None
+@property
+def connected() -> bool
 ```
 
-Alternative RI implementation if needed.
+Whether a connection is attached.
 
-<a id="bittty.parser.escape.dispatch_escape"></a>
+<a id="bittty.connections.HostPort.write"></a>
 
-#### dispatch\_escape
+#### write
 
 ```python
-def dispatch_escape(terminal: Terminal, data: str) -> bool
+def write(data: str, flush: bool = False)
 ```
 
-Main escape sequence dispatcher using O(1) lookup table.
+Write data to the attached connection.
 
-Returns True if sequence was handled, False if it should be handled elsewhere
-(like charset designation sequences).
+<a id="bittty.connections.DisplayPort"></a>
 
-<a id="bittty.parser.escape.handle_charset_escape"></a>
-
-#### handle\_charset\_escape
+## DisplayPort Objects
 
 ```python
-def handle_charset_escape(terminal: Terminal, data: str) -> bool
+class DisplayPort()
 ```
 
-Handle charset designation escape sequences like ESC(B.
+The board's jack toward the terminal (chrome); mirrors HostPort.
 
-Returns True if sequence was handled, False otherwise.
+The name is the video-connector pun, kept on purpose: the one place
+"display" survives in board vocabulary. Full duplex: the board pushes
+discrete present events down; the terminal sends input events, focus
+changes, and capability reports up. When no terminal is attached
+present() is a no-op, so the board runs headless exactly as before.
 
-<a id="bittty.parser.escape.reset_terminal"></a>
+<a id="bittty.connections.DisplayPort.attach"></a>
 
-#### reset\_terminal
+#### attach
 
 ```python
-def reset_terminal(terminal: Terminal) -> None
+def attach(terminal: Presentable) -> None
 ```
 
-Reset terminal to initial state.
+Attach a terminal (chrome) to receive present events.
+
+<a id="bittty.connections.DisplayPort.detach"></a>
+
+#### detach
+
+```python
+def detach() -> None
+```
+
+Detach the current terminal.
+
+<a id="bittty.connections.DisplayPort.connected"></a>
+
+#### connected
+
+```python
+@property
+def connected() -> bool
+```
+
+Whether a terminal (chrome) is attached.
+
+<a id="bittty.connections.DisplayPort.present"></a>
+
+#### present
+
+```python
+def present(event: "PresentEvent") -> None
+```
+
+Forward a present event to the attached terminal, if any.
+
+<a id="bittty.connections.DisplayPort.input"></a>
+
+#### input
+
+```python
+def input(data: str) -> None
+```
+
+Keystrokes from the terminal, translated per keyboard modes.
+
+<a id="bittty.connections.DisplayPort.input_key"></a>
+
+#### input\_key
+
+```python
+def input_key(char: str, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+A key + modifier from the terminal.
+
+<a id="bittty.connections.DisplayPort.input_fkey"></a>
+
+#### input\_fkey
+
+```python
+def input_fkey(num: int, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+A function key + modifier from the terminal.
+
+<a id="bittty.connections.DisplayPort.input_numpad_key"></a>
+
+#### input\_numpad\_key
+
+```python
+def input_numpad_key(key: str) -> None
+```
+
+A numpad key from the terminal.
+
+<a id="bittty.connections.DisplayPort.input_mouse"></a>
+
+#### input\_mouse
+
+```python
+def input_mouse(x: int, y: int, button: int, event_type: str,
+                modifiers: set[str]) -> None
+```
+
+A mouse event from the terminal.
+
+<a id="bittty.connections.DisplayPort.focus_in"></a>
+
+#### focus\_in
+
+```python
+def focus_in() -> None
+```
+
+The box gained focus.
+
+<a id="bittty.connections.DisplayPort.focus_out"></a>
+
+#### focus\_out
+
+```python
+def focus_out() -> None
+```
+
+The box lost focus.
+
+<a id="bittty.connections.DisplayPort.set_caps"></a>
+
+#### set\_caps
+
+```python
+def set_caps(caps: "TerminalCaps") -> None
+```
+
+The terminal reports what its venue can do.
 
 <a id="bittty.parser.dcs"></a>
 
 # bittty.parser.dcs
 
-DCS (Device Control String) sequence handlers.
+DCS (Device Control String) operation parser.
 
-Handles DCS sequences that start with ESC P. These are used for device-specific
-commands like sixel graphics, but current implementation is minimal.
+<a id="bittty.parser.dcs.parse_dcs_operation"></a>
 
-<a id="bittty.parser.dcs.dispatch_dcs"></a>
-
-#### dispatch\_dcs
+#### parse\_dcs\_operation
 
 ```python
-def dispatch_dcs(terminal: Terminal, string_buffer: str) -> None
+def parse_dcs_operation(string_buffer: str, raw: str = "") -> Operation
 ```
 
-Main DCS dispatcher.
+Return an operation for a DCS sequence.
 
-Currently minimal implementation - primarily used for passthrough sequences
-like tmux or for potential future sixel graphics support.
+<a id="bittty.parser.csi"></a>
+
+# bittty.parser.csi
+
+CSI (Control Sequence Introducer) operation parser.
+
+<a id="bittty.parser.csi.param"></a>
+
+#### param
+
+```python
+def param(params, index=0, default=None)
+```
+
+Return params[index] when present and not None, else default.
+
+<a id="bittty.parser.csi.parse_csi_params"></a>
+
+#### parse\_csi\_params
+
+```python
+@lru_cache(maxsize=1000)
+def parse_csi_params(data)
+```
+
+Parse CSI parameters when actually needed.
+
+**Arguments**:
+
+- `data` - Complete CSI sequence like '[1;2H' or '[?25h'
+  
+
+**Returns**:
+
+- `tuple` - (params_list, intermediate_chars, final_char)
+
+<a id="bittty.parser.csi.parse_csi_operation"></a>
+
+#### parse\_csi\_operation
+
+```python
+@lru_cache(maxsize=4096)
+def parse_csi_operation(raw_csi_data: str) -> Operation | None
+```
+
+Return a semantic operation for CSI sequences migrated to the operation layer.
+
+Cached: real terminal traffic repeats a small CSI vocabulary (a full-screen
+TUI session uses a few hundred distinct sequences), and Operation is frozen
+with immutable args, so one instance per distinct sequence is safe to share.
+
+<a id="bittty.parser.osc"></a>
+
+# bittty.parser.osc
+
+OSC (Operating System Command) operation parser.
+
+<a id="bittty.parser.osc.parse_osc_operation"></a>
+
+#### parse\_osc\_operation
+
+```python
+def parse_osc_operation(string_buffer: str, raw: str = "") -> Operation | None
+```
+
+Return a semantic operation for an OSC sequence.
 
 <a id="bittty.parser.core"></a>
 
@@ -434,1320 +976,208 @@ class Parser()
 State machine: GROUND → (CSI | STRING[osc|dcs|apc|pm|sos]) → GROUND
 Uses small, state-specific scanners for speed.
 
-<a id="bittty.parser.csi"></a>
+<a id="bittty.parser.escape"></a>
 
-# bittty.parser.csi
+# bittty.parser.escape
 
-CSI (Control Sequence Introducer) sequence handlers.
+Simple escape sequence operation parser.
 
-Handles all CSI sequences that start with ESC[. These include cursor movement,
-screen clearing, styling, and terminal mode operations.
+<a id="bittty.parser.escape.parse_escape_operation"></a>
 
-<a id="bittty.parser.csi.parse_csi_params"></a>
-
-#### parse\_csi\_params
+#### parse\_escape\_operation
 
 ```python
-@lru_cache(maxsize=1000)
-def parse_csi_params(data)
+def parse_escape_operation(data: str) -> Operation | None
 ```
 
-Parse CSI parameters when actually needed.
+Return a semantic operation for a simple ESC sequence.
 
-**Arguments**:
+<a id="bittty.parser.escape.parse_hash_operation"></a>
 
-- `data` - Complete CSI sequence like '[1;2H' or '[?25h'
-  
-
-**Returns**:
-
-- `tuple` - (params_list, intermediate_chars, final_char)
-
-<a id="bittty.parser.csi.dispatch_csi"></a>
-
-#### dispatch\_csi
+#### parse\_hash\_operation
 
 ```python
-def dispatch_csi(terminal, raw_csi_data)
+def parse_hash_operation(data: str) -> Operation | None
 ```
 
-BLAZING FAST CSI dispatcher with selective parsing and inlined handlers! 🚀
+Return a semantic operation for an ESC # n line-size / alignment sequence.
 
-Revolutionary approach:
-1. **No redundant parsing**: SGR sequences pass raw to style system
-2. **Selective parsing**: Only parse parameters when actually needed
-3. **Inlined handlers**: Zero function call overhead
-4. **Fast path detection**: Check final char before any work
+<a id="bittty.parser.escape.parse_charset_operation"></a>
 
-**Arguments**:
-
-- `terminal` - Terminal instance
-- `raw_csi_data` - Raw CSI sequence like '[31m' or '[1;2H'
-
-<a id="bittty.parser.csi.dispatch_sm_rm"></a>
-
-#### dispatch\_sm\_rm
+#### parse\_charset\_operation
 
 ```python
-def dispatch_sm_rm(terminal: Terminal, params: List[Optional[int]],
-                   set_mode: bool) -> None
+def parse_charset_operation(data: str) -> Operation | None
 ```
 
-Handle SM/RM (Set/Reset Mode) for standard modes.
+Return a semantic operation for a charset designation sequence.
 
-<a id="bittty.parser.csi.dispatch_sm_rm_private"></a>
+<a id="bittty.parser"></a>
 
-#### dispatch\_sm\_rm\_private
+# bittty.parser
 
-```python
-def dispatch_sm_rm_private(terminal: Terminal, params: List[Optional[int]],
-                           set_mode: bool) -> None
-```
+Parser module for terminal escape sequence processing.
 
-Handle SM/RM (Set/Reset Mode) for private modes (prefixed with ?).
+This module provides a modular parser system that processes terminal escape sequences
+through specialized handlers:
 
-<a id="bittty.parser.csi.get_private_mode_status"></a>
+- CSI sequences (cursor movement, styling, modes)
+- OSC sequences (window titles, colors)
+- Simple escape sequences (cursor save/restore, etc.)
+- DCS sequences (device control strings)
 
-#### get\_private\_mode\_status
+The main Parser class coordinates all these handlers and maintains the state machine.
 
-```python
-def get_private_mode_status(terminal: Terminal, mode: int) -> int
-```
+<a id="bittty.operations"></a>
 
-Get the status of a private mode for DECRQM response.
+# bittty.operations
 
-<a id="bittty.parser.csi.get_ansi_mode_status"></a>
+Parser operation model.
 
-#### get\_ansi\_mode\_status
+<a id="bittty.operations.Operation"></a>
 
-```python
-def get_ansi_mode_status(terminal: Terminal, mode: int) -> int
-```
-
-Get the status of an ANSI mode for DECRQM response.
-
-<a id="bittty.parser.osc"></a>
-
-# bittty.parser.osc
-
-OSC (Operating System Command) sequence handlers.
-
-Handles OSC sequences that start with ESC]. These include window title operations,
-color palette changes, and other system-level commands.
-
-<a id="bittty.parser.osc.dispatch_osc"></a>
-
-#### dispatch\_osc
-
-```python
-@lru_cache(maxsize=500)
-def dispatch_osc(terminal: Terminal, string_buffer: str) -> None
-```
-
-BLAZING FAST OSC dispatcher with LRU caching and inlined handlers! 🚀
-
-3.77x faster than the original through:
-1. **LRU caching**: Smart eviction beats custom cache clearing
-2. **Inlined handlers**: No function call overhead
-3. **Fast paths**: Handle 95% of OSC commands with minimal parsing
-
-<a id="bittty.style"></a>
-
-# bittty.style
-
-<a id="bittty.style.Style"></a>
-
-## Style Objects
+## Operation Objects
 
 ```python
 @dataclass(frozen=True)
-class Style()
+class Operation()
 ```
 
-<a id="bittty.style.Style.merge"></a>
+A parsed terminal operation.
 
-#### merge
+<a id="bittty.operations.OperationSink"></a>
 
-```python
-def merge(other: Style) -> Style
-```
-
-Merge another style into this one. The other style takes precedence.
-
-<a id="bittty.style.Style.diff"></a>
-
-#### diff
-
-```python
-@lru_cache(maxsize=10000)
-def diff(other: "Style") -> str
-```
-
-Generate minimal ANSI sequence to transition to another style.
-
-<a id="bittty.style.get_background"></a>
-
-#### get\_background
-
-```python
-@lru_cache(maxsize=10000)
-def get_background(ansi: str) -> str
-```
-
-Extract just the background color as an ANSI sequence.
-
-**Arguments**:
-
-- `ansi` - ANSI escape sequence
-  
-
-**Returns**:
-
-  ANSI sequence with just the background color, or empty string
-
-<a id="bittty.style.merge_ansi_styles"></a>
-
-#### merge\_ansi\_styles
-
-```python
-@lru_cache(maxsize=10000)
-def merge_ansi_styles(base: str, new: str) -> str
-```
-
-Merge two ANSI style sequences, returning a new ANSI sequence.
-
-**Arguments**:
-
-- `base` - Base ANSI sequence
-- `new` - New ANSI sequence to merge
-  
-
-**Returns**:
-
-  Merged ANSI sequence
-
-<a id="bittty.style.style_to_ansi"></a>
-
-#### style\_to\_ansi
-
-```python
-@lru_cache(maxsize=10000)
-def style_to_ansi(style: Style) -> str
-```
-
-Convert a Style object back to an ANSI escape sequence.
-
-**Arguments**:
-
-- `style` - Style object to convert
-  
-
-**Returns**:
-
-  ANSI escape sequence string
-
-<a id="bittty.tcaps"></a>
-
-# bittty.tcaps
-
-This module provides access to terminal capabilities from the terminfo database.
-
-<a id="bittty.tcaps.TermInfo"></a>
-
-## TermInfo Objects
-
-```python
-class TermInfo()
-```
-
-Stores and provides access to a terminal's capabilities from terminfo.
-
-<a id="bittty.tcaps.TermInfo.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(term_name: str, overrides: str)
-```
-
-Initializes the terminal definition.
-
-This loads the capabilities for the given terminal name from the system's
-terminfo database and then applies any user-provided overrides.
-
-**Arguments**:
-
-- `term_name` - The terminal name (e.g., "xterm-256color").
-- `overrides` - A string of user-defined overrides, like in tmux.conf.
-
-<a id="bittty.tcaps.TermInfo.has"></a>
-
-#### has
-
-```python
-def has(cap: str) -> bool
-```
-
-Checks if the terminal has a given capability.
-
-<a id="bittty.tcaps.TermInfo.get_string"></a>
-
-#### get\_string
-
-```python
-def get_string(cap: str) -> str
-```
-
-Gets a string capability.
-
-This is the primary method for retrieving key codes (e.g., "kcuu1" for
-up arrow) to send to the child application.
-
-<a id="bittty.tcaps.TermInfo.get_number"></a>
-
-#### get\_number
-
-```python
-def get_number(cap: str) -> int
-```
-
-Gets a numeric capability.
-
-<a id="bittty.tcaps.TermInfo.get_flag"></a>
-
-#### get\_flag
-
-```python
-def get_flag(cap: str) -> bool
-```
-
-Gets a boolean flag capability.
-
-<a id="bittty.tcaps.TermInfo.describe"></a>
-
-#### describe
-
-```python
-def describe() -> str
-```
-
-Returns a descriptive string of all loaded capabilities for debugging.
-
-<a id="bittty.terminal"></a>
-
-# bittty.terminal
-
-A terminal emulator.
-
-UI frameworks can subclass this to create terminal widgets.
-
-<a id="bittty.terminal.Terminal"></a>
-
-## Terminal Objects
-
-```python
-class Terminal()
-```
-
-A terminal emulator with process management and screen buffers.
-
-This class handles all terminal logic but has no UI dependencies.
-Subclass this to create terminal widgets for specific UI frameworks.
-
-<a id="bittty.terminal.Terminal.get_pty_handler"></a>
-
-#### get\_pty\_handler
-
-```python
-@staticmethod
-def get_pty_handler(rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
-                    cols: int = constants.DEFAULT_TERMINAL_WIDTH,
-                    stdin=None,
-                    stdout=None)
-```
-
-Create a platform-appropriate PTY handler.
-
-<a id="bittty.terminal.Terminal.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(command: str = "/bin/bash",
-             width: int = 80,
-             height: int = 24,
-             stdin=None,
-             stdout=None) -> None
-```
-
-Initialize terminal.
-
-<a id="bittty.terminal.Terminal.set_pty_data_callback"></a>
-
-#### set\_pty\_data\_callback
-
-```python
-def set_pty_data_callback(callback: Callable[[str], None]) -> None
-```
-
-Set callback for handling PTY data asynchronously.
-
-<a id="bittty.terminal.Terminal.resize"></a>
-
-#### resize
-
-```python
-def resize(width: int, height: int) -> None
-```
-
-Resize terminal to new dimensions.
-
-<a id="bittty.terminal.Terminal.get_content"></a>
-
-#### get\_content
-
-```python
-def get_content()
-```
-
-Get current screen content as raw buffer data.
-
-<a id="bittty.terminal.Terminal.capture_pane"></a>
-
-#### capture\_pane
-
-```python
-def capture_pane() -> str
-```
-
-Capture terminal content.
-
-<a id="bittty.terminal.Terminal.write_text"></a>
-
-#### write\_text
-
-```python
-def write_text(text: str, ansi_code: str = "") -> None
-```
-
-Write text at cursor position.
-
-<a id="bittty.terminal.Terminal.set_g0_charset"></a>
-
-#### set\_g0\_charset
-
-```python
-def set_g0_charset(charset: str) -> None
-```
-
-Set the G0 character set.
-
-<a id="bittty.terminal.Terminal.set_g1_charset"></a>
-
-#### set\_g1\_charset
-
-```python
-def set_g1_charset(charset: str) -> None
-```
-
-Set the G1 character set.
-
-<a id="bittty.terminal.Terminal.set_g2_charset"></a>
-
-#### set\_g2\_charset
-
-```python
-def set_g2_charset(charset: str) -> None
-```
-
-Set the G2 character set.
-
-<a id="bittty.terminal.Terminal.set_g3_charset"></a>
-
-#### set\_g3\_charset
-
-```python
-def set_g3_charset(charset: str) -> None
-```
-
-Set the G3 character set.
-
-<a id="bittty.terminal.Terminal.shift_in"></a>
-
-#### shift\_in
-
-```python
-def shift_in() -> None
-```
-
-Shift In (SI) - switch to G0.
-
-<a id="bittty.terminal.Terminal.shift_out"></a>
-
-#### shift\_out
-
-```python
-def shift_out() -> None
-```
-
-Shift Out (SO) - switch to G1.
-
-<a id="bittty.terminal.Terminal.single_shift_2"></a>
-
-#### single\_shift\_2
-
-```python
-def single_shift_2() -> None
-```
-
-Single Shift 2 (SS2) - use G2 for next character only.
-
-<a id="bittty.terminal.Terminal.single_shift_3"></a>
-
-#### single\_shift\_3
-
-```python
-def single_shift_3() -> None
-```
-
-Single Shift 3 (SS3) - use G3 for next character only.
-
-<a id="bittty.terminal.Terminal.move_cursor"></a>
-
-#### move\_cursor
-
-```python
-def move_cursor(x: Optional[int], y: Optional[int]) -> None
-```
-
-Move cursor to position.
-
-<a id="bittty.terminal.Terminal.line_feed"></a>
-
-#### line\_feed
-
-```python
-def line_feed(is_wrapped: bool = False) -> None
-```
-
-Perform line feed, with optional carriage return if DECNLM is enabled.
-
-<a id="bittty.terminal.Terminal.carriage_return"></a>
-
-#### carriage\_return
-
-```python
-def carriage_return() -> None
-```
-
-Move cursor to beginning of line.
-
-<a id="bittty.terminal.Terminal.backspace"></a>
-
-#### backspace
-
-```python
-def backspace() -> None
-```
-
-Move cursor back one position.
-
-<a id="bittty.terminal.Terminal.clear_screen"></a>
-
-#### clear\_screen
-
-```python
-def clear_screen(mode: int = constants.ERASE_FROM_CURSOR_TO_END) -> None
-```
-
-Clear screen.
-
-<a id="bittty.terminal.Terminal.clear_line"></a>
-
-#### clear\_line
-
-```python
-def clear_line(mode: int = constants.ERASE_FROM_CURSOR_TO_END) -> None
-```
-
-Clear line.
-
-<a id="bittty.terminal.Terminal.clear_rect"></a>
-
-#### clear\_rect
-
-```python
-def clear_rect(x1: int,
-               y1: int,
-               x2: int,
-               y2: int,
-               ansi_code: str = "") -> None
-```
-
-Clear a rectangular region.
-
-<a id="bittty.terminal.Terminal.alternate_screen_on"></a>
-
-#### alternate\_screen\_on
-
-```python
-def alternate_screen_on() -> None
-```
-
-Switch to alternate screen.
-
-<a id="bittty.terminal.Terminal.alternate_screen_off"></a>
-
-#### alternate\_screen\_off
-
-```python
-def alternate_screen_off() -> None
-```
-
-Switch to primary screen.
-
-<a id="bittty.terminal.Terminal.set_mode"></a>
-
-#### set\_mode
-
-```python
-def set_mode(mode: int, value: bool = True, private: bool = False) -> None
-```
-
-Set terminal mode.
-
-<a id="bittty.terminal.Terminal.clear_mode"></a>
-
-#### clear\_mode
-
-```python
-def clear_mode(mode, private: bool = False) -> None
-```
-
-Clear terminal mode.
-
-<a id="bittty.terminal.Terminal.switch_screen"></a>
-
-#### switch\_screen
-
-```python
-def switch_screen(alt: bool) -> None
-```
-
-Switch between primary and alternate screen.
-
-<a id="bittty.terminal.Terminal.set_title"></a>
-
-#### set\_title
-
-```python
-def set_title(title: str) -> None
-```
-
-Set terminal title.
-
-<a id="bittty.terminal.Terminal.set_icon_title"></a>
-
-#### set\_icon\_title
-
-```python
-def set_icon_title(icon_title: str) -> None
-```
-
-Set terminal icon title.
-
-<a id="bittty.terminal.Terminal.bell"></a>
-
-#### bell
-
-```python
-def bell() -> None
-```
-
-Terminal bell.
-
-<a id="bittty.terminal.Terminal.alignment_test"></a>
-
-#### alignment\_test
-
-```python
-def alignment_test() -> None
-```
-
-Fill the screen with 'E' characters for alignment testing.
-
-<a id="bittty.terminal.Terminal.save_cursor"></a>
-
-#### save\_cursor
-
-```python
-def save_cursor() -> None
-```
-
-Save cursor position and attributes.
-
-<a id="bittty.terminal.Terminal.restore_cursor"></a>
-
-#### restore\_cursor
-
-```python
-def restore_cursor() -> None
-```
-
-Restore cursor position and attributes.
-
-<a id="bittty.terminal.Terminal.set_scroll_region"></a>
-
-#### set\_scroll\_region
-
-```python
-def set_scroll_region(top: int, bottom: int) -> None
-```
-
-Set scroll region.
-
-<a id="bittty.terminal.Terminal.insert_lines"></a>
-
-#### insert\_lines
-
-```python
-def insert_lines(count: int) -> None
-```
-
-Insert blank lines at cursor position.
-
-<a id="bittty.terminal.Terminal.delete_lines"></a>
-
-#### delete\_lines
-
-```python
-def delete_lines(count: int) -> None
-```
-
-Delete lines at cursor position.
-
-<a id="bittty.terminal.Terminal.insert_characters"></a>
-
-#### insert\_characters
-
-```python
-def insert_characters(count: int, ansi_code: str = "") -> None
-```
-
-Insert blank characters at cursor position.
-
-<a id="bittty.terminal.Terminal.delete_characters"></a>
-
-#### delete\_characters
+## OperationSink Objects
 
 ```python
-def delete_characters(count: int) -> None
+class OperationSink(Protocol)
 ```
 
-Delete characters at cursor position.
+Receives operations emitted by the parser.
 
-<a id="bittty.terminal.Terminal.scroll"></a>
+<a id="bittty.operations.OperationSink.handle_operation"></a>
 
-#### scroll
+#### handle\_operation
 
 ```python
-def scroll(lines: int) -> None
+def handle_operation(operation: Operation) -> None
 ```
 
-BLAZING FAST centralized scrolling with bulk operations! 🚀
+Handle one parsed operation.
 
-**Arguments**:
+<a id="bittty.operations.control_name"></a>
 
-- `lines` - Number of lines to scroll. Positive = up, negative = down.
+#### control\_name
 
-<a id="bittty.terminal.Terminal.scroll_up"></a>
-
-#### scroll\_up
-
-```python
-def scroll_up(count: int) -> None
-```
-
-Scroll content up within scroll region.
-
-<a id="bittty.terminal.Terminal.scroll_down"></a>
-
-#### scroll\_down
-
-```python
-def scroll_down(count: int) -> None
-```
-
-Scroll content down within scroll region.
-
-<a id="bittty.terminal.Terminal.set_cursor"></a>
-
-#### set\_cursor
-
-```python
-def set_cursor(x: Optional[int], y: Optional[int]) -> None
-```
-
-Set cursor position (alias for move_cursor).
-
-<a id="bittty.terminal.Terminal.set_column_mode"></a>
-
-#### set\_column\_mode
-
-```python
-def set_column_mode(columns: int) -> None
-```
-
-Set terminal width for DECCOLM (column mode).
-
-**Arguments**:
-
-- `columns` - 80 for normal mode, 132 for wide mode
-
-<a id="bittty.terminal.Terminal.repeat_last_character"></a>
-
-#### repeat\_last\_character
-
-```python
-def repeat_last_character(count: int) -> None
-```
-
-Repeat the last printed character count times (REP command).
-
-<a id="bittty.terminal.Terminal.input_key"></a>
-
-#### input\_key
-
-```python
-def input_key(char: str, modifier: int = constants.KEY_MOD_NONE) -> None
-```
-
-Convert key + modifier to standard control codes, then send to input().
-
-<a id="bittty.terminal.Terminal.input_fkey"></a>
-
-#### input\_fkey
-
-```python
-def input_fkey(num: int, modifier: int = constants.KEY_MOD_NONE) -> None
-```
-
-Convert function key + modifier to standard control codes, then send to input().
-
-<a id="bittty.terminal.Terminal.input_numpad_key"></a>
-
-#### input\_numpad\_key
-
-```python
-def input_numpad_key(key: str) -> None
-```
-
-Convert numpad key to appropriate sequence based on DECNKM mode.
-
-<a id="bittty.terminal.Terminal.input"></a>
-
-#### input
-
-```python
-def input(data: str) -> None
-```
-
-Translate control codes based on terminal modes and send to PTY.
-
-<a id="bittty.terminal.Terminal.input_mouse"></a>
-
-#### input\_mouse
-
-```python
-def input_mouse(x: int, y: int, button: int, event_type: str,
-                modifiers: set[str]) -> None
-```
-
-Handle mouse input, cache position, and send appropriate sequence to PTY.
-
-**Arguments**:
-
-- `x` - 1-based mouse column.
-- `y` - 1-based mouse row.
-- `button` - The button that was pressed/released.
-- `event_type` - "press", "release", or "move".
-- `modifiers` - A set of active modifiers ("shift", "meta", "ctrl").
-
-<a id="bittty.terminal.Terminal.send"></a>
-
-#### send
-
-```python
-def send(data: str) -> None
-```
-
-Send data to PTY without flushing (for regular input/unsolicited messages).
-
-<a id="bittty.terminal.Terminal.respond"></a>
-
-#### respond
-
-```python
-def respond(data: str) -> None
-```
-
-Send response to PTY with immediate flush (for query responses).
-
-<a id="bittty.terminal.Terminal.start_process"></a>
-
-#### start\_process
-
-```python
-async def start_process() -> None
-```
-
-Start the child process with PTY.
-
-<a id="bittty.terminal.Terminal.stop_process"></a>
-
-#### stop\_process
-
-```python
-def stop_process() -> None
-```
-
-Stop the child process and clean up.
-
-<a id="bittty.buffer"></a>
-
-# bittty.buffer
-
-A grid-based terminal buffer.
-
-<a id="bittty.buffer.Buffer"></a>
-
-## Buffer Objects
-
-```python
-class Buffer()
-```
-
-A 2D grid that stores terminal content.
-
-<a id="bittty.buffer.Buffer.__init__"></a>
-
-#### \_\_init\_\_
-
-```python
-def __init__(width: int, height: int) -> None
-```
-
-Initialize buffer with given dimensions.
-
-<a id="bittty.buffer.Buffer.get_content"></a>
-
-#### get\_content
-
-```python
-def get_content() -> List[List[Cell]]
-```
-
-Get buffer content as a 2D grid.
-
-<a id="bittty.buffer.Buffer.get_cell"></a>
-
-#### get\_cell
-
-```python
-def get_cell(x: int, y: int) -> Cell
-```
-
-Get cell at position.
-
-<a id="bittty.buffer.Buffer.set_cell"></a>
-
-#### set\_cell
-
 ```python
-def set_cell(x: int, y: int, char: str, style_or_ansi=None) -> None
+def control_name(ch: str) -> str
 ```
-
-Set a single cell at position.
 
-**Arguments**:
+Return a stable operation name for a C0 control character.
 
-  x, y: Position
-- `char` - Character to store
-- `style_or_ansi` - Either a Style object or ANSI string (for backward compatibility)
+<a id="bittty.keymap"></a>
 
-<a id="bittty.buffer.Buffer.set"></a>
+# bittty.keymap
 
-#### set
-
-```python
-def set(x: int, y: int, text: str, style_or_ansi=None) -> None
-```
+Keyboard encoding as model data.
 
-Set text at position, overwriting existing content.
+Function keys are where real terminals diverge most: a VT100 has only PF1-PF4
+and no keyboard-modifier encoding, while xterm sends F1-F12 and folds shift/alt/
+ctrl into a ``;mod`` parameter. A `KeyMap` captures that difference as data.
 
-<a id="bittty.buffer.Buffer.insert"></a>
+<a id="bittty.keymap.KeyMap"></a>
 
-#### insert
+## KeyMap Objects
 
 ```python
-def insert(x: int, y: int, text: str, style_or_ansi=None) -> None
+@dataclass(frozen=True)
+class KeyMap()
 ```
-
-Insert text at position, shifting existing content right.
-
-<a id="bittty.buffer.Buffer.delete"></a>
-
-#### delete
 
-```python
-def delete(x: int, y: int, count: int = 1) -> None
-```
+How a terminal encodes its keys (and whether it encodes modifiers).
 
-Delete characters at position.
+<a id="bittty.keymap.KeyMap.cursor_keys"></a>
 
-<a id="bittty.buffer.Buffer.clear_region"></a>
+#### cursor\_keys
 
-#### clear\_region
+"up"/"down"/"left"/"right" -> CSI/SS3 final byte
 
-```python
-def clear_region(x1: int,
-                 y1: int,
-                 x2: int,
-                 y2: int,
-                 style_or_ansi=None) -> None
-```
+<a id="bittty.keymap.KeyMap.nav_keys"></a>
 
-Clear a rectangular region.
+#### nav\_keys
 
-<a id="bittty.buffer.Buffer.clear_line"></a>
+"home"/"end"/... -> CSI body
 
-#### clear\_line
+<a id="bittty.keymap.KeyMap.modifiers"></a>
 
-```python
-def clear_line(y: int,
-               mode: int = constants.ERASE_FROM_CURSOR_TO_END,
-               cursor_x: int = 0,
-               style_or_ansi=None) -> None
-```
+#### modifiers
 
-Clear line content.
+whether shift/alt/ctrl are folded into the sequence
 
-<a id="bittty.buffer.Buffer.scroll_up"></a>
+<a id="bittty.keymap.apply_modifier"></a>
 
-#### scroll\_up
+#### apply\_modifier
 
 ```python
-def scroll_up(count: int) -> None
+def apply_modifier(sequence: str, modifier: int) -> str
 ```
-
-Scroll content up, removing top lines and adding blank lines at bottom.
-
-<a id="bittty.buffer.Buffer.scroll_down"></a>
 
-#### scroll\_down
+Fold an xterm-style modifier into a function-key sequence.
 
-```python
-def scroll_down(count: int) -> None
-```
+``ESC O X`` becomes ``ESC [ 1 ; mod X``; ``ESC [ n ~`` becomes ``ESC [ n ; mod ~``.
 
-Scroll content down, removing bottom lines and adding blank lines at top.
+<a id="bittty.model"></a>
 
-<a id="bittty.buffer.Buffer.scroll_region_up"></a>
+# bittty.model
 
-#### scroll\_region\_up
-
-```python
-def scroll_region_up(top: int, bottom: int, count: int) -> None
-```
+Terminal models: the emulation profile as data.
 
-Scroll a specific region up by count lines. BLAZING FAST bulk operation!
+A model captures the constants that distinguish one real terminal from
+another — starting with the Device Attributes (DA) responses used to identify
+the terminal to the host. Over time this grows to carry charset repertoire,
+colour depth, and which capabilities a board assembles.
 
-<a id="bittty.buffer.Buffer.scroll_region_down"></a>
+<a id="bittty.model.Model"></a>
 
-#### scroll\_region\_down
+## Model Objects
 
 ```python
-def scroll_region_down(top: int, bottom: int, count: int) -> None
+@dataclass(frozen=True)
+class Model()
 ```
-
-Scroll a specific region down by count lines. BLAZING FAST bulk operation!
-
-<a id="bittty.buffer.Buffer.resize"></a>
-
-#### resize
 
-```python
-def resize(width: int, height: int) -> None
-```
+A terminal type expressed as data.
 
-Resize buffer to new dimensions.
+<a id="bittty.model.Model.da1_response"></a>
 
-<a id="bittty.buffer.Buffer.get_line_text"></a>
+#### da1\_response
 
-#### get\_line\_text
+Primary Device Attributes (answer to CSI c)
 
-```python
-def get_line_text(y: int) -> str
-```
+<a id="bittty.model.Model.da2_response"></a>
 
-Get plain text content of a line (for debugging/testing).
+#### da2\_response
 
-<a id="bittty.buffer.Buffer.get_line"></a>
+Secondary DA (CSI > c); None if unsupported
 
-#### get\_line
+<a id="bittty.model.Model.da3_response"></a>
 
-```python
-def get_line(y: int,
-             width: int = None,
-             cursor_x: int = -1,
-             cursor_y: int = -1,
-             show_cursor: bool = False,
-             mouse_x: int = -1,
-             mouse_y: int = -1,
-             show_mouse: bool = False) -> str
-```
+#### da3\_response
 
-Get full ANSI sequence for a line.
+Tertiary DA (CSI = c); None if unsupported
 
-<a id="bittty.buffer.Buffer.get_line_tuple"></a>
+<a id="bittty.model.get_model"></a>
 
-#### get\_line\_tuple
+#### get\_model
 
 ```python
-def get_line_tuple(y: int,
-                   width: int = None,
-                   cursor_x: int = -1,
-                   cursor_y: int = -1,
-                   show_cursor: bool = False,
-                   mouse_x: int = -1,
-                   mouse_y: int = -1,
-                   show_mouse: bool = False) -> tuple
+def get_model(term_name: str | None, default: Model = DEFAULT) -> Model
 ```
-
-Get line as a hashable tuple for caching.
-
-<a id="bittty.constants"></a>
-
-# bittty.constants
-
-Constants for the terminal parser and emulator.
-
-This module contains constants used in the terminal parsing and emulation logic,
-following standards like VT100, VT220, and xterm.
-
-<a id="bittty.constants.BEL"></a>
-
-#### BEL
-
-Bell
-
-<a id="bittty.constants.BS"></a>
-
-#### BS
-
-Backspace
-
-<a id="bittty.constants.HT"></a>
-
-#### HT
-
-Horizontal Tab
-
-<a id="bittty.constants.LF"></a>
-
-#### LF
-
-Line Feed
-
-<a id="bittty.constants.VT"></a>
-
-#### VT
-
-Vertical Tab
-
-<a id="bittty.constants.FF"></a>
-
-#### FF
-
-Form Feed
-
-<a id="bittty.constants.CR"></a>
-
-#### CR
-
-Carriage Return
-
-<a id="bittty.constants.SO"></a>
-
-#### SO
-
-Shift Out (activate G1)
-
-<a id="bittty.constants.SI"></a>
-
-#### SI
-
-Shift In (activate G0)
-
-<a id="bittty.constants.ESC"></a>
-
-#### ESC
-
-Escape
-
-<a id="bittty.constants.DEL"></a>
-
-#### DEL
-
-Delete
-
-<a id="bittty.constants.DA1_132_COLUMNS"></a>
-
-#### DA1\_132\_COLUMNS
-
-132 column mode
-
-<a id="bittty.constants.DA1_PRINTER_PORT"></a>
-
-#### DA1\_PRINTER\_PORT
-
-Printer port
-
-<a id="bittty.constants.DA1_REGIS_GRAPHICS"></a>
-
-#### DA1\_REGIS\_GRAPHICS
 
-ReGIS graphics
-
-<a id="bittty.constants.DA1_SIXEL_GRAPHICS"></a>
-
-#### DA1\_SIXEL\_GRAPHICS
-
-Sixel graphics
-
-<a id="bittty.constants.DA1_SELECTIVE_ERASE"></a>
-
-#### DA1\_SELECTIVE\_ERASE
-
-Selective erase
-
-<a id="bittty.constants.DA1_USER_DEFINED_KEYS"></a>
-
-#### DA1\_USER\_DEFINED\_KEYS
-
-User-defined keys (UDKs)
-
-<a id="bittty.constants.DA1_NATIONAL_REPLACEMENT_CHARSETS"></a>
-
-#### DA1\_NATIONAL\_REPLACEMENT\_CHARSETS
-
-National replacement character sets
-
-<a id="bittty.constants.DA1_TECH_CHARACTERS"></a>
-
-#### DA1\_TECH\_CHARACTERS
-
-Technical characters
-
-<a id="bittty.constants.DA1_LOCATOR_PORT"></a>
-
-#### DA1\_LOCATOR\_PORT
-
-Locator port
-
-<a id="bittty.constants.DA1_TERMINAL_STATE_INTERROGATION"></a>
-
-#### DA1\_TERMINAL\_STATE\_INTERROGATION
-
-Terminal state interrogation
-
-<a id="bittty.constants.DA1_USER_WINDOWS"></a>
-
-#### DA1\_USER\_WINDOWS
-
-User windows
-
-<a id="bittty.constants.DA1_DUAL_SESSIONS"></a>
-
-#### DA1\_DUAL\_SESSIONS
-
-Dual sessions
-
-<a id="bittty.constants.DA1_HORIZONTAL_SCROLLING"></a>
-
-#### DA1\_HORIZONTAL\_SCROLLING
-
-Horizontal scrolling
-
-<a id="bittty.constants.DA1_ANSI_COLOR"></a>
-
-#### DA1\_ANSI\_COLOR
-
-ANSI color
-
-<a id="bittty.constants.DA1_GREEK_CHARSET"></a>
-
-#### DA1\_GREEK\_CHARSET
-
-Greek character set
-
-<a id="bittty.constants.DA1_TURKISH_CHARSET"></a>
-
-#### DA1\_TURKISH\_CHARSET
-
-Turkish character set
-
-<a id="bittty.constants.DA1_ISO_LATIN2_CHARSET"></a>
-
-#### DA1\_ISO\_LATIN2\_CHARSET
-
-ISO Latin-2 character set
-
-<a id="bittty.constants.DA1_PC_TERM"></a>
-
-#### DA1\_PC\_TERM
-
-PC Term
-
-<a id="bittty.constants.DA1_SOFT_KEY_MAP"></a>
-
-#### DA1\_SOFT\_KEY\_MAP
-
-Soft key map
-
-<a id="bittty.constants.DA1_ASCII_EMULATION"></a>
-
-#### DA1\_ASCII\_EMULATION
-
-ASCII emulation
-
-<a id="bittty.constants.EBADF"></a>
-
-#### EBADF
-
-Bad file descriptor
-
-<a id="bittty.constants.EINVAL"></a>
-
-#### EINVAL
-
-Invalid argument
-
-<a id="bittty.charsets"></a>
-
-# bittty.charsets
-
-Character set mappings for terminal emulation.
-
-<a id="bittty.charsets.get_charset"></a>
-
-#### get\_charset
-
-```python
-def get_charset(designator: str) -> dict
-```
+Resolve a $TERM name to a model, falling back through shorter prefixes.
 
-Get character set mapping for a designator.
+So "xterm-kitty" or "screen.xterm-256color" degrade gracefully to the nearest
+known family, and an unknown or empty TERM yields the default (xterm).
 
 <a id="bittty.pty.base"></a>
 
@@ -1898,11 +1328,78 @@ def flush() -> None
 
 Flush output.
 
-<a id="bittty.pty"></a>
+<a id="bittty.pty.unix"></a>
 
-# bittty.pty
+# bittty.pty.unix
 
-PTY implementations for terminal emulation.
+Unix/Linux/macOS PTY implementation.
+
+<a id="bittty.pty.unix.UnixPTY"></a>
+
+## UnixPTY Objects
+
+```python
+class UnixPTY(PTY)
+```
+
+Unix/Linux/macOS PTY implementation.
+
+<a id="bittty.pty.unix.UnixPTY.resize"></a>
+
+#### resize
+
+```python
+def resize(rows: int, cols: int) -> None
+```
+
+Resize the terminal using TIOCSWINSZ ioctl.
+
+<a id="bittty.pty.unix.UnixPTY.close"></a>
+
+#### close
+
+```python
+def close() -> None
+```
+
+Close the PTY file descriptors.
+
+<a id="bittty.pty.unix.UnixPTY.spawn_process"></a>
+
+#### spawn\_process
+
+```python
+def spawn_process(command: str,
+                  env: dict[str, str] = UNIX_ENV) -> subprocess.Popen
+```
+
+Spawn a process attached to this PTY.
+
+<a id="bittty.pty.unix.UnixPTY.flush"></a>
+
+#### flush
+
+```python
+def flush() -> None
+```
+
+PTY master file descriptors don't support fsync - data flows immediately.
+
+For Unix PTYs, data written to the master side appears immediately
+on the slave side, so no explicit flushing is needed.
+
+<a id="bittty.pty.unix.UnixPTY.read_async"></a>
+
+#### read\_async
+
+```python
+async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
+```
+
+Async read from PTY using efficient file descriptor monitoring.
+
+Uses loop.add_reader() with file descriptors for maximum efficiency on Unix.
+This is the most performant approach since Unix supports select/poll on PTY fds.
 
 <a id="bittty.pty.windows"></a>
 
@@ -2078,77 +1575,2733 @@ def spawn_process(command: str,
 
 Spawn a process attached to this PTY.
 
-<a id="bittty.pty.unix"></a>
+<a id="bittty.pty"></a>
 
-# bittty.pty.unix
+# bittty.pty
 
-Unix/Linux/macOS PTY implementation.
+PTY implementations for terminal emulation.
 
-<a id="bittty.pty.unix.UnixPTY"></a>
+<a id="bittty.constants"></a>
 
-## UnixPTY Objects
+# bittty.constants
+
+Constants for the terminal parser and emulator.
+
+This module contains constants used in the terminal parsing and emulation logic,
+following standards like VT100, VT220, and xterm.
+
+<a id="bittty.constants.ENQ"></a>
+
+#### ENQ
+
+Enquiry (triggers answerback)
+
+<a id="bittty.constants.BEL"></a>
+
+#### BEL
+
+Bell
+
+<a id="bittty.constants.BS"></a>
+
+#### BS
+
+Backspace
+
+<a id="bittty.constants.HT"></a>
+
+#### HT
+
+Horizontal Tab
+
+<a id="bittty.constants.LF"></a>
+
+#### LF
+
+Line Feed
+
+<a id="bittty.constants.VT"></a>
+
+#### VT
+
+Vertical Tab
+
+<a id="bittty.constants.FF"></a>
+
+#### FF
+
+Form Feed
+
+<a id="bittty.constants.CR"></a>
+
+#### CR
+
+Carriage Return
+
+<a id="bittty.constants.SO"></a>
+
+#### SO
+
+Shift Out (activate G1)
+
+<a id="bittty.constants.SI"></a>
+
+#### SI
+
+Shift In (activate G0)
+
+<a id="bittty.constants.ESC"></a>
+
+#### ESC
+
+Escape
+
+<a id="bittty.constants.DEL"></a>
+
+#### DEL
+
+Delete
+
+<a id="bittty.constants.LINE_SINGLE"></a>
+
+#### LINE\_SINGLE
+
+DECSWL — normal single-width, single-height
+
+<a id="bittty.constants.LINE_DOUBLE_WIDTH"></a>
+
+#### LINE\_DOUBLE\_WIDTH
+
+DECDWL
+
+<a id="bittty.constants.LINE_DOUBLE_TOP"></a>
+
+#### LINE\_DOUBLE\_TOP
+
+DECDHL top half
+
+<a id="bittty.constants.LINE_DOUBLE_BOTTOM"></a>
+
+#### LINE\_DOUBLE\_BOTTOM
+
+DECDHL bottom half
+
+<a id="bittty.constants.DECKBUM_KEYBOARD_USAGE"></a>
+
+#### DECKBUM\_KEYBOARD\_USAGE
+
+DECKBUM is mode 68; mode 69 is DECLRMM (left/right margins)
+
+<a id="bittty.constants.DA1_132_COLUMNS"></a>
+
+#### DA1\_132\_COLUMNS
+
+132 column mode
+
+<a id="bittty.constants.DA1_PRINTER_PORT"></a>
+
+#### DA1\_PRINTER\_PORT
+
+Printer port
+
+<a id="bittty.constants.DA1_REGIS_GRAPHICS"></a>
+
+#### DA1\_REGIS\_GRAPHICS
+
+ReGIS graphics
+
+<a id="bittty.constants.DA1_SIXEL_GRAPHICS"></a>
+
+#### DA1\_SIXEL\_GRAPHICS
+
+Sixel graphics
+
+<a id="bittty.constants.DA1_SELECTIVE_ERASE"></a>
+
+#### DA1\_SELECTIVE\_ERASE
+
+Selective erase
+
+<a id="bittty.constants.DA1_USER_DEFINED_KEYS"></a>
+
+#### DA1\_USER\_DEFINED\_KEYS
+
+User-defined keys (UDKs)
+
+<a id="bittty.constants.DA1_NATIONAL_REPLACEMENT_CHARSETS"></a>
+
+#### DA1\_NATIONAL\_REPLACEMENT\_CHARSETS
+
+National replacement character sets
+
+<a id="bittty.constants.DA1_TECH_CHARACTERS"></a>
+
+#### DA1\_TECH\_CHARACTERS
+
+Technical characters
+
+<a id="bittty.constants.DA1_LOCATOR_PORT"></a>
+
+#### DA1\_LOCATOR\_PORT
+
+Locator port
+
+<a id="bittty.constants.DA1_TERMINAL_STATE_INTERROGATION"></a>
+
+#### DA1\_TERMINAL\_STATE\_INTERROGATION
+
+Terminal state interrogation
+
+<a id="bittty.constants.DA1_USER_WINDOWS"></a>
+
+#### DA1\_USER\_WINDOWS
+
+User windows
+
+<a id="bittty.constants.DA1_DUAL_SESSIONS"></a>
+
+#### DA1\_DUAL\_SESSIONS
+
+Dual sessions
+
+<a id="bittty.constants.DA1_HORIZONTAL_SCROLLING"></a>
+
+#### DA1\_HORIZONTAL\_SCROLLING
+
+Horizontal scrolling
+
+<a id="bittty.constants.DA1_ANSI_COLOR"></a>
+
+#### DA1\_ANSI\_COLOR
+
+ANSI color
+
+<a id="bittty.constants.DA1_GREEK_CHARSET"></a>
+
+#### DA1\_GREEK\_CHARSET
+
+Greek character set
+
+<a id="bittty.constants.DA1_TURKISH_CHARSET"></a>
+
+#### DA1\_TURKISH\_CHARSET
+
+Turkish character set
+
+<a id="bittty.constants.DA1_ISO_LATIN2_CHARSET"></a>
+
+#### DA1\_ISO\_LATIN2\_CHARSET
+
+ISO Latin-2 character set
+
+<a id="bittty.constants.DA1_PC_TERM"></a>
+
+#### DA1\_PC\_TERM
+
+PC Term
+
+<a id="bittty.constants.DA1_SOFT_KEY_MAP"></a>
+
+#### DA1\_SOFT\_KEY\_MAP
+
+Soft key map
+
+<a id="bittty.constants.DA1_ASCII_EMULATION"></a>
+
+#### DA1\_ASCII\_EMULATION
+
+ASCII emulation
+
+<a id="bittty.constants.EBADF"></a>
+
+#### EBADF
+
+Bad file descriptor
+
+<a id="bittty.constants.EINVAL"></a>
+
+#### EINVAL
+
+Invalid argument
+
+<a id="bittty.charsets"></a>
+
+# bittty.charsets
+
+Character set mappings for terminal emulation.
+
+<a id="bittty.charsets.get_charset"></a>
+
+#### get\_charset
 
 ```python
-class UnixPTY(PTY)
+def get_charset(designator: str) -> dict
 ```
 
-Unix/Linux/macOS PTY implementation.
+Get character set mapping for a designator.
 
-<a id="bittty.pty.unix.UnixPTY.resize"></a>
+<a id="bittty.devices.query"></a>
+
+# bittty.devices.query
+
+Query operation handler for the current board state.
+
+<a id="bittty.devices.query.QueryDevice"></a>
+
+## QueryDevice Objects
+
+```python
+class QueryDevice(Device)
+```
+
+Applies terminal query operations to the current board implementation.
+
+<a id="bittty.devices.query.QueryDevice.handle_cwd"></a>
+
+#### handle\_cwd
+
+```python
+def handle_cwd(operation: Operation) -> None
+```
+
+OSC 7 — record the reported working directory.
+
+<a id="bittty.devices.query.QueryDevice.handle_notify"></a>
+
+#### handle\_notify
+
+```python
+def handle_notify(operation: Operation) -> None
+```
+
+OSC 9 / 777 / 99 — a desktop notification.
+
+<a id="bittty.devices.query.QueryDevice.handle_shell_mark"></a>
+
+#### handle\_shell\_mark
+
+```python
+def handle_shell_mark(operation: Operation) -> None
+```
+
+OSC 133 — a shell-integration prompt/command mark.
+
+<a id="bittty.devices.query.QueryDevice.handle_pointer_shape"></a>
+
+#### handle\_pointer\_shape
+
+```python
+def handle_pointer_shape(operation: Operation) -> None
+```
+
+OSC 22 — the requested mouse-pointer shape.
+
+<a id="bittty.devices.query.QueryDevice.handle_font"></a>
+
+#### handle\_font
+
+```python
+def handle_font(operation: Operation) -> None
+```
+
+OSC 50 — set the font, or answer a query (data == '?') with the current one.
+
+<a id="bittty.devices.query.QueryDevice.report_version"></a>
+
+#### report\_version
+
+```python
+def report_version(operation: Operation) -> None
+```
+
+XTVERSION (CSI > q) — reply DCS > | name version ST.
+
+<a id="bittty.devices.query.QueryDevice.report_status_string"></a>
+
+#### report\_status\_string
+
+```python
+def report_status_string(operation: Operation) -> None
+```
+
+DECRQSS — answer a request for the current value of a setting.
+
+<a id="bittty.devices.query.QueryDevice.handle_clipboard"></a>
+
+#### handle\_clipboard
+
+```python
+def handle_clipboard(operation: Operation) -> None
+```
+
+OSC 52 — set the clipboard, or answer a query with its current contents.
+
+<a id="bittty.devices.query.QueryDevice.handle_window_op"></a>
+
+#### handle\_window\_op
+
+```python
+def handle_window_op(operation: Operation) -> None
+```
+
+XTWINOPS — window manipulation requests and reports; a terminal (chrome) actuates them.
+
+<a id="bittty.devices.query.QueryDevice.set_conformance_level"></a>
+
+#### set\_conformance\_level
+
+```python
+def set_conformance_level(operation: Operation) -> None
+```
+
+DECSCL — record the requested conformance level (behaviourally a no-op).
+
+<a id="bittty.devices.query.QueryDevice.handle_setterm"></a>
+
+#### handle\_setterm
+
+```python
+def handle_setterm(operation: Operation) -> None
+```
+
+linux `setterm` CSI...] — update the board's hardware registers.
+
+<a id="bittty.devices.query.QueryDevice.request_checksum"></a>
+
+#### request\_checksum
+
+```python
+def request_checksum(operation: Operation) -> None
+```
+
+DECRQCRA — reply DCS Pid ! ~ HHHH ST with a 16-bit checksum of a rectangle.
+
+This is the DEC character-value form: the negated sum of the codepoints in
+the area, masked to 16 bits. (xterm can fold SGR attributes in too; that is a
+model detail we can add when a terminal needs it.)
+
+<a id="bittty.devices.query.QueryDevice.request_termcap"></a>
+
+#### request\_termcap
+
+```python
+def request_termcap(operation: Operation) -> None
+```
+
+XTGETTCAP — answer hex-encoded termcap/terminfo capability requests.
+
+<a id="bittty.devices.board"></a>
+
+# bittty.devices.board
+
+The board: the whole terminal emulator machine.
+
+Hosts the devices and registers, owns the child process and its PTY, and routes
+parser operations to device handlers. A terminal (chrome) (bittty.terminals) plugs into
+the display port; the child program is wired to the host port via a PTY.
+
+<a id="bittty.devices.board.Board"></a>
+
+## Board Objects
+
+```python
+class Board()
+```
+
+The terminal emulator: devices, registers, and process/PTY lifecycle.
+
+<a id="bittty.devices.board.Board.get_pty_handler"></a>
+
+#### get\_pty\_handler
+
+```python
+@staticmethod
+def get_pty_handler(rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
+                    cols: int = constants.DEFAULT_TERMINAL_WIDTH,
+                    stdin=None,
+                    stdout=None)
+```
+
+Create a platform-appropriate PTY handler.
+
+<a id="bittty.devices.board.Board.board"></a>
+
+#### board
+
+```python
+@property
+def board() -> "Board"
+```
+
+Compat shim: pre-dissolve code reached the board via `.board`. Remove next release.
+
+<a id="bittty.devices.board.Board.print_text"></a>
+
+#### print\_text
+
+```python
+def print_text(text: str) -> None
+```
+
+Write printable text (the parser's fast path — no Operation wrapper).
+
+<a id="bittty.devices.board.Board.resize"></a>
 
 #### resize
 
 ```python
-def resize(rows: int, cols: int) -> None
+def resize(width: int, height: int) -> None
 ```
 
-Resize the terminal using TIOCSWINSZ ioctl.
+Resize the terminal, including buffers and the attached PTY.
 
-<a id="bittty.pty.unix.UnixPTY.close"></a>
+<a id="bittty.devices.board.Board.bell"></a>
 
-#### close
+#### bell
 
 ```python
-def close() -> None
+def bell() -> None
 ```
 
-Close the PTY file descriptors.
+Ring the terminal bell: pushed to the terminal (chrome) as a present event.
 
-<a id="bittty.pty.unix.UnixPTY.spawn_process"></a>
+<a id="bittty.devices.board.Board.present"></a>
 
-#### spawn\_process
+#### present
 
 ```python
-def spawn_process(command: str,
-                  env: dict[str, str] = UNIX_ENV) -> subprocess.Popen
+def present(event: PresentEvent) -> None
 ```
 
-Spawn a process attached to this PTY.
+Push a discrete side-effect to the attached terminal (no-op if none).
 
-<a id="bittty.pty.unix.UnixPTY.flush"></a>
+<a id="bittty.devices.board.Board.set_caps"></a>
 
-#### flush
+#### set\_caps
 
 ```python
-def flush() -> None
+def set_caps(caps: TerminalCaps) -> None
 ```
 
-Flush output using os.fsync() for real PTY file descriptor.
+Record what the real terminal can do (a terminal (chrome) pushes this after probing).
 
-More efficient than generic flush() - ensures data is written through
-to the terminal device, not just buffered. Important for interactive
-terminal responsiveness.
+<a id="bittty.devices.board.Board.set_focus"></a>
 
-<a id="bittty.pty.unix.UnixPTY.read_async"></a>
-
-#### read\_async
+#### set\_focus
 
 ```python
-async def read_async(size: int = constants.DEFAULT_PTY_BUFFER_SIZE) -> str
+def set_focus(focused: bool) -> None
 ```
 
-Async read from PTY using efficient file descriptor monitoring.
+Record the box's focus state and report it to the child (DECSET 1004).
 
-Uses loop.add_reader() with file descriptors for maximum efficiency on Unix.
-This is the most performant approach since Unix supports select/poll on PTY fds.
+<a id="bittty.devices.board.Board.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+Reset the terminal. hard is RIS (full power-on); soft is DECSTR.
+
+<a id="bittty.devices.board.Board.get_device"></a>
+
+#### get\_device
+
+```python
+def get_device(name: str)
+```
+
+Return a plugged-in device by slot name.
+
+<a id="bittty.devices.board.Board.get_content"></a>
+
+#### get\_content
+
+```python
+def get_content()
+```
+
+Get current screen content as raw buffer data.
+
+<a id="bittty.devices.board.Board.capture_pane"></a>
+
+#### capture\_pane
+
+```python
+def capture_pane() -> str
+```
+
+Capture terminal content.
+
+The cursor cell renders only when the child wants it visible (DECTCEM)
+and the box has focus — an unfocused terminal drops its block the way a
+real one hollows it.
+
+<a id="bittty.devices.board.Board.attach_display"></a>
+
+#### attach\_display
+
+```python
+def attach_display(display) -> None
+```
+
+Attach a terminal (chrome) to receive present events (mirrors the host/PTY cable).
+
+<a id="bittty.devices.board.Board.detach_display"></a>
+
+#### detach\_display
+
+```python
+def detach_display() -> None
+```
+
+Detach the current terminal.
+
+<a id="bittty.devices.board.Board.input_key"></a>
+
+#### input\_key
+
+```python
+def input_key(char: str, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+Convert key + modifier to standard control codes, then send to the host.
+
+<a id="bittty.devices.board.Board.input_fkey"></a>
+
+#### input\_fkey
+
+```python
+def input_fkey(num: int, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+Convert function key + modifier to standard control codes, then send to the host.
+
+<a id="bittty.devices.board.Board.input_numpad_key"></a>
+
+#### input\_numpad\_key
+
+```python
+def input_numpad_key(key: str) -> None
+```
+
+Convert numpad key to appropriate sequence based on DECNKM mode.
+
+<a id="bittty.devices.board.Board.input"></a>
+
+#### input
+
+```python
+def input(data: str) -> None
+```
+
+Translate control codes based on terminal modes and send to the host.
+
+<a id="bittty.devices.board.Board.input_mouse"></a>
+
+#### input\_mouse
+
+```python
+def input_mouse(x: int, y: int, button: int, event_type: str,
+                modifiers: set[str]) -> None
+```
+
+Handle mouse input, cache position, and send appropriate sequence to the host.
+
+**Arguments**:
+
+- `x` - 1-based mouse column.
+- `y` - 1-based mouse row.
+- `button` - The button that was pressed/released.
+- `event_type` - "press", "release", or "move".
+- `modifiers` - A set of active modifiers ("shift", "meta", "ctrl").
+
+<a id="bittty.devices.board.Board.focus_in"></a>
+
+#### focus\_in
+
+```python
+def focus_in() -> None
+```
+
+The box gained focus: record it and report to the child if DECSET 1004 is on.
+
+<a id="bittty.devices.board.Board.focus_out"></a>
+
+#### focus\_out
+
+```python
+def focus_out() -> None
+```
+
+The box lost focus: record it and report to the child if DECSET 1004 is on.
+
+<a id="bittty.devices.board.Board.pty"></a>
+
+#### pty
+
+```python
+@property
+def pty() -> Optional[Any]
+```
+
+Attached PTY connection.
+
+<a id="bittty.devices.board.Board.set_pty_data_callback"></a>
+
+#### set\_pty\_data\_callback
+
+```python
+def set_pty_data_callback(callback: Callable[[str], None]) -> None
+```
+
+Swap the host port's receive sink (a terminal uses this to add render throttling).
+
+<a id="bittty.devices.board.Board.start_process"></a>
+
+#### start\_process
+
+```python
+async def start_process() -> None
+```
+
+Start the child process with PTY.
+
+<a id="bittty.devices.board.Board.stop_process"></a>
+
+#### stop\_process
+
+```python
+def stop_process() -> None
+```
+
+Stop the child process and clean up.
+
+<a id="bittty.devices.charset"></a>
+
+# bittty.devices.charset
+
+Charset operation handler for the current board state.
+
+<a id="bittty.devices.charset.CharsetDevice"></a>
+
+## CharsetDevice Objects
+
+```python
+class CharsetDevice(Device)
+```
+
+Owns charset state and applies charset operations.
+
+<a id="bittty.devices.charset.CharsetDevice.designate"></a>
+
+#### designate
+
+```python
+def designate(index: int, designator: str) -> None
+```
+
+Apply an SCS G-set designation, ignoring charsets the terminal lacks.
+
+<a id="bittty.devices.charset.CharsetDevice.translate"></a>
+
+#### translate
+
+```python
+def translate(text: str) -> str
+```
+
+Translate text through the invoked G-sets: GL for 0x20-0x7F, GR for 0xA0-0xFF.
+
+<a id="bittty.devices.charset.CharsetDevice.set_g0_charset"></a>
+
+#### set\_g0\_charset
+
+```python
+def set_g0_charset(charset: str) -> None
+```
+
+Set the G0 character set.
+
+<a id="bittty.devices.charset.CharsetDevice.set_g1_charset"></a>
+
+#### set\_g1\_charset
+
+```python
+def set_g1_charset(charset: str) -> None
+```
+
+Set the G1 character set.
+
+<a id="bittty.devices.charset.CharsetDevice.set_g2_charset"></a>
+
+#### set\_g2\_charset
+
+```python
+def set_g2_charset(charset: str) -> None
+```
+
+Set the G2 character set.
+
+<a id="bittty.devices.charset.CharsetDevice.set_g3_charset"></a>
+
+#### set\_g3\_charset
+
+```python
+def set_g3_charset(charset: str) -> None
+```
+
+Set the G3 character set.
+
+<a id="bittty.devices.charset.CharsetDevice.shift_in"></a>
+
+#### shift\_in
+
+```python
+def shift_in() -> None
+```
+
+Shift In (SI / LS0) - invoke G0 into GL.
+
+<a id="bittty.devices.charset.CharsetDevice.shift_out"></a>
+
+#### shift\_out
+
+```python
+def shift_out() -> None
+```
+
+Shift Out (SO / LS1) - invoke G1 into GL.
+
+<a id="bittty.devices.charset.CharsetDevice.locking_shift"></a>
+
+#### locking\_shift
+
+```python
+def locking_shift(gset: int, right: bool = False) -> None
+```
+
+Persistently invoke a G-set: LS2/LS3 into GL, LS1R/LS2R/LS3R into GR.
+
+<a id="bittty.devices.charset.CharsetDevice.single_shift_2"></a>
+
+#### single\_shift\_2
+
+```python
+def single_shift_2() -> None
+```
+
+Single Shift 2 (SS2) - use G2 for next character only.
+
+<a id="bittty.devices.charset.CharsetDevice.single_shift_3"></a>
+
+#### single\_shift\_3
+
+```python
+def single_shift_3() -> None
+```
+
+Single Shift 3 (SS3) - use G3 for next character only.
+
+<a id="bittty.devices.charset.CharsetDevice.reset"></a>
+
+#### reset
+
+```python
+def reset() -> None
+```
+
+Reset charset selections to US ASCII.
+
+<a id="bittty.devices.style"></a>
+
+# bittty.devices.style
+
+Style operation handler for the current board state.
+
+<a id="bittty.devices.style.StyleDevice"></a>
+
+## StyleDevice Objects
+
+```python
+class StyleDevice(Device)
+```
+
+Owns current style state and applies style operations.
+
+<a id="bittty.devices.style.StyleDevice.pop_sgr"></a>
+
+#### pop\_sgr
+
+```python
+def pop_sgr() -> None
+```
+
+XTPOPSGR — restore the SGR attributes saved by the matching XTPUSHSGR.
+
+<a id="bittty.devices.style.StyleDevice.current_ansi_code"></a>
+
+#### current\_ansi\_code
+
+```python
+@property
+def current_ansi_code() -> str
+```
+
+The active style as an ANSI SGR string (boundary/compat accessor).
+
+<a id="bittty.devices.style.StyleDevice.apply_sgr"></a>
+
+#### apply\_sgr
+
+```python
+def apply_sgr(style: Style | None, reset: bool = False) -> None
+```
+
+Apply an SGR style update (API/testing surface over the hot handler).
+
+<a id="bittty.devices.style.StyleDevice.set_default"></a>
+
+#### set\_default
+
+```python
+def set_default() -> None
+```
+
+ESC [ 8 ] — make the current attributes the default (the SGR 0 target).
+
+<a id="bittty.devices.style.StyleDevice.set_hyperlink"></a>
+
+#### set\_hyperlink
+
+```python
+def set_hyperlink(uri: str) -> None
+```
+
+OSC 8 — start (non-empty URI) or end (empty) the active hyperlink.
+
+<a id="bittty.devices.style.StyleDevice.set_protected"></a>
+
+#### set\_protected
+
+```python
+def set_protected(mode: int) -> None
+```
+
+DECSCA — 1 protects subsequent characters from selective erase; 0/2 clears it.
+
+<a id="bittty.devices.style.StyleDevice.reset"></a>
+
+#### reset
+
+```python
+def reset() -> None
+```
+
+Reset to the default style (and clear the ESC[8] default register and SGR stack).
+
+<a id="bittty.devices.style.StyleDevice.background_ansi"></a>
+
+#### background\_ansi
+
+```python
+def background_ansi() -> str
+```
+
+Return the active background style as ANSI.
+
+<a id="bittty.devices.base"></a>
+
+# bittty.devices.base
+
+Base class shared by board devices.
+
+<a id="bittty.devices.base.Device"></a>
+
+## Device Objects
+
+```python
+class Device()
+```
+
+A board device: dispatches an operation to its name -> handler table.
+
+<a id="bittty.devices.blitter"></a>
+
+# bittty.devices.blitter
+
+The blitter: writes video memory. Screen and editing operation handlers.
+
+<a id="bittty.devices.blitter.Blitter"></a>
+
+## Blitter Objects
+
+```python
+class Blitter(Device)
+```
+
+Owns the video pages and applies screen/editing operations.
+
+<a id="bittty.devices.blitter.Blitter.set_line_attribute"></a>
+
+#### set\_line\_attribute
+
+```python
+def set_line_attribute(attribute: str) -> None
+```
+
+DECDHL/DECDWL/DECSWL — set the cursor line's width/height attribute.
+
+<a id="bittty.devices.blitter.Blitter.write_text"></a>
+
+#### write\_text
+
+```python
+def write_text(text: str, ansi_code: str = "") -> None
+```
+
+Write printable text at the cursor position, wrapping runs longer than the line.
+
+A single PRINT run can be arbitrarily long (a shell line wider than the
+screen arrives as one chunk), so write it line-sized piece by line-sized
+piece; prepare_for_text_write supplies the wrap (or the clip, with
+autowrap off) between pieces.
+
+<a id="bittty.devices.blitter.Blitter.repeat_last_character"></a>
+
+#### repeat\_last\_character
+
+```python
+def repeat_last_character(count: int) -> None
+```
+
+Repeat the last printed character count times.
+
+<a id="bittty.devices.blitter.Blitter.resize"></a>
+
+#### resize
+
+```python
+def resize(width: int, height: int) -> None
+```
+
+Resize terminal dimensions and screen buffers.
+
+<a id="bittty.devices.blitter.Blitter.clear_screen"></a>
+
+#### clear\_screen
+
+```python
+def clear_screen(mode: int = constants.ERASE_FROM_CURSOR_TO_END) -> None
+```
+
+Clear screen.
+
+<a id="bittty.devices.blitter.Blitter.clear_line"></a>
+
+#### clear\_line
+
+```python
+def clear_line(mode: int = constants.ERASE_FROM_CURSOR_TO_END) -> None
+```
+
+Clear line.
+
+<a id="bittty.devices.blitter.Blitter.clear_rect"></a>
+
+#### clear\_rect
+
+```python
+def clear_rect(x1: int,
+               y1: int,
+               x2: int,
+               y2: int,
+               ansi_code: str = "") -> None
+```
+
+Clear a rectangular region.
+
+<a id="bittty.devices.blitter.Blitter.selective_erase_display"></a>
+
+#### selective\_erase\_display
+
+```python
+def selective_erase_display(mode: int) -> None
+```
+
+DECSED — erase in display, leaving DECSCA-protected characters.
+
+<a id="bittty.devices.blitter.Blitter.selective_erase_line"></a>
+
+#### selective\_erase\_line
+
+```python
+def selective_erase_line(mode: int) -> None
+```
+
+DECSEL — erase in line, leaving DECSCA-protected characters.
+
+<a id="bittty.devices.blitter.Blitter.fill_rectangle"></a>
+
+#### fill\_rectangle
+
+```python
+def fill_rectangle(params) -> None
+```
+
+DECFRA — fill a rectangle with a character (Pch;Pt;Pl;Pb;Pr).
+
+<a id="bittty.devices.blitter.Blitter.erase_rectangle"></a>
+
+#### erase\_rectangle
+
+```python
+def erase_rectangle(params) -> None
+```
+
+DECERA — erase a rectangle (Pt;Pl;Pb;Pr).
+
+<a id="bittty.devices.blitter.Blitter.selective_erase_rectangle"></a>
+
+#### selective\_erase\_rectangle
+
+```python
+def selective_erase_rectangle(params) -> None
+```
+
+DECSERA — erase a rectangle, leaving DECSCA-protected characters.
+
+<a id="bittty.devices.blitter.Blitter.copy_rectangle"></a>
+
+#### copy\_rectangle
+
+```python
+def copy_rectangle(params) -> None
+```
+
+DECCRA — copy a rectangle to another origin (Pts;Pls;Pbs;Prs;Pps;Ptd;Pld;Ppd).
+
+<a id="bittty.devices.blitter.Blitter.set_attr_change_extent"></a>
+
+#### set\_attr\_change\_extent
+
+```python
+def set_attr_change_extent(ps: int) -> None
+```
+
+DECSACE — 1 = stream (wrapping run), else rectangle (default).
+
+<a id="bittty.devices.blitter.Blitter.change_attributes_rectangle"></a>
+
+#### change\_attributes\_rectangle
+
+```python
+def change_attributes_rectangle(params) -> None
+```
+
+DECCARA — merge SGR attributes into every cell of the area (rectangle or stream).
+
+<a id="bittty.devices.blitter.Blitter.reverse_attributes_rectangle"></a>
+
+#### reverse\_attributes\_rectangle
+
+```python
+def reverse_attributes_rectangle(params) -> None
+```
+
+DECRARA — toggle the given attributes (1/4/5/7) across the area (rectangle or stream).
+
+<a id="bittty.devices.blitter.Blitter.switch_screen"></a>
+
+#### switch\_screen
+
+```python
+def switch_screen(alt: bool) -> None
+```
+
+Switch between primary and alternate screen.
+
+<a id="bittty.devices.blitter.Blitter.alignment_test"></a>
+
+#### alignment\_test
+
+```python
+def alignment_test() -> None
+```
+
+Fill the screen with 'E' characters for alignment testing.
+
+<a id="bittty.devices.blitter.Blitter.set_scroll_region"></a>
+
+#### set\_scroll\_region
+
+```python
+def set_scroll_region(top: int, bottom: int) -> None
+```
+
+Set scroll region.
+
+<a id="bittty.devices.blitter.Blitter.set_top_and_bottom_margins"></a>
+
+#### set\_top\_and\_bottom\_margins
+
+```python
+def set_top_and_bottom_margins(top: int, bottom: int | None) -> None
+```
+
+DECSTBM — set the scroll region and home the cursor (origin-aware).
+
+<a id="bittty.devices.blitter.Blitter.insert_lines"></a>
+
+#### insert\_lines
+
+```python
+def insert_lines(count: int) -> None
+```
+
+Insert blank lines at cursor position.
+
+<a id="bittty.devices.blitter.Blitter.delete_lines"></a>
+
+#### delete\_lines
+
+```python
+def delete_lines(count: int) -> None
+```
+
+Delete lines at cursor position.
+
+<a id="bittty.devices.blitter.Blitter.insert_characters"></a>
+
+#### insert\_characters
+
+```python
+def insert_characters(count: int, ansi_code: str = "") -> None
+```
+
+Insert blank characters at cursor position.
+
+<a id="bittty.devices.blitter.Blitter.delete_characters"></a>
+
+#### delete\_characters
+
+```python
+def delete_characters(count: int) -> None
+```
+
+Delete characters at cursor position.
+
+<a id="bittty.devices.blitter.Blitter.scroll"></a>
+
+#### scroll
+
+```python
+def scroll(lines: int) -> None
+```
+
+Scroll content within the active scroll region.
+
+<a id="bittty.devices.blitter.Blitter.pan"></a>
+
+#### pan
+
+```python
+def pan(columns: int) -> None
+```
+
+SL/SR — pan the scroll-region rows horizontally within the left/right margins.
+
+<a id="bittty.devices.blitter.Blitter.shift_columns"></a>
+
+#### shift\_columns
+
+```python
+def shift_columns(count: int) -> None
+```
+
+DECIC (count > 0) / DECDC (count < 0) — insert/delete columns at the cursor.
+
+Confined to the left/right margin box; a cursor outside it is a no-op.
+
+<a id="bittty.devices.blitter.Blitter.set_left_right_margins"></a>
+
+#### set\_left\_right\_margins
+
+```python
+def set_left_right_margins(left: int | None, right: int | None) -> None
+```
+
+DECSLRM — set the left/right margins (1-based; None/0 = extremes) and home the cursor.
+
+<a id="bittty.devices.blitter.Blitter.reset_left_right_margins"></a>
+
+#### reset\_left\_right\_margins
+
+```python
+def reset_left_right_margins() -> None
+```
+
+Restore the margins to the full screen width.
+
+<a id="bittty.devices.blitter.Blitter.apply_left_right_margins"></a>
+
+#### apply\_left\_right\_margins
+
+```python
+def apply_left_right_margins(operation: Operation) -> None
+```
+
+CSI Pl ; Pr s — DECSLRM when margin mode is on, else SCOSC (save cursor).
+
+<a id="bittty.devices.blitter.Blitter.scroll_up"></a>
+
+#### scroll\_up
+
+```python
+def scroll_up(count: int) -> None
+```
+
+Scroll content up within scroll region.
+
+<a id="bittty.devices.blitter.Blitter.scroll_down"></a>
+
+#### scroll\_down
+
+```python
+def scroll_down(count: int) -> None
+```
+
+Scroll content down within scroll region.
+
+<a id="bittty.devices.blitter.Blitter.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+Restore the full scroll region; a hard reset also clears both buffers to primary.
+
+<a id="bittty.devices.blitter.Blitter.set_column_mode"></a>
+
+#### set\_column\_mode
+
+```python
+def set_column_mode(columns: int) -> None
+```
+
+DECCOLM — switch 80/132 columns; always clears the screen and homes the cursor.
+
+<a id="bittty.devices.blitter.Blitter.erase_characters"></a>
+
+#### erase\_characters
+
+```python
+def erase_characters(count: int) -> None
+```
+
+Erase `count` characters from the cursor with the current style; the cursor stays (ECH).
+
+<a id="bittty.devices.control"></a>
+
+# bittty.devices.control
+
+Control operation handler for the current board state.
+
+<a id="bittty.devices.control.ControlDevice"></a>
+
+## ControlDevice Objects
+
+```python
+class ControlDevice(Device)
+```
+
+Applies C0 and simple control operations to the current board implementation.
+
+<a id="bittty.devices.control.ControlDevice.carriage_return_line_feed"></a>
+
+#### carriage\_return\_line\_feed
+
+```python
+def carriage_return_line_feed() -> None
+```
+
+CR+LF as one fused token (the parser batches the pair).
+
+<a id="bittty.devices.control.ControlDevice.next_line"></a>
+
+#### next\_line
+
+```python
+def next_line() -> None
+```
+
+NEL — carriage return followed by line feed.
+
+<a id="bittty.devices.control.ControlDevice.answerback"></a>
+
+#### answerback
+
+```python
+def answerback() -> None
+```
+
+ENQ — transmit the programmed answerback string, if any is set.
+
+<a id="bittty.devices.cursor"></a>
+
+# bittty.devices.cursor
+
+Cursor operation handler for the current board state.
+
+<a id="bittty.devices.cursor.CursorDevice"></a>
+
+## CursorDevice Objects
+
+```python
+class CursorDevice(Device)
+```
+
+Owns cursor state and applies cursor operations.
+
+<a id="bittty.devices.cursor.CursorDevice.set_position"></a>
+
+#### set\_position
+
+```python
+def set_position(x: int | None, y: int | None) -> None
+```
+
+Move cursor to an absolute, clamped terminal position.
+
+<a id="bittty.devices.cursor.CursorDevice.move_to"></a>
+
+#### move\_to
+
+```python
+def move_to(x: int | None, y: int | None) -> None
+```
+
+Apply a CUP/HVP/VPA move, honouring origin mode (DECOM).
+
+Under origin mode the row is relative to the scroll region's top and the
+column to the left margin, each clamped within its margins.
+
+<a id="bittty.devices.cursor.CursorDevice.clamp_to_terminal"></a>
+
+#### clamp\_to\_terminal
+
+```python
+def clamp_to_terminal() -> None
+```
+
+Clamp the current position after terminal dimensions change.
+
+<a id="bittty.devices.cursor.CursorDevice.carriage_return"></a>
+
+#### carriage\_return
+
+```python
+def carriage_return() -> None
+```
+
+Move cursor to the beginning of the current line.
+
+<a id="bittty.devices.cursor.CursorDevice.line_feed"></a>
+
+#### line\_feed
+
+```python
+def line_feed(is_wrapped: bool = False) -> None
+```
+
+Move down one line, scrolling the active scroll region if needed.
+
+<a id="bittty.devices.cursor.CursorDevice.forward_index"></a>
+
+#### forward\_index
+
+```python
+def forward_index() -> None
+```
+
+DECFI — move right; at the right margin, pan the margin box one column left.
+
+<a id="bittty.devices.cursor.CursorDevice.back_index"></a>
+
+#### back\_index
+
+```python
+def back_index() -> None
+```
+
+DECBI — move left; at the left margin, pan the margin box one column right.
+
+<a id="bittty.devices.cursor.CursorDevice.reverse_index"></a>
+
+#### reverse\_index
+
+```python
+def reverse_index() -> None
+```
+
+Move up one line, scrolling down at the top of the scroll region.
+
+<a id="bittty.devices.cursor.CursorDevice.backspace"></a>
+
+#### backspace
+
+```python
+def backspace() -> None
+```
+
+Move cursor back one position, wrapping to the previous line if needed.
+
+<a id="bittty.devices.cursor.CursorDevice.set_tab_stop"></a>
+
+#### set\_tab\_stop
+
+```python
+def set_tab_stop(x: int | None = None) -> None
+```
+
+Set a horizontal tab stop at the given column.
+
+<a id="bittty.devices.cursor.CursorDevice.next_tab_stop"></a>
+
+#### next\_tab\_stop
+
+```python
+def next_tab_stop() -> int
+```
+
+Return the next horizontal tab stop, clamped to the last column.
+
+<a id="bittty.devices.cursor.CursorDevice.horizontal_tab"></a>
+
+#### horizontal\_tab
+
+```python
+def horizontal_tab() -> None
+```
+
+Advance to the next horizontal tab stop.
+
+<a id="bittty.devices.cursor.CursorDevice.previous_tab_stop"></a>
+
+#### previous\_tab\_stop
+
+```python
+def previous_tab_stop() -> int
+```
+
+Return the nearest tab stop left of the cursor, or column 0.
+
+<a id="bittty.devices.cursor.CursorDevice.forward_tab"></a>
+
+#### forward\_tab
+
+```python
+def forward_tab(count: int) -> None
+```
+
+CHT — advance `count` tab stops.
+
+<a id="bittty.devices.cursor.CursorDevice.backward_tab"></a>
+
+#### backward\_tab
+
+```python
+def backward_tab(count: int) -> None
+```
+
+CBT — retreat `count` tab stops.
+
+<a id="bittty.devices.cursor.CursorDevice.clear_tab_stop"></a>
+
+#### clear\_tab\_stop
+
+```python
+def clear_tab_stop(mode: int) -> None
+```
+
+TBC — clear the tab stop at the cursor (0) or all tab stops (3).
+
+<a id="bittty.devices.cursor.CursorDevice.tab_control"></a>
+
+#### tab\_control
+
+```python
+def tab_control(mode: int) -> None
+```
+
+CTC — set (0) or clear (2) a tab stop at the cursor, or clear all (5).
+
+<a id="bittty.devices.cursor.CursorDevice.reset_tab_stops"></a>
+
+#### reset\_tab\_stops
+
+```python
+def reset_tab_stops() -> None
+```
+
+DECST8C — reset to a tab stop every 8 columns.
+
+<a id="bittty.devices.cursor.CursorDevice.next_line"></a>
+
+#### next\_line
+
+```python
+def next_line(count: int) -> None
+```
+
+CNL — move to the first column, `count` lines down (no scroll).
+
+<a id="bittty.devices.cursor.CursorDevice.previous_line"></a>
+
+#### previous\_line
+
+```python
+def previous_line(count: int) -> None
+```
+
+CPL — move to the first column, `count` lines up (no scroll).
+
+<a id="bittty.devices.cursor.CursorDevice.set_cursor_style"></a>
+
+#### set\_cursor\_style
+
+```python
+def set_cursor_style(style: int) -> None
+```
+
+DECSCUSR — set cursor shape and blink from the style parameter.
+
+<a id="bittty.devices.cursor.CursorDevice.prepare_for_text_write"></a>
+
+#### prepare\_for\_text\_write
+
+```python
+def prepare_for_text_write() -> None
+```
+
+Apply wrapping or clipping before writing at the cursor.
+
+<a id="bittty.devices.cursor.CursorDevice.advance_after_text_write"></a>
+
+#### advance\_after\_text\_write
+
+```python
+def advance_after_text_write(character_count: int) -> None
+```
+
+Advance after printable text, preserving existing autowrap behavior.
+
+<a id="bittty.devices.cursor.CursorDevice.save"></a>
+
+#### save
+
+```python
+def save() -> None
+```
+
+Save cursor position and attributes.
+
+<a id="bittty.devices.cursor.CursorDevice.restore"></a>
+
+#### restore
+
+```python
+def restore() -> None
+```
+
+Restore cursor position and attributes.
+
+<a id="bittty.devices.cursor.CursorDevice.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+Home the cursor and clear saved state; a hard reset restores default tab stops.
+
+<a id="bittty.devices.palette"></a>
+
+# bittty.devices.palette
+
+Palette device: owns the live colour palette and the OSC colour surface.
+
+<a id="bittty.devices.palette.PaletteDevice"></a>
+
+## PaletteDevice Objects
+
+```python
+class PaletteDevice(Device)
+```
+
+Holds the current 256-colour table plus fg/bg/cursor, and applies OSC colour ops.
+
+<a id="bittty.devices.palette.PaletteDevice.special_color"></a>
+
+#### special\_color
+
+```python
+def special_color(operation: Operation) -> None
+```
+
+OSC 5 — set or (spec == '?') query a special colour (0=bold, 1=underline, …).
+
+<a id="bittty.devices.palette.PaletteDevice.special_color_enable"></a>
+
+#### special\_color\_enable
+
+```python
+def special_color_enable(operation: Operation) -> None
+```
+
+OSC 6 — enable or disable a special colour.
+
+<a id="bittty.devices.palette.PaletteDevice.reset"></a>
+
+#### reset
+
+```python
+def reset() -> None
+```
+
+Restore the model's default colours plus construction overrides (RIS).
+
+<a id="bittty.devices.palette.PaletteDevice.dynamic_color"></a>
+
+#### dynamic\_color
+
+```python
+def dynamic_color(operation: Operation, slot: str, cmd: int,
+                  fallback: str) -> None
+```
+
+OSC 13/14/17/19 — set, or (data == '?') query a dynamic colour with a fg/bg fallback.
+
+<a id="bittty.devices.palette.PaletteDevice.push_colors"></a>
+
+#### push\_colors
+
+```python
+def push_colors() -> None
+```
+
+XTPUSHCOLORS — save the whole palette (256 entries plus fg/bg/cursor).
+
+<a id="bittty.devices.palette.PaletteDevice.pop_colors"></a>
+
+#### pop\_colors
+
+```python
+def pop_colors() -> None
+```
+
+XTPOPCOLORS — restore the palette saved by the matching XTPUSHCOLORS.
+
+<a id="bittty.devices.palette.PaletteDevice.resolve"></a>
+
+#### resolve
+
+```python
+def resolve(color) -> RGB | None
+```
+
+Resolve a Style colour to concrete RGB. None means "use the default fg/bg".
+
+<a id="bittty.devices.palette.PaletteDevice.set_palette"></a>
+
+#### set\_palette
+
+```python
+def set_palette(operation: Operation) -> None
+```
+
+OSC 4 ; n ; spec [; n ; spec ...] — set or (spec == '?') query palette entries.
+
+<a id="bittty.devices.palette.PaletteDevice.set_or_query_special"></a>
+
+#### set\_or\_query\_special
+
+```python
+def set_or_query_special(operation: Operation, slot: str, cmd: int) -> None
+```
+
+OSC 10/11/12 — set or (data == '?') query the fg/bg/cursor colour.
+
+<a id="bittty.devices.palette.PaletteDevice.reset_palette"></a>
+
+#### reset\_palette
+
+```python
+def reset_palette(operation: Operation) -> None
+```
+
+OSC 104 — reset all palette entries, or just the listed indices.
+
+<a id="bittty.devices.palette.PaletteDevice.reset_special"></a>
+
+#### reset\_special
+
+```python
+def reset_special(slot: str) -> None
+```
+
+OSC 110/111/112 — reset the fg/bg/cursor colour to the model default.
+
+<a id="bittty.devices.palette.PaletteDevice.set_linux_palette"></a>
+
+#### set\_linux\_palette
+
+```python
+def set_linux_palette(operation: Operation) -> None
+```
+
+ESC ] P nrrggbb — the linux console's own single-entry palette set.
+
+<a id="bittty.devices.printer"></a>
+
+# bittty.devices.printer
+
+Printer device: the terminal's aux printer port (Media Copy / MC).
+
+Historically a terminal had a printer hanging off its aux port; Media Copy
+routed screen data to it. Here the printer is a board device with an
+attachable *sink* — a callable taking a str, or any object with a write()
+method (a file, an io.StringIO, a real printer driver). Unattached, printed
+output is simply discarded, exactly like a terminal with no printer connected.
+
+<a id="bittty.devices.printer.PrinterDevice"></a>
+
+## PrinterDevice Objects
+
+```python
+class PrinterDevice(Device)
+```
+
+Owns printer state (controller/auto-print modes) and the output sink.
+
+<a id="bittty.devices.printer.PrinterDevice.attach"></a>
+
+#### attach
+
+```python
+def attach(sink) -> None
+```
+
+Attach a printer sink: a callable(str), or an object with a write(str) method.
+
+<a id="bittty.devices.printer.PrinterDevice.emit"></a>
+
+#### emit
+
+```python
+def emit(text: str) -> None
+```
+
+Send text to the attached sink, if any.
+
+<a id="bittty.devices.printer.PrinterDevice.media_copy"></a>
+
+#### media\_copy
+
+```python
+def media_copy(operation: Operation) -> None
+```
+
+MC (CSI Ps i) — ANSI media copy.
+
+<a id="bittty.devices.printer.PrinterDevice.dec_media_copy"></a>
+
+#### dec\_media\_copy
+
+```python
+def dec_media_copy(operation: Operation) -> None
+```
+
+DEC MC (CSI ? Ps i) — auto-print and DEC print variants.
+
+<a id="bittty.devices.printer.PrinterDevice.print_screen"></a>
+
+#### print\_screen
+
+```python
+def print_screen() -> None
+```
+
+Send the whole current screen to the printer, one line per row.
+
+<a id="bittty.devices.printer.PrinterDevice.print_line"></a>
+
+#### print\_line
+
+```python
+def print_line(y: int) -> None
+```
+
+Send a single row to the printer.
+
+<a id="bittty.devices.printer.PrinterDevice.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+Leave printer controller/auto-print modes; the attached sink is config, so it stays.
+
+<a id="bittty.devices.mouse"></a>
+
+# bittty.devices.mouse
+
+Mouse input encoder: xterm mouse reports and the DEC locator protocol.
+
+<a id="bittty.devices.mouse.MouseDevice"></a>
+
+## MouseDevice Objects
+
+```python
+class MouseDevice(Device)
+```
+
+Owns mouse presentation state and emits mouse input reports.
+
+<a id="bittty.devices.mouse.MouseDevice.enable_locator"></a>
+
+#### enable\_locator
+
+```python
+def enable_locator(operation: Operation) -> None
+```
+
+DECELR — enable/disable locator reporting; ps2==1 selects pixel coordinates.
+
+<a id="bittty.devices.mouse.MouseDevice.select_locator_events"></a>
+
+#### select\_locator\_events
+
+```python
+def select_locator_events(operation: Operation) -> None
+```
+
+DECSLE — choose whether button presses/releases trigger reports.
+
+<a id="bittty.devices.mouse.MouseDevice.set_filter_rectangle"></a>
+
+#### set\_filter\_rectangle
+
+```python
+def set_filter_rectangle(operation: Operation) -> None
+```
+
+DECEFR — report once the locator leaves this rectangle.
+
+<a id="bittty.devices.mouse.MouseDevice.request_locator_position"></a>
+
+#### request\_locator\_position
+
+```python
+def request_locator_position(operation: Operation) -> None
+```
+
+DECRQLP — report the locator position now (or that it is unavailable).
+
+<a id="bittty.devices.mouse.MouseDevice.input_mouse"></a>
+
+#### input\_mouse
+
+```python
+def input_mouse(x: int, y: int, button: int, event_type: str,
+                modifiers: set[str]) -> None
+```
+
+Handle mouse input, cache position, and send appropriate sequence to the host.
+
+**Arguments**:
+
+- `x` - 1-based mouse column.
+- `y` - 1-based mouse row.
+- `button` - The button that was pressed/released.
+- `event_type` - "press", "release", or "move".
+- `modifiers` - A set of active modifiers ("shift", "meta", "ctrl").
+
+<a id="bittty.devices.keyboard"></a>
+
+# bittty.devices.keyboard
+
+Keyboard input encoder for terminal key events.
+
+<a id="bittty.devices.keyboard.KeyboardDevice"></a>
+
+## KeyboardDevice Objects
+
+```python
+class KeyboardDevice(Device)
+```
+
+Encodes keyboard input into terminal control sequences.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.set_user_keys"></a>
+
+#### set\_user\_keys
+
+```python
+def set_user_keys(operation: Operation) -> None
+```
+
+DECUDK — install user-defined strings for function keys.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.set_modify_keys"></a>
+
+#### set\_modify\_keys
+
+```python
+def set_modify_keys(operation: Operation) -> None
+```
+
+XTMODKEYS (CSI > Pp ; Pv m) — set a key-modifier resource; Pp 4 is modifyOtherKeys.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.kitty_push"></a>
+
+#### kitty\_push
+
+```python
+def kitty_push(operation: Operation) -> None
+```
+
+CSI > flags u — save the current flags and adopt new ones.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.kitty_pop"></a>
+
+#### kitty\_pop
+
+```python
+def kitty_pop(operation: Operation) -> None
+```
+
+CSI < n u — pop n saved flag-states off the stack.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.kitty_set"></a>
+
+#### kitty\_set
+
+```python
+def kitty_set(operation: Operation) -> None
+```
+
+CSI = flags ; mode u — set (1), add (2) or remove (3) flag bits.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.kitty_query"></a>
+
+#### kitty\_query
+
+```python
+def kitty_query(operation: Operation) -> None
+```
+
+CSI ? u — report the current Kitty flags as CSI ? flags u.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.report_focus"></a>
+
+#### report\_focus
+
+```python
+def report_focus(focused: bool) -> None
+```
+
+Focus reporting (DECSET 1004) — send CSI I on focus in, CSI O on focus out.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+RIS clears the modern-keyboard negotiation state.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.input_key"></a>
+
+#### input\_key
+
+```python
+def input_key(char: str, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+Convert key + modifier to standard control codes, then send to input().
+
+<a id="bittty.devices.keyboard.KeyboardDevice.input_fkey"></a>
+
+#### input\_fkey
+
+```python
+def input_fkey(num: int, modifier: int = constants.KEY_MOD_NONE) -> None
+```
+
+Encode a function key using any user-defined string, else the keymap.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.input_numpad_key"></a>
+
+#### input\_numpad\_key
+
+```python
+def input_numpad_key(key: str) -> None
+```
+
+Convert numpad key to the sequence for the current keypad mode.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.input"></a>
+
+#### input
+
+```python
+def input(data: str) -> None
+```
+
+Translate control codes based on terminal modes and send to the host.
+
+<a id="bittty.devices.keyboard.KeyboardDevice.translate_application_cursor_keys"></a>
+
+#### translate\_application\_cursor\_keys
+
+```python
+def translate_application_cursor_keys(data: str) -> str
+```
+
+Translate embedded normal cursor-key CSI sequences to application mode.
+
+<a id="bittty.devices.modes"></a>
+
+# bittty.devices.modes
+
+Terminal modes as a declarative capability table.
+
+Each mode is a small `Mode` capability that claims a number (ANSI or DEC
+private), knows how to apply itself and how to report its DECRQM status, and
+can be omitted by a model (so, e.g., a terminal that predates bracketed
+paste simply does not recognise mode 2004). The boolean flags themselves stay
+as attributes on the device: they are read widely across the emulator, and
+several modes legitimately share one flag (mode 7 and 1000 both drive
+`mouse_tracking`).
+
+<a id="bittty.devices.modes.Mode"></a>
+
+## Mode Objects
+
+```python
+@dataclass(frozen=True)
+class Mode()
+```
+
+One terminal mode: which flag it backs and how it answers DECRQM.
+
+<a id="bittty.devices.modes.Mode.attr"></a>
+
+#### attr
+
+device flag this mode drives, if any
+
+<a id="bittty.devices.modes.Mode.invert"></a>
+
+#### invert
+
+"set" stores the negation (modes 12, 66)
+
+<a id="bittty.devices.modes.Mode.queryable"></a>
+
+#### queryable
+
+DECRQM reports this mode's state
+
+<a id="bittty.devices.modes.Mode.apply_fn"></a>
+
+#### apply\_fn
+
+side effect
+
+<a id="bittty.devices.modes.Mode.status_fn"></a>
+
+#### status\_fn
+
+custom DECRQM status
+
+<a id="bittty.devices.modes.Mode.peripheral"></a>
+
+#### peripheral
+
+"mouse"/"cursor"/"sync": emit a present event on change
+
+<a id="bittty.devices.modes.Mode.status"></a>
+
+#### status
+
+```python
+def status(device: ModeDevice) -> int
+```
+
+DECRQM status: 1 = set, 2 = reset, 0 = not recognised.
+
+<a id="bittty.devices.modes.ModeDevice"></a>
+
+## ModeDevice Objects
+
+```python
+class ModeDevice(Device)
+```
+
+Owns terminal mode state and applies mode operations via the mode table.
+
+<a id="bittty.devices.modes.ModeDevice.reset"></a>
+
+#### reset
+
+```python
+def reset(hard: bool = True) -> None
+```
+
+Reset modes. hard restores every flag (RIS); soft is the DECSTR subset.
+
+<a id="bittty.devices.modes.ModeDevice.set_mode"></a>
+
+#### set\_mode
+
+```python
+def set_mode(mode: int, value: bool = True, private: bool = False) -> None
+```
+
+Set a single terminal mode.
+
+<a id="bittty.devices.modes.ModeDevice.clear_mode"></a>
+
+#### clear\_mode
+
+```python
+def clear_mode(mode: int, private: bool = False) -> None
+```
+
+Clear a single terminal mode.
+
+<a id="bittty.devices.title"></a>
+
+# bittty.devices.title
+
+Title operation handler for the current board state.
+
+<a id="bittty.devices.title.TitleDevice"></a>
+
+## TitleDevice Objects
+
+```python
+class TitleDevice(Device)
+```
+
+Owns terminal title state and applies title operations.
+
+<a id="bittty.devices.title.TitleDevice.set_title"></a>
+
+#### set\_title
+
+```python
+def set_title(title: str) -> None
+```
+
+Set terminal title.
+
+<a id="bittty.devices.title.TitleDevice.set_icon_title"></a>
+
+#### set\_icon\_title
+
+```python
+def set_icon_title(icon_title: str) -> None
+```
+
+Set terminal icon title.
+
+<a id="bittty.devices.title.TitleDevice.set_both"></a>
+
+#### set\_both
+
+```python
+def set_both(title: str) -> None
+```
+
+Set both the window title and the icon title.
+
+<a id="bittty.devices.title.TitleDevice.push"></a>
+
+#### push
+
+```python
+def push() -> None
+```
+
+XTWINOPS 22 — save the current window and icon titles.
+
+<a id="bittty.devices.title.TitleDevice.pop"></a>
+
+#### pop
+
+```python
+def pop() -> None
+```
+
+XTWINOPS 23 — restore the most recently saved titles.
+
+<a id="bittty.devices"></a>
+
+# bittty.devices
+
+Device adapters for applying parser operations.
+
+<a id="bittty.style"></a>
+
+# bittty.style
+
+<a id="bittty.style.CURSOR_CODE"></a>
+
+#### CURSOR\_CODE
+
+Reverse video for cursor display
+
+<a id="bittty.style.RESET_CODE"></a>
+
+#### RESET\_CODE
+
+Reset all formatting
+
+<a id="bittty.style.Style"></a>
+
+## Style Objects
+
+```python
+class Style()
+```
+
+Immutable text style. The keyword surface matches the old dataclass field
+per field (None = inherit); internally the tri-state attributes are packed
+so merge/eq/hash cost a couple of int ops instead of a 20-field walk.
+
+<a id="bittty.style.Style.merge"></a>
+
+#### merge
+
+```python
+def merge(other: Style) -> Style
+```
+
+Merge another style into this one; the other's set attributes win.
+
+<a id="bittty.style.Style.replace"></a>
+
+#### replace
+
+```python
+def replace(**kwargs) -> Style
+```
+
+A new Style with the given fields replaced (None = back to inherit).
+
+<a id="bittty.style.Style.diff"></a>
+
+#### diff
+
+```python
+def diff(other: "Style") -> str
+```
+
+Generate minimal ANSI sequence to transition to another style.
+
+<a id="bittty.style.parse_sgr_with_reset"></a>
+
+#### parse\_sgr\_with\_reset
+
+```python
+@lru_cache(maxsize=10000)
+def parse_sgr_with_reset(ansi: str) -> Tuple[Optional[Style], bool]
+```
+
+Parse an SGR sequence into (style, reset): reset means "clear, then apply style".
+
+A reset token (0, 00, or an empty parameter) anywhere in the sequence discards
+everything before it, so ESC[0;31m is "reset, then red" — not a red merge into
+the current attributes. A pure reset returns (None, True) so the hot path can
+skip the merge without comparing 20 Style fields.
+
+<a id="bittty.style.interpret"></a>
+
+#### interpret
+
+```python
+@lru_cache(maxsize=10000)
+def interpret(tokens: Tuple[str, ...]) -> Style
+```
+
+Interpret SGR tokens into a Style, accumulating the packed masks directly.
+
+<a id="bittty.style.get_background"></a>
+
+#### get\_background
+
+```python
+@lru_cache(maxsize=10000)
+def get_background(ansi: str) -> str
+```
+
+Extract just the background color as an ANSI sequence.
+
+**Arguments**:
+
+- `ansi` - ANSI escape sequence
+  
+
+**Returns**:
+
+  ANSI sequence with just the background color, or empty string
+
+<a id="bittty.style.merge_ansi_styles"></a>
+
+#### merge\_ansi\_styles
+
+```python
+@lru_cache(maxsize=10000)
+def merge_ansi_styles(base: str, new: str) -> str
+```
+
+Merge two ANSI style sequences, returning a new ANSI sequence.
+
+**Arguments**:
+
+- `base` - Base ANSI sequence
+- `new` - New ANSI sequence to merge
+  
+
+**Returns**:
+
+  Merged ANSI sequence
+
+<a id="bittty.style.style_to_ansi"></a>
+
+#### style\_to\_ansi
+
+```python
+@lru_cache(maxsize=10000)
+def style_to_ansi(style: Style) -> str
+```
+
+Convert a Style object back to an ANSI escape sequence.
+
+**Arguments**:
+
+- `style` - Style object to convert
+  
+
+**Returns**:
+
+  ANSI escape sequence string
+
+<a id="bittty.caps"></a>
+
+# bittty.caps
+
+TerminalCaps: physical facts about the real terminal, pushed *up* by the chrome.
+
+The backend answers the child's physical-fact queries (window/cell pixel size,
+background colour) from these when a terminal (chrome) has supplied them. Every field
+defaults to "unknown" (None / "unknown"), meaning "change nothing" — so a board
+with no attached terminal behaves exactly as it does today.
+
+Graphics-capability flags (sixel / kitty / iTerm images) are deliberately absent
+until graphics modes are on the table; there is nothing to reconcile without them.
+
+<a id="bittty.caps.TerminalCaps"></a>
+
+## TerminalCaps Objects
+
+```python
+@dataclass(frozen=True)
+class TerminalCaps()
+```
+
+What the real terminal can actually do (terminal -> board).
+
+<a id="bittty.caps.TerminalCaps.color_depth"></a>
+
+#### color\_depth
+
+"monochrome" / "16" / "256" / "truecolor" / "unknown"
+
+<a id="bittty.caps.TerminalCaps.cell_px"></a>
+
+#### cell\_px
+
+character cell size in pixels (CSI 16 t)
+
+<a id="bittty.caps.TerminalCaps.window_px"></a>
+
+#### window\_px
+
+window size in pixels (CSI 14 t)
+
+<a id="bittty.caps.TerminalCaps.background"></a>
+
+#### background
+
+actual background colour (OSC 11)
+
+<a id="bittty.caps.TerminalCaps.unknown"></a>
+
+#### unknown
+
+```python
+@classmethod
+def unknown(cls) -> "TerminalCaps"
+```
+
+Caps that assert nothing — the backend keeps its current behaviour.
+
+<a id="bittty.palette"></a>
+
+# bittty.palette
+
+Colour palettes: the index -> RGB mapping a terminal presents.
+
+bittty stores colours symbolically (a `Style` holds an indexed or rgb `Color`);
+the palette is the authoritative map an indexed colour resolves *through*. It is
+seeded from the model, mutated by OSC colour sequences, and queried by
+their `?` forms. Rendering to real pixels stays a terminal (chrome) concern — the
+terminal calls `PaletteDevice.resolve()` when it wants RGB.
+
+<a id="bittty.palette.build_256"></a>
+
+#### build\_256
+
+```python
+def build_256(base16: tuple[RGB, ...]) -> list[RGB]
+```
+
+Build the full 256-colour table: 16 base + 216 colour cube + 24 greys.
+
+<a id="bittty.palette.parse_color_spec"></a>
+
+#### parse\_color\_spec
+
+```python
+def parse_color_spec(spec: str) -> RGB | None
+```
+
+Parse an X11 colour spec: ``rgb:R/G/B`` or ```RGB```/```RRGGBB```/... .
+
+<a id="bittty.palette.format_rgb"></a>
+
+#### format\_rgb
+
+```python
+def format_rgb(rgb: RGB) -> str
+```
+
+Format an RGB triple as an X11 ``rgb:rrrr/gggg/bbbb`` reply string.
+
+<a id="bittty.palette.PaletteDefaults"></a>
+
+## PaletteDefaults Objects
+
+```python
+@dataclass(frozen=True)
+class PaletteDefaults()
+```
+
+A terminal's default colours: the 16 ANSI colours plus fg/bg/cursor.
+
+<a id="bittty.present"></a>
+
+# bittty.present
+
+Present events: discrete side-effects the board pushes to the attached terminal (chrome).
+
+Screen content stays *pull* (a terminal (chrome) reads capture_pane()/get_line on its own
+cadence). Only these discrete events are *pushed*, through the board's DisplayPort.
+Each is a plain frozen dataclass — pure data, no imports from board/devices — so
+board.py can depend on this module without a cycle.
+
+<a id="bittty.present.Bell"></a>
+
+## Bell Objects
+
+```python
+@dataclass(frozen=True)
+class Bell()
+```
+
+The terminal bell rang (C0 BEL).
+
+<a id="bittty.present.TitleChanged"></a>
+
+## TitleChanged Objects
+
+```python
+@dataclass(frozen=True)
+class TitleChanged()
+```
+
+Window and/or icon title changed (OSC 0/1/2, XTWINOPS title stack).
+
+<a id="bittty.present.Notification"></a>
+
+## Notification Objects
+
+```python
+@dataclass(frozen=True)
+class Notification()
+```
+
+A desktop notification was posted (OSC 9 / 777 / 99).
+
+<a id="bittty.present.ClipboardChanged"></a>
+
+## ClipboardChanged Objects
+
+```python
+@dataclass(frozen=True)
+class ClipboardChanged()
+```
+
+A clipboard selection was set (OSC 52 write).
+
+<a id="bittty.present.PromptMark"></a>
+
+## PromptMark Objects
+
+```python
+@dataclass(frozen=True)
+class PromptMark()
+```
+
+A shell-integration prompt/command mark (OSC 133).
+
+<a id="bittty.present.PointerShapeChanged"></a>
+
+## PointerShapeChanged Objects
+
+```python
+@dataclass(frozen=True)
+class PointerShapeChanged()
+```
+
+The mouse-pointer shape was requested (OSC 22).
+
+<a id="bittty.present.FontChanged"></a>
+
+## FontChanged Objects
+
+```python
+@dataclass(frozen=True)
+class FontChanged()
+```
+
+The font was set (OSC 50).
+
+<a id="bittty.present.CwdChanged"></a>
+
+## CwdChanged Objects
+
+```python
+@dataclass(frozen=True)
+class CwdChanged()
+```
+
+The reported working directory changed (OSC 7).
+
+<a id="bittty.present.WindowRequest"></a>
+
+## WindowRequest Objects
+
+```python
+@dataclass(frozen=True)
+class WindowRequest()
+```
+
+A window action was requested: "raise" / "lower" / "refresh" (XTWINOPS 5/6/7).
+
+<a id="bittty.present.WindowStateChanged"></a>
+
+## WindowStateChanged Objects
+
+```python
+@dataclass(frozen=True)
+class WindowStateChanged()
+```
+
+Window iconify/maximize/fullscreen/position state changed (XTWINOPS).
+
+<a id="bittty.present.ConsoleRequest"></a>
+
+## ConsoleRequest Objects
+
+```python
+@dataclass(frozen=True)
+class ConsoleRequest()
+```
+
+A virtual-console switch was requested (linux setterm 12/15).
+
+<a id="bittty.present.ConsoleRequest.kind"></a>
+
+#### kind
+
+"switch" / "previous"
+
+<a id="bittty.present.MouseModeChanged"></a>
+
+## MouseModeChanged Objects
+
+```python
+@dataclass(frozen=True)
+class MouseModeChanged()
+```
+
+The requested mouse-tracking mode changed (derived from modes 9/1000/1002/1003).
+
+<a id="bittty.present.MouseModeChanged.mode"></a>
+
+#### mode
+
+"off" / "basic" / "button" / "any"
+
+<a id="bittty.present.MouseModeChanged.sgr"></a>
+
+#### sgr
+
+SGR (1006) encoding requested
+
+<a id="bittty.present.CursorVisibilityChanged"></a>
+
+## CursorVisibilityChanged Objects
+
+```python
+@dataclass(frozen=True)
+class CursorVisibilityChanged()
+```
+
+Text-cursor visibility changed (DECTCEM, mode 25).
+
+<a id="bittty.present.SyncOutputChanged"></a>
+
+## SyncOutputChanged Objects
+
+```python
+@dataclass(frozen=True)
+class SyncOutputChanged()
+```
+
+Synchronized-output mode toggled (mode 2026); a terminal (chrome) gates repaint on it.
 
