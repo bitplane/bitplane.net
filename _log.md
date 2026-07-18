@@ -1,3 +1,4 @@
+* [2026-07-18 - 🆘 winhlp - Windows HLP for Python](https://crates.io/crates/chuda)
 * [2026-07-18 - 📺 chuda - Chafa in CUDA](https://crates.io/crates/chuda)
 * [2026-07-14 - 📺 ttx42 - TeleText to ANSI](https://github.com/bitplane/ttx42)
 * [2026-07-13 - 🔠 sn8kfonts - figLET TeleText fonts with kerning](https://github.com/bitplane/sn8kfonts)

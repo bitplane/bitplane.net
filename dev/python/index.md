@@ -19,6 +19,8 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 🆘 [winhlp](winhlp) -
+  A Windows 95 era .HLP file decoder.
 * 📦 [Crunch-Mania](crunchmania) -
   another Amiga compression format.
 * 📃 [CFF MOST](cff-most) -
