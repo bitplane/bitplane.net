@@ -1,3 +1,4 @@
+* [2026-07-18 - 📺 chuda - Chafa in CUDA](https://crates.io/crates/chuda)
 * [2026-07-14 - 📺 ttx42 - TeleText to ANSI](https://github.com/bitplane/ttx42)
 * [2026-07-13 - 🔠 sn8kfonts - figLET TeleText fonts with kerning](https://github.com/bitplane/sn8kfonts)
 * [2026-05-23 - 📃 awkdown - a POSIX markdown parser](/dev/awk/awkdown)
