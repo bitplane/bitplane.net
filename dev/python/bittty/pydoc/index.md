@@ -873,6 +873,16 @@ def input_numpad_key(key: str) -> None
 
 A numpad key from the terminal.
 
+<a id="bittty.connections.DisplayPort.input_paste"></a>
+
+#### input\_paste
+
+```python
+def input_paste(text: str) -> None
+```
+
+Pasted text from the terminal, bracketed per mode 2004.
+
 <a id="bittty.connections.DisplayPort.input_mouse"></a>
 
 #### input\_mouse
@@ -2263,6 +2273,18 @@ def input(data: str) -> None
 ```
 
 Translate control codes based on terminal modes and send to the host.
+
+<a id="bittty.devices.board.Board.input_paste"></a>
+
+#### input\_paste
+
+```python
+def input_paste(text: str) -> None
+```
+
+Pasted text from the terminal: bracketed when mode 2004 is on, else raw.
+
+Bypasses keyboard translation — a paste is data, not keystrokes.
 
 <a id="bittty.devices.board.Board.input_mouse"></a>
 
