@@ -16,7 +16,7 @@ here — import it from bittty.terminals.
 
 # bittty.terminals.probe
 
-Capability probing for the passthrough client.
+Capability probing for the stdio terminal.
 
 Ask the real outer terminal what it can do, then hand a TerminalCaps up to the
 backend. Uses a DA1-terminated handshake: fire all the queries plus a Primary DA
@@ -140,6 +140,21 @@ raw-mode stdin, ANSI rendering to stdout, resize handling, and mouse mirroring.
 Discrete side-effects arrive through the Terminal hooks (on_bell/on_title/
 on_mouse_mode).
 
+<a id="bittty.terminals.stdio.HostInputSink"></a>
+
+## HostInputSink Objects
+
+```python
+class HostInputSink()
+```
+
+Sink for the input-direction parser: host bytes in, board events out.
+
+Every operation carries its raw bytes, so anything we don't intercept is
+forwarded to the child verbatim and in order — arrow keys, control chars,
+pastes, whole unknown sequences. Interception is by raw prefix, not
+operation name: on the input direction CSI I is a focus report, never CHT.
+
 <a id="bittty.terminals.stdio.StdioTerminal"></a>
 
 ## StdioTerminal Objects
@@ -238,7 +253,11 @@ Ask the outer terminal what it can do and push TerminalCaps to the backend.
 def render_screen() -> None
 ```
 
-Render the current terminal state to stdout.
+Render the current board state to stdout, then place the host's hardware cursor.
+
+The cursor is the host terminal's own: position it and show it when the
+child wants it visible (DECTCEM). The host hollows it on unfocus by
+itself, exactly like a real terminal.
 
 <a id="bittty.terminals.stdio.StdioTerminal.handle_pty_data"></a>
 
@@ -282,7 +301,11 @@ A host focus event: the backend owns the state; we just repaint.
 def handle_input(data: str) -> None
 ```
 
-Forward host input to bittty, intercepting SGR mouse reports and focus events.
+Feed host input through the input-direction parser.
+
+The parser reassembles sequences split across reads; HostInputSink
+intercepts SGR mouse reports and focus events and forwards everything
+else to the child verbatim.
 
 <a id="bittty.terminals.stdio.StdioTerminal.flush_pending_input"></a>
 
@@ -292,11 +315,11 @@ Forward host input to bittty, intercepting SGR mouse reports and focus events.
 def flush_pending_input() -> None
 ```
 
-Release a held partial prefix that never became a mouse report.
+Release a held incomplete sequence that never completed.
 
-A lone ESC keypress matches the start of the mouse-report prefix, so
-handle_input buffers it; when no follow-up arrives within an input-loop
-tick it was a real ESC and must reach the child.
+A lone ESC keypress looks like a sequence prefix, so the parser holds
+it; when no follow-up arrives within an input-loop tick it was a real
+ESC and must reach the child.
 
 <a id="bittty.terminals.stdio.StdioTerminal.handle_resize"></a>
 
@@ -374,6 +397,29 @@ def __init__(width: int, height: int) -> None
 ```
 
 Initialize buffer with given dimensions.
+
+<a id="bittty.video.Video.observe"></a>
+
+#### observe
+
+```python
+def observe() -> int
+```
+
+Snapshot for dirty tracking: close the current epoch, open a new one.
+
+Returns the new epoch; rows stamped at or after it are dirty relative
+to this observation. Each reader keeps its own returned value.
+
+<a id="bittty.video.Video.dirty_rows"></a>
+
+#### dirty\_rows
+
+```python
+def dirty_rows(seen: int) -> List[int]
+```
+
+Rows changed since `seen` (a value returned by observe()).
 
 <a id="bittty.video.Video.set_line_attribute"></a>
 
@@ -548,6 +594,20 @@ def resize(width: int, height: int) -> None
 
 Resize buffer to new dimensions.
 
+<a id="bittty.video.Video.link_extent"></a>
+
+#### link\_extent
+
+```python
+def link_extent(x: int, y: int) -> tuple | None
+```
+
+The contiguous same-link run containing (x, y) on its row.
+
+Returns (uri, link_id, x0, x1) with an inclusive column span, or None
+if the cell isn't a link. Segments split across rows share a link_id;
+grouping those into one hover is the chrome's job.
+
 <a id="bittty.video.Video.get_line_text"></a>
 
 #### get\_line\_text
@@ -563,34 +623,23 @@ Get plain text content of a line (for debugging/testing).
 #### get\_line
 
 ```python
-def get_line(y: int,
-             width: int = None,
-             cursor_x: int = -1,
-             cursor_y: int = -1,
-             show_cursor: bool = False,
-             mouse_x: int = -1,
-             mouse_y: int = -1,
-             show_mouse: bool = False) -> str
+def get_line(y: int, width: int = None) -> str
 ```
 
-Get full ANSI sequence for a line.
+Get full ANSI sequence for a line — a pure read of video memory.
+
+No cursor or pointer is composited in; those are chrome concerns,
+rendered by the terminal from the board's registers.
 
 <a id="bittty.video.Video.get_line_tuple"></a>
 
 #### get\_line\_tuple
 
 ```python
-def get_line_tuple(y: int,
-                   width: int = None,
-                   cursor_x: int = -1,
-                   cursor_y: int = -1,
-                   show_cursor: bool = False,
-                   mouse_x: int = -1,
-                   mouse_y: int = -1,
-                   show_mouse: bool = False) -> tuple
+def get_line_tuple(y: int, width: int = None) -> tuple
 ```
 
-Get line as a hashable tuple for caching.
+Get line as a hashable tuple for caching — a pure read of video memory.
 
 <a id="bittty.connections"></a>
 
@@ -975,6 +1024,21 @@ class Parser()
 
 State machine: GROUND → (CSI | STRING[osc|dcs|apc|pm|sos]) → GROUND
 Uses small, state-specific scanners for speed.
+
+<a id="bittty.parser.core.Parser.flush_trailing"></a>
+
+#### flush\_trailing
+
+```python
+def flush_trailing() -> None
+```
+
+Emit any held incomplete sequence as plain text and reset to ground.
+
+For an input-direction parser: a lone ESC (or a dangling introducer)
+that never completed within the caller's patience was a keypress, not
+a sequence prefix, and must reach the sink as-is. Never called on the
+output direction, where waiting for the rest of the sequence is right.
 
 <a id="bittty.parser.escape"></a>
 
@@ -2024,17 +2088,6 @@ def get_pty_handler(rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
 
 Create a platform-appropriate PTY handler.
 
-<a id="bittty.devices.board.Board.board"></a>
-
-#### board
-
-```python
-@property
-def board() -> "Board"
-```
-
-Compat shim: pre-dissolve code reached the board via `.board`. Remove next release.
-
 <a id="bittty.devices.board.Board.print_text"></a>
 
 #### print\_text
@@ -2133,11 +2186,23 @@ Get current screen content as raw buffer data.
 def capture_pane() -> str
 ```
 
-Capture terminal content.
+Capture screen content: a pure pull of video memory as ANSI lines.
 
-The cursor cell renders only when the child wants it visible (DECTCEM)
-and the box has focus — an unfocused terminal drops its block the way a
-real one hollows it.
+No cursor or pointer is composited in — the chrome renders those from
+the board's registers (cursor.x/y, modes.cursor_visible, mouse.x/y).
+
+<a id="bittty.devices.board.Board.link_at"></a>
+
+#### link\_at
+
+```python
+def link_at(x: int, y: int) -> tuple | None
+```
+
+The hyperlink under a cell: (uri, link_id) or None.
+
+The chrome pulls this for hover and click arbitration — link data is
+model state; the hover effect and the click-through are chrome.
 
 <a id="bittty.devices.board.Board.attach_display"></a>
 
@@ -2477,10 +2542,13 @@ ESC [ 8 ] — make the current attributes the default (the SGR 0 target).
 #### set\_hyperlink
 
 ```python
-def set_hyperlink(uri: str) -> None
+def set_hyperlink(uri: str, link_id: str = "") -> None
 ```
 
 OSC 8 — start (non-empty URI) or end (empty) the active hyperlink.
+
+The id= param groups link segments a layout has split (wrapped lines,
+columns); the chrome uses it to hover them as one link.
 
 <a id="bittty.devices.style.StyleDevice.set_protected"></a>
 
