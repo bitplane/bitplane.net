@@ -73,6 +73,26 @@ class TopicChoicePopup(ModalScreen)
 
 Choose one of several topics associated with an index keyword.
 
+<a id="winhlp.tui.HelpTopicsScreen"></a>
+
+## HelpTopicsScreen Objects
+
+```python
+class HelpTopicsScreen(ModalScreen[Optional[NavigationEntry]])
+```
+
+Windows Help-style Contents and keyword Index browser.
+
+<a id="winhlp.tui.OptionsScreen"></a>
+
+## OptionsScreen Objects
+
+```python
+class OptionsScreen(ModalScreen[Optional[str]])
+```
+
+Compact menu for less-frequent WinHelp viewer actions.
+
 <a id="winhlp.tui.WinHlpApp"></a>
 
 ## WinHlpApp Objects
@@ -858,6 +878,17 @@ def topic_for_offset(offset: Optional[int]) -> Optional[ParsedTopic]
 ```
 
 Return the topic whose range contains an offset.
+
+<a id="winhlp.lib.document.HelpDocument.has_authored_contents"></a>
+
+#### has\_authored\_contents
+
+```python
+@property
+def has_authored_contents() -> bool
+```
+
+Whether a CNT/GID source supplies a curated Contents hierarchy.
 
 <a id="winhlp.lib.document.HelpDocument.resolve_context_hash"></a>
 
