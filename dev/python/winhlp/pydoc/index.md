@@ -25,6 +25,74 @@ Every parsed structure stores a raw_data blob (the source bytes plus a copy
 of the parsed fields), which duplicates the model 2-3x and dominates the
 output. --raw keeps it for byte-level fidelity; by default we remove it.
 
+<a id="winhlp.tui"></a>
+
+# winhlp.tui
+
+Interactive terminal viewer for parsed Windows Help files.
+
+<a id="winhlp.tui.TopicView"></a>
+
+## TopicView Objects
+
+```python
+class TopicView(Static)
+```
+
+A Rich-backed topic renderer with keyboard-selectable inline hotspots.
+
+<a id="winhlp.tui.TopicView.link_style"></a>
+
+#### link\_style
+
+```python
+@property
+def link_style() -> Style
+```
+
+Keep Textual's automatic link decoration away from raster pixels.
+
+<a id="winhlp.tui.TopicView.link_style_hover"></a>
+
+#### link\_style\_hover
+
+```python
+@property
+def link_style_hover() -> Style
+```
+
+Use temporary reverse-video for hover while preserving the resting image.
+
+<a id="winhlp.tui.TopicChoicePopup"></a>
+
+## TopicChoicePopup Objects
+
+```python
+class TopicChoicePopup(ModalScreen)
+```
+
+Choose one of several topics associated with an index keyword.
+
+<a id="winhlp.tui.WinHlpApp"></a>
+
+## WinHlpApp Objects
+
+```python
+class WinHlpApp(App)
+```
+
+Browse a parsed Windows Help file in the terminal.
+
+<a id="winhlp.tui.run_tui"></a>
+
+#### run\_tui
+
+```python
+def run_tui(helpfile) -> None
+```
+
+Run the terminal viewer for a parsed HelpFile.
+
 <a id="winhlp.lib.btree"></a>
 
 # winhlp.lib.btree
@@ -268,7 +336,17 @@ Get a specific topic by its number.
 def get_topic_by_context_name(context_name: str) -> Optional[ParsedTopic]
 ```
 
-Get a topic by its context name using hash lookup.
+Get a topic by its context name using the shared document index.
+
+<a id="winhlp.lib.hlp.HelpFile.get_document"></a>
+
+#### get\_document
+
+```python
+def get_document()
+```
+
+Return the cached presentation-neutral document index.
 
 <a id="winhlp.lib.hlp.HelpFile.extract_bitmap"></a>
 
@@ -616,6 +694,38 @@ Get list of available CHARTAB filenames.
 
   List of CHARTAB filenames
 
+<a id="winhlp.lib.macros"></a>
+
+# winhlp.lib.macros
+
+Strictly allowlisted interpretation of navigation-only WinHelp macros.
+
+<a id="winhlp.lib.macros.parse_navigation_macro"></a>
+
+#### parse\_navigation\_macro
+
+```python
+def parse_navigation_macro(source: str) -> NavigationMacro | None
+```
+
+Parse only known, side-effect-free navigation macro forms.
+
+<a id="winhlp.lib.cnt"></a>
+
+# winhlp.lib.cnt
+
+Safe parser for the line-oriented WinHelp Contents (.CNT) format.
+
+<a id="winhlp.lib.cnt.load_cnt"></a>
+
+#### load\_cnt
+
+```python
+def load_cnt(path: Path, encoding: str = "cp1252") -> CntDocument
+```
+
+Read a sibling CNT without following includes or paths outside its directory.
+
 <a id="winhlp.lib.text_utils"></a>
 
 # winhlp.lib.text\_utils
@@ -674,6 +784,111 @@ from the system file if available.
 **Returns**:
 
   Decoded string
+
+<a id="winhlp.lib.terminal_layout"></a>
+
+# winhlp.lib.terminal\_layout
+
+Terminal-oriented, toolkit-neutral paragraph layout translation.
+
+<a id="winhlp.lib.terminal_layout.expand_terminal_tabs"></a>
+
+#### expand\_terminal\_tabs
+
+```python
+def expand_terminal_tabs(text: str, tabs: tuple[TerminalTab, ...]) -> str
+```
+
+Expand tabs using left/right/centre/decimal stops with safe degradation.
+
+<a id="winhlp.lib.document"></a>
+
+# winhlp.lib.document
+
+Presentation-neutral topic indexing, navigation, and link resolution.
+
+<a id="winhlp.lib.document.ResolvedTarget"></a>
+
+## ResolvedTarget Objects
+
+```python
+@dataclass(frozen=True)
+class ResolvedTarget()
+```
+
+The result of interpreting a WinHelp hotspot target.
+
+<a id="winhlp.lib.document.EmbeddedResource"></a>
+
+## EmbeddedResource Objects
+
+```python
+@dataclass(frozen=True)
+class EmbeddedResource()
+```
+
+A normalized embedded bitmap or MediaView resource reference.
+
+<a id="winhlp.lib.document.parse_embedded_resource"></a>
+
+#### parse\_embedded\_resource
+
+```python
+def parse_embedded_resource(marker: str) -> Optional[EmbeddedResource]
+```
+
+Normalize ``bitmap:align:n`` and ``window:align:EWC`` markers.
+
+<a id="winhlp.lib.document.HelpDocument"></a>
+
+## HelpDocument Objects
+
+```python
+class HelpDocument()
+```
+
+Indexes a parsed :class:`HelpFile` for presentation consumers.
+
+<a id="winhlp.lib.document.HelpDocument.topic_for_offset"></a>
+
+#### topic\_for\_offset
+
+```python
+def topic_for_offset(offset: Optional[int]) -> Optional[ParsedTopic]
+```
+
+Return the topic whose range contains an offset.
+
+<a id="winhlp.lib.document.HelpDocument.resolve_context_hash"></a>
+
+#### resolve\_context\_hash
+
+```python
+def resolve_context_hash(hash_value: int,
+                         popup: bool = False) -> ResolvedTarget
+```
+
+Resolve a bitmap hotspot context hash.
+
+<a id="winhlp.lib.document.HelpDocument.resolve_bitmap_hotspot"></a>
+
+#### resolve\_bitmap\_hotspot
+
+```python
+def resolve_bitmap_hotspot(hotspot) -> ResolvedTarget
+```
+
+Resolve a typed SHG/MRB hotspot without executing arbitrary macros.
+
+<a id="winhlp.lib.document.HelpNavigator"></a>
+
+## HelpNavigator Objects
+
+```python
+class HelpNavigator()
+```
+
+UI-independent topic history for a :class:`HelpDocument`.
 
 <a id="winhlp.lib.html"></a>
 
@@ -763,14 +978,35 @@ Pictures embedded in |bmN files and MediaView named bitmap resources are stored
 in the SHG/MRB "lP"/"lp" container (doc/helpfile.md:1266-1323): a magic + a table
 of picture offsets, each pointing at a DDB/DIB bitmap or a metafile whose
 dimension header is written as *compressed* integers and whose pixels are packed
-with RunLen and/or LZ77. This module decodes the first picture into a ready-to-
-serve Windows .bmp (bitmaps) or raw metafile (.wmf).
+with RunLen and/or LZ77. This module decodes every picture into a ready-to-serve
+Windows .bmp (bitmaps) or raw metafile (.wmf).
 
 <a id="winhlp.lib.picture.LP_MAGIC"></a>
 
 #### LP\_MAGIC
 
 "lP" (SHG) / "lp" (MRB)
+
+<a id="winhlp.lib.picture.DecodedPicture"></a>
+
+## DecodedPicture Objects
+
+```python
+@dataclass(frozen=True)
+class DecodedPicture()
+```
+
+One decoded member of an SHG/MRB picture container.
+
+<a id="winhlp.lib.picture.decode_pictures"></a>
+
+#### decode\_pictures
+
+```python
+def decode_pictures(raw: bytes) -> list[DecodedPicture]
+```
+
+Decode every valid picture in an lP/SHG/MRB container.
 
 <a id="winhlp.lib.picture.decode_picture"></a>
 
@@ -780,7 +1016,7 @@ serve Windows .bmp (bitmaps) or raw metafile (.wmf).
 def decode_picture(raw: bytes) -> Optional[Tuple[str, bytes]]
 ```
 
-Decode the first picture in an lP/SHG/MRB blob into (extension, bytes).
+Compatibility wrapper returning the first decoded picture.
 
 <a id="winhlp.lib.internal_files.topicid"></a>
 
@@ -2160,6 +2396,26 @@ topic offset, macro command, external file, etc.
 #### start\_position
 
 Character position in full text
+
+<a id="winhlp.lib.internal_files.topic.TopicTextBlock"></a>
+
+## TopicTextBlock Objects
+
+```python
+class TopicTextBlock(BaseModel)
+```
+
+One display record, retained in its original position within a topic.
+
+<a id="winhlp.lib.internal_files.topic.TopicTableBlock"></a>
+
+## TopicTableBlock Objects
+
+```python
+class TopicTableBlock(BaseModel)
+```
+
+One table record, retained in its original position within a topic.
 
 <a id="winhlp.lib.internal_files.topic.ParsedTopic"></a>
 
@@ -4174,6 +4430,16 @@ header for WMFs, but the bare metafile record stream is the portable form
 and is what the decompressed picture data already contains.
 Returns None if the index is out of range.
 
+<a id="winhlp.lib.internal_files.bitmap.BitmapFile.select_picture"></a>
+
+#### select\_picture
+
+```python
+def select_picture(target_width: int) -> int
+```
+
+Choose the bitmap variant closest to the requested display width.
+
 <a id="winhlp.lib.internal_files.bitmap.BitmapFile.get_hotspot_context_names"></a>
 
 #### get\_hotspot\_context\_names
@@ -4552,6 +4818,32 @@ Returns statistics about the phrase data.
 
   Dictionary with phrase statistics
 
+<a id="winhlp.lib.raster"></a>
+
+# winhlp.lib.raster
+
+Small replaceable terminal rasterizer for Windows bitmap resources.
+
+<a id="winhlp.lib.raster.decode_bmp"></a>
+
+#### decode\_bmp
+
+```python
+def decode_bmp(data: bytes) -> Optional[RasterImage]
+```
+
+Decode uncompressed indexed or true-colour Windows BMP data.
+
+<a id="winhlp.lib.raster.HalfBlockRasterizer"></a>
+
+## HalfBlockRasterizer Objects
+
+```python
+class HalfBlockRasterizer()
+```
+
+Render two sampled image rows per terminal cell with ``▀``.
+
 <a id="winhlp.lib.ann"></a>
 
 # winhlp.lib.ann
@@ -4718,7 +5010,9 @@ Uses circular buffer and efficient bit processing like the C version.
 #### phrase\_decompress
 
 ```python
-def phrase_decompress(data: bytes, phrases: List[str]) -> bytes
+def phrase_decompress(data: bytes,
+                      phrases: List[str],
+                      encoding: str = "cp1252") -> bytes
 ```
 
 Decompresses phrase-compressed data.
@@ -4734,7 +5028,9 @@ and append a space if the division had a remainder (the number was odd).
 #### hall\_decompress
 
 ```python
-def hall_decompress(data: bytes, phrases: List[str]) -> bytes
+def hall_decompress(data: bytes,
+                    phrases: List[str | bytes],
+                    encoding: str = "cp1252") -> bytes
 ```
 
 Decompresses Hall-compressed data (Windows 95 HCW 4.00).
@@ -4837,4 +5133,20 @@ The directory is structured as a B+ tree.
 winhlp.lib - Core library components
 
 Internal modules for parsing HLP file structures.
+
+<a id="winhlp.lib.layout"></a>
+
+# winhlp.lib.layout
+
+Presentation-neutral division of topic content into fixed and scrolling regions.
+
+<a id="winhlp.lib.layout.layout_topic"></a>
+
+#### layout\_topic
+
+```python
+def layout_topic(topic: "ParsedTopic") -> TopicLayout
+```
+
+Split blocks at the exact TOPICOFFSET recorded while parsing.
 
