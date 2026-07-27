@@ -3,11 +3,11 @@ features: ["amos"]
 ---
 # Circular Zones
 
-Back in 1993 we had some kind of exam to see what sort of sets you'd be in for
-your GCSEs, to ultimately see whether you'd be the sort of slave who wears a
-shirt and tie or a regular slave. Me being weird and gobby, not paying much
-attention in class and getting on with the crayon eaters more than the normal
-kids, it was never really clear whether I was a retard or special.
+Back in June 1993 we had some kind of exam to see what sort of sets you'd be in
+for your GCSEs, to ultimately see whether you'd be the sort of slave who wears
+a shirt and tie or a regular manual slave. Me being weird and gobby, not paying
+much attention in class and getting on with the crayon eaters more than the
+normal kids, it was never really clear whether I was a retard or special.
 
 Sometime in year 9 there were these tests to figure it out for once and for all,
 and in one test was this trick that I'd never seen before: Pythagoras Theorem.
