@@ -5,7 +5,7 @@ features: ["amos"]
 # NSLE
 
 [⏯
-![amiga:/nsle.amos.zip](nsle.png)](...)
+![amos:/nsle.amos.zip](nsle.png)](...)
 
 They're not enforcers and they're not lethal either.
 
