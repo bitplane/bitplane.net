@@ -3,15 +3,15 @@ features: ["amos"]
 ---
 # Eggit
 
-This is my final Amos game, my best one but unfinished due to lack of plot.
-Eggit is platform puzzle game in the style of Dizzy, by Codemasters. Its
-features include a map, save/load game, custom palettes for each screen,
-demo mode, and loads of hidden stuff.
+First started in 1993, then rewritten in 1998/99, this is my final AMOS game,
+my best one but unfinished due to lack of plot. Eggit is platform puzzle game
+in the style of Dizzy, by Codemasters. Its features include a map, save/load
+game, custom palettes for each screen, demo mode, and loads of hidden stuff.
 
 [⏯
 ![amos:/eggit.amos.zip](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
 
-* [🥚 download](eggit.hdf.zip)
+* [🥚 download](eggit.amos.zip)
 
 Eggit (aka Stephen Edgar) was a friend in school, he pretended to be pissed
 off with being portrayed as a sarcastic egg at first but he really liked the
