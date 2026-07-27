@@ -1,5 +1,5 @@
 ---
-features: ["emulator/amiga"]
+features: ["amos"]
 ---
 # Eggit
 
@@ -9,7 +9,7 @@ features include a map, save/load game, custom palettes for each screen,
 demo mode, and loads of hidden stuff.
 
 [⏯
-![amiga:/eggit.hdf.zip](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
+![amos:/eggit.amos.zip](eggit1.gif)](https://youtu.be/pSFFcp6UPvA)
 
 * [🥚 download](eggit.hdf.zip)
 

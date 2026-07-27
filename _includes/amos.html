@@ -1,0 +1,113 @@
+<style>
+  .amos-embed {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: 1em 0;
+    border: 1px solid #333;
+    background: #000;
+    line-height: 0;
+  }
+  /* the player draws the whole PAL overscan window, not just the 320x256
+     a game opens inside it, so the box keeps that shape and the game sits
+     in the middle of it exactly as it did on a telly */
+  .amos-embed, .amos-embed .amos-poster { aspect-ratio: 640 / 572; }
+  .amos-embed .amos-poster {
+    width: 100%; height: 100%; object-fit: contain; display: block;
+  }
+  .amos-embed .amos-play {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font: inherit; font-size: 2rem; color: #fff; cursor: pointer;
+    background: rgba(0,0,0,.45); border: 0; line-height: 1;
+  }
+  .amos-embed .amos-play:hover { background: rgba(0,0,0,.25); }
+  .amos-embed .amos-note {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    font: 12px monospace; line-height: 1.4; color: #ccc;
+    background: rgba(0,0,0,.6); padding: 2px 6px; text-align: center;
+  }
+  /* the only cue that the player has the keyboard */
+  .amos-embed.amos-focus { border-color: #fa0; }
+</style>
+
+<script type="module">
+  import { replaceImages } from "/assets/js/replaceImages.js";
+
+  // The player is versioned by path, so pinning is a one-line change here.
+  // /v/latest/ picks up improvements; /v/0.3.0/ would stay put forever.
+  const PLAYER = "https://amos.bitplane.net/v/latest/assets/amos-player.js";
+
+  /**
+   * Nothing is fetched until the reader asks for it. The player is ~820 kB
+   * and a game zip can be most of a megabyte, which is not a thing to spend
+   * on everyone who scrolls past a post. The poster gif stays as the poster
+   * gif, and the module is dynamically imported on the click that starts it —
+   * a click we need anyway, because browsers will not start audio without a
+   * gesture and a page with two games should not run both at once.
+   */
+  document.addEventListener("DOMContentLoaded", () => {
+    replaceImages("amos", (zipName, img) => {
+      const box = document.createElement("div");
+      box.className = "amos-embed";
+
+      // the poster is the image the markdown already had
+      const poster = img.cloneNode();
+      poster.className = "amos-poster";
+      poster.removeAttribute("alt");
+      box.appendChild(poster);
+
+      const play = document.createElement("button");
+      play.type = "button";
+      play.className = "amos-play";
+      play.textContent = "▶ play";
+      play.title = "Runs in your browser — no emulator, no Kickstart ROM";
+      box.appendChild(play);
+
+      const note = (text) => {
+        let el = box.querySelector(".amos-note");
+        if (!el) {
+          el = document.createElement("div");
+          el.className = "amos-note";
+          box.appendChild(el);
+        }
+        el.textContent = text;
+      };
+
+      play.addEventListener("click", async () => {
+        play.disabled = true;
+        note("loading…");
+        try {
+          // "amos:/eggit.amos.zip" names a file sitting beside the post, so
+          // a leading slash is the author writing a path, not a site-root URL
+          const url = new URL(zipName.replace(/^\//, ""), location.href);
+          const [{ createPlayer }, zip] = await Promise.all([
+            import(PLAYER),
+            fetch(url).then((r) => {
+              if (!r.ok) throw new Error(`${r.status} fetching ${url.pathname}`);
+              return r.arrayBuffer();
+            }),
+          ]);
+          poster.remove();
+          play.remove();
+          const player = createPlayer(box, {
+            // nearly every AMOS game reads Joy(1) and nothing else — eggit
+            // polls Jup(1)/Jleft(1)/Jright(1)/Fire(1) and never the keyboard
+            joystick: { port1: "arrows" },
+            autoplay: true, // the click WAS the gesture
+            onError: (m) => note(`error: ${m}`),
+          });
+          await player.loadArchive(new Uint8Array(zip), url.pathname.split("/").pop());
+          player.focus();
+          note("arrows + space · click to play, click away to give the keys back");
+        } catch (e) {
+          play.disabled = false;
+          note(`could not start: ${e.message}`);
+          console.error("amos-ts:", e);
+        }
+      });
+
+      return box;
+    });
+  });
+</script>
