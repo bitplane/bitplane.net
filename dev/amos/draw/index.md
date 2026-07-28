@@ -20,5 +20,5 @@ But what a spectacle it was!
 
 ![amos:draw.amos.zip](draw.png)
 
-* [⚫ download](draw.amos.zip)
+* [🖌️ download](draw.amos.zip)
 

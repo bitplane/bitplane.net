@@ -9,4 +9,4 @@ though, which was fun.
 
 ![amos:space_game.amos.zip](space_game.png)
 
-* [🚀 download](space_game.amos.zip)
+* [🪐 download](space_game.amos.zip)
