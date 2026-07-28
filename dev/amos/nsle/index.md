@@ -5,7 +5,7 @@ features: ["amos"]
 # NSLE
 
 [⏯
-![amos:/nsle.amos.zip](nsle.png)](https://youtu.be/N-3QAYB86zM)
+![amos:nsle.amos.zip](nsle.png)](https://youtu.be/N-3QAYB86zM)
 
 They're not enforcers and they're not lethal either.
 

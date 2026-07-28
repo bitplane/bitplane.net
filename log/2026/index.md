@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2026
 
+* [2026-07-28 - 👾 amos-ts - AMOS Pro on the web](07/amos-ts)
 * [2026-07-18 - 🆘 winhlp - Windows HLP for Python](https://crates.io/crates/chuda)
 * [2026-07-18 - 📺 chuda - Chafa in CUDA](https://crates.io/crates/chuda)
 * [2026-07-14 - 📺 ttx42 - TeleText to ANSI](https://github.com/bitplane/ttx42)

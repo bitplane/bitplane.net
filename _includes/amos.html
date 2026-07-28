@@ -93,9 +93,11 @@
         play.disabled = true;
         note("loading…");
         try {
-          // "amos:/eggit.amos.zip" names a file sitting beside the post, so
-          // a leading slash is the author writing a path, not a site-root URL
-          const url = new URL(zipName.replace(/^\//, ""), location.href);
+          // Paths mean what they mean everywhere else: "game.amos.zip" sits
+          // beside the page, "/dev/amos/nsle/nsle.amos.zip" is from the site
+          // root. That second form is what lets a post embed a game that
+          // lives in another drawer instead of needing a copy next to it.
+          const url = new URL(zipName, location.href);
           const [{ createPlayer }, zip] = await Promise.all([
             import(PLAYER),
             fetch(url).then((r) => {
