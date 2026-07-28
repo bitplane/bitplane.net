@@ -178,7 +178,7 @@
 * [1999-10-05 - ⚒️ sysv banner for Amiga/DOS](/dev/c/banner)
 * [1999-08-17 - ⚒️ 3D Text](/dev/c/textrot)
 * [1999-02-25 - 🕹️ Animal, Vegetable, Mineral](/dev/c/avm)
-* [1998-??-?? - 🚀 space game](/dev/amos/space-game)
+* [1998-02-27 - 🚀 space game](/dev/amos/space-game)
 * [1997-04-26 - 🛶 viking tester](/dev/amos/viking-tester)
 * [1996-??-?? - 🐟 goldfish](/dev/amos/misc#goldfish)
 * [1995-08-31 - 🚀 thrusts](/dev/amos/thrusts)
