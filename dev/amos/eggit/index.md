@@ -3,7 +3,7 @@ features: ["amos"]
 ---
 # Eggit
 
-First started in 1993, then rewritten in 1998/99, this is my final AMOS game,
+First started in 1993, then rewritten in 1997/99, this is my final AMOS game,
 my best one but unfinished due to lack of plot. Eggit is platform puzzle game
 in the style of Dizzy, by Codemasters. Its features include a map, save/load
 game, custom palettes for each screen, demo mode, and loads of hidden stuff.
