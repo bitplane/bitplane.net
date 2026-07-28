@@ -27,12 +27,9 @@ we recorded was... uh... Dave Gary or me maybe? Squeaking "don't shoot" when
 they pop up with their hands in the air. But we did actually finish writing the
 game.
 
-It was a team effort, and unlike building parallel connectors so we could play
-Hired Guns multiplayer at a LAN party before LANs were a thing, we had something
-to show for it.
-
-Or we would if I could find the ADF file. Pretty sure I uploaded it to aminet,
-but it's not in the archives.
+It was a team effort, and unlike building parallel cables from old joystick wire
+so we could play Hired Guns multiplayer at a LAN party before LANs were a thing,
+we had something to show for this one.
 
 We never did finish Immortal Wombat (but I've probably got the plasticine
 wombat video frames somewhere), or our Eye of the Beholder engine, or the
