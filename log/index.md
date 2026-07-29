@@ -8,7 +8,7 @@ Note that the stuff in here isn't really a blog or log, it's stuff dumped here
 at different times as I pull it out of the archives. Reflections on stuff might
 have come years later.
 
-## 📅 Years
+## 📅 CURRENT_YEAR
 
 * 👴 [2026](2026) [2025](2025) [2024](2024)
   [2023](2023) [2022](2022) [2021](2021) [2020](2020)
