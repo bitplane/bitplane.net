@@ -96,6 +96,6 @@ Here's some you could try though:
 
 ## Links
 
-* [🐱 github](https://docker.com/bitplane/Dockerfile.exe)
+* [🐱 github](https://github.com/bitplane/Dockerfile.exe)
 * [👽 reddit](https://www.reddit.com/r/docker/comments/1hotp9l/a_shebang_for_dockerfiles/)
 * [🐦 x](https://x.com/bitplane/status/1873319793417404709)

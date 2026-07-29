@@ -28,5 +28,5 @@ And providing you aren't doing anything unsafe, the warnings will go away and
 your code will work as normal.
 
 * [🐍 pypi](https://pypi.org/project/torch-weightsonly/)
-* [😸 github](https://github.com/bitpane/torch_weightsonly)
+* [😸 github](https://github.com/bitplane/torch_weightsonly)
 

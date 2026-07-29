@@ -386,7 +386,7 @@ simpler organisms, where ones without any nerves move with as much intent -
 though less coordination - as ones that have them; ciliates seem no less
 sentient than tardigrades. We see white blood cells chase invaders down with
 urgency, and an amoeba's pseudopods extend and retract with apparent intent; as
-if cytoplasm moves with a will of its own[2].
+if cytoplasm moves with a will of its own[^2].
 
 This makes perfect sense if all stuff is mind stuff feeling and choosing. Take,
 say, a protein, it feels like moving a certain way because of its shape and the
@@ -548,10 +548,10 @@ there's that. I hope others do more.
 
 ## 🦶📝
 
-[1]: I tried to contact Paul Budnik about this idea, but his domain expired, his
-  house sold and his LinkedIn taken offline, all during the COVID-19 pandemic. I
-  tracked down a gmail address and pinged him but didn't get a response. I hope
-  he's alive and well, but even if not, Paul, you were an inspiration.
+[^1]: I tried to contact Paul Budnik about this idea, but his domain expired, his
+    house sold and his LinkedIn taken offline, all during the COVID-19 pandemic. I
+    tracked down a gmail address and pinged him but didn't get a response. I hope
+    he's alive and well, but even if not, Paul, you were an inspiration.
 
-[2]: https://youtube.com/c/microcosmos
+[^2]: <https://youtube.com/c/microcosmos>
 

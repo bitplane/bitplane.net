@@ -148,7 +148,7 @@ So, let's fix the omission:
 
 ![mrf](mrf.png)
 
-Created by Russell Marks in 1997 for [zgv](https://en.wikipedia.org/wiki/Zgv),
+Created by Russell Marks in 1997 for [zgv](https://www.svgalib.org/rus/zgv/),
 this simple monochrome bitmap compression format uses quadtree decomposition -
 images are divided into 64x64 tiles, each recursively subdivided until we end up
 with a single colour. Brian Raiter liked it enough to create a colour extension
