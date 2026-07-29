@@ -1040,6 +1040,17 @@ def register(codec: str) -> Callable[[Decoder], Decoder]
 
 Register a decoder by its four-character XPK identifier.
 
+<a id="xfh.codecs.register_encrypted"></a>
+
+#### register\_encrypted
+
+```python
+def register_encrypted(
+        codec: str) -> Callable[[EncryptedDecoder], EncryptedDecoder]
+```
+
+Register a password-dependent decoder.
+
 <a id="xfh.codecs.decode"></a>
 
 #### decode
@@ -1048,7 +1059,9 @@ Register a decoder by its four-character XPK identifier.
 def decode(codec: str,
            payload: bytes,
            output_size: int,
-           previous: bytes = b"") -> bytes
+           previous: bytes = b"",
+           *,
+           password: bytes | None = None) -> bytes
 ```
 
 Decode one packed XPK chunk.
@@ -1097,6 +1110,96 @@ def decompress_shsc(payload: bytes,
 ```
 
 Decode one SHSC finite-context arithmetic chunk.
+
+<a id="xfh.codecs.crypt"></a>
+
+# xfh.codecs.crypt
+
+Historical XPK encryption codecs.
+
+These algorithms are provided for data recovery, not for protecting new data.
+
+<a id="xfh.codecs.crypt.decompress_enco"></a>
+
+#### decompress\_enco
+
+```python
+@register_encrypted("ENCO")
+def decompress_enco(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode the original one-byte XOR/checksum demonstration codec.
+
+<a id="xfh.codecs.crypt.decompress_feal"></a>
+
+#### decompress\_feal
+
+```python
+@register_encrypted("FEAL")
+def decompress_feal(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode FEAL-N in the sublibrary's CBC1 framing.
+
+<a id="xfh.codecs.crypt.decompress_idea"></a>
+
+#### decompress\_idea
+
+```python
+@register_encrypted("IDEA")
+def decompress_idea(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode the XPK IDEA sublibrary's ECB and chained modes.
+
+<a id="xfh.codecs.crypt.decompress_nuid"></a>
+
+#### decompress\_nuid
+
+```python
+@register_encrypted("NUID")
+def decompress_nuid(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode the NUKE-then-IDEA composite sublibrary.
+
+<a id="xfh.codecs.crypt.decrypt_shid"></a>
+
+#### decrypt\_shid
+
+```python
+def decrypt_shid(payload: bytes, password: bytes) -> bytes
+```
+
+Remove the IDEA layer from one SHID chunk.
+
+<a id="xfh.codecs.crypt.decompress_shid"></a>
+
+#### decompress\_shid
+
+```python
+@register_encrypted("SHID")
+def decompress_shid(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode one independently framed SHRI-then-IDEA chunk.
+
+<a id="xfh.codecs.crypt.decompress_blfh"></a>
+
+#### decompress\_blfh
+
+```python
+@register_encrypted("BLFH")
+def decompress_blfh(payload: bytes, output_size: int, previous: bytes,
+                    password: bytes) -> bytes
+```
+
+Decode Blowfish ECB/OFB/CFB/CBC modes from BLFH 2.x.
 
 <a id="xfh.errors"></a>
 
@@ -1153,6 +1256,16 @@ class PasswordRequiredError(XfhError)
 ```
 
 The input is encrypted and needs a password.
+
+<a id="xfh.errors.IncorrectPasswordError"></a>
+
+## IncorrectPasswordError Objects
+
+```python
+class IncorrectPasswordError(XfhError)
+```
+
+The supplied password cannot decrypt the input.
 
 <a id="xfh.errors.ResourceLimitError"></a>
 
@@ -1212,6 +1325,7 @@ Strictly decompress one complete stream.
 ```python
 def salvage(data: bytes | bytearray | memoryview,
             *,
+            password: str | bytes | None = None,
             limits: Limits = DEFAULT_LIMITS) -> RecoveryResult
 ```
 

@@ -26,6 +26,5 @@ Damaged streams can be handled with explicit salvage mode:
 xfh unpack damaged-file recovered-prefix --salvage --report recovery.json
 ```
 
-See the [codec support table](codec-support.md) for the evidence behind each
-implemented decoder and the [format notes](format.md) for current container
-support.
+See [codec support](codec-support.md), [format notes](format.md), and the
+[original-code oracle](oracle-matrix.md) for technical details.
