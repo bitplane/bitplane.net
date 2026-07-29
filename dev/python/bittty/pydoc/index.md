@@ -416,7 +416,7 @@ to this observation. Each reader keeps its own returned value.
 #### dirty\_rows
 
 ```python
-def dirty_rows(seen: int) -> List[int]
+def dirty_rows(seen: int) -> list[int]
 ```
 
 Rows changed since `seen` (a value returned by observe()).
@@ -456,7 +456,7 @@ Return every line to single-width, single-height (RIS).
 #### get\_content
 
 ```python
-def get_content() -> List[List[Cell]]
+def get_content() -> list[list[Cell]]
 ```
 
 Get buffer content as a 2D grid.
@@ -735,8 +735,8 @@ Detach the current connection.
 ```python
 def connect(connection: Connection,
             on_data: Callable[[str], None],
-            on_idle: Optional[Callable[[], bool]] = None,
-            on_closed: Optional[Callable[[], None]] = None) -> None
+            on_idle: Callable[[], bool] | None = None,
+            on_closed: Callable[[], None] | None = None) -> None
 ```
 
 Plug in a duplex connection and start pumping its receive side.
@@ -1282,8 +1282,8 @@ If you use this then you'll have to
 #### \_\_init\_\_
 
 ```python
-def __init__(from_process: Optional[BinaryIO] = None,
-             to_process: Optional[BinaryIO] = None,
+def __init__(from_process: BinaryIO | None = None,
+             to_process: BinaryIO | None = None,
              rows: int = constants.DEFAULT_TERMINAL_HEIGHT,
              cols: int = constants.DEFAULT_TERMINAL_WIDTH)
 ```
@@ -1644,7 +1644,7 @@ Resize the terminal.
 
 ```python
 def spawn_process(command: str,
-                  env: Optional[Dict[str, str]] = ENV) -> subprocess.Popen
+                  env: dict[str, str] | None = ENV) -> subprocess.Popen
 ```
 
 Spawn a process attached to this PTY.
@@ -2201,6 +2201,20 @@ Capture screen content: a pure pull of video memory as ANSI lines.
 No cursor or pointer is composited in — the chrome renders those from
 the board's registers (cursor.x/y, modes.cursor_visible, mouse.x/y).
 
+<a id="bittty.devices.board.Board.capture_text"></a>
+
+#### capture\_text
+
+```python
+def capture_text(*, trim: bool = True) -> str
+```
+
+Capture the active screen as plain text.
+
+By default, trailing spaces are removed from each row and unused rows
+at the bottom are omitted. Set ``trim=False`` to preserve the screen's
+exact rectangular dimensions.
+
 <a id="bittty.devices.board.Board.link_at"></a>
 
 #### link\_at
@@ -2331,7 +2345,7 @@ The box lost focus: record it and report to the child if DECSET 1004 is on.
 
 ```python
 @property
-def pty() -> Optional[Any]
+def pty() -> Any | None
 ```
 
 Attached PTY connection.
@@ -4017,7 +4031,7 @@ Generate minimal ANSI sequence to transition to another style.
 
 ```python
 @lru_cache(maxsize=10000)
-def parse_sgr_with_reset(ansi: str) -> Tuple[Optional[Style], bool]
+def parse_sgr_with_reset(ansi: str) -> tuple[Style | None, bool]
 ```
 
 Parse an SGR sequence into (style, reset): reset means "clear, then apply style".
@@ -4033,7 +4047,7 @@ skip the merge without comparing 20 Style fields.
 
 ```python
 @lru_cache(maxsize=10000)
-def interpret(tokens: Tuple[str, ...]) -> Style
+def interpret(tokens: tuple[str, ...]) -> Style
 ```
 
 Interpret SGR tokens into a Style, accumulating the packed masks directly.
@@ -4218,8 +4232,8 @@ A terminal's default colours: the 16 ANSI colours plus fg/bg/cursor.
 
 Present events: discrete side-effects the board pushes to the attached terminal (chrome).
 
-Screen content stays *pull* (a terminal (chrome) reads capture_pane()/get_line on its own
-cadence). Only these discrete events are *pushed*, through the board's DisplayPort.
+Screen content stays *pull* (a terminal (chrome) reads capture_pane()/capture_text()/get_line
+on its own cadence). Only these discrete events are *pushed*, through the board's DisplayPort.
 Each is a plain frozen dataclass — pure data, no imports from board/devices — so
 board.py can depend on this module without a cycle.
 
