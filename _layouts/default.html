@@ -6,8 +6,17 @@
       {%- assign _h1_text = _h1s[1] | split: '</h1>' | first | split: '>' | last | strip -%}
       {%- assign _emoji = _h1_text | split: ' ' | first -%}
     {%- endif -%}
-    {%- if _emoji.size <= 3 and _emoji.size > 0 -%}
-    <title>{{ page.title | escape | remove: _emoji }}</title>
+    {%- comment -%} An emoji is a short token that doesn't start with an ASCII char. {%- endcomment -%}
+    {%- assign _ascii = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789`~!@#$%^&*()-_=+[]{}|;:,.<>/? ' -%}
+    {%- assign _is_emoji = false -%}
+    {%- if _emoji.size > 0 and _emoji.size <= 8 -%}
+      {%- assign _first = _emoji | slice: 0 -%}
+      {%- unless _ascii contains _first -%}
+        {%- assign _is_emoji = true -%}
+      {%- endunless -%}
+    {%- endif -%}
+    {%- if _is_emoji -%}
+    <title>{{ page.title | remove_first: _emoji | strip | escape }}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>{{ _emoji }}</text></svg>">
     {%- else -%}
     <title>{{ page.title | escape }}</title>
