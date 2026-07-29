@@ -78,5 +78,5 @@ Still not figured out:
 * [🏠 home](https://bitplane.net/dev/python/ansi-stdio)
 * [🐈 github](https://github.com/bitplane/ansi-stdio)
 * [🐍 pypi](https://pypi.org/project/ansi-stdio)
-* [📖 pydoc]((https://bitplane.net/dev/python/ansi-stdio/pydoc)
+* [📖 pydoc](https://bitplane.net/dev/python/ansi-stdio/pydoc)
 
