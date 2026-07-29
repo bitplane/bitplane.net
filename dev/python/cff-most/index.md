@@ -17,6 +17,6 @@ that probably doesn't matter.
 
 * [🏠 home](https://bitplane.net/dev/python/cff-most)
 * [🐍 pypi](https://pypi.org/project/cff-most)
-* [🐱 github](https://bitplane/cff-most)
+* [🐱 github](https://github.com/bitplane/cff-most)
 * [📄 test data](https://bitplane/cff-most-test-data)
 
