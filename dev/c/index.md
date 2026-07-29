@@ -32,8 +32,8 @@ Some more recent/useful things:
 
 Some old things are here:
 
-* [Animal, Vegetable, Mineral](avm) - Everyone's first linked list.
-* [banner](banner) - sysv banner program for the Amiga
+* 🕹️ [Animal, Vegetable, Mineral](avm) - Everyone's first linked list.
+* ⚒️ [banner](banner) - sysv banner program for the Amiga
 * [curs](curs) - ncurses-like cursor control for MS DOS batch file menus
 * [sfv dll](sfv-dll) - a DLL for Windows / VB6, for computing CRC32s
 * [textrot](textrot) - 3D rotating text for EGA graphics

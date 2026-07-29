@@ -1,4 +1,4 @@
-# Resize OCX
+# 🪟 Resize OCX
 
 An invisible pane in VB6 that will resize its children, kinda like responsive
 design for desktop apps in the late 90s/early 2000s.

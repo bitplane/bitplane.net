@@ -1,4 +1,4 @@
-# Collapse Dirs
+# ❌ Collapse Dirs
 
 Looks dumps all files in subdirs into the current dir and deletes all
 the files. VBScript. I can't remember why I wrote this, it was probably

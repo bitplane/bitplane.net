@@ -1,7 +1,7 @@
 ---
 features: ["dosbox"]
 ---
-# Animal, Vegetable or Mineral
+# 🕹️ Animal, Vegetable or Mineral
 
 The standard way to learn about the heap is to use malloc and linked lists.
 And everyone's favourite first program on that topic is this one, at least

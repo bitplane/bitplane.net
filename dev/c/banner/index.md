@@ -2,7 +2,7 @@
 features: ["dosbox"]
 ---
 
-# banner.c
+# ⚒️ banner.c
 
 SysV `banner` for Amiga and MS-DOS:
 

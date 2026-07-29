@@ -1,4 +1,4 @@
-# spiral.exe
+# 🪟 spiral.exe
 
 A spiral effect made at Alpha Training while learning VB6. Funny story here,
 I remember this not working and me not understanding why, and asking the course

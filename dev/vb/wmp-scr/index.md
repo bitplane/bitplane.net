@@ -1,4 +1,4 @@
-# Windows Media Player Screensaver
+# 🪟 Windows Media Player Screensaver
 
 Turns out you can rename an EXE to SCR and it's now a screensaver, and you can
 add options for it by... uh... I can't remember. This one plays a video of

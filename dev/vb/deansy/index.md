@@ -1,4 +1,4 @@
-# deansy.exe
+# 🍆 deansy.exe
 
 One Christmas the IT staff at the Department for Work and Pensions had a
 Secret Santa. One of the lads, Mark Deans got the latest issue of gentleman's
