@@ -2,70 +2,60 @@
 
 # uh\_halp
 
-<a id="uh_halp.backend.openai"></a>
+<a id="uh_halp.vars"></a>
 
-# uh\_halp.backend.openai
+# uh\_halp.vars
 
-For calling the OpenAI completion model.
+Gets template variables that can be inserted into the context.
 
-<a id="uh_halp.backend.openai.query"></a>
+<a id="uh_halp.vars.get_os"></a>
 
-#### query
-
-```python
-def query(model: str, system_prompt: str, user_prompt: str, key: str) -> str
-```
-
-Calls the OpenAI API with the query from the command line.
-
-<a id="uh_halp.backend"></a>
-
-# uh\_halp.backend
-
-<a id="uh_halp.backend.web_api"></a>
-
-# uh\_halp.backend.web\_api
-
-Generic web API functions
-
-<a id="uh_halp.backend.web_api.query"></a>
-
-#### query
+#### get\_os
 
 ```python
-def query(endpoint: str, method: str, query: str, post_data: str,
-          headers: dict[str, str], response_path: list[str | int]) -> str
+def get_os() -> str
 ```
 
-Standard web API request.
+Returns a string describing the OS.
 
-<a id="uh_halp.backend.web_api.extract"></a>
+<a id="uh_halp.vars.get_shell"></a>
 
-#### extract
+#### get\_shell
 
 ```python
-def extract(response: requests.Response,
-            response_path: list[str | int]) -> str
+def get_shell() -> str
 ```
 
-If there's a response_path list, treat the response as JSON and the list as
-the path to the key we want. Use strings for property names, ints for list
-indices, and you can use negative indices to reference the end of a list
-(i.e. -1 for the last item.)
+Returns the user's shell executable name.
 
-<a id="uh_halp.backend.util"></a>
+<a id="uh_halp.vars.apply_vars"></a>
 
-# uh\_halp.backend.util
-
-<a id="uh_halp.backend.util.clean"></a>
-
-#### clean
+#### apply\_vars
 
 ```python
-def clean(response: str) -> str
+def apply_vars(vars: dict, template: Any) -> Any
 ```
 
-Cleans the response from the API, because we can't trust it to play nicely.
+Replaces strings in a json-style object tree. Use {var}
+
+<a id="uh_halp.vars.get_vars"></a>
+
+#### get\_vars
+
+```python
+def get_vars() -> dict
+```
+
+Gets variables that can be replaced with templates.
+To use one, reference it like {var} in any string field.
+
+Current keys are:
+
+- shell: The user's shell executable name.
+- os: A string describing the OS and its version.
+- query: The query string.
+- pwd: The current working directory.
+- key: the secret key for the service (blank here, requested interactively if needed)
 
 <a id="uh_halp.keys"></a>
 
@@ -131,94 +121,74 @@ def get_key(service: str) -> str
 
 Loads the service's key from ~/.uh-keys, or prompts for it and saves it there.
 
-<a id="uh_halp.config"></a>
+<a id="uh_halp.backend.openai"></a>
 
-# uh\_halp.config
+# uh\_halp.backend.openai
 
-<a id="uh_halp.config.reset_config"></a>
+For calling the OpenAI completion model.
 
-#### reset\_config
+<a id="uh_halp.backend.openai.query"></a>
 
-```python
-def reset_config(path: str = CONFIG_FILE)
-```
-
-Resets the config file to the template
-
-<a id="uh_halp.config.save_config"></a>
-
-#### save\_config
+#### query
 
 ```python
-def save_config(config, path: str = CONFIG_FILE)
+def query(model: str, system_prompt: str, user_prompt: str, key: str) -> str
 ```
 
-Saves the config file
+Calls the OpenAI API with the query from the command line.
 
-<a id="uh_halp.config.get_config"></a>
+<a id="uh_halp.backend.web_api"></a>
 
-#### get\_config
+# uh\_halp.backend.web\_api
+
+Generic web API functions
+
+<a id="uh_halp.backend.web_api.query"></a>
+
+#### query
 
 ```python
-def get_config(path: str = CONFIG_FILE)
+def query(endpoint: str, method: str, query: str, post_data: str,
+          headers: dict[str, str], response_path: list[str | int]) -> str
 ```
 
-Reads the config file, creating it from template if it doesn't exist
+Standard web API request.
 
-<a id="uh_halp.vars"></a>
+<a id="uh_halp.backend.web_api.extract"></a>
 
-# uh\_halp.vars
-
-Gets template variables that can be inserted into the context.
-
-<a id="uh_halp.vars.get_os"></a>
-
-#### get\_os
+#### extract
 
 ```python
-def get_os() -> str
+def extract(response: requests.Response,
+            response_path: list[str | int]) -> str
 ```
 
-Returns a string describing the OS.
+If there's a response_path list, treat the response as JSON and the list as
+the path to the key we want. Use strings for property names, ints for list
+indices, and you can use negative indices to reference the end of a list
+(i.e. -1 for the last item.)
 
-<a id="uh_halp.vars.get_shell"></a>
+<a id="uh_halp.backend.util"></a>
 
-#### get\_shell
+# uh\_halp.backend.util
+
+<a id="uh_halp.backend.util.clean"></a>
+
+#### clean
 
 ```python
-def get_shell() -> str
+def clean(response: str) -> str
 ```
 
-Returns the user's shell executable name.
+Cleans the response from the API, because we can't trust it to play nicely.
 
-<a id="uh_halp.vars.apply_vars"></a>
+<a id="uh_halp.backend"></a>
 
-#### apply\_vars
+# uh\_halp.backend
 
-```python
-def apply_vars(vars: dict, template: Any) -> Any
-```
+<a id="uh_halp.__main__"></a>
 
-Replaces strings in a json-style object tree. Use {var}
-
-<a id="uh_halp.vars.get_vars"></a>
-
-#### get\_vars
-
-```python
-def get_vars() -> dict
-```
-
-Gets variables that can be replaced with templates.
-To use one, reference it like {var} in any string field.
-
-Current keys are:
-
-- shell: The user's shell executable name.
-- os: A string describing the OS and its version.
-- query: The query string.
-- pwd: The current working directory.
-- key: the secret key for the service (blank here, requested interactively if needed)
+# uh\_halp.\_\_main\_\_
 
 <a id="uh_halp.main"></a>
 
@@ -267,7 +237,37 @@ def main() -> int
 
 Entrypoint for the CLI.
 
-<a id="uh_halp.__main__"></a>
+<a id="uh_halp.config"></a>
 
-# uh\_halp.\_\_main\_\_
+# uh\_halp.config
+
+<a id="uh_halp.config.reset_config"></a>
+
+#### reset\_config
+
+```python
+def reset_config(path: str = CONFIG_FILE)
+```
+
+Resets the config file to the template
+
+<a id="uh_halp.config.save_config"></a>
+
+#### save\_config
+
+```python
+def save_config(config, path: str = CONFIG_FILE)
+```
+
+Saves the config file
+
+<a id="uh_halp.config.get_config"></a>
+
+#### get\_config
+
+```python
+def get_config(path: str = CONFIG_FILE)
+```
+
+Reads the config file, creating it from template if it doesn't exist
 
