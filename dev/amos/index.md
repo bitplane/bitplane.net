@@ -50,7 +50,7 @@ on the cusp of that change, BASIC programmers like me could churn out hundreds
 of screens in [DPaint](/log/2005/seascape) without tiling, and
 [make games](eggit) and share them with the kids in school.
 
-The empowerment, the loss of craftmanship and the hypocrisy were all real.
+The empowerment, the loss of craftsmanship and the hypocrisy were all real.
 
 ## Some projects
 
@@ -61,7 +61,7 @@ The empowerment, the loss of craftmanship and the hypocrisy were all real.
 * [🔫 Operation Q.A.B.](qab)
 * [🔥 Matchstick Man](matchstick-man)
 * [🎯 NSLE](nsle)
-* [🧨 Bomb City](bomb_city)
+* [🧨 Bomb City](bomb-city)
 * [🔊 Boom! Shake the Workshop](boom)
 * [🚀 Thrusts](thrusts)
 * [⭕ O's and X's](o-and-x)
