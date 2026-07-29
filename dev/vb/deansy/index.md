@@ -2,7 +2,7 @@
 
 One Christmas the IT staff at the Department for Work and Pensions had a
 Secret Santa. One of the lads, Mark Deans got the latest issue of gentleman's
-top shelf magazine [Razzle](https://en.wikipedia.org/wiki/Razzle_\(magazine\))
+top shelf magazine [Razzle](https://en.wikipedia.org/wiki/Razzle_(magazine))
 as from his mystery (presumably female; it's a softcore mag) gifter, and as he
 opened it to take a peek, someone else, (it might have been me) snapped a
 glorious trophy of him donning an exaggerated, pervy smirk while peering into
