@@ -7,7 +7,6 @@ features: ["date-list"]
 ## Missing repos
 * vldmcp
 * texrboard
-* wihlp
 * rip
 * geo-dist
 * unicode-width-mess
@@ -48,7 +47,6 @@ features: ["date-list"]
   * yapotron
 * objective c writeup + projects
 * archive.org
-  * Celebrate `rip` when we reach 2048 uploads. 
   * Scan Input Magazine if nobody else has, put on archive.org and link it.
 * Write something about Paul Budnik's philosophy and how it inspired me.
 * Date and log transition to Ubuntu from Windows story.
