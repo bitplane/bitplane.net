@@ -3,6 +3,7 @@ features: ["date-list"]
 ---
 # 📅 2026
 
+* [2026-07-29 - 💬 narrator-ts - Amiga narrator for TypeScript](https://www.npmjs.com/package/narrator-ts)
 * [2026-07-29 - 🗜️ xfh - unpacker for Python](/dev/python/xfh)
 * [2026-07-28 - 👾 amos-ts - AMOS Pro on the web](07/amos-ts)
 * [2026-07-18 - 🆘 winhlp - Windows HLP for Python](/dev/python/winhlp)
