@@ -231,6 +231,22 @@ def decompress_rdcn(payload: bytes,
 
 Decode Ross Data Compression chunks.
 
+<a id="xfh.codecs._range"></a>
+
+# xfh.codecs.\_range
+
+Shared 16-bit arithmetic range decoder.
+
+<a id="xfh.codecs._range.RangeDecoder"></a>
+
+## RangeDecoder Objects
+
+```python
+class RangeDecoder()
+```
+
+Decode integer ranges using the historical XPK 16-bit coder.
+
 <a id="xfh.codecs.standard"></a>
 
 # xfh.codecs.standard
@@ -341,6 +357,28 @@ def decompress_pwpk(payload: bytes,
 ```
 
 Decode a PowerPacker chunk.
+
+<a id="xfh.codecs.ppmq"></a>
+
+# xfh.codecs.ppmq
+
+XPK PPMQ decompression.
+
+Derived from Ancient's PPMQDecompressor, Copyright (c) 2017-2026
+Teemu Suutari, under the BSD 2-Clause License.
+
+<a id="xfh.codecs.ppmq.decompress_ppmq"></a>
+
+#### decompress\_ppmq
+
+```python
+@register("PPMQ")
+def decompress_ppmq(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode one PPMQ prediction-by-partial-matching chunk.
 
 <a id="xfh.codecs.smpl"></a>
 
@@ -851,6 +889,81 @@ def decompress_acca(payload: bytes,
 
 Decode Andre's code compression algorithm.
 
+<a id="xfh.codecs.lzx_wrappers"></a>
+
+# xfh.codecs.lzx\_wrappers
+
+XPK wrappers around the classic Amiga LZX archiver.
+
+<a id="xfh.codecs.lzx_wrappers.decompress_elzx"></a>
+
+#### decompress\_elzx
+
+```python
+@register("ELZX")
+def decompress_elzx(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode an Amiga LZX archive embedded by xpkELZX.
+
+<a id="xfh.codecs.lzx_wrappers.decompress_slzx"></a>
+
+#### decompress\_slzx
+
+```python
+@register("SLZX")
+def decompress_slzx(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode xpkSLZX's Amiga LZX member and cumulative-byte transform.
+
+<a id="xfh.codecs.lzcb"></a>
+
+# xfh.codecs.lzcb
+
+XPK LZCB decompression.
+
+Derived from Ancient's LZCBDecompressor and RangeDecoder,
+Copyright (c) 2017-2026 Teemu Suutari, under the BSD 2-Clause License.
+
+<a id="xfh.codecs.lzcb.decompress_lzcb"></a>
+
+#### decompress\_lzcb
+
+```python
+@register("LZCB")
+def decompress_lzcb(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode one LZCB range-coded LZ chunk.
+
+<a id="xfh.codecs.amiga_lzx"></a>
+
+# xfh.codecs.amiga\_lzx
+
+Pure-Python decoder for the classic Amiga LZX archive format.
+
+This is the Amiga archiver format, not the unrelated Microsoft LZX format.
+The implementation follows the independently documented decoder in
+``amiga-lzx`` and is intentionally limited to the single-entry archives
+embedded by the ELZX and SLZX XPK libraries.
+
+<a id="xfh.codecs.amiga_lzx.decompress_archive"></a>
+
+#### decompress\_archive
+
+```python
+def decompress_archive(data: bytes, output_size: int) -> bytes
+```
+
+Decode the single-entry Amiga LZX archive embedded in an XPK chunk.
+
 <a id="xfh.codecs.hfmn"></a>
 
 # xfh.codecs.hfmn
@@ -949,6 +1062,41 @@ def supported_codecs() -> frozenset[str]
 ```
 
 Return codec identifiers implemented by this build.
+
+<a id="xfh.codecs.sxsc"></a>
+
+# xfh.codecs.sxsc
+
+XPK SASC and SHSC decompression.
+
+Derived from Ancient's SXSCDecompressor, Copyright (c) 2017-2026
+Teemu Suutari, under the BSD 2-Clause License.
+
+<a id="xfh.codecs.sxsc.decompress_sasc"></a>
+
+#### decompress\_sasc
+
+```python
+@register("SASC")
+def decompress_sasc(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode one SASC arithmetic-LZ chunk.
+
+<a id="xfh.codecs.sxsc.decompress_shsc"></a>
+
+#### decompress\_shsc
+
+```python
+@register("SHSC")
+def decompress_shsc(payload: bytes,
+                    output_size: int,
+                    previous: bytes = b"") -> bytes
+```
+
+Decode one SHSC finite-context arithmetic chunk.
 
 <a id="xfh.errors"></a>
 
