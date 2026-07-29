@@ -1,4 +1,4 @@
-# Plant LoD Database
+# 🪴 Plant LoD Database
 
 A proof of concept based on Paulo R. Oliveira's scene graph quad tree filter,
 but with a twist: use a SQLite database to store the object references, and

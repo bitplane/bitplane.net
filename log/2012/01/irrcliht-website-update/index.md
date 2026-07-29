@@ -1,4 +1,4 @@
-# Irrlicht website update
+# 📜 Irrlicht website update
 
 The WordPress version of the [Irrlicht website](https://irrlicht.sf.net/) is now
 live, which means we can edit pages and post news articles using an online

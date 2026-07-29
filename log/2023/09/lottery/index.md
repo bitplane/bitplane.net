@@ -1,4 +1,4 @@
-# Secure lottery
+# 💡 Secure lottery
 
 Javascript you put on as many sites as you like, and it uses blockchain to
 work out the winner of a lottery.

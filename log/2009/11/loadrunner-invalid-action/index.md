@@ -1,4 +1,4 @@
-# LoadRunner Controller – Invalid Action Window
+# 📝 LoadRunner Controller – Invalid Action Window
 
 LoadRunner 9.5′s VUGen sometimes gets its undergarments in a twist and messes up
 the actions in one of its INI files. You don’t notice this until you get the

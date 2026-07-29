@@ -1,4 +1,4 @@
-# GDPR awareness training
+# 😆 GDPR awareness training
 
 To quote Dr. Pickering:
 

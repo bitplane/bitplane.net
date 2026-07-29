@@ -1,4 +1,4 @@
-# benpipe
+# 🐍 benpipe
 
 I've been mucking about with the idea of P2P, self-seeding Docker images
 [for a while now](../../../2022/12/ipfsos). The endgame being unprivileged

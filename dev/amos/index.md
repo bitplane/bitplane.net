@@ -1,4 +1,4 @@
-# AMOS BASIC
+# 👾 AMOS BASIC
 
 AMOS was the Amiga port of STOS, a BASIC for the Atari ST written in assembly
 language by François Lionet. A procedural programming language and

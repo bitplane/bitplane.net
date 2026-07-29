@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Matchstick Man
+# 🔥 Matchstick Man
 
 I could try to deny that the skinny red headed protagonist wasn't some attempt
 at a self-portrait, but I'd be lying. This was a game I actually finished

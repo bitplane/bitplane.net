@@ -1,4 +1,4 @@
-# Stanford Polygon Mesh Loader
+# 💾 Stanford Polygon Mesh Loader
 
 A mesh loader for Irrlicht that is blisteringly fast when loading ASCII models,
 because I cheated by null terminating the strings in RAM rather than copying

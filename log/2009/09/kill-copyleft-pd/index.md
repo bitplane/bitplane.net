@@ -1,4 +1,4 @@
-# Killing copyleft for the good of the public domain
+# ✍️ Killing copyleft for the good of the public domain
 
 Richard Stallman, GNU philosopher and father of the free software movement
 recently [wrote an article](https://web.archive.org/web/20091207064353/http://www.gnu.org/philosophy/pirate-party.html) about how the copyright reforms which by the Swedish Pirate Party want would

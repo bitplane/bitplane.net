@@ -1,4 +1,4 @@
-# More Sidewiki Leaks
+# 📝 More Sidewiki Leaks
 
 Apparently the British press have been barred from publishing any of Tiger
 Woods’ sex pictures, and the block somehow extends to

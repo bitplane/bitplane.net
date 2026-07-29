@@ -1,4 +1,4 @@
-# seascape.iff
+# ✍️ seascape.iff
 
 Seascape was my personal favourite demo picture from Electronic Arts' infamous
 pixel painter "Deluxe Paint", it wasn't on the web so I thought I'd put a copy

@@ -1,4 +1,4 @@
-# Gareth's UDG planner
+# 👾 Gareth's UDG planner
 
 todo: Talk about the toil of making sprites on the ZX spectrum. Scan the UDG
 planner which is in my old bedroom somewhere.

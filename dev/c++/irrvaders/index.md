@@ -1,4 +1,4 @@
-# Space Irrvaders
+# 👾 Space Irrvaders
 
 A while ago we had a "make a Space Invaders clone in a weekend" challenge on
 the

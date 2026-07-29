@@ -1,4 +1,4 @@
-# Citrix of the Trade
+# ✍️ Citrix of the Trade
 
 I've been using LoadRunner for Citrix for about a week now, it's a new protocol
 for me and I guess I'm starting to get the hang of it because I've created a

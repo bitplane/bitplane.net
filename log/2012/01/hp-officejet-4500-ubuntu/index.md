@@ -1,4 +1,4 @@
-# Ubuntu printing and scanning
+# 📝 Ubuntu printing and scanning
 
 I haven’t owned a printer since I had an Amiga all those years ago, but since
 I’ve started my homebrew mission I’ve decided I need something to print some

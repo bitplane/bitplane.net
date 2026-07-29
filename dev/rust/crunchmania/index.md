@@ -1,4 +1,4 @@
-# Crunch-Mania in Rust
+# 📦 Crunch-Mania in Rust
 
 Compressor and decompressor for Crunch-Mania files — the LZ77/LZH format
 that shipped with countless Commodore Amiga demos and intros between

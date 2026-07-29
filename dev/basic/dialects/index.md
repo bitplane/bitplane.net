@@ -1,4 +1,4 @@
-# Other BASICs
+# 📺 Other BASICs
 
 Todo: talk about the other BASICs and the differences between the machines.
 

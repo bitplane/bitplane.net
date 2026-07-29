@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Eggit
+# 🥚 Eggit
 
 First started in 1993, then rewritten in 1997/99, this is my final AMOS game,
 my best one but unfinished due to lack of plot. Eggit is platform puzzle game

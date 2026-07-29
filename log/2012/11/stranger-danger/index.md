@@ -1,4 +1,4 @@
-# Benjamin Rabbit and the Stranger Danger
+# 😆 Benjamin Rabbit and the Stranger Danger
 
 Turns out Jimmy Savile endorsed a "stranger danger" book at the height of his
 abuses:

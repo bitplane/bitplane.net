@@ -1,4 +1,4 @@
-# Upgrading deps automagically
+# 💡 Upgrading deps automagically
 
 Just a thought - haven't tried it:
 

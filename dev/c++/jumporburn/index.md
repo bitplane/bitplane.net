@@ -1,4 +1,4 @@
-# Jump or Burn
+# 🔥 Jump or Burn
 
 Terrible game made for gamedev.net's 3 Hour Game Development Contest 2005.
 

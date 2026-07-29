@@ -1,4 +1,4 @@
-# CBatchingMesh
+# 📦 CBatchingMesh
 
 ![screenshot](batcher.jpg)
 

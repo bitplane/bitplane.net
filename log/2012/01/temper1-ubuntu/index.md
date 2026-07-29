@@ -1,4 +1,4 @@
-# TEMPer1 temperature sensor in Linux
+# 🌡️ TEMPer1 temperature sensor in Linux
 
 Yey! Just got my
 [PCSensor TEMPer1 USB thermometer](https://web.archive.org/web/20161020072344/http://pcsensor.com/index.php?_a=viewProd&productId=7)

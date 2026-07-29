@@ -1,4 +1,4 @@
-# Loader profiler for Irrlicht
+# 📉 Loader profiler for Irrlicht
 
 To use it, just create an instance of it and call attach(), it will be added
 as a mesh, image, scene and archive loader that intercepts all load calls,

@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Wormy
+# 🐛 Wormy
 
 Everyone likes a snake game. My first one was called worms or wormy later after
 Team 17 made the game Worms and stole the name.

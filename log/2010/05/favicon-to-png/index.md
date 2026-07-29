@@ -1,4 +1,4 @@
-# Automatic favicon to PNG script
+# 📜 Automatic favicon to PNG script
 
 Ever want to add a link to a site with the favourites icon in the page along
 with the link? I did, so I made this cool little toy:

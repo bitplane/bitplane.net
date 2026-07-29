@@ -1,4 +1,4 @@
-# Media and Data
+# 🔌 Media and Data
 
 Free culture is kinda important. Over the years I've done what I can to help
 fight for the cause.

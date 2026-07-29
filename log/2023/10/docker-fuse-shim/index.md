@@ -1,4 +1,4 @@
-# Unprivilaged mountpoints in Docker
+# 💡 Unprivilaged mountpoints in Docker
 
 * A background service that stores a mapping between mountpoints and FUSE plugins
 * `fusermount` replacement that adds it to the service

@@ -1,4 +1,4 @@
-# bitplane.net v1.0
+# 🌐 bitplane.net v1.0
 
 Looks like this was the date that I registered bitplane.net
 

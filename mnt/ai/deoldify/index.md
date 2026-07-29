@@ -1,4 +1,4 @@
-# DeOldify
+# 📺 DeOldify
 
 Jason Antic made a [machine learning model](https://github.com/jantic/DeOldify)
 that colourizes images in a semi-stable way that it kinda works for video. Which

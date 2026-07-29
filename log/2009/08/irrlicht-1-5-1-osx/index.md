@@ -1,4 +1,4 @@
-# Irrlicht 1.5.1 for OSX
+# 📝 Irrlicht 1.5.1 for OSX
 
 I just uploaded an [OSX release](https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.5/1.5.1/irrlicht-1.5.1-MacOS.zip/download)
 for Irrlicht 1.5.1, it includes an installer and installs Irrlicht as a shared

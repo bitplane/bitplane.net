@@ -1,4 +1,4 @@
-# Karaoke Obscura
+# 🎙️ Karaoke Obscura
 
 Obscure or obnoxious karaoke playlist on YouTube.
 

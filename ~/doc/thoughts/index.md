@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/Documents/thoughts/']
 ---
-# Philosophy
+# 📁 Philosophy
 
 * 📖 [The shape of a lens](lens) - critiques of viewpoints in general. Work in
   progress

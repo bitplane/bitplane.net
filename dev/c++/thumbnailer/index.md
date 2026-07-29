@@ -1,4 +1,4 @@
-# Irrlicht Thumbnailer
+# 👍 Irrlicht Thumbnailer
 
 A thumbnailer for Linux that creates thumbnail images of 3D models.
 

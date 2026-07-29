@@ -1,4 +1,4 @@
-# Bubbler: Monitoring homebrew CO2 production with arecord and Python
+# 🐍 Bubbler: Monitoring homebrew CO2 production with arecord and Python
 
 A couple of weeks back I was thinking about monitors and sensors and had a crazy
 idea: it ought to be possible to gather stats on how well my plonk is fermenting

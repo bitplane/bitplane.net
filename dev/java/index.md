@@ -2,7 +2,7 @@
 redirect_from: ['/projects/android']
 ---
 
-# Java
+# ☕ Java
 
 I'm not a fan of Java, never have been. This could be because of a traumatic
 experience with it - before getting a job with Facilita load testing software

@@ -1,4 +1,4 @@
-# Irrlicht TAR Loader
+# 📦 Irrlicht TAR Loader
 
 [source](https://sourceforge.net/p/irrlicht/code/HEAD/tree/trunk/source/Irrlicht/CTarReader.cpp)
 

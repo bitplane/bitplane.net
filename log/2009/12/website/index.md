@@ -1,4 +1,4 @@
-# Website Update
+# 📝 Website Update
 
 I’ve finally got around to editing the Simplish template and adding pages for
 some of my old software projects. There’s some links at the top up there, hover

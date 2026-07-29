@@ -1,4 +1,4 @@
-# Clouds
+# ☁️ Clouds
 
 The cloud node was my first attempt at writing an Irrlicht ISceneNode, it was
 also my first real attempt at writing my own C++ classes too, I hadn’t RTFM at

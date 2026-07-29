@@ -1,4 +1,4 @@
-# Trafigura vs The Internet
+# 📝 Trafigura vs The Internet
 
 The news are banging on about how the Internet has won against Trafigura's
 attempts to gag the British press from reporting on questions in parliament,

@@ -1,4 +1,4 @@
-# Font Generator
+# 🔡 Font Generator
 
 Irrlicht’s new font tool is my attempt to solve the problems with the old font
 system. It only supported ASCII characters, couldn’t span more than one

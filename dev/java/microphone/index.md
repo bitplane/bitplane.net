@@ -1,4 +1,4 @@
-# Android Microphone
+# 🎤 Android Microphone
 
 This microphone just feeds audio from the phone’s mic right out of its
 speaker, which means you get a horrible screeching feedback noise.

@@ -1,4 +1,4 @@
-# \[idea\] Eyeballing training runs
+# 💡 \[idea\] Eyeballing training runs
 
 Seems to me, as a bit of a noob and an outsider, that a pretty big issue in
 machine learning is the lack of decent visualisations.

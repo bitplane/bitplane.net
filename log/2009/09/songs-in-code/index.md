@@ -1,4 +1,4 @@
-# Songs in Code
+# 📝 Songs in Code
 
 I'm a bit late on commenting on this Twitter meme as it's over a month old, like
 all memes it's a variation of something

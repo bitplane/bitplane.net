@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Circular Zones
+# ⚫ Circular Zones
 
 Back in June 1993 we had some kind of exam to see what sort of sets you'd be in
 for your GCSEs, to ultimately see whether you'd be the sort of slave who wears

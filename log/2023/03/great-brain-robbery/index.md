@@ -1,4 +1,4 @@
-# This probably already exists
+# 💡 This probably already exists
 
 ...and is why no text on the Internet after 2017-2018 can be trusted to
 be from a real person, rather than an LLM bot farm.

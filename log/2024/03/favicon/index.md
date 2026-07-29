@@ -1,4 +1,4 @@
-# favicon.ico
+# 📝 favicon.ico
 
 Turns out my favicon.ico said DIT@ANE not BITPLANE. It was wrong for 20
 years and nobody noticed. 😬

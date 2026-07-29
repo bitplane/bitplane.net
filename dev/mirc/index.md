@@ -1,4 +1,4 @@
-# mIRC Script
+# 💬 mIRC Script
 
 A cynical take on mIRC's early 2000s glory days might be all about the warez,
 the trojans and the drama, and that'd be largely correct. We had blatent

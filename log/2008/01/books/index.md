@@ -1,4 +1,4 @@
-# 2007 book log
+# 📝 2007 book log
 
 Some books I've read recently, I'm too lazy to review them but if they're listed
 then they're worth a read :)

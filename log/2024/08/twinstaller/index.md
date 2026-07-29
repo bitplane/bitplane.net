@@ -1,4 +1,4 @@
-# Idea: UAC evil twin escalation
+# 💡 Idea: UAC evil twin escalation
 
 (Just an idea, I don't have time/inclination to actually do a proof of concept.)
 

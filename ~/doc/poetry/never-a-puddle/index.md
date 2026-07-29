@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/Documents/poetry/never-a-puddle/']
 ---
-# Never a Puddle
+# 📃 Never a Puddle
 
 ```text
 drip drip drip drip

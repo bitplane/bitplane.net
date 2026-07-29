@@ -1,4 +1,4 @@
-# rars
+# 📦 rars
 
 A Rust implementation of RAR.
 

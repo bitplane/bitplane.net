@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Draw 'n' draw
+# 🖌️ Draw 'n' draw
 
 It was Ste Keyhoe's amiga that inspired enough envy to make me work for Ogden's
 paper shop in the bitter cold, but not spend all my money on sweets. Asking for

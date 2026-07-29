@@ -1,4 +1,4 @@
-# Fylde Coast vs Thames Valley
+# ✍️ Fylde Coast vs Thames Valley
 
 While looking for my old Amiga floppy disks, I found my security pass from my
 first visit to Microsoft. It brings back memories, so it's as good an excuse as

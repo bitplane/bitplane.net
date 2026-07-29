@@ -1,4 +1,4 @@
-# Amiga LZX in Rust
+# 📦 Amiga LZX in Rust
 
 LLM assisted clean-ish-room implementation of Amiga LZX.
 

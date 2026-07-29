@@ -2,7 +2,7 @@
 features: ["amos"]
 ---
 
-# NSLE
+# 🎯 NSLE
 
 [⏯
 ![amos:nsle.amos.zip](nsle.png)](https://youtu.be/N-3QAYB86zM)

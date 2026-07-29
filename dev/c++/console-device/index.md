@@ -1,4 +1,4 @@
-# Irrlicht Console Device
+# 🤖 Irrlicht Console Device
 
 Someone on the forums wanted a way to load Irrlicht without a GUI so they could
 use Irrlicht's software renderer to render images onto 3D objects, like mugs

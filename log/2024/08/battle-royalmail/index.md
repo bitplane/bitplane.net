@@ -1,4 +1,4 @@
-# [idea] - The stamp fell off
+# 💡 [idea] - The stamp fell off
 
 Got one of these this morning:
 

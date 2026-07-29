@@ -1,4 +1,4 @@
-# Funkload SVN access
+# 📝 Funkload SVN access
 
 So.. I got given funkload SVN write access on grounds of a single bugfix.
 I did intend to share the repot generation and diff tools I wrote for the

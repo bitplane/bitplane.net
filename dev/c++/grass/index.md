@@ -1,4 +1,4 @@
-# Grass
+# ☘️ Grass
 
 This grass patch scene node for Irrlicht is a simple way to add foliage to the
 built-in geomipmap terrain scene node. It works by dynamically adding blades as

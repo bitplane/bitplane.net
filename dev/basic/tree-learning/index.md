@@ -1,4 +1,4 @@
-# Learning before the Internet
+# 📚 Learning before the Internet
 
 Before we had the web, we had books and magazines.
 

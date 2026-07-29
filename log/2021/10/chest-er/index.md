@@ -1,4 +1,4 @@
-# Lego Chester's Strip Club
+# ✍️ Lego Chester's Strip Club
 
 So we went to Chester for the day with the kids. In the market there's this
 lego display that's got a mini version of the city.

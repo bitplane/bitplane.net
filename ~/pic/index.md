@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/Pictures/']
 ---
-# Pictures
+# 🖼️ Pictures
 
 * 🖼️ [misc](misc)
 * 🖼️ [me](me)

@@ -1,4 +1,4 @@
-# decentralised social media based on git
+# 💡 decentralised social media based on git
 
 Take a repo like this one and generate HTML pages from it, with a CI
 job that first preprocesses the files then runs Jekyll or similar to

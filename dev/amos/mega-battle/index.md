@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Mega Battle
+# ⚔️ Mega Battle
 
 We liked a bit of Advanced Dungeons and Dragons, and John was into Warhammer
 too, so between playing Eye of the Beholder II, one of the first things we wrote

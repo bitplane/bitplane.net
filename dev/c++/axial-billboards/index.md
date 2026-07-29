@@ -1,4 +1,4 @@
-# Axis Aligned Billboards
+# 🧑‍🔧 Axis Aligned Billboards
 
 "Mariokart billboards" are a specific type of axis aligned billboards which
 represent fake 3D objects, the kind of 2.5D that Mariokart on the Super

@@ -1,4 +1,4 @@
-# awk
+# 📜 awk
 
 A bit awkward, but it's POSIX.
 

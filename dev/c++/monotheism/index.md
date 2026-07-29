@@ -1,4 +1,4 @@
-# Monotheism
+# ✝ Monotheism
 
 I never finished this game, never really started it to be honest, but it
 did inspire a few of the nodes that I made for Irrlicht.

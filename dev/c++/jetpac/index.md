@@ -1,4 +1,4 @@
-# JetPac
+# 🚀 JetPac
 
 A tribute to the excellent game from the ZX Spectrum, made over a weekend just
 for the fun of it.

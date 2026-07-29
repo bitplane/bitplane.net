@@ -1,4 +1,4 @@
-# Irrlicht 1.6 Released
+# 🎉 Irrlicht 1.6 Released
 
 So, we finally released Irrlicht 1.6. This release has lots of bug fixes and
 plenty of new features for you to sink your teeth into!

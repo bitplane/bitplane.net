@@ -1,4 +1,4 @@
-# ImgSize.com
+# 🖼️ ImgSize.com
 
 A website where you enter your screen size and give a link to an image, and it
 hotlinks the resizes it so the size of the thing on screen is the size of 

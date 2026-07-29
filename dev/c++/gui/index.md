@@ -1,4 +1,4 @@
-# Irrlicht GUI
+# 🖊️ Irrlicht GUI
 
 I wrote the GUI editor that comes with the Irrlicht Engine, along with the
 serialization that allows it to happen, the skinning tools, plugin system,

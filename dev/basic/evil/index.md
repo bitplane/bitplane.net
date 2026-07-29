@@ -1,4 +1,4 @@
-# THIS IS WHAT THE ENEMY LOOKS LIKE
+# 🦹 THIS IS WHAT THE ENEMY LOOKS LIKE
 
 todo: rant about Microsoft lobbying stunted computer literacy worldwide,
 funnelled taxes away from schools and hospitals and into Bill Gates' pockets,

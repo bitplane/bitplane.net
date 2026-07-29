@@ -1,4 +1,4 @@
-# Lexx Season 4 on DVD
+# 📝 Lexx Season 4 on DVD
 
 I don’t buy many DVDs. I tend to focus on things of exceptional quality, which,
 let’s face it, most films and TV series are somewhere between mediocre and

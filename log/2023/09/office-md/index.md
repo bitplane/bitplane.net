@@ -1,4 +1,4 @@
-# office.md
+# 💡 office.md
 
 A client-side office suite that is shell-friendly, using text files as
 documents and the filesystem as the interface. The entire thing being a single

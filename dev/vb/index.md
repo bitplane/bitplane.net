@@ -1,4 +1,4 @@
-# Visual Basic
+# 💩 Visual Basic
 
 Being a BASIC programmer from birth, then an AMOS BASIC programmer as a teen,
 doing Pascal in college, then a VB6 course... It was pretty obvious that I

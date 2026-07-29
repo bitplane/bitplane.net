@@ -1,4 +1,4 @@
-# Stripping snapshot files from LoadRunner Citrix scripts
+# 📜 Stripping snapshot files from LoadRunner Citrix scripts
 
 After several re-records of a Citrix script in LoadRunner, thousands of PNG
 snapshot files build up in the data dir. Over time they can build up to make

@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Viking / Saxon Tester
+# 🛡️ Viking / Saxon Tester
 
 John, Graeme (and Craig for a bit) were members of
 [Regia Anglorum](https://regia.org/), a mediaeval reenactment society where

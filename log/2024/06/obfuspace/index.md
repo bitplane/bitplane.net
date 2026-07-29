@@ -1,4 +1,4 @@
-# Obfuspace - Encoding arbitrary values into whitespace
+# ⚒️ Obfuspace - Encoding arbitrary values into whitespace
 
 Thinking about caching JSON schemas by treating them as binary files and
 encoding schema fingerprints into whitespace, here's an attempt at making

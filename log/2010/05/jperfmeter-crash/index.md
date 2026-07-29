@@ -1,4 +1,4 @@
-# JPerfmeter crashes while starting
+# 📝 JPerfmeter crashes while starting
 
 I’ve been us [JPerfmeter](https://jperfmeter.sourceforge.net/) in work to keep
 an eye on Linux system counters served up over rstatd.

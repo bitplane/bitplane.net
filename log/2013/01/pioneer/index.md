@@ -1,4 +1,4 @@
-# xorshitter
+# 💥 xorshitter
 
 Over Christmas in 2012 I was playing with Pioneer, a space simulator based on
 Frontier: Elite II, which I was a huge fan of on the Amiga. The game, written

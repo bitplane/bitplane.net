@@ -1,4 +1,4 @@
-# Remove junk words from Samsung predictive text dictionary
+# 📝 Remove junk words from Samsung predictive text dictionary
 
 I couldn’t find anything on the web about this, so I’m posting it here:
 

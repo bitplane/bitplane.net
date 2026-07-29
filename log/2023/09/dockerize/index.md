@@ -1,4 +1,4 @@
-# Interactively create dockerfiles
+# 💡 Interactively create dockerfiles
 
 * You have a command in your path, `FROM`.
 * You type `FROM some-image:whatever`

@@ -1,7 +1,7 @@
 ---
 features: ["emulator/amiga"]
 ---
-# Thrusts
+# 🚀 Thrusts
 
 A Gravity Force style game. Well, it's just plain cheeky to call it a GF clone,
 Amos was far too slow and we only had enough sprites for one bullet each...

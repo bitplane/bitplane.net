@@ -1,4 +1,4 @@
-# name.sh
+# 🍼 name.sh
 
 So, my daughter was named by a bash script. True story. We had a candidate list
 of 4 names and couldn't decide between them, and I was ... uh ... instructed is

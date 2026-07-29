@@ -1,4 +1,4 @@
-# Voice Cloning Docker
+# 🗒️ Voice Cloning Docker
 
 [Voice-Cloning-App](https://github.com/benaandrew/Voice-Cloning-App) won't build
 locally anymore, so I took the liberty of archiving it using Docker.

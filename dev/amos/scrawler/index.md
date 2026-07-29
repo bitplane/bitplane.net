@@ -1,7 +1,7 @@
 ---
 features: ["emulator/amiga"]
 ---
-# Scrawler
+# ✍️ Scrawler
 
 There was a game on the Amiga, Jimmy White's Whirlwind Snooker, and along with
 being a really well engineered treat by legend Archer MacLean, the title screen

@@ -1,4 +1,4 @@
-# Piwik in, Google Analytics out
+# 📝 Piwik in, Google Analytics out
 
 I’ve stopped using Google Analytics and have now moved over to
 [Piwik](https://www.piwik.org/). I don’t have that many visitors, but there are

@@ -1,4 +1,4 @@
-# Rainwatch
+# 🌦️ Rainwatch
 
 Rainwatch is an Android alternative to the BBC Maps Presenter, the flash
 application on the BBC Weather website, it provides visual local weather

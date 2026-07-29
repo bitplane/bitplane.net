@@ -1,4 +1,4 @@
-# filefrag for python
+# 🐍 filefrag for python
 
 Spent last night making this, added some turd polish today and added it to pypi.
 

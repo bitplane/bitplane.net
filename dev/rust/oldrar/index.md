@@ -1,4 +1,4 @@
-# oldrar
+# 📦 oldrar
 
 `oldrar` is a Rust reader and writer for RAR 1.3/1.4 archives from the DOS days.
 The goal is archivist-oriented compatibility with old archives that are not

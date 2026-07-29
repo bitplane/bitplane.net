@@ -1,4 +1,4 @@
-# Mines
+# 💥 Mines
 
 The challenge was my idea and only three people could spare the time, the
 rules were simple and the deadline incredibly tight: make a Minesweeper

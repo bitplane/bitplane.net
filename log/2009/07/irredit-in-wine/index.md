@@ -1,4 +1,4 @@
-# irrEdit in Wine?
+# 📝 irrEdit in Wine?
 
 Since my recent hard drive crash I’ve moved from Windows Vista to Ubuntu 64.
 I discovered that when trying to run my [Jetpac](https://web.archive.org/web/20091207064343/http://gallery.bitplane.net/main.php?g2_itemId=403)

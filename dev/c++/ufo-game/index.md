@@ -1,4 +1,4 @@
-# Unfinished UFO game
+# 👽 Unfinished UFO game
 
 Graeme and I loved Lylat Wars on the N64. The game had this wonderful feeling of
 space and choice, while constraining the player to this pre-made track. Now, we

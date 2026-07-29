@@ -1,4 +1,4 @@
-# Personal Home Page
+# 🕸️ Personal Home Page
 
 LAMP stack is the reason Silicon Valley stole the entire web, so I obviously
 spent a fair bit of time and effort making various things in PHP. But most of

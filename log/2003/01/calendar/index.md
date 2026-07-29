@@ -1,4 +1,4 @@
-# Kylie Minogue, get dressed
+# 📷 Kylie Minogue, get dressed
 
 Someone had a semi-nude Kylie calendar in work, so we took the pleasure of
 removing the pleasure from it!

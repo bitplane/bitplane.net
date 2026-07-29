@@ -1,4 +1,4 @@
-# 2011 in review
+# ✍️ 2011 in review
 
 Dear diary
 

@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Bomb City
+# 🧨 Bomb City
 
 Based on the 80s game Blitz, probably for the ZX Spectrum, remade in AMOS.
 

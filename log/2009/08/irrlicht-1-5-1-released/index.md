@@ -1,4 +1,4 @@
-# Irrlicht 1.5.1 Released
+# 🎉 Irrlicht 1.5.1 Released
 
 Yesterday we released [Irrlicht 1.5.1](https://irrlicht.sf.net/). This will be
 the last 1.5.x release, development is now focused on 1.6 which will move to its

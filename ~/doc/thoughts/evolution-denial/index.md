@@ -2,7 +2,7 @@
 redirect_from: ['/home/gaz/Documents/thoughts/evolution-denial/']
 ---
 
-# Evolution Denial
+# 📃 Evolution Denial
 
 Determinism denies the most basic facts of evolution. This, in turn, means that
 computationalism is evolution denial.

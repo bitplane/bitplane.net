@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Misc
+# 🎲 Misc
 
 Odds and ends that don't warrant a page each.
 

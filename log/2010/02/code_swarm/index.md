@@ -1,4 +1,4 @@
-# code_swarm
+# 📽️ code_swarm
 
 I’ve been playing with code_swarm and made this video of the Irrlicht Engine’s
 development history:

@@ -1,7 +1,7 @@
 ---
 redirect_from: ['/home/gaz/Documents/']
 ---
-# Documents
+# 📁 Documents
 
 * 📃 [todo](todo) -
   Site migration to-do list

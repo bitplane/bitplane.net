@@ -1,4 +1,4 @@
-# awkdown
+# 📃 awkdown
 
 A pure POSIX [CommonMark](https://commonmark.org/) 0.29 + GitHub flavoured
 Markdown implementation, written as an `awk` script.

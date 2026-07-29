@@ -1,4 +1,4 @@
-# misc
+# 🖼️ misc
 
 * [🖼️ offensive ipod](ipod)
 * [🖼️ gazing globe](skydomes)

@@ -1,4 +1,4 @@
-# Rainwatch featured on Android Market
+# 📝 Rainwatch featured on Android Market
 
 Sometime yesterday my app [Rainwatch](/dev/java/rainwatch) was added to the
 “top free” list on the Android Marketplace, showing in 5th position in the News

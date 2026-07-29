@@ -1,4 +1,4 @@
-# CBeamSceneNode.cpp
+# ⚡ CBeamSceneNode.cpp
 
 Made for Irrlicht in 2009. Download [here](CBeamSceneNode.zip)
 

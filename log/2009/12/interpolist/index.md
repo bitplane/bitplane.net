@@ -1,4 +1,4 @@
-# Interpolated list class for Python
+# 🐍 Interpolated list class for Python
 
 While messing with Python to output some better graphs for my Facebook group
 scraper I stumbled upon an interesting problem. What happens if you have missing

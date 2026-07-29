@@ -2,7 +2,7 @@
 redirect_from: ['/dev/bash']
 ---
 
-# Shell scripting
+# 📜 Shell scripting
 
 Does AmigaDOS count as shell scripting? If so I've been doing shell scripts
 since '93. If not then probably 99 or so when I did [c](../c) in XENIX.

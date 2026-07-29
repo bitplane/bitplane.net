@@ -1,4 +1,4 @@
-# Favicon to PNG project moved
+# 📝 Favicon to PNG project moved
 
 I just made a small bugfix to my .favicon to PNG script, but thought it would be
 a better idea to put this somewhere better than a static web page.

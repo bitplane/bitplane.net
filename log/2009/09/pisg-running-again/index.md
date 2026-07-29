@@ -1,4 +1,4 @@
-# PISG is up again
+# 📝 PISG is up again
 
 Now that I have a reliable shell, #irrlicht once again has an
 [eggdrop bot](https://eggheads.org), which will be useful because we haven’t had

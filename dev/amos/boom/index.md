@@ -1,7 +1,7 @@
 ---
 features: ["amos"]
 ---
-# Boom! Shake the Workshop
+# 🔊 Boom! Shake the Workshop
 
 ![amos:boom.amos.zip](boom.png)
 

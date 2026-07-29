@@ -1,4 +1,4 @@
-# This [e107] page has moved permanently [to gallery2]
+# 📝 This [e107] page has moved permanently [to gallery2]
 
 If you do a Google search for some of my really old code, like my
 [Python T9 Dictionary](/dev/python/t9) or

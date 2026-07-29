@@ -1,4 +1,4 @@
-# Chart Against The X Factor
+# ✍️ Chart Against The X Factor
 
 For the last four years running Simon Cowell’s plastic karaoke acts have held
 the Christmas #1 spot in the UK singles charts thanks to ITV’s hit show 
