@@ -26,7 +26,7 @@ that's a fair comment.
 * 📃 [CFF MOST](cff-most) -
   disassembled m68k machine code to read old docs.
 * 📦 [propack](propack) -
-  RNS ProPack implementation in Python, for those old Amiga files.
+  RNC ProPack implementation in Python, for those old Amiga files.
 * 🖼️ [amigainfo](amigainfo) -
   convert Amiga .info files
 * ✅ [ganban](ganban) -
