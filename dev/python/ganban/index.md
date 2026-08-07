@@ -2,47 +2,47 @@
 
 git-based Kanban TUI
 
+![screen](https://bitplane.net/dev/python/ganban/ganban.png)
+
 ## What is this?
 
-![screenshot](https://bitplane.net/dev/python/ganban/ganban.png)
-
 `ganban` is a Kanban board that lives in git. The data sits in an orphan branch,
-so web UIs shouldn't offer to merge it (but they do). In `ganban`, our tasks
-stay with the code and we don't need to rely on external services and API keys.
-It's all just files in dirs.
+so web UIs shouldn't offer to merge it (but they do). In `ganban`, we don't need
+to rely on external services and API keys because our tasks stay with the code.
+It's all just text files in dirs.
 
 The board's columns are in directories named `id.slug` like `1.backlog`. They're
-ordered alphanumerically so the TUI has the same order as `ls -l`. The app will
-renumber them for you if you move columns around, or if you used letters or
+ordered alphanumerically so the TUI has the same order as `ls -l`. The app
+renumbers them for you if you move columns around, or if you used letters or
 something other than numbers as an id.
 
 Cards in a column are symlinks to Markdown docs in the `./.all` dir, which holds
 the actual data. These links are ordered in the same way as cards. Keeping them
 in `.all` gives them stable IDs so you can link to them like you would in a
-commit message. You don't need to remember `ln`'s weird syntax though because
-`ganban` will round up stray files and replace them with a link.
+commit message. You don't need to remember `ln`'s weird syntax because `ganban`
+rounds up stray files and replaces them with a link.
 
-The first `# heading` in a document will override the title of a card. Other
-`# headings` or `## subheadings` becomes a section, and the TUI can choose a
-custom editor for sections with special names. This is how comments work, and
-how task lists will work in future.
+The first `# heading` in a document overrides the title of a card. Other
+`# headings` or `## subheadings` become sections, and the TUI can choose a
+custom editor for sections with special names. This is how comments and task
+lists work, they're just markdown with a custom renderer.
 
 You can add metadata like `labels`, a `due` date, `assigned` - or anything else
-that you like - using front-matter. A full JSON/YAML editor is provided for any
-custom stuff, and in future it'll be possible to add plugins for new ways to
-access and edit this data. Metadata works on columns too, you just edit the
-`index.md` file in their dir, which you can use to override the column's style.
-And the board also has a title and settings in its front-matter, which is how
-we link committers with multiple emails to one identity, or give yourself a 🧔
-emoji as your avatar.
+you like - using front-matter. A full YAML editor is provided for any custom
+stuff, and some sensible editors are provided for the defaults.
 
-When running as a service, `ganban` will sync from remotes that the repo has,
+Metadata works on columns too, you just edit the `index.md` file in their dir,
+which you can use to override the column's style. The board itself has a title
+and settings in its front-matter, which is how we link committers with multiple
+emails to one identity, or give yourself an avatar like 🧔 or 🐴.
+
+When running as a service, `ganban` syncs from remotes that the repo has,
 periodically pushing to upstream and resolving any conflicts the best it can.
 This creates a kind of mesh network for your board, syncing in the background
 without the need for 3rd party services.
 
 Ganban doesn't force you to use its TUI, there's a web UI if you prefer that
-sort of thing. If you're a bot or a script or UIs just aren't for you, then you
+sort of thing. If you're a bot or a script, or UIs just aren't for you, then you
 can use the CLI instead; see `ganban --help`. If you don't want any kind of
 interface then bring your own text editor and commit directly to git.
 

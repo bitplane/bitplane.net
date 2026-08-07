@@ -344,16 +344,6 @@ def on_add_card_card_created(event: AddCard.CardCreated) -> None
 
 Handle new card creation — commit immediately for timestamp.
 
-<a id="ganban.ui.board.BoardScreen.on_add_column_column_created"></a>
-
-#### on\_add\_column\_column\_created
-
-```python
-def on_add_column_column_created(event: AddColumn.ColumnCreated) -> None
-```
-
-Handle new column creation.
-
 <a id="ganban.ui.board.BoardScreen.on_column_widget_move_requested"></a>
 
 #### on\_column\_widget\_move\_requested
@@ -373,7 +363,7 @@ def on_column_widget_archive_requested(
         event: ColumnWidget.ArchiveRequested) -> None
 ```
 
-Handle column archive request.
+Handle column archive request; reconciliation unmounts the widget.
 
 <a id="ganban.ui.labels_editor"></a>
 
@@ -597,16 +587,6 @@ class AddColumn(AddValueMixin, Vertical)
 ```
 
 Widget to add a new column.
-
-<a id="ganban.ui.column.AddColumn.ColumnCreated"></a>
-
-## ColumnCreated Objects
-
-```python
-class ColumnCreated(Message)
-```
-
-Posted when a new column is created.
 
 <a id="ganban.ui.due"></a>
 
@@ -3502,6 +3482,17 @@ class MergeRequired()
 ```
 
 Returned by check_for_merge when the branch has diverged.
+
+<a id="ganban.model.writer.IdCollision"></a>
+
+## IdCollision Objects
+
+```python
+@dataclass
+class IdCollision()
+```
+
+An .all/ card file added independently on both sides of a merge.
 
 <a id="ganban.model.writer.save_board"></a>
 
