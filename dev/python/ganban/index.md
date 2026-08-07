@@ -4,49 +4,50 @@ git-based Kanban TUI
 
 ## What is this?
 
-Note: this is the plan. half of this isn't working yet. half of it is, and I'm
-not saying which half.
+![screenshot](https://bitplane.net/dev/python/ganban/ganban.png)
 
-`ganban` is a Kanban board that lives in git. It sits in an orphan branch so web
-UIs don't offer to merge it. In `ganban`, our tasks stay with the code and we
-don't need to rely on external services and API keys. It's just files in a dir.
+`ganban` is a Kanban board that lives in git. The data sits in an orphan branch,
+so web UIs shouldn't offer to merge it (but they do). In `ganban`, our tasks
+stay with the code and we don't need to rely on external services and API keys.
+It's all just files in dirs.
 
-The board's columns are directories named `id.slug` like `1.backlog`. They
-don't need a numeric id, they're ordered alphanumerically so the TUI has the
-same order as `ls -l`. The TUI will renumber them for you if you move columns
-around.
+The board's columns are in directories named `id.slug` like `1.backlog`. They're
+ordered alphanumerically so the TUI has the same order as `ls -l`. The app will
+renumber them for you if you move columns around, or if you used letters or
+something other than numbers as an id.
 
-Cards on a board are symlinks to Markdown docs in the `./.all` dir, which holds
-the actual data. The links are ordered in the same way as cards. Keeping them in
-`.all` gives them stable IDs, so you can link to them. `ganban` will round up
-stray files and replace them with a link, so you don't need to remember `ln`'s
-weird syntax.
+Cards in a column are symlinks to Markdown docs in the `./.all` dir, which holds
+the actual data. These links are ordered in the same way as cards. Keeping them
+in `.all` gives them stable IDs so you can link to them like you would in a
+commit message. You don't need to remember `ln`'s weird syntax though because
+`ganban` will round up stray files and replace them with a link.
 
-The first `# heading`, if it's present, will override the title of a card. Any
-`## subheading` becomes a section, and the TUI can choose a custom editor for
-sections with special names. This is how comments and todo lists work.
+The first `# heading` in a document will override the title of a card. Other
+`# headings` or `## subheadings` becomes a section, and the TUI can choose a
+custom editor for sections with special names. This is how comments work, and
+how task lists will work in future.
 
-You can also add metadata like labels, a due date, assignee, story points - or
-anything else you like - using front-matter. Metadata works on columns too, by
-editing the `index.md` file in their dir. And the board of course, which can
-have a title and settings in its metadata.
+You can add metadata like `labels`, a `due` date, `assigned` - or anything else
+that you like - using front-matter. A full JSON/YAML editor is provided for any
+custom stuff, and in future it'll be possible to add plugins for new ways to
+access and edit this data. Metadata works on columns too, you just edit the
+`index.md` file in their dir, which you can use to override the column's style.
+And the board also has a title and settings in its front-matter, which is how
+we link committers with multiple emails to one identity, or give yourself a 🧔
+emoji as your avatar.
 
 When running as a service, `ganban` will sync from remotes that the repo has,
-periodically pushing to upstream and resolving conflicts the best it can. This
-creates a kind of mesh network for your board.
+periodically pushing to upstream and resolving any conflicts the best it can.
+This creates a kind of mesh network for your board, syncing in the background
+without the need for 3rd party services.
 
-If you don't like the terminal, you can use the web UI (which looks just like
-the TUI.) If you're a robot that isn't good at UIs, `ganban -d` will sync in the
-background as you work. If the daemons haunt you, `ganban --sync` for manual
-syncing. If you're a bot, there's context-friendly instructions for use in the
-board's default `index.md`.
+Ganban doesn't force you to use its TUI, there's a web UI if you prefer that
+sort of thing. If you're a bot or a script or UIs just aren't for you, then you
+can use the CLI instead; see `ganban --help`. If you don't want any kind of
+interface then bring your own text editor and commit directly to git.
 
-## Overview
-
-Open a repo with ganban and it reads from a `ganban` orphan branch. The board
-is just directories (columns) containing symlinks (cards) pointing to
-canonical card files. Everything is plain markdown, works with any text
-editor, and syncs via git.
+It can sync in the background with `ganban sync -d`, or, if the daemons haunt
+you, just omit the `-d` for a one-time sync.
 
 ## Data Model
 
@@ -64,9 +65,13 @@ Canonical card files live in `.all/` with 3-digit numeric IDs:
 Card format:
 
 ```markdown
-# Title of the card
+---
+whatever: put your metadata here
+---
+# Title
 
-Main description goes here, displayed in the body.
+Main description goes here, displayed in the body. You can link to other cards
+by ID like #1
 
 ## Notes
 
@@ -74,28 +79,7 @@ Subsequent sections become sidebar panels in the TUI.
 
 ## Comments
 
-**@user 2024-01-15**: Append-only, TUI adds name + date automatically.
-
-## Links
-
-- blocks [#42](../.all/042.md)
-- see also [#7](../.all/007.md)
-```
-
-- Title from first `# heading`, not front-matter
-- Content before first `##` = main body
-- Each `##` = collapsible sidebar section
-- `## Comments` = special append-only widget
-- `## Links` = relationships, rendered specially
-- Cross-references: type `#42`, stored as `[#42](../.all/042.md)` so links work everywhere
-- Front-matter only for optional extras (tags, color, custom fields)
-
-Tags on separate lines for clean merges:
-
-```yaml
-tags:
- - first
- - second
+- [name](mailto:user@email): comments go here like this
 ```
 
 ### Columns
@@ -107,11 +91,6 @@ Directories with 1-digit numeric prefix for ordering:
 2.in-progress/
 3.done/
 ```
-
-- Title from `index.md` first `# heading`, or normalized from dirname
-- `in-progress` → `In progress`
-- Hidden columns start with `.` (e.g., `.all`)
-- Optional `index.md` for description and metadata
 
 ### Board Layout
 
@@ -133,8 +112,7 @@ Cards appear in columns as symlinks with 2-digit position prefix:
 
 ### Numbering
 
-Default digits: 3 for `.all/`, 1 for columns, 2 for symlinks. Can extend with
-hex or base64 if needed, but integers are the default.
+Default digits: 3 for `.all/`, 1 for columns, 2 for symlinks.
 
 ## Git Integration
 
@@ -144,19 +122,6 @@ Operates on the `ganban` branch without checking it out, using git plumbing:
 - `git show ganban:path` to read
 - `git hash-object`, `git mktree`, `git commit-tree` to write
 - Or GitPython equivalents
-
-### Sync Workflow
-
-1. Commit before pull (TUI enforces this)
-2. `git pull --rebase` on tasks branch
-3. Reload board
-4. If conflicts, show conflict UI
-
-### Conflict Handling
-
-- **Content conflicts**: git markers show in markdown, user edits them out
-- **Broken symlinks**: highlight red, user picks destination or deletes
-- **Column renames**: broken links surface as red cards, same fix
 
 ### Multi-Remote Sync
 

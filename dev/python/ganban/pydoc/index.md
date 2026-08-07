@@ -2,947 +2,1069 @@
 
 # ganban
 
-<a id="ganban.model"></a>
+<a id="ganban.sync"></a>
 
-# ganban.model
+# ganban.sync
 
-Reactive model tree.
+Background sync engine for the TUI.
 
-<a id="ganban.model.node"></a>
+Runs: pull → load+merge → save → push, gated by board.git.sync toggles.
 
-# ganban.model.node
+<a id="ganban.sync.apply_reload"></a>
 
-Reactive tree nodes with change notification and bubbling.
+#### apply\_reload
 
-<a id="ganban.model.node.Node"></a>
+```python
+def apply_reload(board, new_board) -> None
+```
 
-## Node Objects
+Apply a freshly loaded board in place, preserving live sync/config nodes.
 
+<a id="ganban.sync.run_sync_cycle"></a>
+
+#### run\_sync\_cycle
+
 ```python
-class Node()
+async def run_sync_cycle(board)
 ```
 
-Reactive dict-like tree node.
+Run one sync cycle: pull → save → merge → load → push.
 
-Stores data in an internal dict, accessed via attribute syntax.
-Setting a value to None deletes the key. Dict values are
-auto-wrapped as child Nodes. Changes fire watchers and bubble
-up through the parent chain.
+Reads board.git.sync.{local, remote} to decide which steps to run.
+Sets sync.status at each step (fires watchers → UI updates).
+All git I/O runs via asyncio.to_thread to stay non-blocking.
 
-<a id="ganban.model.node.Node.watch"></a>
+<a id="ganban.ui.drag"></a>
 
-#### watch
+# ganban.ui.drag
 
-```python
-def watch(key: str, callback: Callback) -> Callable[[], None]
-```
+Drag-and-drop infrastructure for ganban UI.
 
-Watch a key for changes. Returns an unwatch callable.
+Two mixins:
+- DraggableMixin: on dragged widgets, owns the "flying" phase
+- DropTarget: on containers, owns the "landing" phase
 
-<a id="ganban.model.node.Node.keys"></a>
+<a id="ganban.ui.drag.DropTarget"></a>
 
-#### keys
+## DropTarget Objects
 
 ```python
-def keys()
+class DropTarget()
 ```
 
-Return children keys.
+Mixin for widgets that can accept drops.
 
-<a id="ganban.model.node.Node.items"></a>
+Returns False to ignore (bubbles to parent), True to consume.
 
-#### items
+<a id="ganban.ui.drag.DropTarget.drag_over"></a>
 
+#### drag\_over
+
 ```python
-def items()
+def drag_over(draggable: DraggableMixin, x: int, y: int) -> bool
 ```
 
-Return children items.
+Called while a draggable hovers over this target. Return True to accept.
 
-<a id="ganban.model.node.Node.values"></a>
+<a id="ganban.ui.drag.DropTarget.drag_away"></a>
 
-#### values
+#### drag\_away
 
 ```python
-def values()
+def drag_away(draggable: DraggableMixin) -> None
 ```
 
-Return children values.
+Called when a draggable leaves this target.
 
-<a id="ganban.model.node.Node.path"></a>
+<a id="ganban.ui.drag.DropTarget.try_drop"></a>
 
-#### path
+#### try\_drop
 
 ```python
-@property
-def path() -> str
+def try_drop(draggable: DraggableMixin, x: int, y: int) -> bool
 ```
 
-Dotted path from root to this node.
+Called on mouse-up to attempt the drop. Return True if accepted.
 
-<a id="ganban.model.node.Node.update"></a>
+<a id="ganban.ui.drag.DropTarget.find_nearest"></a>
 
-#### update
+#### find\_nearest
 
 ```python
-def update(other: Node) -> None
+def find_nearest(region: Region) -> "Widget | None"
 ```
 
-Update this node in-place to match other, preserving watchers.
+Find the nearest child widget to the given region.
 
-<a id="ganban.model.node.Node.rename_key"></a>
+<a id="ganban.ui.drag.DraggableMixin"></a>
 
-#### rename\_key
+## DraggableMixin Objects
 
 ```python
-def rename_key(old_key: str, new_key: str) -> None
+class DraggableMixin()
 ```
+
+Mixin for widgets that can be dragged.
 
-Rename a key in _children, preserving insertion order.
+Subclasses should:
+- Call _init_draggable() in __init__
+- Implement draggable_make_ghost() to return the ghost widget
+- Implement draggable_clicked() for click-without-drag behavior
+- Optionally override DRAG_THRESHOLD and HORIZONTAL_ONLY
 
-<a id="ganban.model.node.ListNode"></a>
+<a id="ganban.ui.drag.DraggableMixin.draggable_make_ghost"></a>
 
-## ListNode Objects
+#### draggable\_make\_ghost
 
 ```python
-class ListNode()
+def draggable_make_ghost() -> Widget
 ```
 
-Ordered, id-keyed collection with change notification.
+Create and return the ghost widget for dragging. Override in subclass.
 
-Items are accessed by string id. Setting to None deletes.
-Dicts are auto-wrapped as Nodes. Changes fire watchers and
-bubble up through the parent chain.
+<a id="ganban.ui.drag.DraggableMixin.draggable_clicked"></a>
 
-<a id="ganban.model.node.ListNode.watch"></a>
+#### draggable\_clicked
 
-#### watch
-
 ```python
-def watch(key: str, callback: Callback) -> Callable[[], None]
+def draggable_clicked() -> None
 ```
 
-Watch an item id for changes. Returns an unwatch callable.
+Called when mouse released without dragging. Override for click behavior.
 
-<a id="ganban.model.node.ListNode.path"></a>
+<a id="ganban.ui.drag.DragGhost"></a>
 
-#### path
+## DragGhost Objects
 
 ```python
-@property
-def path() -> str
+class DragGhost(Static)
 ```
 
-Dotted path from root to this node.
+Floating overlay showing the card being dragged.
 
-<a id="ganban.model.node.ListNode.keys"></a>
+<a id="ganban.ui.drag.CardPlaceholder"></a>
 
-#### keys
+## CardPlaceholder Objects
 
 ```python
-def keys()
+class CardPlaceholder(Static)
 ```
 
-Return ordered keys.
+Placeholder showing where a dragged card will drop.
 
-<a id="ganban.model.node.ListNode.items"></a>
+<a id="ganban.ui.drag.ColumnPlaceholder"></a>
 
-#### items
+## ColumnPlaceholder Objects
 
 ```python
-def items()
+class ColumnPlaceholder(Static)
 ```
+
+Placeholder showing where a dragged column will drop.
+
+<a id="ganban.ui.users"></a>
 
-Return ordered (key, value) pairs.
+# ganban.ui.users
 
-<a id="ganban.model.node.ListNode.update"></a>
+Users editor for board meta.
 
-#### update
+<a id="ganban.ui.users.EmailTag"></a>
 
+## EmailTag Objects
+
 ```python
-def update(other: ListNode) -> None
+class EmailTag(Container)
 ```
 
-Update this list in-place to match other, preserving watchers.
+A single email address tag — click to edit with committer search.
 
-<a id="ganban.model.node.ListNode.rename_first_key"></a>
+<a id="ganban.ui.users.AddEmailButton"></a>
 
-#### rename\_first\_key
+## AddEmailButton Objects
 
 ```python
-def rename_first_key(new_title: str) -> None
+class AddEmailButton(Container)
 ```
+
+Searchable input to add a new email address from git committers.
 
-Rename the first key by rebuilding the list.
+<a id="ganban.ui.users.UserRow"></a>
 
-<a id="ganban.model.loader"></a>
+## UserRow Objects
 
-# ganban.model.loader
+```python
+class UserRow(Vertical)
+```
 
-Load a ganban board from git into a Node tree.
+A single user card with title bar and email list.
 
-<a id="ganban.model.loader.file_creation_date"></a>
+<a id="ganban.ui.users.AddUserRow"></a>
 
-#### file\_creation\_date
+## AddUserRow Objects
 
 ```python
-def file_creation_date(repo_path: str,
-                       file_path: str,
-                       branch: str = BRANCH_NAME) -> datetime | None
+class AddUserRow(AddValueMixin, Static)
 ```
-
-Get the author date of the commit that first added a file on a branch.
 
-Returns None if the file has no history on the branch.
+EditableText with '+' to add a new user.
 
-<a id="ganban.model.loader.load_board"></a>
+<a id="ganban.ui.users.UsersEditor"></a>
 
-#### load\_board
+## UsersEditor Objects
 
 ```python
-def load_board(repo_path: str, branch: str = BRANCH_NAME) -> Node
+class UsersEditor(NodeWatcherMixin, Container)
 ```
 
-Load a complete board from a git branch as a Node tree.
+Editor for board.meta.users -- a dict of display name -> user info.
 
-<a id="ganban.model.card"></a>
+<a id="ganban.ui.confirm"></a>
 
-# ganban.model.card
+# ganban.ui.confirm
 
-Card mutation operations for ganban boards.
+Compact inline confirmation widget.
 
-<a id="ganban.model.card.create_card"></a>
+<a id="ganban.ui.confirm.ConfirmButton"></a>
 
-#### create\_card
+## ConfirmButton Objects
 
 ```python
-def create_card(board: Node,
-                title: str,
-                body: str = "",
-                column: Node | None = None,
-                position: int | None = None) -> tuple[str, Node]
+class ConfirmButton(Static)
 ```
 
-Create a new card and add it to the board.
+A button that shows a confirm/cancel menu on click.
 
-Returns (card_id, card_node).
+Shows a single icon (default: ❌). When clicked, opens a context menu
+with ❌ (cancel) and ✅ (confirm). Emits Confirmed message on confirm.
 
-<a id="ganban.model.card.find_card_column"></a>
+<a id="ganban.ui.confirm.ConfirmButton.Confirmed"></a>
 
-#### find\_card\_column
+## Confirmed Objects
 
 ```python
-def find_card_column(board: Node, card_id: str) -> Node | None
+class Confirmed(Message)
 ```
 
-Find the column containing a card.
+Emitted when the action is confirmed.
 
-<a id="ganban.model.card.move_card"></a>
+<a id="ganban.ui.board"></a>
 
-#### move\_card
+# ganban.ui.board
 
+Board screen showing kanban columns and cards.
+
+<a id="ganban.ui.board.BoardScreen"></a>
+
+## BoardScreen Objects
+
 ```python
-def move_card(board: Node,
-              card_id: str,
-              target_column: Node,
-              position: int | None = None) -> None
+class BoardScreen(NodeWatcherMixin, DropTarget, Screen)
 ```
 
-Move a card to target_column at position.
+Main board screen showing all columns.
 
-Handles same-column reorder atomically (single list assignment)
-to avoid watchers removing the card widget between operations.
+<a id="ganban.ui.board.BoardScreen.on_editable_text_changed"></a>
 
-<a id="ganban.model.card.archive_card"></a>
+#### on\_editable\_text\_changed
 
-#### archive\_card
-
 ```python
-def archive_card(board: Node, card_id: str) -> None
+def on_editable_text_changed(event: EditableText.Changed) -> None
 ```
 
-Archive a card by removing it from its column's links.
+Update board title when header is edited.
 
-<a id="ganban.model.writer"></a>
+<a id="ganban.ui.board.BoardScreen.on_click"></a>
 
-# ganban.model.writer
+#### on\_click
+
+```python
+def on_click(event) -> None
+```
 
-Save a ganban board (Node tree) to git without touching the working tree.
+Handle clicks on board header area.
 
-<a id="ganban.model.writer.MergeRequired"></a>
+<a id="ganban.ui.board.BoardScreen.action_context_menu"></a>
 
-## MergeRequired Objects
+#### action\_context\_menu
 
 ```python
-@dataclass
-class MergeRequired()
+def action_context_menu() -> None
 ```
 
-Returned by check_for_merge when the branch has diverged.
+Show context menu for the focused widget.
 
-<a id="ganban.model.writer.save_board"></a>
+<a id="ganban.ui.board.BoardScreen.action_close"></a>
 
-#### save\_board
+#### action\_close
 
 ```python
-def save_board(board: Node,
-               message: str = "Update board",
-               branch: str = BRANCH_NAME,
-               parents: list[str] | None = None) -> str
+async def action_close() -> None
 ```
 
-Save a board to git and return the new commit hash.
+Close the board (quit the app).
 
-<a id="ganban.model.writer.check_for_merge"></a>
+<a id="ganban.ui.board.BoardScreen.action_save"></a>
 
-#### check\_for\_merge
+#### action\_save
 
 ```python
-def check_for_merge(board: Node,
-                    branch: str = BRANCH_NAME) -> MergeRequired | None
+def action_save() -> None
 ```
 
-Check if saving would require a merge.
+Save the board to git.
 
-<a id="ganban.model.writer.check_remote_for_merge"></a>
+<a id="ganban.ui.board.BoardScreen.on_card_widget_move_requested"></a>
 
-#### check\_remote\_for\_merge
+#### on\_card\_widget\_move\_requested
 
 ```python
-def check_remote_for_merge(board: Node,
-                           remote: str = "origin",
-                           branch: str = BRANCH_NAME) -> MergeRequired | None
+def on_card_widget_move_requested(event: CardWidget.MoveRequested) -> None
 ```
 
-Check if a remote has changes that need merging.
+Handle card move request.
 
-<a id="ganban.model.writer.try_auto_merge"></a>
+<a id="ganban.ui.board.BoardScreen.on_card_widget_archive_requested"></a>
 
-#### try\_auto\_merge
+#### on\_card\_widget\_archive\_requested
 
 ```python
-def try_auto_merge(board: Node,
-                   merge_info: MergeRequired,
-                   message: str = "Merge changes",
-                   branch: str = BRANCH_NAME) -> str | None
+def on_card_widget_archive_requested(
+        event: CardWidget.ArchiveRequested) -> None
 ```
 
-Attempt an automatic merge if there are no conflicts.
+Handle card archive request.
 
-Returns the new merge commit hash if successful, None if there are conflicts.
+<a id="ganban.ui.board.BoardScreen.on_add_card_card_created"></a>
 
-<a id="ganban.model.column"></a>
+#### on\_add\_card\_card\_created
 
-# ganban.model.column
+```python
+def on_add_card_card_created(event: AddCard.CardCreated) -> None
+```
 
-Column mutation operations for ganban boards.
+Handle new card creation — commit immediately for timestamp.
 
-<a id="ganban.model.column.slugify"></a>
+<a id="ganban.ui.board.BoardScreen.on_add_column_column_created"></a>
 
-#### slugify
+#### on\_add\_column\_column\_created
 
 ```python
-def slugify(text: str) -> str
+def on_add_column_column_created(event: AddColumn.ColumnCreated) -> None
 ```
 
-Convert text to a URL-friendly slug.
+Handle new column creation.
 
-<a id="ganban.model.column.build_column_path"></a>
+<a id="ganban.ui.board.BoardScreen.on_column_widget_move_requested"></a>
 
-#### build\_column\_path
+#### on\_column\_widget\_move\_requested
 
 ```python
-def build_column_path(order: str, name: str, hidden: bool = False) -> str
+def on_column_widget_move_requested(event: ColumnWidget.MoveRequested) -> None
 ```
 
-Build column directory path from components.
+Handle column move request.
 
-<a id="ganban.model.column.create_column"></a>
+<a id="ganban.ui.board.BoardScreen.on_column_widget_archive_requested"></a>
 
-#### create\_column
+#### on\_column\_widget\_archive\_requested
 
 ```python
-def create_column(board: Node,
-                  name: str,
-                  order: str | None = None,
-                  hidden: bool = False) -> Node
+def on_column_widget_archive_requested(
+        event: ColumnWidget.ArchiveRequested) -> None
 ```
+
+Handle column archive request.
+
+<a id="ganban.ui.labels_editor"></a>
 
-Create a new column and add it to the board.
+# ganban.ui.labels\_editor
 
-Returns the created column Node.
+Board-level labels editor for the board detail modal.
 
-<a id="ganban.model.column.move_column"></a>
+<a id="ganban.ui.labels_editor.SavedLabelRow"></a>
 
-#### move\_column
+## SavedLabelRow Objects
 
 ```python
-def move_column(board: Node, column: Node, new_index: int) -> None
+class SavedLabelRow(_LabelRow)
 ```
 
-Move column to new_index in the board's columns ListNode.
+A saved label (from board.meta.labels) shown as a tag with count.
 
-Rebuilds the columns ListNode with updated order values and dir_paths.
+Delete removes the override only - label stays on cards with computed color.
 
-<a id="ganban.model.column.archive_column"></a>
+<a id="ganban.ui.labels_editor.SavedLabelRow.DeleteRequested"></a>
 
-#### archive\_column
+## DeleteRequested Objects
 
 ```python
-def archive_column(board: Node, column_order: str) -> None
+class DeleteRequested(Message)
 ```
 
-Archive a column by removing it from the board.
+Delete override only - label stays on cards.
 
-<a id="ganban.model.column.rename_column"></a>
+<a id="ganban.ui.labels_editor.UsedLabelRow"></a>
 
-#### rename\_column
+## UsedLabelRow Objects
 
 ```python
-def rename_column(board: Node, column: Node, new_name: str) -> None
+class UsedLabelRow(_LabelRow)
 ```
 
-Rename a column: update its sections title and dir_path.
+A used label (on cards, no override) shown as a tag with count and save.
 
-<a id="ganban.ids"></a>
+Delete removes from all cards. Save creates an override.
 
-# ganban.ids
+<a id="ganban.ui.labels_editor.UsedLabelRow.DeleteRequested"></a>
 
-Card ID comparison and generation.
+## DeleteRequested Objects
 
-<a id="ganban.ids.compare_ids"></a>
+```python
+class DeleteRequested(Message)
+```
+
+Delete from all cards.
 
-#### compare\_ids
+<a id="ganban.ui.labels_editor.UsedLabelRow.SaveRequested"></a>
 
+## SaveRequested Objects
+
 ```python
-def compare_ids(left: str, right: str) -> int
+class SaveRequested(Message)
 ```
 
-Compare two IDs, padding with leading zeros.
+Create override from computed color.
 
-Returns -1 if left < right, 0 if equal, 1 if left > right.
+<a id="ganban.ui.labels_editor.AddLabelRow"></a>
 
-<a id="ganban.ids.max_id"></a>
+## AddLabelRow Objects
 
-#### max\_id
-
 ```python
-def max_id(ids: list[str]) -> str | None
+class AddLabelRow(AddValueMixin, Static)
 ```
 
-Find the highest ID from a list, or None if empty.
+EditableText with '+' to add a new label.
 
-<a id="ganban.ids.next_id"></a>
+<a id="ganban.ui.labels_editor.LabelsEditor"></a>
 
-#### next\_id
+## LabelsEditor Objects
 
 ```python
-def next_id(current_max: str | None) -> str
+class LabelsEditor(NodeWatcherMixin, Container)
 ```
+
+Editor for board-level labels — shown as a tab in BoardDetailModal.
 
-Generate the next ID after current_max.
+Two sections:
+- Saved Labels: from board.meta.labels (color overrides)
+- Used Labels: on cards but no override (computed colors)
 
-- If None, returns "001"
-- If numeric (e.g., "99"), returns str(int + 1) (e.g., "100")
-- If non-numeric (e.g., "fish"), returns "1" + "0" * len (e.g., "10000")
+<a id="ganban.ui.labels_editor.LabelsEditor.on_saved_label_row_delete_requested"></a>
 
-<a id="ganban.git"></a>
+#### on\_saved\_label\_row\_delete\_requested
 
-# ganban.git
+```python
+def on_saved_label_row_delete_requested(
+        event: SavedLabelRow.DeleteRequested) -> None
+```
 
-Git operations for ganban, with sync and async variants.
+Delete override only - label stays on cards.
 
-<a id="ganban.git.read_ganban_config"></a>
+<a id="ganban.ui.labels_editor.LabelsEditor.on_used_label_row_delete_requested"></a>
 
-#### read\_ganban\_config
+#### on\_used\_label\_row\_delete\_requested
 
 ```python
-def read_ganban_config(repo_path: str | Path) -> dict
+def on_used_label_row_delete_requested(
+        event: UsedLabelRow.DeleteRequested) -> None
 ```
 
-Read ganban.* keys from local git config, returned as python-keyed dict.
+Delete from all cards.
 
-<a id="ganban.git.write_ganban_config_key"></a>
+<a id="ganban.ui.labels_editor.LabelsEditor.on_used_label_row_save_requested"></a>
 
-#### write\_ganban\_config\_key
+#### on\_used\_label\_row\_save\_requested
 
 ```python
-def write_ganban_config_key(repo_path: str | Path, key: str, value) -> None
+def on_used_label_row_save_requested(
+        event: UsedLabelRow.SaveRequested) -> None
 ```
+
+Promote used label to saved with current computed color.
 
-Write one ganban.* key to local git config.
+<a id="ganban.ui.column"></a>
 
-key is the python name (e.g. sync_interval), converted to git name (sync-interval).
+# ganban.ui.column
 
-<a id="ganban.git.is_git_repo"></a>
+Column widgets for ganban UI.
 
-#### is\_git\_repo
+<a id="ganban.ui.column.ColumnWidget"></a>
 
+## ColumnWidget Objects
+
 ```python
-def is_git_repo(path: str | Path) -> bool
+class ColumnWidget(NodeWatcherMixin, DraggableMixin, DropTarget, Vertical)
 ```
 
-Check if path is inside a git repository.
+A single column on the board.
 
-<a id="ganban.git.init_repo"></a>
+<a id="ganban.ui.column.ColumnWidget.MoveRequested"></a>
 
-#### init\_repo
+## MoveRequested Objects
 
 ```python
-def init_repo(path: str | Path) -> Repo
+class MoveRequested(Message)
 ```
 
-Initialize a new git repository at path.
+Posted when column should be moved.
 
-<a id="ganban.git.get_remotes_sync"></a>
+<a id="ganban.ui.column.ColumnWidget.ArchiveRequested"></a>
 
-#### get\_remotes\_sync
+## ArchiveRequested Objects
 
 ```python
-def get_remotes_sync(repo_path: str | Path) -> list[str]
+class ArchiveRequested(Message)
 ```
 
-Get list of remote names for a repository.
+Posted when column should be archived.
 
-<a id="ganban.git.fetch_sync"></a>
+<a id="ganban.ui.column.ColumnWidget.draggable_make_ghost"></a>
 
-#### fetch\_sync
+#### draggable\_make\_ghost
 
 ```python
-def fetch_sync(repo_path: str | Path, remote_name: str) -> None
+def draggable_make_ghost()
 ```
 
-Fetch from a specific remote.
+Column IS the ghost — use self with CSS overlay positioning.
 
-<a id="ganban.git.push_sync"></a>
+<a id="ganban.ui.column.ColumnWidget.find_nearest"></a>
 
-#### push\_sync
+#### find\_nearest
 
 ```python
-def push_sync(repo_path: str | Path,
-              remote_name: str,
-              branch: str = "ganban") -> None
+def find_nearest(region)
 ```
 
-Push a branch to a remote.
+Find the nearest focusable child by vertical midpoint.
 
-<a id="ganban.git.get_upstream"></a>
+<a id="ganban.ui.column.ColumnWidget.on_editable_text_changed"></a>
 
-#### get\_upstream
+#### on\_editable\_text\_changed
 
 ```python
-def get_upstream(repo_path: str | Path,
-                 branch: str = "ganban") -> tuple[str, str] | None
+def on_editable_text_changed(event: EditableText.Changed) -> None
 ```
 
-Get the upstream remote and branch for a local branch.
+Update column name when header is edited.
 
-Returns (remote_name, remote_branch) or None if no tracking branch is set.
+<a id="ganban.ui.column.ColumnWidget.on_click"></a>
 
-<a id="ganban.git.remote_has_branch"></a>
+#### on\_click
 
-#### remote\_has\_branch
-
 ```python
-def remote_has_branch(repo_path: str | Path,
-                      remote_name: str,
-                      branch: str = "ganban") -> bool
+def on_click(event) -> None
 ```
 
-Check if refs/remotes/{remote}/{branch} exists.
+Show context menu on right-click.
 
-<a id="ganban.git.has_branch"></a>
+<a id="ganban.ui.column.ColumnWidget.on_key"></a>
 
-#### has\_branch
+#### on\_key
 
 ```python
-async def has_branch(repo_path: str | Path, branch: str = "ganban") -> bool
+def on_key(event) -> None
 ```
 
-Check if a branch exists in the repository.
+Arrow key navigation and shift+arrow card movement.
 
-<a id="ganban.git.get_remotes"></a>
+<a id="ganban.ui.column.ColumnWidget.on_mouse_move"></a>
 
-#### get\_remotes
+#### on\_mouse\_move
 
 ```python
-async def get_remotes(repo_path: str | Path) -> list[str]
+def on_mouse_move(event) -> None
 ```
 
-Get list of remote names for a repository.
+Handle DraggableMixin threshold first, then hover-focus tracking.
 
-<a id="ganban.git.fetch"></a>
+<a id="ganban.ui.column.AddColumn"></a>
 
-#### fetch
+## AddColumn Objects
 
 ```python
-async def fetch(repo_path: str | Path, remote_name: str) -> None
+class AddColumn(AddValueMixin, Vertical)
 ```
 
-Fetch from a specific remote.
+Widget to add a new column.
 
-<a id="ganban.git.push"></a>
+<a id="ganban.ui.column.AddColumn.ColumnCreated"></a>
 
-#### push
+## ColumnCreated Objects
 
 ```python
-async def push(repo_path: str | Path,
-               remote_name: str,
-               branch: str = "ganban") -> None
+class ColumnCreated(Message)
 ```
+
+Posted when a new column is created.
 
-Push a branch to a remote.
+<a id="ganban.ui.due"></a>
 
-<a id="ganban.git.create_orphan_branch"></a>
+# ganban.ui.due
 
-#### create\_orphan\_branch
+Due date widget with inline editing.
 
+<a id="ganban.ui.due.DueDateWidget"></a>
+
+## DueDateWidget Objects
+
 ```python
-async def create_orphan_branch(repo_path: str | Path,
-                               branch: str = "ganban") -> str
+class DueDateWidget(NodeWatcherMixin, Container)
 ```
+
+Inline due date display with calendar picker.
+
+Reads and writes ``meta.due`` on the given Node directly,
+and watches the node so external changes (e.g. the meta editor)
+are reflected immediately.
+
+<a id="ganban.ui.cal"></a>
+
+# ganban.ui.cal
 
-Create an orphan branch with an empty commit.
+Calendar widget for date selection.
 
-Does not touch the working tree. Returns the commit hash.
+<a id="ganban.ui.cal.parse_due"></a>
 
-<a id="ganban.cli.init"></a>
+#### parse\_due
 
-# ganban.cli.init
+```python
+def parse_due(due_str) -> date | None
+```
 
-Handler for 'ganban init'.
+Parse an ISO due-date string, returning None when absent or invalid.
 
-<a id="ganban.cli.init.init_board"></a>
+<a id="ganban.ui.cal.date_diff"></a>
 
-#### init\_board
+#### date\_diff
 
 ```python
-def init_board(args) -> int
+def date_diff(target: date, reference: date) -> str
 ```
 
-Initialize a ganban board in the repository.
+Return compact string showing difference between dates.
 
-<a id="ganban.cli"></a>
+Examples: "1d", "-3d", "2m", "-1m", "5y", "-2y"
+Uses days for <60 days, months for <24 months, years otherwise.
 
-# ganban.cli
+<a id="ganban.ui.cal.NavButton"></a>
+
+## NavButton Objects
+
+```python
+class NavButton(Static)
+```
 
-CLI argument parser and dispatch for ganban.
+Navigation button for calendar.
 
-<a id="ganban.cli.build_parser"></a>
+<a id="ganban.ui.cal.CalendarDay"></a>
 
-#### build\_parser
+## CalendarDay Objects
 
 ```python
-def build_parser() -> argparse.ArgumentParser
+class CalendarDay(Static)
 ```
 
-Build the full CLI argument parser.
+A single day cell.
 
-<a id="ganban.cli._common"></a>
+<a id="ganban.ui.cal.CalendarDay.Clicked"></a>
 
-# ganban.cli.\_common
+## Clicked Objects
+
+```python
+class Clicked(Message)
+```
 
-Shared helpers for CLI command handlers.
+Posted when this day is clicked.
 
-<a id="ganban.cli._common.load_board_or_die"></a>
+<a id="ganban.ui.cal.Calendar"></a>
 
-#### load\_board\_or\_die
+## Calendar Objects
 
 ```python
-def load_board_or_die(repo: str, json_mode: bool) -> Node
+class Calendar(Container)
 ```
 
-Load board from repo path. Exit 1 with message if not found.
+Date picker widget.
 
-<a id="ganban.cli._common.find_column"></a>
+<a id="ganban.ui.cal.Calendar.DateSelected"></a>
 
-#### find\_column
+## DateSelected Objects
 
 ```python
-def find_column(board: Node, col_id: str, json_mode: bool) -> Node
+class DateSelected(Message)
 ```
 
-Lookup column by order ID. Exit 1 listing available columns if not found.
+Emitted when a date is selected (None to clear).
 
-<a id="ganban.cli._common.find_card"></a>
+<a id="ganban.ui.cal.CalendarMenuItem"></a>
 
-#### find\_card
+## CalendarMenuItem Objects
 
 ```python
-def find_card(board: Node, card_id: str, json_mode: bool) -> Node
+class CalendarMenuItem(Container)
 ```
 
-Lookup card by ID. Exit 1 if not found.
+Menu item containing a calendar picker.
 
-<a id="ganban.cli._common.save"></a>
+<a id="ganban.ui.cal.CalendarMenuItem.Selected"></a>
 
-#### save
+## Selected Objects
 
 ```python
-def save(board: Node, message: str) -> str
+class Selected(Message)
 ```
 
-Save board and return commit hash.
+Posted when a date is selected, signals menu to close.
 
-<a id="ganban.cli._common.output_json"></a>
+<a id="ganban.ui.cal.DateButton"></a>
 
-#### output\_json
+## DateButton Objects
 
 ```python
-def output_json(data: dict | list) -> None
+class DateButton(Static)
 ```
 
-Write JSON to stdout.
+A button that opens a calendar menu for date selection.
 
-<a id="ganban.cli._common.error"></a>
+<a id="ganban.ui.cal.DateButton.DateSelected"></a>
 
-#### error
+## DateSelected Objects
 
 ```python
-def error(message: str, json_mode: bool) -> None
+class DateSelected(Message)
 ```
+
+Emitted when a date is selected (None to clear).
+
+<a id="ganban.ui.card_indicators"></a>
 
-Print error to stderr and exit 1.
+# ganban.ui.card\_indicators
 
-<a id="ganban.cli._common.sections_to_markdown"></a>
+Pure functions for building card indicator text.
 
-#### sections\_to\_markdown
+<a id="ganban.ui.card_indicators.build_label_text"></a>
 
+#### build\_label\_text
+
 ```python
-def sections_to_markdown(sections: ListNode, meta) -> str
+def build_label_text(meta: Node, board: Node) -> Text
 ```
 
-Convert sections ListNode + meta to markdown string.
+Build colored block characters for a card's labels.
 
-<a id="ganban.cli._common.meta_to_dict"></a>
+<a id="ganban.ui.card_indicators.build_header_line"></a>
 
-#### meta\_to\_dict
+#### build\_header\_line
 
 ```python
-def meta_to_dict(meta) -> dict
+def build_header_line(meta: Node, board: Node, width: int) -> Text
 ```
+
+Build a header line as colored horizontal rules.
 
-Convert meta Node to plain dict.
+No labels: a single dim rule. With labels: the width is split evenly
+into one colored rule segment per label.
 
-<a id="ganban.cli._common.markdown_to_sections"></a>
+<a id="ganban.ui.card_indicators.build_footer_text"></a>
 
-#### markdown\_to\_sections
+#### build\_footer\_text
 
 ```python
-def markdown_to_sections(text: str) -> tuple[ListNode, dict]
+def build_footer_text(sections: ListNode,
+                      meta: Node,
+                      board_meta: Node | None = None,
+                      blocked: bool = False) -> Text
 ```
 
-Parse markdown text into (ListNode, meta_dict).
+Build footer indicators from card sections and meta.
 
-<a id="ganban.cli.board"></a>
+Shows assignee emoji if meta.assigned is set.
+Shows body icon (dim) if first section has body content.
+Shows calendar icon + Xd if meta.due is set, red if overdue.
+Shows blocked icon if blocked is True.
 
-# ganban.cli.board
+<a id="ganban.ui.constants"></a>
 
-Handlers for 'ganban board' commands.
+# ganban.ui.constants
 
-<a id="ganban.cli.board.board_summary"></a>
+Shared UI icon constants.
 
-#### board\_summary
+<a id="ganban.ui.tag"></a>
 
-```python
-def board_summary(args) -> int
-```
+# ganban.ui.tag
 
-Show board summary: title, columns, card counts.
+Reusable inline tag widget with edit and delete.
 
-<a id="ganban.cli.board.board_get"></a>
+<a id="ganban.ui.tag.Tag"></a>
 
-#### board\_get
+## Tag Objects
 
 ```python
-def board_get(args) -> int
+class Tag(Static)
 ```
+
+Inline tag: ``[label ×]`` in view mode, ``[SearchInput ×]`` in edit mode.
 
-Dump board index.md content.
+Parameters
+----------
+value:
+    Underlying data value (label name, card id, committer string).
+display:
+    Rich renderable shown in view mode.  Defaults to *value*.
 
-<a id="ganban.cli.board.board_set"></a>
+<a id="ganban.ui.tag.Tag.Changed"></a>
 
-#### board\_set
+## Changed Objects
 
 ```python
-def board_set(args) -> int
+class Changed(Message)
 ```
 
-Write board index.md from stdin.
+User submitted a new value for this tag.
 
-<a id="ganban.cli.card"></a>
+<a id="ganban.ui.tag.Tag.Deleted"></a>
 
-# ganban.cli.card
+## Deleted Objects
 
-Handlers for 'ganban card' commands.
+```python
+class Deleted(Message)
+```
+
+User clicked the × button.
 
-<a id="ganban.cli.card.card_list"></a>
+<a id="ganban.ui.tag.Tag.update_display"></a>
 
-#### card\_list
+#### update\_display
 
 ```python
-def card_list(args) -> int
+def update_display(display: str | Text) -> None
 ```
 
-List cards grouped by column.
+Change the rendered label text.
 
-<a id="ganban.cli.card.card_get"></a>
+<a id="ganban.ui.tag.Tag.start_editing"></a>
 
-#### card\_get
+#### start\_editing
 
 ```python
-def card_get(args) -> int
+def start_editing(options: list[tuple[str, str]]) -> None
 ```
 
-Dump card markdown content.
+Enter edit mode with the given search options.
 
-<a id="ganban.cli.card.card_set"></a>
+If called before the widget is composed, defers until on_mount.
 
-#### card\_set
+<a id="ganban.ui.tag.TagListWidget"></a>
 
+## TagListWidget Objects
+
 ```python
-def card_set(args) -> int
+class TagListWidget(NodeWatcherMixin, Container)
 ```
 
-Write card markdown from stdin.
+Base for inline tag-list editors bound to a list on a meta Node.
 
-<a id="ganban.cli.card.card_add"></a>
+Renders an add icon plus one Tag per value. Subclasses set meta_key,
+icon and the element ids, implement options_for(), and may override
+display_for() and validate().
 
-#### card\_add
+<a id="ganban.ui.tag.TagListWidget.display_for"></a>
 
+#### display\_for
+
 ```python
-def card_add(args) -> int
+def display_for(value: str)
 ```
 
-Create a new card.
+Renderable shown for a value in view mode.
 
-<a id="ganban.cli.card.card_move"></a>
+<a id="ganban.ui.tag.TagListWidget.options_for"></a>
 
-#### card\_move
+#### options\_for
 
 ```python
-def card_move(args) -> int
+def options_for(current: list[str]) -> list[tuple[str, str]]
 ```
 
-Move a card to a column.
+Dropdown options offered while editing, given the other values.
 
-<a id="ganban.cli.card.card_archive"></a>
+<a id="ganban.ui.tag.TagListWidget.validate"></a>
 
-#### card\_archive
+#### validate
 
 ```python
-def card_archive(args) -> int
+def validate(value: str) -> bool
 ```
+
+Whether a submitted value may be stored.
 
-Archive a card.
+<a id="ganban.ui.deps"></a>
 
-<a id="ganban.cli.sync"></a>
+# ganban.ui.deps
 
-# ganban.cli.sync
+Dependency editor widget for card detail bar.
 
-Handlers for 'ganban sync' command.
+<a id="ganban.ui.deps.ICON_DEPS"></a>
 
-<a id="ganban.cli.sync.sync"></a>
+#### ICON\_DEPS
 
-#### sync
+🔗
 
+<a id="ganban.ui.deps.build_card_options"></a>
+
+#### build\_card\_options
+
+```python
+def build_card_options(board: Node,
+                       exclude: str | set[str] = "") -> list[tuple[str, str]]
+```
+
+Build (label, value) options for card references.
+
+Returns all non-archived cards, excluding the given id(s).
+The label is ``"ID Title"`` and the value is the card ID.
+
+<a id="ganban.ui.deps.build_dep_options"></a>
+
+#### build\_dep\_options
+
 ```python
-def sync(args) -> int
+def build_dep_options(board: Node, card_id: str,
+                      current_deps: list[str]) -> list[tuple[str, str]]
 ```
 
-One-shot sync handler. Dispatches to daemon if -d.
+Build options for the dep search dropdown: non-archived cards minus
+the current card and existing deps.
 
-<a id="ganban.cli.sync.sync_daemon"></a>
+<a id="ganban.ui.deps.DepsWidget"></a>
 
-#### sync\_daemon
+## DepsWidget Objects
 
 ```python
-def sync_daemon(args, repo_path: str) -> int
+class DepsWidget(TagListWidget)
 ```
+
+Inline deps editor for card detail bar.
+
+Displays dep IDs next to a link icon. Click the icon to add a dep,
+click a tag to edit it, click × to delete. Uses Tag widgets with
+SearchInput for card selection.
 
-Loop _do_sync on interval. SIGINT/SIGTERM stops cleanly.
+<a id="ganban.ui.card"></a>
 
-<a id="ganban.cli.column"></a>
+# ganban.ui.card
 
-# ganban.cli.column
+Card widgets for ganban UI.
 
-Handlers for 'ganban column' commands.
+<a id="ganban.ui.card.CardWidget"></a>
 
-<a id="ganban.cli.column.column_list"></a>
+## CardWidget Objects
 
-#### column\_list
+```python
+class CardWidget(NodeWatcherMixin, DraggableMixin, Static)
+```
+
+A single card in a column.
 
+<a id="ganban.ui.card.CardWidget.MoveRequested"></a>
+
+## MoveRequested Objects
+
 ```python
-def column_list(args) -> int
+class MoveRequested(Message)
 ```
+
+Posted when card should be moved to another column.
 
-List all columns.
+target_column is the column's order id, which is stable and
+unique where display titles need not be.
 
-<a id="ganban.cli.column.column_get"></a>
+<a id="ganban.ui.card.CardWidget.ArchiveRequested"></a>
 
-#### column\_get
+## ArchiveRequested Objects
 
 ```python
-def column_get(args) -> int
+class ArchiveRequested(Message)
 ```
 
-Dump column index.md content.
+Posted when card should be archived.
 
-<a id="ganban.cli.column.column_set"></a>
+<a id="ganban.ui.card.AddCard"></a>
 
-#### column\_set
+## AddCard Objects
 
 ```python
-def column_set(args) -> int
+class AddCard(AddValueMixin, Static)
 ```
 
-Write column index.md from stdin.
+Widget to add a new card to a column.
 
-<a id="ganban.cli.column.column_add"></a>
+<a id="ganban.ui.card.AddCard.CardCreated"></a>
 
-#### column\_add
+## CardCreated Objects
 
 ```python
-def column_add(args) -> int
+class CardCreated(Message)
 ```
 
-Create a new column.
+Posted when a new card is created.
 
-<a id="ganban.cli.column.column_move"></a>
+<a id="ganban.ui.color"></a>
 
-#### column\_move
+# ganban.ui.color
 
+Color picker for columns.
+
+<a id="ganban.ui.color.ColorSwatch"></a>
+
+## ColorSwatch Objects
+
 ```python
-def column_move(args) -> int
+class ColorSwatch(MenuItem)
 ```
 
-Move a column to a new position.
+A colored menu item that uses outline for focus instead of background.
 
-<a id="ganban.cli.column.column_rename"></a>
+<a id="ganban.ui.color.build_color_menu"></a>
 
-#### column\_rename
+#### build\_color\_menu
 
 ```python
-def column_rename(args) -> int
+def build_color_menu() -> list[MenuRow]
 ```
 
-Rename a column.
+Build a 4x4 color picker grid with clear in place of black.
 
-<a id="ganban.cli.column.column_archive"></a>
+<a id="ganban.ui.color.ColorButton"></a>
 
-#### column\_archive
+## ColorButton Objects
 
 ```python
-def column_archive(args) -> int
+class ColorButton(Static)
 ```
 
-Archive a column.
+A button that opens a color picker menu.
 
-<a id="ganban.__main__"></a>
+<a id="ganban.ui.color.ColorButton.ColorSelected"></a>
 
-# ganban.\_\_main\_\_
+## ColorSelected Objects
+
+```python
+class ColorSelected(Message)
+```
 
-Entry point for ganban CLI.
+Posted when a color is selected.
 
 <a id="ganban.ui.markdown"></a>
 
@@ -981,202 +1103,962 @@ def ganban_parser_factory(board: Node | None)
 
 Return a parser_factory closure for Textual's Markdown widget.
 
-<a id="ganban.ui.blocked"></a>
+<a id="ganban.ui.emoji"></a>
 
-# ganban.ui.blocked
+# ganban.ui.emoji
 
-Blocked toggle widget for card detail screen.
+Emoji picker widget.
 
-<a id="ganban.ui.blocked.BlockedWidget"></a>
+<a id="ganban.ui.emoji.emoji_for_email"></a>
 
-## BlockedWidget Objects
-
-```python
-class BlockedWidget(NodeWatcherMixin, Container)
-```
-
-Inline blocked toggle that reads and writes ``meta.blocked``.
-
-Shows 🚧 when blocked, 🏭 when not. Click to toggle.
-
-<a id="ganban.ui.search"></a>
-
-# ganban.ui.search
-
-Autocomplete search input with dropdown suggestions.
-
-<a id="ganban.ui.search.SearchInput"></a>
-
-## SearchInput Objects
+#### emoji\_for\_email
 
 ```python
-class SearchInput(Container)
+def emoji_for_email(email: str) -> str
 ```
 
-Text input with a filterable dropdown of suggestions.
+Pick a deterministic default emoji for an email address.
 
-Options are (label, value) tuples. The label is shown in the dropdown,
-the value is returned on selection. Free-text is always allowed.
+Uses the last nibble of the md5 digest, modulo 13.
 
-<a id="ganban.ui.search.SearchInput.Submitted"></a>
+<a id="ganban.ui.emoji.parse_committer"></a>
 
-## Submitted Objects
+#### parse\_committer
 
 ```python
-class Submitted(Message)
+def parse_committer(committer: str) -> tuple[str, str, str]
 ```
 
-Posted when the user submits a selection or free text.
+Parse a committer string into (emoji, name, email).
 
-<a id="ganban.ui.search.SearchInput.Cancelled"></a>
+Accepts "Name <email>" format. If parsing fails, the full
+string is used as both name and email.
 
-## Cancelled Objects
+<a id="ganban.ui.emoji.build_emoji_menu"></a>
+
+#### build\_emoji\_menu
 
 ```python
-class Cancelled(Message)
+def build_emoji_menu(email: str | None = None) -> list[MenuRow]
 ```
 
-Posted when the user cancels (double-escape).
+Build a 6x5 emoji picker grid with default/clear as first cell.
 
-<a id="ganban.ui.search.SearchInput.set_options"></a>
+<a id="ganban.ui.emoji.EmojiButton"></a>
 
-#### set\_options
+## EmojiButton Objects
 
 ```python
-def set_options(options: list[tuple[str, str]]) -> None
+class EmojiButton(Static)
 ```
 
-Replace the option list.
+A button that opens an emoji picker menu.
 
-<a id="ganban.ui.search.SearchInput.on_input_changed"></a>
+<a id="ganban.ui.emoji.EmojiButton.EmojiSelected"></a>
 
-#### on\_input\_changed
+## EmojiSelected Objects
 
 ```python
-def on_input_changed(event: Input.Changed) -> None
+class EmojiSelected(Message)
 ```
 
-Filter dropdown on every keystroke.
+Posted when an emoji is selected.
 
-<a id="ganban.ui.search.SearchInput.on_option_list_option_selected"></a>
+<a id="ganban.ui.emoji.find_user_by_email"></a>
 
-#### on\_option\_list\_option\_selected
+#### find\_user\_by\_email
 
 ```python
-def on_option_list_option_selected(event: OptionList.OptionSelected) -> None
+def find_user_by_email(email: str,
+                       meta: Node | None) -> tuple[str, Node] | None
 ```
 
-Handle mouse click on a dropdown item.
+Find the (user_name, user_node) for an email in meta.users.
 
-<a id="ganban.ui.search.SearchInput.on_descendant_blur"></a>
+<a id="ganban.ui.emoji.resolve_email_display"></a>
 
-#### on\_descendant\_blur
+#### resolve\_email\_display
 
 ```python
-def on_descendant_blur(event: DescendantBlur) -> None
+def resolve_email_display(
+        email: str,
+        meta: Node | None = None,
+        committers: list[str] | None = None) -> tuple[str, str] | None
 ```
 
-Close dropdown when focus leaves a child widget.
+Resolve an email to (emoji, display_name).
 
-<a id="ganban.ui.confirm"></a>
+Checks meta.users first (custom emoji + user name), then
+git committers (hash emoji + committer name). Returns None
+if the email isn't found in either source.
 
-# ganban.ui.confirm
+<a id="ganban.ui.emoji.resolve_email_emoji"></a>
 
-Compact inline confirmation widget.
-
-<a id="ganban.ui.confirm.ConfirmButton"></a>
-
-## ConfirmButton Objects
+#### resolve\_email\_emoji
 
 ```python
-class ConfirmButton(Static)
+def resolve_email_emoji(email: str, meta: Node) -> str
 ```
 
-A button that shows a confirm/cancel menu on click.
+Look up the emoji for an email from meta.users, falling back to hash.
 
-Shows a single icon (default: ❌). When clicked, opens a context menu
-with ❌ (cancel) and ✅ (confirm). Emits Confirmed message on confirm.
+<a id="ganban.ui.emoji.EmailEmoji"></a>
 
-<a id="ganban.ui.confirm.ConfirmButton.Confirmed"></a>
-
-## Confirmed Objects
+## EmailEmoji Objects
 
 ```python
-class Confirmed(Message)
+class EmailEmoji(NodeWatcherMixin, Static)
 ```
 
-Emitted when the action is confirmed.
+Display-only emoji resolved from an email address.
 
-<a id="ganban.ui.assignee"></a>
+Watches meta.users so it updates when custom emojis change.
 
-# ganban.ui.assignee
+<a id="ganban.ui.edit.meta"></a>
 
-Assignee widget with user picker.
+# ganban.ui.edit.meta
 
-<a id="ganban.ui.assignee.resolve_assignee"></a>
+Tree-shaped metadata editor for Node objects.
 
-#### resolve\_assignee
+<a id="ganban.ui.edit.meta.BoolToggle"></a>
+
+## BoolToggle Objects
 
 ```python
-def resolve_assignee(assigned: str, board: Node) -> tuple[str, str, str]
+class BoolToggle(Static)
 ```
 
-Parse an assigned string and resolve against board users.
+A simple true/false toggle that cycles on click.
 
-Returns (emoji, display_name, email). Board users override the
-name and emoji from the parsed committer string.
+<a id="ganban.ui.edit.meta.ListItemRow"></a>
 
-<a id="ganban.ui.assignee.build_assignee_options"></a>
-
-#### build\_assignee\_options
+## ListItemRow Objects
 
 ```python
-def build_assignee_options(board: Node) -> list[tuple[str, str]]
+class ListItemRow(Vertical)
 ```
 
-Build options for the assignee SearchInput from board users and git committers.
+A single item row in a list editor.
 
-Returns (label, value) tuples where label includes emoji and value is the
-committer string.
+Scalar values render inline. Compound values (dict, list)
+render with a header row and the nested editor below.
 
-<a id="ganban.ui.assignee.AssigneeWidget"></a>
+<a id="ganban.ui.edit.meta.ListItemRow.on_key_value_row_value_changed"></a>
 
-## AssigneeWidget Objects
+#### on\_key\_value\_row\_value\_changed
 
 ```python
-class AssigneeWidget(NodeWatcherMixin, Container)
+def on_key_value_row_value_changed(event) -> None
 ```
 
-Inline assignee display with user picker.
+Propagate changes from nested DictEditor.
 
-Reads and writes ``meta.assigned`` on the given card meta Node,
-and watches the node so external changes are reflected immediately.
+<a id="ganban.ui.edit.meta.AddListItemRow"></a>
 
-<a id="ganban.ui.due"></a>
-
-# ganban.ui.due
-
-Due date widget with inline editing.
-
-<a id="ganban.ui.due.DueDateWidget"></a>
-
-## DueDateWidget Objects
+## AddListItemRow Objects
 
 ```python
-class DueDateWidget(NodeWatcherMixin, Container)
+class AddListItemRow(Static)
 ```
 
-Inline due date display with calendar picker.
+Clickable '+' that opens a type picker to add a new list item.
 
-Reads and writes ``meta.due`` on the given Node directly,
-and watches the node so external changes (e.g. the meta editor)
-are reflected immediately.
+<a id="ganban.ui.edit.meta.ListEditor"></a>
+
+## ListEditor Objects
+
+```python
+class ListEditor(Vertical)
+```
+
+Renders a list's items as editable rows.
+
+<a id="ganban.ui.edit.meta.ListEditor.Changed"></a>
+
+## Changed Objects
+
+```python
+class Changed(Message)
+```
+
+Emitted when the list contents change.
+
+<a id="ganban.ui.edit.meta.KeyValueRow"></a>
+
+## KeyValueRow Objects
+
+```python
+class KeyValueRow(Vertical)
+```
+
+A single key:value row in the metadata editor.
+
+Scalar values render inline as key : value.
+Compound values (dict, list) render with a header row and
+the nested editor indented below.
+
+<a id="ganban.ui.edit.meta.AddKeyRow"></a>
+
+## AddKeyRow Objects
+
+```python
+class AddKeyRow(AddValueMixin, Container)
+```
+
+Row to add a new key to the metadata.
+
+<a id="ganban.ui.edit.meta.DictEditor"></a>
+
+## DictEditor Objects
+
+```python
+class DictEditor(NodeWatcherMixin, Vertical)
+```
+
+Renders a Node's children as KeyValueRows + AddKeyRow.
+
+<a id="ganban.ui.edit.meta.MetaEditor"></a>
+
+## MetaEditor Objects
+
+```python
+class MetaEditor(Container)
+```
+
+Thin wrapper for the tree metadata editor with scroll support.
+
+<a id="ganban.ui.edit.editors"></a>
+
+# ganban.ui.edit.editors
+
+Editor widgets that emit Save/Cancel messages.
+
+<a id="ganban.ui.edit.editors.BaseEditor"></a>
+
+## BaseEditor Objects
+
+```python
+class BaseEditor(TextArea)
+```
+
+Base editor that emits Save/Cancel.
+
+<a id="ganban.ui.edit.editors.BaseEditor.start_editing"></a>
+
+#### start\_editing
+
+```python
+def start_editing(value: str) -> None
+```
+
+Start editing. Called by EditableText.
+
+<a id="ganban.ui.edit.editors.BaseEditor.on_resize"></a>
+
+#### on\_resize
+
+```python
+def on_resize(event) -> None
+```
+
+Apply pending click position once we know our layout.
+
+<a id="ganban.ui.edit.editors.TextEditor"></a>
+
+## TextEditor Objects
+
+```python
+class TextEditor(BaseEditor)
+```
+
+Single-line editor. Enter saves.
+
+<a id="ganban.ui.edit.editors.NumberEditor"></a>
+
+## NumberEditor Objects
+
+```python
+class NumberEditor(TextEditor)
+```
+
+Single-line numeric editor. Validates input is a number on save.
+
+<a id="ganban.ui.edit.editors.MarkdownEditor"></a>
+
+## MarkdownEditor Objects
+
+```python
+class MarkdownEditor(CompletionMixin, BaseEditor)
+```
+
+Multi-line editor with inline autocomplete. Enter inserts newline.
+
+<a id="ganban.ui.edit.section"></a>
+
+# ganban.ui.edit.section
+
+Section editor widget.
+
+<a id="ganban.ui.edit.section.match_editor_type"></a>
+
+#### match\_editor\_type
+
+```python
+def match_editor_type(
+        heading: str | None,
+        editor_types: list[EditorType] | None) -> EditorType | None
+```
+
+Find the first EditorType whose pattern matches the heading.
+
+<a id="ganban.ui.edit.section.EditorSelectButton"></a>
+
+## EditorSelectButton Objects
+
+```python
+class EditorSelectButton(Static)
+```
+
+Button that shows a context menu of available editor types.
+
+<a id="ganban.ui.edit.section.EditorSelectButton.Selected"></a>
+
+## Selected Objects
+
+```python
+class Selected(Message)
+```
+
+Emitted when an editor type is selected.
+
+<a id="ganban.ui.edit.section.SectionEditor"></a>
+
+## SectionEditor Objects
+
+```python
+class SectionEditor(Container)
+```
+
+Editor for a section with heading and markdown body.
+
+<a id="ganban.ui.edit.section.SectionEditor.HeadingChanged"></a>
+
+## HeadingChanged Objects
+
+```python
+class HeadingChanged(Message)
+```
+
+Emitted when the section heading changes.
+
+<a id="ganban.ui.edit.section.SectionEditor.BodyChanged"></a>
+
+## BodyChanged Objects
+
+```python
+class BodyChanged(Message)
+```
+
+Emitted when the section body changes.
+
+<a id="ganban.ui.edit.section.SectionEditor.DeleteRequested"></a>
+
+## DeleteRequested Objects
+
+```python
+class DeleteRequested(Message)
+```
+
+Emitted when the section delete is confirmed.
+
+<a id="ganban.ui.edit.section.SectionEditor.EditorTypeSelected"></a>
+
+## EditorTypeSelected Objects
+
+```python
+class EditorTypeSelected(Message)
+```
+
+Emitted when the editor type is changed.
+
+<a id="ganban.ui.edit.section.SectionEditor.focus_body"></a>
+
+#### focus\_body
+
+```python
+def focus_body() -> None
+```
+
+Focus the body editor.
+
+<a id="ganban.ui.edit.section.ItemRow"></a>
+
+## ItemRow Objects
+
+```python
+class ItemRow(Horizontal)
+```
+
+Base for item rows in bullet list editors.
+
+<a id="ganban.ui.edit.section.BulletListEditor"></a>
+
+## BulletListEditor Objects
+
+```python
+class BulletListEditor(SectionEditor)
+```
+
+Base for editors that present a bullet list as individual rows.
+
+Subclasses set class attributes for CSS styling and override three hooks:
+``_make_row``, ``_format_new_item``, ``_format_edited_item``.
+
+<a id="ganban.ui.edit.section.BulletListEditor.focus_body"></a>
+
+#### focus\_body
+
+```python
+def focus_body() -> None
+```
+
+Focus the add-item input.
+
+<a id="ganban.ui.edit.completion"></a>
+
+# ganban.ui.edit.completion
+
+Inline autocomplete for editors.
+
+Typing a trigger character (e.g. ``@`` or ``#``) after whitespace or at the
+start of a line opens a floating dropdown that filters as you type.
+Enter/Tab selects the top match, Space or Escape cancels.
+Ctrl+Space shows all sources merged.
+
+<a id="ganban.ui.edit.completion.CompletionSource"></a>
+
+## CompletionSource Objects
+
+```python
+@dataclass
+class CompletionSource()
+```
+
+A trigger character and a callable that returns completion options.
+
+The callable returns ``list[tuple[str, str]]`` where each tuple is
+``(display_label, insert_value)``.
+
+If ``replace_trigger`` is True, the trigger character is removed on
+selection and only the value is inserted.
+
+<a id="ganban.ui.edit.completion.CompletionDropdown"></a>
+
+## CompletionDropdown Objects
+
+```python
+class CompletionDropdown(OptionList)
+```
+
+Floating dropdown for completion results.
+
+Mounted once on the screen and shown/hidden as needed.  Uses
+``overlay: screen`` CSS so it floats above all other widgets.
+
+<a id="ganban.ui.edit.completion.CompletionDropdown.filter"></a>
+
+#### filter
+
+```python
+def filter(query: str, options: list[tuple[str, str]]) -> None
+```
+
+Repopulate the list with options matching *query*.
+
+<a id="ganban.ui.edit.completion.CompletionDropdown.select_highlighted"></a>
+
+#### select\_highlighted
+
+```python
+def select_highlighted() -> tuple[str, str] | None
+```
+
+Return ``(label, value)`` of the highlighted option, or None.
+
+<a id="ganban.ui.edit.completion.CompletionDropdown.show_at"></a>
+
+#### show\_at
+
+```python
+def show_at(x: int, y: int) -> None
+```
+
+Position the dropdown and make it visible.
+
+<a id="ganban.ui.edit.completion.CompletionDropdown.hide"></a>
+
+#### hide
+
+```python
+def hide() -> None
+```
+
+Hide the dropdown.
+
+<a id="ganban.ui.edit.completion.CompletionMixin"></a>
+
+## CompletionMixin Objects
+
+```python
+class CompletionMixin()
+```
+
+Mixin for BaseEditor subclasses that adds trigger-based completion.
+
+Must be listed *before* the editor base in the MRO so that ``_on_key``
+intercepts events before the editor handles them.
+
+Call ``_init_completion(sources)`` from ``__init__`` and
+``_deactivate_completion()`` on blur.
+
+<a id="ganban.ui.edit.completion.CompletionMixin.on_text_area_changed"></a>
+
+#### on\_text\_area\_changed
+
+```python
+def on_text_area_changed(event) -> None
+```
+
+React to text changes with reliable cursor position.
+
+<a id="ganban.ui.edit.tasks"></a>
+
+# ganban.ui.edit.tasks
+
+Task list editor widget.
+
+<a id="ganban.ui.edit.tasks.TaskCheckbox"></a>
+
+## TaskCheckbox Objects
+
+```python
+class TaskCheckbox(Static)
+```
+
+Clickable checkbox indicator for a task.
+
+<a id="ganban.ui.edit.tasks.TaskCheckbox.Toggled"></a>
+
+## Toggled Objects
+
+```python
+class Toggled(Message)
+```
+
+Emitted when the checkbox is clicked.
+
+<a id="ganban.ui.edit.tasks.TaskRow"></a>
+
+## TaskRow Objects
+
+```python
+class TaskRow(ItemRow)
+```
+
+A single task in the task list.
+
+<a id="ganban.ui.edit.tasks.TasksEditor"></a>
+
+## TasksEditor Objects
+
+```python
+class TasksEditor(BulletListEditor)
+```
+
+Editor for task list sections using bullet-list extraction.
+
+<a id="ganban.ui.edit.blocks"></a>
+
+# ganban.ui.edit.blocks
+
+Reusable block extraction from markdown body text.
+
+<a id="ganban.ui.edit.blocks.ExtractedList"></a>
+
+## ExtractedList Objects
+
+```python
+@dataclass
+class ExtractedList()
+```
+
+A bullet list extracted from markdown body text.
+
+<a id="ganban.ui.edit.blocks.extract_bullet_list"></a>
+
+#### extract\_bullet\_list
+
+```python
+def extract_bullet_list(body: str) -> ExtractedList
+```
+
+Extract the first bullet list from markdown body using markdown-it.
+
+Uses Token.map line ranges to slice the source text. Skips code fences
+(handled by markdown-it's tokenizer). If no bullet list found, returns
+ExtractedList(before=body, items=[], after="").
+
+<a id="ganban.ui.edit.blocks.reconstruct_body"></a>
+
+#### reconstruct\_body
+
+```python
+def reconstruct_body(extracted: ExtractedList) -> str
+```
+
+Reconstruct body from before + items + after.
+
+<a id="ganban.ui.edit.editable"></a>
+
+# ganban.ui.edit.editable
+
+Editable text container widget.
+
+<a id="ganban.ui.edit.editable.EditableText"></a>
+
+## EditableText Objects
+
+```python
+class EditableText(Container)
+```
+
+Orchestrates view/edit switching for any viewer + editor pair.
+
+<a id="ganban.ui.edit.editable.EditableText.Changed"></a>
+
+## Changed Objects
+
+```python
+class Changed(Message)
+```
+
+Emitted when the value changes.
+
+<a id="ganban.ui.edit.editable.EditableText.Changed.control"></a>
+
+#### control
+
+```python
+@property
+def control() -> EditableText
+```
+
+The EditableText that changed.
+
+<a id="ganban.ui.edit.editable.EditableText.focus"></a>
+
+#### focus
+
+```python
+def focus(scroll_visible: bool = True) -> None
+```
+
+Focus the widget - enters edit mode if not already editing.
+
+<a id="ganban.ui.edit.document"></a>
+
+# ganban.ui.edit.document
+
+Markdown document editor widget.
+
+<a id="ganban.ui.edit.document.EditorType"></a>
+
+## EditorType Objects
+
+```python
+@dataclass
+class EditorType()
+```
+
+Describes an available editor for markdown sections.
+
+<a id="ganban.ui.edit.document.DocHeader"></a>
+
+## DocHeader Objects
+
+```python
+class DocHeader(NodeWatcherMixin, Container)
+```
+
+Editable document title with rule underneath.
+
+<a id="ganban.ui.edit.document.DocHeader.TitleChanged"></a>
+
+## TitleChanged Objects
+
+```python
+class TitleChanged(Message)
+```
+
+Emitted when the title changes.
+
+<a id="ganban.ui.edit.document.AddSection"></a>
+
+## AddSection Objects
+
+```python
+class AddSection(AddValueMixin, Static)
+```
+
+Widget to add a new subsection.
+
+<a id="ganban.ui.edit.document.AddSection.SectionCreated"></a>
+
+## SectionCreated Objects
+
+```python
+class SectionCreated(Message)
+```
+
+Posted when a new section is created.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor"></a>
+
+## MarkdownDocEditor Objects
+
+```python
+class MarkdownDocEditor(NodeWatcherMixin, Container)
+```
+
+Two-panel editor for markdown sections content.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.Changed"></a>
+
+## Changed Objects
+
+```python
+class Changed(Message)
+```
+
+Emitted when the document content changes.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_heading_changed"></a>
+
+#### on\_section\_editor\_heading\_changed
+
+```python
+def on_section_editor_heading_changed(
+        event: SectionEditor.HeadingChanged) -> None
+```
+
+Update sections when a section heading changes.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_body_changed"></a>
+
+#### on\_section\_editor\_body\_changed
+
+```python
+def on_section_editor_body_changed(event: SectionEditor.BodyChanged) -> None
+```
+
+Update sections when a body changes.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_delete_requested"></a>
+
+#### on\_section\_editor\_delete\_requested
+
+```python
+def on_section_editor_delete_requested(
+        event: SectionEditor.DeleteRequested) -> None
+```
+
+Remove a subsection.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_editor_type_selected"></a>
+
+#### on\_section\_editor\_editor\_type\_selected
+
+```python
+def on_section_editor_editor_type_selected(
+        event: SectionEditor.EditorTypeSelected) -> None
+```
+
+Swap a subsection editor to a different type.
+
+<a id="ganban.ui.edit.document.MarkdownDocEditor.on_add_section_section_created"></a>
+
+#### on\_add\_section\_section\_created
+
+```python
+def on_add_section_section_created(event: AddSection.SectionCreated) -> None
+```
+
+Add a new subsection.
+
+<a id="ganban.ui.edit.comments"></a>
+
+# ganban.ui.edit.comments
+
+Comments editor widget.
+
+<a id="ganban.ui.edit.comments.CommentRow"></a>
+
+## CommentRow Objects
+
+```python
+class CommentRow(ItemRow)
+```
+
+A single comment in the comments list.
+
+<a id="ganban.ui.edit.comments.CommentsEditor"></a>
+
+## CommentsEditor Objects
+
+```python
+class CommentsEditor(BulletListEditor)
+```
+
+Editor for comment sections using bullet-list extraction.
+
+<a id="ganban.ui.edit.add"></a>
+
+# ganban.ui.edit.add
+
+Shared behavior for '+' add-widgets.
+
+<a id="ganban.ui.edit.add.AddValueMixin"></a>
+
+## AddValueMixin Objects
+
+```python
+class AddValueMixin()
+```
+
+A '+' EditableText that emits entered values and resets.
+
+Mix into a widget class and implement value_entered(). Set
+editable_classes to style the inner EditableText. Focus bindings
+only take effect on widgets declared can_focus=True; set
+refocus_after_submit to take focus back after a submission (leave
+off when submission moves focus elsewhere, e.g. into a new section).
+
+<a id="ganban.ui.edit.add.AddValueMixin.value_entered"></a>
+
+#### value\_entered
+
+```python
+def value_entered(value: str) -> None
+```
+
+Handle a newly entered value.
+
+<a id="ganban.ui.edit.messages"></a>
+
+# ganban.ui.edit.messages
+
+Messages for editable widgets.
+
+<a id="ganban.ui.edit.messages.Save"></a>
+
+## Save Objects
+
+```python
+class Save(Message)
+```
+
+Editor finished - save this value.
+
+<a id="ganban.ui.edit.messages.Cancel"></a>
+
+## Cancel Objects
+
+```python
+class Cancel(Message)
+```
+
+Editor finished - discard changes.
+
+<a id="ganban.ui.edit"></a>
+
+# ganban.ui.edit
+
+Editable widget components.
+
+<a id="ganban.ui.edit.viewers"></a>
+
+# ganban.ui.edit.viewers
+
+Viewer widgets that display content and support update(value).
+
+<a id="ganban.ui.edit.viewers.TextViewer"></a>
+
+## TextViewer Objects
+
+```python
+class TextViewer(Static)
+```
+
+Simple text viewer.
+
+<a id="ganban.ui.edit.viewers.TextViewer.update"></a>
+
+#### update
+
+```python
+def update(value: str) -> None
+```
+
+Update the displayed text.
+
+<a id="ganban.ui.edit.viewers.MarkdownViewer"></a>
+
+## MarkdownViewer Objects
+
+```python
+class MarkdownViewer(VerticalScroll)
+```
+
+Markdown viewer container.
+
+<a id="ganban.ui.edit.viewers.MarkdownViewer.update"></a>
+
+#### update
+
+```python
+def update(value: str) -> None
+```
+
+Update the displayed markdown.
+
+<a id="ganban.ui.edit.viewers.MarkdownViewer.refresh_content"></a>
+
+#### refresh\_content
+
+```python
+def refresh_content() -> None
+```
+
+Re-render current value (e.g. after external data changes).
 
 <a id="ganban.ui.menu"></a>
 
 # ganban.ui.menu
 
 Context menu system for ganban UI.
+
+<a id="ganban.ui.menu.truncate"></a>
+
+#### truncate
+
+```python
+def truncate(text: str, width: int = 20) -> str
+```
+
+Shorten text to at most width characters, ending in an ellipsis.
+
+Card, column and board titles are unbounded; anything embedding them
+in a menu label should cap them so the menu keeps a sane width.
 
 <a id="ganban.ui.menu.MenuItem"></a>
 
@@ -1291,16 +2173,6 @@ class ContextMenu(ModalScreen[MenuItem | None])
 
 Context menu with keyboard navigation.
 
-<a id="ganban.ui.menu.ContextMenu.ItemSelected"></a>
-
-## ItemSelected Objects
-
-```python
-class ItemSelected(Message)
-```
-
-Posted when an item is selected.
-
 <a id="ganban.ui.menu.ContextMenu.on_menu_list_ready"></a>
 
 #### on\_menu\_list\_ready
@@ -1411,157 +2283,6 @@ def on_calendar_menu_item_selected(event) -> None
 
 Handle calendar menu item selection.
 
-<a id="ganban.ui.watcher"></a>
-
-# ganban.ui.watcher
-
-Mixin that manages Node watches with suppression and auto-cleanup.
-
-<a id="ganban.ui.watcher.NodeWatcherMixin"></a>
-
-## NodeWatcherMixin Objects
-
-```python
-class NodeWatcherMixin()
-```
-
-Mixin for widgets that watch Node keys.
-
-Subclasses should:
-- Call ``_init_watcher()`` in ``__init__``
-- Use ``self.node_watch(node, key, callback)`` instead of ``node.watch(...)``
-- Use ``with self.suppressing():`` around model writes
-- Skip writing ``on_unmount`` -- the mixin handles cleanup
-
-<a id="ganban.ui.watcher.NodeWatcherMixin.node_watch"></a>
-
-#### node\_watch
-
-```python
-def node_watch(node: Node | ListNode, key: str, callback: Callback) -> None
-```
-
-Register a watch that is auto-guarded by suppression and auto-cleaned on unmount.
-
-<a id="ganban.ui.watcher.NodeWatcherMixin.suppressing"></a>
-
-#### suppressing
-
-```python
-@contextmanager
-def suppressing()
-```
-
-Context manager that suppresses watch callbacks for model writes.
-
-<a id="ganban.ui.color"></a>
-
-# ganban.ui.color
-
-Color picker for columns.
-
-<a id="ganban.ui.color.ColorSwatch"></a>
-
-## ColorSwatch Objects
-
-```python
-class ColorSwatch(MenuItem)
-```
-
-A colored menu item that uses outline for focus instead of background.
-
-<a id="ganban.ui.color.build_color_menu"></a>
-
-#### build\_color\_menu
-
-```python
-def build_color_menu() -> list[MenuRow]
-```
-
-Build a 4x4 color picker grid with clear in place of black.
-
-<a id="ganban.ui.color.ColorButton"></a>
-
-## ColorButton Objects
-
-```python
-class ColorButton(Static)
-```
-
-A button that opens a color picker menu.
-
-<a id="ganban.ui.color.ColorButton.ColorSelected"></a>
-
-## ColorSelected Objects
-
-```python
-class ColorSelected(Message)
-```
-
-Posted when a color is selected.
-
-<a id="ganban.ui"></a>
-
-# ganban.ui
-
-Textual UI for ganban.
-
-<a id="ganban.ui.users"></a>
-
-# ganban.ui.users
-
-Users editor for board meta.
-
-<a id="ganban.ui.users.EmailTag"></a>
-
-## EmailTag Objects
-
-```python
-class EmailTag(Container)
-```
-
-A single email address tag — click to edit with committer search.
-
-<a id="ganban.ui.users.AddEmailButton"></a>
-
-## AddEmailButton Objects
-
-```python
-class AddEmailButton(Container)
-```
-
-Searchable input to add a new email address from git committers.
-
-<a id="ganban.ui.users.UserRow"></a>
-
-## UserRow Objects
-
-```python
-class UserRow(Vertical)
-```
-
-A single user card with title bar and email list.
-
-<a id="ganban.ui.users.AddUserRow"></a>
-
-## AddUserRow Objects
-
-```python
-class AddUserRow(Static)
-```
-
-EditableText with '+' to add a new user.
-
-<a id="ganban.ui.users.UsersEditor"></a>
-
-## UsersEditor Objects
-
-```python
-class UsersEditor(NodeWatcherMixin, Container)
-```
-
-Editor for board.meta.users -- a dict of display name -> user info.
-
 <a id="ganban.ui.detail"></a>
 
 # ganban.ui.detail
@@ -1623,7 +2344,7 @@ Quit the app via the main save-and-exit path.
 ## CardDetailModal Objects
 
 ```python
-class CardDetailModal(DetailModal)
+class CardDetailModal(NodeWatcherMixin, DetailModal)
 ```
 
 Modal screen showing full card details.
@@ -1658,924 +2379,119 @@ class BoardDetailModal(DetailModal)
 
 Modal screen showing full board details.
 
-<a id="ganban.ui.edit.messages"></a>
+<a id="ganban.ui.palette"></a>
 
-# ganban.ui.edit.messages
+# ganban.ui.palette
 
-Messages for editable widgets.
+Color palette and label color hashing.
 
-<a id="ganban.ui.edit.messages.Save"></a>
+<a id="ganban.ui.palette.color_for_label"></a>
 
-## Save Objects
+#### color\_for\_label
 
 ```python
-class Save(Message)
+def color_for_label(label: str) -> str
 ```
 
-Editor finished - save this value.
+Deterministic hex color from label name.
 
-<a id="ganban.ui.edit.messages.Cancel"></a>
+Uses the sum of all md5 bytes mod palette size, which spreads
+common label names across the palette with minimal collisions.
 
-## Cancel Objects
+<a id="ganban.ui.palette.get_label_color"></a>
 
-```python
-class Cancel(Message)
-```
-
-Editor finished - discard changes.
-
-<a id="ganban.ui.edit.document"></a>
-
-# ganban.ui.edit.document
-
-Markdown document editor widget.
-
-<a id="ganban.ui.edit.document.DocHeader"></a>
-
-## DocHeader Objects
-
-```python
-class DocHeader(NodeWatcherMixin, Container)
-```
-
-Editable document title with rule underneath.
-
-<a id="ganban.ui.edit.document.DocHeader.TitleChanged"></a>
-
-## TitleChanged Objects
-
-```python
-class TitleChanged(Message)
-```
-
-Emitted when the title changes.
-
-<a id="ganban.ui.edit.document.AddSection"></a>
-
-## AddSection Objects
-
-```python
-class AddSection(Static)
-```
-
-Widget to add a new subsection.
-
-<a id="ganban.ui.edit.document.AddSection.SectionCreated"></a>
-
-## SectionCreated Objects
-
-```python
-class SectionCreated(Message)
-```
-
-Posted when a new section is created.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor"></a>
-
-## MarkdownDocEditor Objects
-
-```python
-class MarkdownDocEditor(NodeWatcherMixin, Container)
-```
-
-Two-panel editor for markdown sections content.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor.Changed"></a>
-
-## Changed Objects
-
-```python
-class Changed(Message)
-```
-
-Emitted when the document content changes.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_heading_changed"></a>
-
-#### on\_section\_editor\_heading\_changed
-
-```python
-def on_section_editor_heading_changed(
-        event: SectionEditor.HeadingChanged) -> None
-```
-
-Update sections when a section heading changes.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_body_changed"></a>
-
-#### on\_section\_editor\_body\_changed
-
-```python
-def on_section_editor_body_changed(event: SectionEditor.BodyChanged) -> None
-```
-
-Update sections when a body changes.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor.on_section_editor_delete_requested"></a>
-
-#### on\_section\_editor\_delete\_requested
-
-```python
-def on_section_editor_delete_requested(
-        event: SectionEditor.DeleteRequested) -> None
-```
-
-Remove a subsection.
-
-<a id="ganban.ui.edit.document.MarkdownDocEditor.on_add_section_section_created"></a>
-
-#### on\_add\_section\_section\_created
-
-```python
-def on_add_section_section_created(event: AddSection.SectionCreated) -> None
-```
-
-Add a new subsection.
-
-<a id="ganban.ui.edit"></a>
-
-# ganban.ui.edit
-
-Editable widget components.
-
-<a id="ganban.ui.edit.viewers"></a>
-
-# ganban.ui.edit.viewers
-
-Viewer widgets that display content and support update(value).
-
-<a id="ganban.ui.edit.viewers.TextViewer"></a>
-
-## TextViewer Objects
-
-```python
-class TextViewer(Static)
-```
-
-Simple text viewer.
-
-<a id="ganban.ui.edit.viewers.TextViewer.update"></a>
-
-#### update
-
-```python
-def update(value: str) -> None
-```
-
-Update the displayed text.
-
-<a id="ganban.ui.edit.viewers.MarkdownViewer"></a>
-
-## MarkdownViewer Objects
-
-```python
-class MarkdownViewer(VerticalScroll)
-```
-
-Markdown viewer container.
-
-<a id="ganban.ui.edit.viewers.MarkdownViewer.update"></a>
-
-#### update
-
-```python
-def update(value: str) -> None
-```
-
-Update the displayed markdown.
-
-<a id="ganban.ui.edit.viewers.MarkdownViewer.refresh_content"></a>
-
-#### refresh\_content
-
-```python
-def refresh_content() -> None
-```
-
-Re-render current value (e.g. after external data changes).
-
-<a id="ganban.ui.edit.section"></a>
-
-# ganban.ui.edit.section
-
-Section editor widget.
-
-<a id="ganban.ui.edit.section.SectionEditor"></a>
-
-## SectionEditor Objects
-
-```python
-class SectionEditor(Container)
-```
-
-Editor for a section with heading and markdown body.
-
-<a id="ganban.ui.edit.section.SectionEditor.HeadingChanged"></a>
-
-## HeadingChanged Objects
-
-```python
-class HeadingChanged(Message)
-```
-
-Emitted when the section heading changes.
-
-<a id="ganban.ui.edit.section.SectionEditor.BodyChanged"></a>
-
-## BodyChanged Objects
-
-```python
-class BodyChanged(Message)
-```
-
-Emitted when the section body changes.
-
-<a id="ganban.ui.edit.section.SectionEditor.DeleteRequested"></a>
-
-## DeleteRequested Objects
-
-```python
-class DeleteRequested(Message)
-```
-
-Emitted when the section delete is confirmed.
-
-<a id="ganban.ui.edit.meta"></a>
-
-# ganban.ui.edit.meta
-
-Tree-shaped metadata editor for Node objects.
-
-<a id="ganban.ui.edit.meta.BoolToggle"></a>
-
-## BoolToggle Objects
-
-```python
-class BoolToggle(Static)
-```
-
-A simple true/false toggle that cycles on click.
-
-<a id="ganban.ui.edit.meta.ListItemRow"></a>
-
-## ListItemRow Objects
-
-```python
-class ListItemRow(Vertical)
-```
-
-A single item row in a list editor.
-
-Scalar values render inline. Compound values (dict, list)
-render with a header row and the nested editor below.
-
-<a id="ganban.ui.edit.meta.ListItemRow.on_key_value_row_value_changed"></a>
-
-#### on\_key\_value\_row\_value\_changed
-
-```python
-def on_key_value_row_value_changed(event) -> None
-```
-
-Propagate changes from nested DictEditor.
-
-<a id="ganban.ui.edit.meta.AddListItemRow"></a>
-
-## AddListItemRow Objects
-
-```python
-class AddListItemRow(Static)
-```
-
-Clickable '+' that opens a type picker to add a new list item.
-
-<a id="ganban.ui.edit.meta.ListEditor"></a>
-
-## ListEditor Objects
-
-```python
-class ListEditor(Vertical)
-```
-
-Renders a list's items as editable rows.
-
-<a id="ganban.ui.edit.meta.ListEditor.Changed"></a>
-
-## Changed Objects
-
-```python
-class Changed(Message)
-```
-
-Emitted when the list contents change.
-
-<a id="ganban.ui.edit.meta.KeyValueRow"></a>
-
-## KeyValueRow Objects
-
-```python
-class KeyValueRow(Vertical)
-```
-
-A single key:value row in the metadata editor.
-
-Scalar values render inline as key : value.
-Compound values (dict, list) render with a header row and
-the nested editor indented below.
-
-<a id="ganban.ui.edit.meta.AddKeyRow"></a>
-
-## AddKeyRow Objects
-
-```python
-class AddKeyRow(Container)
-```
-
-Row to add a new key to the metadata.
-
-<a id="ganban.ui.edit.meta.DictEditor"></a>
-
-## DictEditor Objects
-
-```python
-class DictEditor(NodeWatcherMixin, Vertical)
-```
-
-Renders a Node's children as KeyValueRows + AddKeyRow.
-
-<a id="ganban.ui.edit.meta.MetaEditor"></a>
-
-## MetaEditor Objects
-
-```python
-class MetaEditor(Container)
-```
-
-Thin wrapper for the tree metadata editor with scroll support.
-
-<a id="ganban.ui.edit.editors"></a>
-
-# ganban.ui.edit.editors
-
-Editor widgets that emit Save/Cancel messages.
-
-<a id="ganban.ui.edit.editors.BaseEditor"></a>
-
-## BaseEditor Objects
-
-```python
-class BaseEditor(TextArea)
-```
-
-Base editor that emits Save/Cancel.
-
-<a id="ganban.ui.edit.editors.BaseEditor.start_editing"></a>
-
-#### start\_editing
-
-```python
-def start_editing(value: str) -> None
-```
-
-Start editing. Called by EditableText.
-
-<a id="ganban.ui.edit.editors.TextEditor"></a>
-
-## TextEditor Objects
-
-```python
-class TextEditor(BaseEditor)
-```
-
-Single-line editor. Enter saves.
-
-<a id="ganban.ui.edit.editors.NumberEditor"></a>
-
-## NumberEditor Objects
-
-```python
-class NumberEditor(TextEditor)
-```
-
-Single-line numeric editor. Validates input is a number on save.
-
-<a id="ganban.ui.edit.editors.MarkdownEditor"></a>
-
-## MarkdownEditor Objects
-
-```python
-class MarkdownEditor(BaseEditor)
-```
+#### get\_label\_color
 
-Multi-line editor. Enter inserts newline.
-
-<a id="ganban.ui.edit.editable"></a>
-
-# ganban.ui.edit.editable
-
-Editable text container widget.
-
-<a id="ganban.ui.edit.editable.EditableText"></a>
-
-## EditableText Objects
-
-```python
-class EditableText(Container)
-```
-
-Orchestrates view/edit switching for any viewer + editor pair.
-
-<a id="ganban.ui.edit.editable.EditableText.Changed"></a>
-
-## Changed Objects
-
-```python
-class Changed(Message)
-```
-
-Emitted when the value changes.
-
-<a id="ganban.ui.edit.editable.EditableText.Changed.control"></a>
-
-#### control
-
-```python
-@property
-def control() -> EditableText
-```
-
-The EditableText that changed.
-
-<a id="ganban.ui.edit.editable.EditableText.focus"></a>
-
-#### focus
-
-```python
-def focus(scroll_visible: bool = True) -> None
-```
-
-Focus the widget - enters edit mode if not already editing.
-
-<a id="ganban.ui.constants"></a>
-
-# ganban.ui.constants
-
-Shared UI icon constants.
-
-<a id="ganban.ui.cal"></a>
-
-# ganban.ui.cal
-
-Calendar widget for date selection.
-
-<a id="ganban.ui.cal.date_diff"></a>
-
-#### date\_diff
-
-```python
-def date_diff(target: date, reference: date) -> str
-```
-
-Return compact string showing difference between dates.
-
-Examples: "1d", "-3d", "2m", "-1m", "5y", "-2y"
-Uses days for <60 days, months for <24 months, years otherwise.
-
-<a id="ganban.ui.cal.NavButton"></a>
-
-## NavButton Objects
-
-```python
-class NavButton(Static)
-```
-
-Navigation button for calendar.
-
-<a id="ganban.ui.cal.CalendarDay"></a>
-
-## CalendarDay Objects
-
-```python
-class CalendarDay(Static)
-```
-
-A single day cell.
-
-<a id="ganban.ui.cal.CalendarDay.Clicked"></a>
-
-## Clicked Objects
-
-```python
-class Clicked(Message)
-```
-
-Posted when this day is clicked.
-
-<a id="ganban.ui.cal.Calendar"></a>
-
-## Calendar Objects
-
-```python
-class Calendar(Container)
-```
-
-Date picker widget.
-
-<a id="ganban.ui.cal.Calendar.DateSelected"></a>
-
-## DateSelected Objects
-
-```python
-class DateSelected(Message)
-```
-
-Emitted when a date is selected (None to clear).
-
-<a id="ganban.ui.cal.CalendarMenuItem"></a>
-
-## CalendarMenuItem Objects
-
-```python
-class CalendarMenuItem(Container)
-```
-
-Menu item containing a calendar picker.
-
-<a id="ganban.ui.cal.CalendarMenuItem.Selected"></a>
-
-## Selected Objects
-
-```python
-class Selected(Message)
-```
-
-Posted when a date is selected, signals menu to close.
-
-<a id="ganban.ui.cal.DateButton"></a>
-
-## DateButton Objects
-
-```python
-class DateButton(Static)
-```
-
-A button that opens a calendar menu for date selection.
-
-<a id="ganban.ui.cal.DateButton.DateSelected"></a>
-
-## DateSelected Objects
-
-```python
-class DateSelected(Message)
-```
-
-Emitted when a date is selected (None to clear).
-
-<a id="ganban.ui.sync_widget"></a>
-
-# ganban.ui.sync\_widget
-
-Sync status indicator widget for the board header.
-
-<a id="ganban.ui.sync_widget.SyncWidget"></a>
-
-## SyncWidget Objects
-
-```python
-class SyncWidget(NodeWatcherMixin, Container)
-```
-
-Sync status indicator. Shows current sync state as an emoji.
-
-Click to open a context menu with local/remote toggles and interval presets.
-
-<a id="ganban.ui.board"></a>
-
-# ganban.ui.board
-
-Board screen showing kanban columns and cards.
-
-<a id="ganban.ui.board.BoardScreen"></a>
-
-## BoardScreen Objects
-
-```python
-class BoardScreen(NodeWatcherMixin, DropTarget, Screen)
-```
-
-Main board screen showing all columns.
-
-<a id="ganban.ui.board.BoardScreen.on_editable_text_changed"></a>
-
-#### on\_editable\_text\_changed
-
-```python
-def on_editable_text_changed(event: EditableText.Changed) -> None
-```
-
-Update board title when header is edited.
-
-<a id="ganban.ui.board.BoardScreen.on_click"></a>
-
-#### on\_click
-
-```python
-def on_click(event) -> None
-```
-
-Handle clicks on board header area.
-
-<a id="ganban.ui.board.BoardScreen.action_context_menu"></a>
-
-#### action\_context\_menu
-
-```python
-def action_context_menu() -> None
-```
-
-Show context menu for the focused widget.
-
-<a id="ganban.ui.board.BoardScreen.action_save"></a>
-
-#### action\_save
-
-```python
-def action_save() -> None
-```
-
-Save the board to git.
-
-<a id="ganban.ui.board.BoardScreen.on_card_widget_move_requested"></a>
-
-#### on\_card\_widget\_move\_requested
-
-```python
-def on_card_widget_move_requested(event: CardWidget.MoveRequested) -> None
-```
-
-Handle card move request.
-
-<a id="ganban.ui.board.BoardScreen.on_card_widget_archive_requested"></a>
-
-#### on\_card\_widget\_archive\_requested
-
-```python
-def on_card_widget_archive_requested(
-        event: CardWidget.ArchiveRequested) -> None
-```
-
-Handle card archive request.
-
-<a id="ganban.ui.board.BoardScreen.on_add_card_card_created"></a>
-
-#### on\_add\_card\_card\_created
-
-```python
-def on_add_card_card_created(event: AddCard.CardCreated) -> None
-```
-
-Handle new card creation — commit immediately for timestamp.
-
-<a id="ganban.ui.board.BoardScreen.on_add_column_column_created"></a>
-
-#### on\_add\_column\_column\_created
-
-```python
-def on_add_column_column_created(event: AddColumn.ColumnCreated) -> None
-```
-
-Handle new column creation.
-
-<a id="ganban.ui.board.BoardScreen.on_column_widget_move_requested"></a>
-
-#### on\_column\_widget\_move\_requested
-
-```python
-def on_column_widget_move_requested(event: ColumnWidget.MoveRequested) -> None
-```
-
-Handle column move request.
-
-<a id="ganban.ui.board.BoardScreen.on_column_widget_archive_requested"></a>
-
-#### on\_column\_widget\_archive\_requested
-
 ```python
-def on_column_widget_archive_requested(
-        event: ColumnWidget.ArchiveRequested) -> None
+def get_label_color(name: str, board: Node) -> str
 ```
 
-Handle column archive request.
+Get label color: explicit override from meta or computed hash.
 
-<a id="ganban.ui.done"></a>
+Checks board.meta.labels[name].color for an override, otherwise
+returns a deterministic color based on the label name hash.
 
-# ganban.ui.done
+<a id="ganban.ui.labels"></a>
 
-Done toggle widget for card detail screen.
+# ganban.ui.labels
 
-<a id="ganban.ui.done.DoneWidget"></a>
+Label editor widget for card detail bar.
 
-## DoneWidget Objects
+<a id="ganban.ui.labels.ICON_LABEL"></a>
 
-```python
-class DoneWidget(NodeWatcherMixin, Container)
-```
-
-Inline done toggle that reads and writes ``meta.done``.
-
-Shows ✅ when done, ⬜ when not. Click to toggle.
-Watches the node so external changes (e.g. the meta editor or context
-menu) are reflected immediately.
-
-<a id="ganban.ui.card"></a>
-
-# ganban.ui.card
-
-Card widgets for ganban UI.
-
-<a id="ganban.ui.card.CardWidget"></a>
-
-## CardWidget Objects
-
-```python
-class CardWidget(NodeWatcherMixin, DraggableMixin, Static)
-```
-
-A single card in a column.
-
-<a id="ganban.ui.card.CardWidget.MoveRequested"></a>
-
-## MoveRequested Objects
-
-```python
-class MoveRequested(Message)
-```
-
-Posted when card should be moved to another column.
-
-<a id="ganban.ui.card.CardWidget.ArchiveRequested"></a>
-
-## ArchiveRequested Objects
-
-```python
-class ArchiveRequested(Message)
-```
-
-Posted when card should be archived.
-
-<a id="ganban.ui.card.AddCard"></a>
-
-## AddCard Objects
-
-```python
-class AddCard(Static)
-```
-
-Widget to add a new card to a column.
-
-<a id="ganban.ui.card.AddCard.CardCreated"></a>
-
-## CardCreated Objects
-
-```python
-class CardCreated(Message)
-```
-
-Posted when a new card is created.
-
-<a id="ganban.ui.static"></a>
-
-# ganban.ui.static
-
-Static widget variants.
-
-<a id="ganban.ui.static.PlainStatic"></a>
-
-## PlainStatic Objects
+#### ICON\_LABEL
 
-```python
-class PlainStatic(Static)
-```
-
-Static that doesn't allow text selection.
-
-<a id="ganban.ui.drag"></a>
-
-# ganban.ui.drag
-
-Drag-and-drop infrastructure for ganban UI.
-
-Two mixins:
-- DraggableMixin: on dragged widgets, owns the "flying" phase
-- DropTarget: on containers, owns the "landing" phase
+🔖
 
-<a id="ganban.ui.drag.DropTarget"></a>
+<a id="ganban.ui.labels.build_label_options"></a>
 
-## DropTarget Objects
+#### build\_label\_options
 
 ```python
-class DropTarget()
+def build_label_options(board: Node,
+                        current_labels: list[str]) -> list[tuple[str, str]]
 ```
 
-Mixin for widgets that can accept drops.
+Build (label, value) options for the label search dropdown.
 
-Returns False to ignore (bubbles to parent), True to consume.
+Shows all known labels from board.labels, excluding those already on the card.
 
-<a id="ganban.ui.drag.DropTarget.drag_over"></a>
+<a id="ganban.ui.labels.LabelsWidget"></a>
 
-#### drag\_over
+## LabelsWidget Objects
 
 ```python
-def drag_over(draggable: DraggableMixin, x: int, y: int) -> bool
+class LabelsWidget(TagListWidget)
 ```
 
-Called while a draggable hovers over this target. Return True to accept.
+Inline label editor for card detail bar.
 
-<a id="ganban.ui.drag.DropTarget.drag_away"></a>
+Displays label tags next to a bookmark icon. Click the icon to add a label,
+click a tag to edit it, click × to delete. Uses Tag widgets with SearchInput
+for label selection with free-text fallback for new labels.
 
-#### drag\_away
+<a id="ganban.ui.watcher"></a>
 
-```python
-def drag_away(draggable: DraggableMixin) -> None
-```
-
-Called when a draggable leaves this target.
-
-<a id="ganban.ui.drag.DropTarget.try_drop"></a>
-
-#### try\_drop
-
-```python
-def try_drop(draggable: DraggableMixin, x: int, y: int) -> bool
-```
+# ganban.ui.watcher
 
-Called on mouse-up to attempt the drop. Return True if accepted.
+Mixin that manages Node watches with suppression and auto-cleanup.
 
-<a id="ganban.ui.drag.DraggableMixin"></a>
+<a id="ganban.ui.watcher.NodeWatcherMixin"></a>
 
-## DraggableMixin Objects
+## NodeWatcherMixin Objects
 
 ```python
-class DraggableMixin()
+class NodeWatcherMixin()
 ```
 
-Mixin for widgets that can be dragged.
+Mixin for widgets that watch Node keys.
 
 Subclasses should:
-- Call _init_draggable() in __init__
-- Implement draggable_make_ghost() to return the ghost widget
-- Implement draggable_clicked() for click-without-drag behavior
-- Optionally override DRAG_THRESHOLD and HORIZONTAL_ONLY
+- Call ``_init_watcher()`` in ``__init__``
+- Use ``self.node_watch(node, key, callback)`` instead of ``node.watch(...)``
+- Use ``with self.suppressing():`` around model writes
+- Skip writing ``on_unmount`` -- the mixin handles cleanup
 
-<a id="ganban.ui.drag.DraggableMixin.draggable_make_ghost"></a>
+<a id="ganban.ui.watcher.NodeWatcherMixin.node_watch"></a>
 
-#### draggable\_make\_ghost
-
-```python
-def draggable_make_ghost() -> Widget
-```
-
-Create and return the ghost widget for dragging. Override in subclass.
-
-<a id="ganban.ui.drag.DraggableMixin.draggable_clicked"></a>
-
-#### draggable\_clicked
+#### node\_watch
 
 ```python
-def draggable_clicked() -> None
+def node_watch(node: Node | ListNode, key: str, callback: Callback) -> None
 ```
 
-Called when mouse released without dragging. Override for click behavior.
+Register a watch that is auto-guarded by suppression and auto-cleaned on unmount.
 
-<a id="ganban.ui.drag.DragGhost"></a>
+<a id="ganban.ui.watcher.NodeWatcherMixin.suppressing"></a>
 
-## DragGhost Objects
+#### suppressing
 
 ```python
-class DragGhost(Static)
+@contextmanager
+def suppressing()
 ```
 
-Floating overlay showing the card being dragged.
-
-<a id="ganban.ui.drag.CardPlaceholder"></a>
-
-## CardPlaceholder Objects
-
-```python
-class CardPlaceholder(Static)
-```
-
-Placeholder showing where a dragged card will drop.
-
-<a id="ganban.ui.drag.ColumnPlaceholder"></a>
-
-## ColumnPlaceholder Objects
-
-```python
-class ColumnPlaceholder(Static)
-```
-
-Placeholder showing where a dragged column will drop.
+Context manager that suppresses watch callbacks for model writes.
 
 <a id="ganban.ui.app"></a>
 
@@ -2613,266 +2529,219 @@ def action_quit() -> None
 
 Cancel sync, save and quit.
 
-<a id="ganban.ui.emoji"></a>
+<a id="ganban.ui.static"></a>
 
-# ganban.ui.emoji
+# ganban.ui.static
 
-Emoji picker widget.
+Static widget variants.
 
-<a id="ganban.ui.emoji.emoji_for_email"></a>
+<a id="ganban.ui.static.PlainStatic"></a>
 
-#### emoji\_for\_email
-
-```python
-def emoji_for_email(email: str) -> str
-```
-
-Pick a deterministic default emoji for an email address.
-
-Uses the last nibble of the md5 digest, modulo 13.
-
-<a id="ganban.ui.emoji.parse_committer"></a>
-
-#### parse\_committer
+## PlainStatic Objects
 
 ```python
-def parse_committer(committer: str) -> tuple[str, str, str]
+class PlainStatic(Static)
 ```
 
-Parse a committer string into (emoji, name, email).
+Static that doesn't allow text selection.
 
-Accepts "Name <email>" format. If parsing fails, the full
-string is used as both name and email.
+<a id="ganban.ui.static.CloseButton"></a>
 
-<a id="ganban.ui.emoji.build_emoji_menu"></a>
-
-#### build\_emoji\_menu
+## CloseButton Objects
 
 ```python
-def build_emoji_menu(email: str | None = None) -> list[MenuRow]
+class CloseButton(Static)
 ```
 
-Build a 6x5 emoji picker grid with default/clear as first cell.
+Close button that triggers the screen's close action.
 
-<a id="ganban.ui.emoji.EmojiButton"></a>
+<a id="ganban.ui.search"></a>
 
-## EmojiButton Objects
+# ganban.ui.search
+
+Autocomplete search input with dropdown suggestions.
+
+<a id="ganban.ui.search.SearchInput"></a>
+
+## SearchInput Objects
 
 ```python
-class EmojiButton(Static)
+class SearchInput(Container)
 ```
 
-A button that opens an emoji picker menu.
+Text input with a filterable dropdown of suggestions.
 
-<a id="ganban.ui.emoji.EmojiButton.EmojiSelected"></a>
+Options are (label, value) tuples. The label is shown in the dropdown,
+the value is returned on selection. Free-text is always allowed.
 
-## EmojiSelected Objects
+<a id="ganban.ui.search.SearchInput.Submitted"></a>
+
+## Submitted Objects
 
 ```python
-class EmojiSelected(Message)
+class Submitted(Message)
 ```
 
-Posted when an emoji is selected.
+Posted when the user submits a selection or free text.
 
-<a id="ganban.ui.emoji.find_user_by_email"></a>
+<a id="ganban.ui.search.SearchInput.Cancelled"></a>
 
-#### find\_user\_by\_email
+## Cancelled Objects
 
 ```python
-def find_user_by_email(email: str,
-                       meta: Node | None) -> tuple[str, Node] | None
+class Cancelled(Message)
 ```
 
-Find the (user_name, user_node) for an email in meta.users.
+Posted when the user cancels (double-escape).
 
-<a id="ganban.ui.emoji.resolve_email_display"></a>
+<a id="ganban.ui.search.SearchInput.set_options"></a>
 
-#### resolve\_email\_display
+#### set\_options
 
 ```python
-def resolve_email_display(
-        email: str,
-        meta: Node | None = None,
-        committers: list[str] | None = None) -> tuple[str, str] | None
+def set_options(options: list[tuple[str, str]]) -> None
 ```
 
-Resolve an email to (emoji, display_name).
+Replace the option list.
 
-Checks meta.users first (custom emoji + user name), then
-git committers (hash emoji + committer name). Returns None
-if the email isn't found in either source.
+<a id="ganban.ui.search.SearchInput.on_input_changed"></a>
 
-<a id="ganban.ui.emoji.resolve_email_emoji"></a>
-
-#### resolve\_email\_emoji
+#### on\_input\_changed
 
 ```python
-def resolve_email_emoji(email: str, meta: Node) -> str
+def on_input_changed(event: Input.Changed) -> None
 ```
 
-Look up the emoji for an email from meta.users, falling back to hash.
+Filter dropdown on every keystroke.
 
-<a id="ganban.ui.emoji.EmailEmoji"></a>
+<a id="ganban.ui.search.SearchInput.on_option_list_option_selected"></a>
 
-## EmailEmoji Objects
+#### on\_option\_list\_option\_selected
 
 ```python
-class EmailEmoji(NodeWatcherMixin, Static)
+def on_option_list_option_selected(event: OptionList.OptionSelected) -> None
 ```
 
-Display-only emoji resolved from an email address.
+Handle mouse click on a dropdown item.
 
-Watches meta.users so it updates when custom emojis change.
+<a id="ganban.ui.search.SearchInput.on_descendant_blur"></a>
 
-<a id="ganban.ui.column"></a>
-
-# ganban.ui.column
-
-Column widgets for ganban UI.
-
-<a id="ganban.ui.column.ColumnWidget"></a>
-
-## ColumnWidget Objects
+#### on\_descendant\_blur
 
 ```python
-class ColumnWidget(NodeWatcherMixin, DraggableMixin, DropTarget, Vertical)
+def on_descendant_blur(event: DescendantBlur) -> None
 ```
 
-A single column on the board.
+Close dropdown when focus leaves a child widget.
 
-<a id="ganban.ui.column.ColumnWidget.MoveRequested"></a>
+<a id="ganban.ui.sync_widget"></a>
 
-## MoveRequested Objects
+# ganban.ui.sync\_widget
+
+Sync status indicator widget for the board header.
+
+<a id="ganban.ui.sync_widget.SyncWidget"></a>
+
+## SyncWidget Objects
 
 ```python
-class MoveRequested(Message)
+class SyncWidget(NodeWatcherMixin, Container)
 ```
 
-Posted when column should be moved.
+Sync status indicator. Shows current sync state as an emoji.
 
-<a id="ganban.ui.column.ColumnWidget.ArchiveRequested"></a>
+Click to open a context menu with local/remote toggles and interval presets.
 
-## ArchiveRequested Objects
+<a id="ganban.ui"></a>
+
+# ganban.ui
+
+Textual UI for ganban.
+
+<a id="ganban.ui.done"></a>
+
+# ganban.ui.done
+
+Done toggle widget for card detail screen.
+
+<a id="ganban.ui.done.DoneWidget"></a>
+
+## DoneWidget Objects
 
 ```python
-class ArchiveRequested(Message)
+class DoneWidget(NodeWatcherMixin, Container)
 ```
 
-Posted when column should be archived.
+Inline done toggle that reads and writes ``meta.done``.
 
-<a id="ganban.ui.column.ColumnWidget.draggable_make_ghost"></a>
+Shows ✅ when done, ⬜ when not. Click to toggle.
+Watches the node so external changes (e.g. the meta editor or context
+menu) are reflected immediately.
 
-#### draggable\_make\_ghost
+<a id="ganban.ui.assignee"></a>
+
+# ganban.ui.assignee
+
+Assignee widget with user picker.
+
+<a id="ganban.ui.assignee.resolve_assignee"></a>
+
+#### resolve\_assignee
 
 ```python
-def draggable_make_ghost()
+def resolve_assignee(assigned: str, board: Node) -> tuple[str, str, str]
 ```
 
-Column IS the ghost — use self with CSS overlay positioning.
+Parse an assigned string and resolve against board users.
 
-<a id="ganban.ui.column.ColumnWidget.on_editable_text_changed"></a>
+Returns (emoji, display_name, email). Board users override the
+name and emoji from the parsed committer string.
 
-#### on\_editable\_text\_changed
+<a id="ganban.ui.assignee.build_assignee_options"></a>
+
+#### build\_assignee\_options
 
 ```python
-def on_editable_text_changed(event: EditableText.Changed) -> None
+def build_assignee_options(board: Node) -> list[tuple[str, str]]
 ```
 
-Update column name when header is edited.
+Build assignee options; the value is the committer string.
 
-<a id="ganban.ui.column.ColumnWidget.on_click"></a>
+<a id="ganban.ui.assignee.build_mention_options"></a>
 
-#### on\_click
+#### build\_mention\_options
 
 ```python
-def on_click(event) -> None
+def build_mention_options(board: Node) -> list[tuple[str, str]]
 ```
 
-Show context menu on right-click.
+Build @mention options; the value is ``[Name](mailto:email)``.
 
-<a id="ganban.ui.column.ColumnWidget.on_key"></a>
+<a id="ganban.ui.assignee.AssigneeWidget"></a>
 
-#### on\_key
+## AssigneeWidget Objects
 
 ```python
-def on_key(event) -> None
+class AssigneeWidget(NodeWatcherMixin, Container)
 ```
 
-Arrow key navigation and shift+arrow card movement.
+Inline assignee display with user picker.
 
-<a id="ganban.ui.column.ColumnWidget.on_mouse_move"></a>
+Reads and writes ``meta.assigned`` on the given card meta Node,
+and watches the node so external changes are reflected immediately.
+Uses a single optional Tag widget for the assigned user.
 
-#### on\_mouse\_move
+<a id="ganban.__main__"></a>
 
-```python
-def on_mouse_move(event) -> None
-```
+# ganban.\_\_main\_\_
 
-Handle DraggableMixin threshold first, then hover-focus tracking.
+Entry point for ganban CLI.
 
-<a id="ganban.ui.column.AddColumn"></a>
+<a id="ganban.constants"></a>
 
-## AddColumn Objects
+# ganban.constants
 
-```python
-class AddColumn(Vertical)
-```
-
-Widget to add a new column.
-
-<a id="ganban.ui.column.AddColumn.ColumnCreated"></a>
-
-## ColumnCreated Objects
-
-```python
-class ColumnCreated(Message)
-```
-
-Posted when a new column is created.
-
-<a id="ganban.ui.card_indicators"></a>
-
-# ganban.ui.card\_indicators
-
-Pure functions for building card indicator text.
-
-<a id="ganban.ui.card_indicators.build_footer_text"></a>
-
-#### build\_footer\_text
-
-```python
-def build_footer_text(sections: ListNode,
-                      meta: Node,
-                      board_meta: Node | None = None) -> Text
-```
-
-Build footer indicators from card sections and meta.
-
-Shows assignee emoji if meta.assigned is set.
-Shows body icon (dim) if first section has body content.
-Shows calendar icon + Xd if meta.due is set, red if overdue.
-
-<a id="ganban.sync"></a>
-
-# ganban.sync
-
-Background sync engine for the TUI.
-
-Runs: pull → load+merge → save → push, gated by board.git.sync toggles.
-
-<a id="ganban.sync.run_sync_cycle"></a>
-
-#### run\_sync\_cycle
-
-```python
-async def run_sync_cycle(board)
-```
-
-Run one sync cycle: pull → save → merge → load → push.
-
-Reads board.git.sync.{local, remote} to decide which steps to run.
-Sets sync.status at each step (fires watchers → UI updates).
-All git I/O runs via asyncio.to_thread to stay non-blocking.
+Global constants for ganban.
 
 <a id="ganban.parser"></a>
 
@@ -2918,7 +2787,9 @@ Meta becomes YAML front-matter if non-empty.
 def first_title(sections) -> str
 ```
 
-Get the title (first key) of a sections ListNode, or empty string.
+Get the title of a sections ListNode: its first non-empty key.
+
+An empty first key holds preamble text that sits above the H1.
 
 <a id="ganban.parser.first_body"></a>
 
@@ -2929,4 +2800,1124 @@ def first_body(sections) -> str
 ```
 
 Get the body (first value) of a sections ListNode, or empty string.
+
+<a id="ganban.ids"></a>
+
+# ganban.ids
+
+Card ID comparison and generation.
+
+<a id="ganban.ids.normalize_id"></a>
+
+#### normalize\_id
+
+```python
+def normalize_id(s: str) -> str
+```
+
+Strip leading zeros from an ID, preserving at least one digit.
+
+"001" → "1", "0" → "0", "010" → "10"
+
+<a id="ganban.ids.pad_id"></a>
+
+#### pad\_id
+
+```python
+def pad_id(s: str, width: int) -> str
+```
+
+Zero-pad an ID to the given width.
+
+"1" with width=3 → "001", "10" with width=3 → "010"
+
+<a id="ganban.ids.compare_ids"></a>
+
+#### compare\_ids
+
+```python
+def compare_ids(left: str, right: str) -> int
+```
+
+Compare two IDs, padding with leading zeros.
+
+Returns -1 if left < right, 0 if equal, 1 if left > right.
+
+<a id="ganban.ids.max_id"></a>
+
+#### max\_id
+
+```python
+def max_id(ids: list[str]) -> str | None
+```
+
+Find the highest ID from a list, or None if empty.
+
+<a id="ganban.ids.next_id"></a>
+
+#### next\_id
+
+```python
+def next_id(current_max: str | None) -> str
+```
+
+Generate the next ID after current_max.
+
+- If None, returns "1"
+- If numeric (e.g., "9"), returns str(int + 1) (e.g., "10")
+- If non-numeric (e.g., "fish"), returns "1" + "0" * len (e.g., "10000")
+
+<a id="ganban.git"></a>
+
+# ganban.git
+
+Git operations for ganban, with sync and async variants.
+
+<a id="ganban.git.read_git_config"></a>
+
+#### read\_git\_config
+
+```python
+def read_git_config(repo_path: str | Path) -> dict[str, dict[str, Any]]
+```
+
+Read git config into {section: {key: value}} dict.
+
+Skips subsectioned entries (e.g. remote "origin").
+Converts key hyphens to underscores. Applies type coercion
+for the ganban section. Merges ganban defaults for missing keys.
+
+<a id="ganban.git.write_git_config_key"></a>
+
+#### write\_git\_config\_key
+
+```python
+def write_git_config_key(repo_path: str | Path, section: str, key: str,
+                         value) -> None
+```
+
+Write one key to git config. key is python-style (underscores).
+
+<a id="ganban.git.is_git_repo"></a>
+
+#### is\_git\_repo
+
+```python
+def is_git_repo(path: str | Path) -> bool
+```
+
+Check if path is inside a git repository.
+
+<a id="ganban.git.init_repo"></a>
+
+#### init\_repo
+
+```python
+def init_repo(path: str | Path) -> Repo
+```
+
+Initialize a new git repository at path.
+
+<a id="ganban.git.get_remotes_sync"></a>
+
+#### get\_remotes\_sync
+
+```python
+def get_remotes_sync(repo_path: str | Path) -> list[str]
+```
+
+Get list of remote names for a repository.
+
+<a id="ganban.git.fetch_sync"></a>
+
+#### fetch\_sync
+
+```python
+def fetch_sync(repo_path: str | Path, remote_name: str) -> None
+```
+
+Fetch from a specific remote.
+
+<a id="ganban.git.push_sync"></a>
+
+#### push\_sync
+
+```python
+def push_sync(repo_path: str | Path,
+              remote_name: str,
+              branch: str = "ganban") -> None
+```
+
+Push a branch to a remote.
+
+<a id="ganban.git.get_upstream"></a>
+
+#### get\_upstream
+
+```python
+def get_upstream(repo_path: str | Path,
+                 branch: str = "ganban") -> tuple[str, str] | None
+```
+
+Get the upstream remote and branch for a local branch.
+
+Returns (remote_name, remote_branch) or None if no tracking branch is set.
+
+<a id="ganban.git.resolve_upstream"></a>
+
+#### resolve\_upstream
+
+```python
+def resolve_upstream(repo_path: str | Path, remotes: list[str]) -> str | None
+```
+
+Pick the upstream remote: configured tracking, else origin, else first.
+
+<a id="ganban.git.merge_order"></a>
+
+#### merge\_order
+
+```python
+def merge_order(remotes: list[str], upstream: str | None) -> list[str]
+```
+
+Order remotes for merging: non-upstream first, upstream last.
+
+<a id="ganban.git.remote_has_branch"></a>
+
+#### remote\_has\_branch
+
+```python
+def remote_has_branch(repo_path: str | Path,
+                      remote_name: str,
+                      branch: str = "ganban") -> bool
+```
+
+Check if refs/remotes/{remote}/{branch} exists.
+
+<a id="ganban.git.has_branch_sync"></a>
+
+#### has\_branch\_sync
+
+```python
+def has_branch_sync(repo_path: str | Path, branch: str = "ganban") -> bool
+```
+
+Check if a branch exists in the repository (sync).
+
+<a id="ganban.git.has_branch"></a>
+
+#### has\_branch
+
+```python
+async def has_branch(repo_path: str | Path, branch: str = "ganban") -> bool
+```
+
+Check if a branch exists in the repository.
+
+<a id="ganban.git.get_remotes"></a>
+
+#### get\_remotes
+
+```python
+async def get_remotes(repo_path: str | Path) -> list[str]
+```
+
+Get list of remote names for a repository.
+
+<a id="ganban.git.fetch"></a>
+
+#### fetch
+
+```python
+async def fetch(repo_path: str | Path, remote_name: str) -> None
+```
+
+Fetch from a specific remote.
+
+<a id="ganban.git.push"></a>
+
+#### push
+
+```python
+async def push(repo_path: str | Path,
+               remote_name: str,
+               branch: str = "ganban") -> None
+```
+
+Push a branch to a remote.
+
+<a id="ganban.git.create_orphan_branch"></a>
+
+#### create\_orphan\_branch
+
+```python
+async def create_orphan_branch(repo_path: str | Path,
+                               branch: str = "ganban") -> str
+```
+
+Create an orphan branch with an empty commit.
+
+Does not touch the working tree. Returns the commit hash.
+
+<a id="ganban.model.node"></a>
+
+# ganban.model.node
+
+Reactive tree nodes with change notification and bubbling.
+
+<a id="ganban.model.node._Watchable"></a>
+
+## \_Watchable Objects
+
+```python
+class _Watchable()
+```
+
+Shared watcher registry and path computation for Node and ListNode.
+
+<a id="ganban.model.node._Watchable.watch"></a>
+
+#### watch
+
+```python
+def watch(key: str, callback: Callback) -> Callable[[], None]
+```
+
+Watch a key for changes. Returns an unwatch callable.
+
+<a id="ganban.model.node._Watchable.path"></a>
+
+#### path
+
+```python
+@property
+def path() -> str
+```
+
+Dotted path from root to this node.
+
+<a id="ganban.model.node.Node"></a>
+
+## Node Objects
+
+```python
+class Node(_Watchable)
+```
+
+Reactive dict-like tree node.
+
+Stores data in an internal dict, accessed via attribute syntax.
+Setting a value to None deletes the key. Dict values are
+auto-wrapped as child Nodes. Changes fire watchers and bubble
+up through the parent chain.
+
+<a id="ganban.model.node.Node.keys"></a>
+
+#### keys
+
+```python
+def keys()
+```
+
+Return children keys.
+
+<a id="ganban.model.node.Node.items"></a>
+
+#### items
+
+```python
+def items()
+```
+
+Return children items.
+
+<a id="ganban.model.node.Node.values"></a>
+
+#### values
+
+```python
+def values()
+```
+
+Return children values.
+
+<a id="ganban.model.node.Node.update"></a>
+
+#### update
+
+```python
+def update(other: Node) -> None
+```
+
+Update this node in-place to match other, preserving watchers.
+
+<a id="ganban.model.node.Node.clone"></a>
+
+#### clone
+
+```python
+def clone() -> "Node"
+```
+
+Deep-copy this subtree without watchers or the parent link.
+
+Used to snapshot the board on the event-loop thread so background
+saves never iterate structures the UI is still mutating.
+
+<a id="ganban.model.node.Node.rename_key"></a>
+
+#### rename\_key
+
+```python
+def rename_key(old_key: str, new_key: str) -> None
+```
+
+Rename a key in _children, preserving insertion order.
+
+<a id="ganban.model.node.ListNode"></a>
+
+## ListNode Objects
+
+```python
+class ListNode(_Watchable)
+```
+
+Ordered, id-keyed collection with change notification.
+
+Items are accessed by string id. Setting to None deletes.
+Dicts are auto-wrapped as Nodes. Changes fire watchers and
+bubble up through the parent chain. Order is the insertion order
+of _by_id; replacing a value keeps its position.
+
+<a id="ganban.model.node.ListNode.keys"></a>
+
+#### keys
+
+```python
+def keys()
+```
+
+Return ordered keys.
+
+<a id="ganban.model.node.ListNode.items"></a>
+
+#### items
+
+```python
+def items()
+```
+
+Return ordered (key, value) pairs.
+
+<a id="ganban.model.node.ListNode.update"></a>
+
+#### update
+
+```python
+def update(other: ListNode) -> None
+```
+
+Update this list in-place to match other, preserving watchers.
+
+<a id="ganban.model.node.ListNode.clone"></a>
+
+#### clone
+
+```python
+def clone() -> "ListNode"
+```
+
+Deep-copy this list without watchers or the parent link.
+
+<a id="ganban.model.node.ListNode.add"></a>
+
+#### add
+
+```python
+def add(key: str, value: Any) -> str
+```
+
+Add a new item, deduplicating the key if it already exists.
+
+Returns the actual key used.
+
+<a id="ganban.model.node.ListNode.rename_first_key"></a>
+
+#### rename\_first\_key
+
+```python
+def rename_first_key(new_title: str) -> None
+```
+
+Rename the first key by rebuilding the list.
+
+<a id="ganban.model.board"></a>
+
+# ganban.model.board
+
+Board-level helpers.
+
+<a id="ganban.model.board.create_default_board"></a>
+
+#### create\_default\_board
+
+```python
+def create_default_board(repo_path: str | Path) -> Node
+```
+
+Build the default board (Backlog/Doing/Done) for a new repository.
+
+<a id="ganban.model.column"></a>
+
+# ganban.model.column
+
+Column mutation operations for ganban boards.
+
+<a id="ganban.model.column.slugify"></a>
+
+#### slugify
+
+```python
+def slugify(text: str) -> str
+```
+
+Convert text to a URL-friendly slug.
+
+<a id="ganban.model.column.build_column_path"></a>
+
+#### build\_column\_path
+
+```python
+def build_column_path(order: str, name: str, hidden: bool = False) -> str
+```
+
+Build column directory path from components.
+
+<a id="ganban.model.column.create_column"></a>
+
+#### create\_column
+
+```python
+def create_column(board: Node,
+                  name: str,
+                  order: str | None = None,
+                  hidden: bool = False) -> Node
+```
+
+Create a new column and add it to the board.
+
+Returns the created column Node.
+
+<a id="ganban.model.column.move_column"></a>
+
+#### move\_column
+
+```python
+def move_column(board: Node, column: Node, new_index: int) -> None
+```
+
+Move column to new_index in the board's columns ListNode.
+
+Rebuilds the columns ListNode with updated order values and dir_paths.
+
+<a id="ganban.model.column.archive_column"></a>
+
+#### archive\_column
+
+```python
+def archive_column(board: Node, column_order: str) -> None
+```
+
+Archive a column by removing it from the board.
+
+<a id="ganban.model.column.rename_column"></a>
+
+#### rename\_column
+
+```python
+def rename_column(board: Node, column: Node, new_name: str) -> None
+```
+
+Rename a column: update its sections title and dir_path.
+
+<a id="ganban.model.card"></a>
+
+# ganban.model.card
+
+Card mutation operations for ganban boards.
+
+<a id="ganban.model.card.create_card"></a>
+
+#### create\_card
+
+```python
+def create_card(board: Node,
+                title: str,
+                body: str = "",
+                column: Node | None = None,
+                position: int | None = None) -> tuple[str, Node]
+```
+
+Create a new card and add it to the board.
+
+Returns (card_id, card_node).
+
+<a id="ganban.model.card.find_card_column"></a>
+
+#### find\_card\_column
+
+```python
+def find_card_column(board: Node, card_id: str) -> Node | None
+```
+
+Find the column containing a card.
+
+<a id="ganban.model.card.move_card"></a>
+
+#### move\_card
+
+```python
+def move_card(board: Node,
+              card_id: str,
+              target_column: Node,
+              position: int | None = None) -> None
+```
+
+Move a card to target_column at position.
+
+Handles same-column reorder atomically (single list assignment)
+to avoid watchers removing the card widget between operations.
+
+<a id="ganban.model.card.rename_label"></a>
+
+#### rename\_label
+
+```python
+def rename_label(board: Node, old_name: str, new_name: str) -> None
+```
+
+Rename a label across all cards and board meta.
+
+<a id="ganban.model.card.delete_label"></a>
+
+#### delete\_label
+
+```python
+def delete_label(board: Node, name: str) -> None
+```
+
+Delete a label from all cards and board meta.
+
+<a id="ganban.model.card.archive_card"></a>
+
+#### archive\_card
+
+```python
+def archive_card(board: Node, card_id: str) -> None
+```
+
+Archive a card by removing it from its column's links.
+
+<a id="ganban.model.loader"></a>
+
+# ganban.model.loader
+
+Load a ganban board from git into a Node tree.
+
+<a id="ganban.model.loader.build_sections_list"></a>
+
+#### build\_sections\_list
+
+```python
+def build_sections_list(text: str,
+                        fallback_title: str = "Untitled"
+                        ) -> tuple[ListNode, dict]
+```
+
+Parse markdown text into a ListNode of sections plus meta dict.
+
+fallback_title is used only when no section has a title at all. An
+untitled first section alongside titled ones is preamble text above
+the H1 and must keep its empty key to round-trip cleanly.
+
+<a id="ganban.model.loader.normalise_label"></a>
+
+#### normalise\_label
+
+```python
+def normalise_label(raw: str) -> str
+```
+
+Normalise a label name to lowercase, stripped.
+
+<a id="ganban.model.loader.load_board"></a>
+
+#### load\_board
+
+```python
+def load_board(repo_path: str,
+               branch: str = BRANCH_NAME,
+               committers: bool = True) -> Node
+```
+
+Load a complete board from a git branch as a Node tree.
+
+committers=False skips the git-history scan that feeds assignee
+suggestions — one-shot CLI commands never use it.
+
+<a id="ganban.model.writer"></a>
+
+# ganban.model.writer
+
+Save a ganban board (Node tree) to git without touching the working tree.
+
+<a id="ganban.model.writer.meta_to_dict"></a>
+
+#### meta\_to\_dict
+
+```python
+def meta_to_dict(meta) -> dict
+```
+
+Convert a meta value (Node or dict) back to a plain dict, recursively.
+
+<a id="ganban.model.writer.sections_to_text"></a>
+
+#### sections\_to\_text
+
+```python
+def sections_to_text(sections: ListNode, meta) -> str
+```
+
+Serialize a sections ListNode + meta back to markdown text.
+
+<a id="ganban.model.writer.MergeRequired"></a>
+
+## MergeRequired Objects
+
+```python
+@dataclass
+class MergeRequired()
+```
+
+Returned by check_for_merge when the branch has diverged.
+
+<a id="ganban.model.writer.save_board"></a>
+
+#### save\_board
+
+```python
+def save_board(board: Node,
+               message: str = "Update board",
+               branch: str = BRANCH_NAME,
+               parents: list[str] | None = None) -> str
+```
+
+Save a board to git and return the new commit hash.
+
+<a id="ganban.model.writer.save_and_merge"></a>
+
+#### save\_and\_merge
+
+```python
+def save_and_merge(board: Node,
+                   message: str = "Update board",
+                   branch: str = BRANCH_NAME,
+                   max_attempts: int = 5) -> tuple[str, bool]
+```
+
+Save the board, merging any concurrent movement of the branch tip.
+
+Returns (commit, merged). merged is True when a concurrent commit was
+merged in — long-lived callers should reload the board from git, since
+the in-memory tree does not contain the merged-in changes.
+
+Raises RuntimeError if the branch diverged and auto-merge kept failing;
+the local changes are preserved in the returned commit's history.
+
+<a id="ganban.model.writer.check_for_merge"></a>
+
+#### check\_for\_merge
+
+```python
+def check_for_merge(board: Node,
+                    branch: str = BRANCH_NAME) -> MergeRequired | None
+```
+
+Check if saving would require a merge.
+
+<a id="ganban.model.writer.check_remote_for_merge"></a>
+
+#### check\_remote\_for\_merge
+
+```python
+def check_remote_for_merge(board: Node,
+                           remote: str = "origin",
+                           branch: str = BRANCH_NAME) -> MergeRequired | None
+```
+
+Check if a remote has changes that need merging.
+
+<a id="ganban.model.writer.try_auto_merge"></a>
+
+#### try\_auto\_merge
+
+```python
+def try_auto_merge(board: Node,
+                   merge_info: MergeRequired,
+                   message: str = "Merge changes",
+                   branch: str = BRANCH_NAME) -> str | None
+```
+
+Attempt an automatic merge, resolving conflicts with most-recent-commit-wins.
+
+Returns the new merge commit hash. Conflicts are resolved by replacing
+conflicted files with the version from whichever commit is newer.
+Returns None if merge-tree fails entirely, or if the branch moved
+concurrently (merge_info is stale — re-check and retry).
+
+<a id="ganban.model"></a>
+
+# ganban.model
+
+Reactive model tree.
+
+<a id="ganban.cli.web"></a>
+
+# ganban.cli.web
+
+Handlers for 'ganban web' command.
+
+<a id="ganban.cli.sync"></a>
+
+# ganban.cli.sync
+
+Handlers for 'ganban sync' command.
+
+<a id="ganban.cli.sync.sync"></a>
+
+#### sync
+
+```python
+def sync(args) -> int
+```
+
+One-shot sync handler. Dispatches to daemon if -d.
+
+<a id="ganban.cli.sync.sync_daemon"></a>
+
+#### sync\_daemon
+
+```python
+def sync_daemon(args, repo_path: str) -> int
+```
+
+Loop _do_sync on interval. SIGINT/SIGTERM stops cleanly.
+
+<a id="ganban.cli.board"></a>
+
+# ganban.cli.board
+
+Handlers for 'ganban board' commands.
+
+<a id="ganban.cli.board.board_summary"></a>
+
+#### board\_summary
+
+```python
+def board_summary(args) -> int
+```
+
+Show board summary: title, columns, card counts.
+
+<a id="ganban.cli.board.board_get"></a>
+
+#### board\_get
+
+```python
+def board_get(args) -> int
+```
+
+Dump board index.md content.
+
+<a id="ganban.cli.board.board_set"></a>
+
+#### board\_set
+
+```python
+def board_set(args) -> int
+```
+
+Write board index.md from stdin.
+
+<a id="ganban.cli.column"></a>
+
+# ganban.cli.column
+
+Handlers for 'ganban column' commands.
+
+<a id="ganban.cli.column.column_list"></a>
+
+#### column\_list
+
+```python
+def column_list(args) -> int
+```
+
+List all columns.
+
+<a id="ganban.cli.column.column_get"></a>
+
+#### column\_get
+
+```python
+def column_get(args) -> int
+```
+
+Dump column index.md content.
+
+<a id="ganban.cli.column.column_set"></a>
+
+#### column\_set
+
+```python
+def column_set(args) -> int
+```
+
+Write column index.md from stdin.
+
+<a id="ganban.cli.column.column_add"></a>
+
+#### column\_add
+
+```python
+def column_add(args) -> int
+```
+
+Create a new column.
+
+<a id="ganban.cli.column.column_move"></a>
+
+#### column\_move
+
+```python
+def column_move(args) -> int
+```
+
+Move a column to a new position.
+
+<a id="ganban.cli.column.column_rename"></a>
+
+#### column\_rename
+
+```python
+def column_rename(args) -> int
+```
+
+Rename a column.
+
+<a id="ganban.cli.column.column_archive"></a>
+
+#### column\_archive
+
+```python
+def column_archive(args) -> int
+```
+
+Archive a column.
+
+<a id="ganban.cli._common"></a>
+
+# ganban.cli.\_common
+
+Shared helpers for CLI command handlers.
+
+<a id="ganban.cli._common.load_board_or_die"></a>
+
+#### load\_board\_or\_die
+
+```python
+def load_board_or_die(repo: str, json_mode: bool) -> Node
+```
+
+Load board from repo path. Exit 1 with message if not found.
+
+<a id="ganban.cli._common.find_column"></a>
+
+#### find\_column
+
+```python
+def find_column(board: Node, col_id: str, json_mode: bool) -> Node
+```
+
+Lookup column by order ID. Exit 1 listing available columns if not found.
+
+<a id="ganban.cli._common.find_card"></a>
+
+#### find\_card
+
+```python
+def find_card(board: Node, card_id: str, json_mode: bool) -> Node
+```
+
+Lookup card by ID. Exit 1 if not found.
+
+<a id="ganban.cli._common.save"></a>
+
+#### save
+
+```python
+def save(board: Node, message: str) -> str
+```
+
+Save board and return commit hash.
+
+<a id="ganban.cli._common.output_json"></a>
+
+#### output\_json
+
+```python
+def output_json(data: dict | list) -> None
+```
+
+Write JSON to stdout.
+
+<a id="ganban.cli._common.output_result"></a>
+
+#### output\_result
+
+```python
+def output_result(data: dict, text: str, json_mode: bool) -> None
+```
+
+Output mutation result as JSON or plain text.
+
+<a id="ganban.cli._common.error"></a>
+
+#### error
+
+```python
+def error(message: str, json_mode: bool) -> None
+```
+
+Print error to stderr and exit 1.
+
+<a id="ganban.cli._common.build_column_summaries"></a>
+
+#### build\_column\_summaries
+
+```python
+def build_column_summaries(board: Node) -> list[dict]
+```
+
+Build column summary dicts from board.
+
+<a id="ganban.cli._common.format_column_line"></a>
+
+#### format\_column\_line
+
+```python
+def format_column_line(c: dict, indent: str = "") -> str
+```
+
+Format a column summary dict as a text line.
+
+<a id="ganban.cli.card"></a>
+
+# ganban.cli.card
+
+Handlers for 'ganban card' commands.
+
+<a id="ganban.cli.card.card_list"></a>
+
+#### card\_list
+
+```python
+def card_list(args) -> int
+```
+
+List cards grouped by column.
+
+<a id="ganban.cli.card.card_get"></a>
+
+#### card\_get
+
+```python
+def card_get(args) -> int
+```
+
+Dump card markdown content.
+
+<a id="ganban.cli.card.card_set"></a>
+
+#### card\_set
+
+```python
+def card_set(args) -> int
+```
+
+Write card markdown from stdin.
+
+<a id="ganban.cli.card.card_add"></a>
+
+#### card\_add
+
+```python
+def card_add(args) -> int
+```
+
+Create a new card.
+
+<a id="ganban.cli.card.card_move"></a>
+
+#### card\_move
+
+```python
+def card_move(args) -> int
+```
+
+Move a card to a column.
+
+<a id="ganban.cli.card.card_archive"></a>
+
+#### card\_archive
+
+```python
+def card_archive(args) -> int
+```
+
+Archive a card.
+
+<a id="ganban.cli.init"></a>
+
+# ganban.cli.init
+
+Handler for 'ganban init'.
+
+<a id="ganban.cli.init.init_board"></a>
+
+#### init\_board
+
+```python
+def init_board(args) -> int
+```
+
+Initialize a ganban board in the repository.
+
+<a id="ganban.cli"></a>
+
+# ganban.cli
+
+CLI argument parser and dispatch for ganban.
+
+<a id="ganban.cli.build_parser"></a>
+
+#### build\_parser
+
+```python
+def build_parser() -> argparse.ArgumentParser
+```
+
+Build the full CLI argument parser.
 
