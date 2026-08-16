@@ -1,7 +1,7 @@
 # 💾 mkfs.\*
 
 I've been building obscure filesystems test images for
-[qemount](/dev/rust/qemount) using custom `mkfs` programs written in C. I needed
+[mountin](/dev/rust/mountin) using custom `mkfs` programs written in C. I needed
 the test data and couldn't find versions anywhere, so had the bots build them
 for me over the last few months. But having started playing with Rust, why not
 port them over? They'll be safer that way, and easier for people to build.

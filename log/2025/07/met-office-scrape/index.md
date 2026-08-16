@@ -39,7 +39,7 @@ It is, of course, WTFPL licensed like everything but the data.
 
 The side project caused MediaInfo to get webm support, which in turn caused
 EXIF to be split out, data was shared, philosophy written, uploaders honed, and
-keeping the rip project alive led to a generic FUSE mounting system (`qemount`),
+keeping the rip project alive led to a generic FUSE mounting system (`mountin`),
 an embeddable 9p server, and a user-space
 [block device cache](/dev/python/blkcache) built and tested.
 

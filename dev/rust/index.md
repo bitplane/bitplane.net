@@ -5,7 +5,7 @@ I get the concepts and the borrow checker upsets me. At this point in history
 it's kinda dangerous to write C/C++ code, so let's do more Rust in future
 
 * [🖼️ ttx42](https://github.com/bitplane/ttx42)
-* [🔌 qemount](qemount)
+* [🏔️ mountin](mountin)
 * [📦 rars](rars)
 * [📦 oldrar](oldrar)
 * [📦 amiga-lzx](amiga-lzx)

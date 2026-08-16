@@ -1,6 +1,6 @@
 # 🧊 freeze/melt in 2026
 
-In an endless quest to create test data for [qemount](/dev/rust/qemount), I
+In an endless quest to create test data for [mountin](/dev/rust/mountin), I
 stumbled on the source code for 90s archival tool `freeze`. I hacked around with
 it and got it working in Linux, but it didn't come with a license so I was a bit
 worried about actually using it.
