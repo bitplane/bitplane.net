@@ -27,13 +27,17 @@ Quickest way is run it in `uv` (either `pip install uv` or follow
 
 ### ⚠️ IT EDITS DOCKERFILES SO USE SOURCE CONTROL ⚠️
 
-By default it'll create or append to a `Dockerfile` in your pwd. Earlier
-versions also delete stuff, current ones might comment things out. Don't say
-you weren't warned.
+By default it'll create or append to a `Dockerfile` in your pwd. Each proposed
+instruction is tested as a transaction: if it breaks the build, the previous
+file is restored byte-for-byte before the failed instruction is added as a
+comment. Don't say you weren't warned.
 
 ```bash
 uvx dockershit ubuntu:latest
 ```
+
+It uses Podman when available, falling back to Docker. Choose one explicitly
+with `--engine podman` or `--engine docker`.
 
 * 🔢 type some commands, then `exit` or `quit`
 * 👀 look in your pwd for a `Dockerfile`, notice the `RUN` lines - they're the
@@ -42,15 +46,14 @@ uvx dockershit ubuntu:latest
 * 🔃 arrow keys and ctrl+r work, history is in `Dockerfile.history`
 * ⬅️ commands starting with a space don't get added to the file, but they do go to
   the .history file
-* #️⃣ comments e.g. `# wtf delete the above` go to the `Dockerfile` unless they
+* 💬 comments e.g. `# wtf delete the above` go to the `Dockerfile` unless they
   start with a space i.e. ` # subscribe and like, like and subscribe`
 * ➕ `ADD`, `COPY` and other docker shit get added too, and the image is rebuilt
   between each command
 * #️⃣ if a command fails, you'll get a commented out line instead
 * 🚶 `cd` changes your `WORKDIR`, and `WORKDIR` changes your `cd`
 * 🐛 use `--debug` if you want to see it rebuilding
-* ⛓️‍💥 if you break your `Dockerfile` it'll exit (it rebuilds after every command)
-  and currently deletes the broken line
+* 💥 if an instruction breaks the build, it restores the previous `Dockerfile`
 * 🚫 your Dockerfile and its history are excluded from the context
 * 🪈 you can use it with pipe like `cat whatever | dockershit`
 * 💩 yeah it runs everything twice, which is an embarrassment - in future I'll make
@@ -71,10 +74,6 @@ WTFPL with one additional clause:
 
 ## TODO
 
-* CI build and deploy
-  * release docs to [bitplane.net](https://bitplane.net/dev/python/)
-  * build and post to pypi on a tag
-* record a nice video using [type.py](https://github.com/bitplane/asciinema-fx)
 * restructure input so it's a nice UI
   * use textual?
 * remove double `WORKDIR` entries by combining them
