@@ -1,3 +1,4 @@
+* [2026-09-21 - 🖌️ pillow-wmf - load WMF files in Pillow](/dev/python/pillow-wmf)
 * [2026-07-29 - 🗜️ xfh - unpacker for Python](/dev/python/xfh)
 * [2026-07-29 - 💬 narrator-ts - Amiga narrator for TypeScript](https://www.npmjs.com/package/narrator-ts)
 * [2026-07-28 - 👾 amos-ts - AMOS Pro on the web](log/2026/07/amos-ts)
