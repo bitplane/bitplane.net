@@ -6,7 +6,13 @@ Like in the old Windows days, a GDI backend draws graphics and can also record
 actions to a Windows Metafile. Rasterizing one of these WMFs is just a matter
 of playing it back, which produces a Pillow Image.
 
-Here's how you load one:
+## Links
+
+* [🏠 home](https://bitplane.net/dev/python/pillow-wmf)
+* [😺 source](https://github.com/bitplane/pillow-wmf)
+* [🐍 pypi](https://pypi.org/project/pillow-wmf)
+
+## Usage
 
 ```python
 from PIL import Image

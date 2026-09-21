@@ -4,6 +4,70 @@
 
 WMF codec, GDI recording and Pillow loading with an RGB raster backend.
 
+<a id="pillow_wmf.objects"></a>
+
+# pillow\_wmf.objects
+
+Immutable GDI inputs, independent of metafile record layouts.
+
+<a id="pillow_wmf.objects.EncodedText"></a>
+
+## EncodedText Objects
+
+```python
+@dataclass(frozen=True)
+class EncodedText()
+```
+
+Text bytes decoded with the selected font and code-page environment.
+
+Explicit advances retain source-byte indexing until decoding determines
+character spans and the environment's spacing convention.
+
+<a id="pillow_wmf.objects.GlyphIndices"></a>
+
+## GlyphIndices Objects
+
+```python
+@dataclass(frozen=True)
+class GlyphIndices()
+```
+
+Font-local glyph IDs; advances index glyphs, not encoded bytes.
+
+<a id="pillow_wmf.objects.EncodedFaceName"></a>
+
+## EncodedFaceName Objects
+
+```python
+@dataclass(frozen=True)
+class EncodedFaceName()
+```
+
+A legacy face name decoded using the caller's ANSI environment.
+
+<a id="pillow_wmf.objects.RegionGeometry"></a>
+
+## RegionGeometry Objects
+
+```python
+@dataclass(frozen=True)
+class RegionGeometry()
+```
+
+Logical rectangles; empty geometry is a valid empty region.
+
+<a id="pillow_wmf.objects.BitmapData"></a>
+
+## BitmapData Objects
+
+```python
+@dataclass(frozen=True)
+class BitmapData()
+```
+
+Encoded bitmap bytes, not decoded or certified as renderable.
+
 <a id="pillow_wmf.environment_codepages"></a>
 
 # pillow\_wmf.environment\_codepages
@@ -271,6 +335,16 @@ def layout_font(request, face, scale, *, characters=None)
 
 Prepare a run; controlled fonts never depend on host discovery.
 
+<a id="pillow_wmf.text.FontCollection.face_name"></a>
+
+#### face\_name
+
+```python
+def face_name(request)
+```
+
+Resolve a logical name, or a legacy name in this ANSI environment.
+
 <a id="pillow_wmf.text.FontRun"></a>
 
 ## FontRun Objects
@@ -338,6 +412,40 @@ def paired_background(glyphs, offsets, vertical_offsets, origin_x, baseline,
 ```
 
 Bound positioned glyph cells in font space, then realize their corners.
+
+<a id="pillow_wmf.recording"></a>
+
+# pillow\_wmf.recording
+
+Draw and record the same GDI commands through exclusively owned contexts.
+
+<a id="pillow_wmf.recording.RecordingContext"></a>
+
+## RecordingContext Objects
+
+```python
+class RecordingContext(TraceContext)
+```
+
+Pair fresh staged backends, rejecting work before either side applies it.
+
+Issue all drawing through this wrapper after construction. Direct changes
+to the image, backend state or recorder records are not captured. Rendering
+a recording requires the same canvas, initial background and font setup.
+Unexpected execution failures invalidate the pair; no pixel rollback is
+attempted. Failed native creations are rejected rather than recorded with
+potentially different object-slot lifetimes.
+
+<a id="pillow_wmf.recording.RecordingContext.image"></a>
+
+#### image
+
+```python
+@property
+def image()
+```
+
+The live image; mutating it directly bypasses recording.
 
 <a id="pillow_wmf.plugin"></a>
 
@@ -762,21 +870,6 @@ and any uninterpreted trailing bytes independently of their decoded fields.
 
 Wire-level graphics structures. Bitmap pixels are deliberately undecoded.
 
-<a id="pillow_wmf.wmf.objects.BitmapData"></a>
-
-## BitmapData Objects
-
-```python
-@dataclass(frozen=True)
-class BitmapData()
-```
-
-An encoded Bitmap16 or DIB, not decoded or certified as renderable.
-
-Keeping this explicit prevents opaque preservation from being mistaken for
-bitmap codec support. The separate bitmap module decodes a bounded subset;
-constructing this envelope alone does not validate its header or pixels.
-
 <a id="pillow_wmf.wmf.constants"></a>
 
 # pillow\_wmf.wmf.constants
@@ -894,42 +987,17 @@ A checked command recorder, not a rendering device-context emulator.
 Use direct Record construction for reserved fields, unknown opcodes and
 intentionally invalid test cases. Public calls use logical backend handles.
 
+<a id="pillow_wmf.wmf.adapters"></a>
+
+# pillow\_wmf.wmf.adapters
+
+Translate logical GDI objects into representable WMF wire objects.
+
 <a id="pillow_wmf.wmf.binary"></a>
 
 # pillow\_wmf.wmf.binary
 
-Bounded little-endian reads shared by WMF records and nested objects.
-
-<a id="pillow_wmf.wmf.binary.FormatError"></a>
-
-## FormatError Objects
-
-```python
-class FormatError(ValueError)
-```
-
-The input cannot be interpreted safely as a WMF structure.
-
-<a id="pillow_wmf.wmf.binary.ResourceLimitError"></a>
-
-## ResourceLimitError Objects
-
-```python
-class ResourceLimitError(FormatError)
-```
-
-A configured safety limit was exceeded; never a recoverable omission.
-
-<a id="pillow_wmf.wmf.binary.Limits"></a>
-
-## Limits Objects
-
-```python
-@dataclass(frozen=True)
-class Limits()
-```
-
-Allocation/work limits; these are policy, not WMF format limits.
+Compatibility imports for shared bounded binary helpers.
 
 <a id="pillow_wmf.wmf.fixed"></a>
 
@@ -1172,7 +1240,7 @@ There is no display-wide hardware palette to animate on this device.
 
 # pillow\_wmf.raster
 
-WMF rasterization into a Pillow RGB image.
+GDI rasterization into a Pillow RGB image.
 
 <a id="pillow_wmf.raster.PreparedEffect"></a>
 
@@ -1268,6 +1336,43 @@ Decode storage rows, optionally clipped during the native scan transfer.
 ``clip_spans(y)`` supplies disjoint half-open intervals in storage coordinates.
 Encoded RLE4 runs restart at their high nibble after left clipping; absolute
 runs retain their source phase. Clipping an already decoded bitmap differs.
+
+<a id="pillow_wmf.binary"></a>
+
+# pillow\_wmf.binary
+
+Bounded little-endian IO and resource policy shared by graphics codecs.
+
+<a id="pillow_wmf.binary.FormatError"></a>
+
+## FormatError Objects
+
+```python
+class FormatError(ValueError)
+```
+
+The input cannot be interpreted safely as a graphics structure.
+
+<a id="pillow_wmf.binary.ResourceLimitError"></a>
+
+## ResourceLimitError Objects
+
+```python
+class ResourceLimitError(FormatError)
+```
+
+A configured safety limit was exceeded; never a recoverable omission.
+
+<a id="pillow_wmf.binary.Limits"></a>
+
+## Limits Objects
+
+```python
+@dataclass(frozen=True)
+class Limits()
+```
+
+Allocation/work limits; these are policy, not WMF format limits.
 
 <a id="pillow_wmf.mac_dbcs"></a>
 
@@ -1741,6 +1846,22 @@ class InvalidOperation(ValueError)
 
 Invalid call data rejected before the backend changes drawing state.
 
+<a id="pillow_wmf.gdi.PreparedCall"></a>
+
+## PreparedCall Objects
+
+```python
+@dataclass(frozen=True)
+class PreparedCall()
+```
+
+Opaque, single-use preparation tied to one context revision.
+
+Callers must not construct or modify these tokens. Preparation may warm
+caches but does not publish handles, append commands or draw pixels.
+Backends flag predicted null creations and recorders flag operations whose
+playback semantics differ, so a recording pair can reject them in advance.
+
 <a id="pillow_wmf.gdi.GDI"></a>
 
 ## GDI Objects
@@ -1766,6 +1887,26 @@ emulating backends may share a typed null handle across failures.
 WMF playback uses this result to preserve native file-slot allocation.
 Non-emulating backends may retain the default successful-creation model.
 
+<a id="pillow_wmf.gdi.GDI.prepare"></a>
+
+#### prepare
+
+```python
+def prepare(call: Call) -> PreparedCall
+```
+
+Validate without drawing; backends must opt into staged execution.
+
+<a id="pillow_wmf.gdi.GDI.apply"></a>
+
+#### apply
+
+```python
+def apply(prepared: PreparedCall) -> Handle | int | None
+```
+
+Apply an unchanged preparation; execution failures are fatal.
+
 <a id="pillow_wmf.gdi.GDI.set_dib_to_device"></a>
 
 #### set\_dib\_to\_device
@@ -1776,5 +1917,5 @@ def set_dib_to_device(x: int, y: int, width: int, height: int, src_x: int,
                       color_usage: int, source: BitmapData) -> None
 ```
 
-Transfer a band from a complete packed DIB (the WMF buffer contract).
+Transfer a band from a complete packed DIB using logical coordinates.
 
