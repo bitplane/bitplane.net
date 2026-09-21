@@ -5,9 +5,6 @@ With less than a decade left before I lose my memory, this set of pages acts
 as less volatile storage, if not for code then at least a bit of a record of
 the projects I've worked on.
 
-Note there's a lot of stuff and this is ongoing, so it'll be a while before
-all the links work.
-
 The best stuff is in:
 
 * 🐍 [python](python)
@@ -21,7 +18,7 @@ The best stuff is in:
 Some still-active things, or at least not that inactive.
 
 * [🎓 example-python-project](https://github.com/bitplane/example-python-project) -
-  A template for Python projects developed in vim/vscode on Mac/Linux.
+  A template for Python projects.
 * [🗔  bittty](python/bittty) -
   A terminal written in pure Python.
 * [💽 blkcache](python/blkcache) -
@@ -68,5 +65,6 @@ An incomplete list of languages.
 * [🐍 python](python) - My weapon of choice
 * [🕸️ php](php) - Personal Home Page?
 * [💎 ruby](ruby) - A couple of Rails things.
-* [🦀 rust](rust) - New, but crusty.
+* [🦀 rust](rust) - New and crusty.
+* [🔣 typescript](ts) - The typing gets in the way.
 * [💩 vb](vb) - Visual Basic 6, VBA, VBS
