@@ -19,8 +19,10 @@ that's a fair comment.
 
 ## 📦 Apps
 
+* 🖼️ [pillow-wmf](pillow-wmf) -
+  loading Windows Metafiles in pure Python
 * 🆘 [winhlp](winhlp) -
-  A Windows 95 era .HLP file decoder.
+  a Windows 95 era .HLP file decoder.
 * 📦 [Crunch-Mania](crunchmania) -
   another Amiga compression format.
 * 📃 [CFF MOST](cff-most) -
