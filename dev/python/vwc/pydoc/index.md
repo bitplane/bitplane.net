@@ -2,6 +2,293 @@
 
 # vwc
 
+<a id="vwc.main"></a>
+
+# vwc.main
+
+Main entry point for vwc.
+
+<a id="vwc.main.main"></a>
+
+#### main
+
+```python
+def main()
+```
+
+Main entry point.
+
+<a id="vwc.wc.bsd"></a>
+
+# vwc.wc.bsd
+
+<a id="vwc.wc.bsd.BSD"></a>
+
+## BSD Objects
+
+```python
+class BSD(WC)
+```
+
+wc - count lines, words, characters, and bytes
+
+Usage: wc [-clmwL] [file ...]
+
+Count lines, words, characters, and bytes for each input file.
+With no file, or when file is -, read standard input.
+
+<a id="vwc.wc.bsd.BSD.add_platform_args"></a>
+
+#### add\_platform\_args
+
+```python
+def add_platform_args(parser)
+```
+
+BSD-specific arguments.
+
+<a id="vwc.wc.bsd.BSD.print_line"></a>
+
+#### print\_line
+
+```python
+def print_line(counts, filename, file=sys.stdout)
+```
+
+Format and print count line for a file with BSD formatting.
+
+<a id="vwc.wc.bsd.NetBSD"></a>
+
+## NetBSD Objects
+
+```python
+class NetBSD(BSD)
+```
+
+NetBSD wc reports malformed multibyte input and prints failed reads.
+
+<a id="vwc.wc.bsd.OpenBSD"></a>
+
+## OpenBSD Objects
+
+```python
+class OpenBSD(BSD)
+```
+
+OpenBSD wc uses byte words unless -m and supports -h instead of -L.
+
+<a id="vwc.wc.accelerated"></a>
+
+# vwc.wc.accelerated
+
+Optional chunk scanner for the byte-oriented counting paths.
+
+<a id="vwc.wc.gnu"></a>
+
+# vwc.wc.gnu
+
+<a id="vwc.wc.gnu.GNU"></a>
+
+## GNU Objects
+
+```python
+class GNU(Linux)
+```
+
+wc - print newline, word, and byte counts for each file
+
+Usage: wc [OPTION]... [FILE]...
+or: wc [OPTION]... --files0-from=F
+
+Print newline, word, and byte counts for each FILE, and a total line if
+more than one FILE is specified. A word is a non-zero-length sequence of
+characters delimited by white space.
+
+With no FILE, or when FILE is -, read standard input.
+
+<a id="vwc.wc.gnu.GNU.add_platform_args"></a>
+
+#### add\_platform\_args
+
+```python
+def add_platform_args(parser)
+```
+
+GNU-specific arguments.
+
+<a id="vwc.wc.gnu.GNU.native_gnu_version"></a>
+
+#### native\_gnu\_version
+
+```python
+@staticmethod
+def native_gnu_version()
+```
+
+Query the installed wc once; GNU changed invalid-byte word counts in 9.5.
+
+<a id="vwc.wc.gnu.GNU.get_file_names"></a>
+
+#### get\_file\_names
+
+```python
+def get_file_names()
+```
+
+Return list of file names from --files0-from or args.files.
+
+<a id="vwc.wc.gnu.GNU.print_totals"></a>
+
+#### print\_totals
+
+```python
+def print_totals(file=sys.stdout)
+```
+
+Print total counts.
+
+<a id="vwc.wc.gnu.GNU.print_counts"></a>
+
+#### print\_counts
+
+```python
+def print_counts(filename, file=sys.stdout)
+```
+
+Print counts for a file.
+
+<a id="vwc.wc.gnu.GNU.print_line"></a>
+
+#### print\_line
+
+```python
+def print_line(counts, filename, file=sys.stdout)
+```
+
+GNU-specific line printing using width.
+
+<a id="vwc.wc.gnu.GNU.set_column_width"></a>
+
+#### set\_column\_width
+
+```python
+def set_column_width(filenames)
+```
+
+Do the same as compute_number_width in GNU's wc.c
+
+<a id="vwc.wc.gnu.GNU.use_padding"></a>
+
+#### use\_padding
+
+```python
+def use_padding()
+```
+
+GNU-specific padding rules.
+
+<a id="vwc.wc.linux"></a>
+
+# vwc.wc.linux
+
+<a id="vwc.wc.linux.Linux"></a>
+
+## Linux Objects
+
+```python
+class Linux(WC)
+```
+
+Shared base class for BusyBox and GNU, since they have similar
+implementations.
+
+<a id="vwc.wc.linux.Linux.get_file"></a>
+
+#### get\_file
+
+```python
+def get_file(filename)
+```
+
+Open a file for reading.
+In Linux, '-' is treated as a regular file name.
+
+<a id="vwc.wc.linux.Linux.handle_error"></a>
+
+#### handle\_error
+
+```python
+def handle_error(error, filename)
+```
+
+In Linux, print the counts on directories.
+
+<a id="vwc.wc.busybox"></a>
+
+# vwc.wc.busybox
+
+<a id="vwc.wc.busybox.BusyBox"></a>
+
+## BusyBox Objects
+
+```python
+class BusyBox(Linux)
+```
+
+wc - word, line, and byte count
+
+Usage: wc [-cmlwL] [FILE]...
+
+Count lines, words, and bytes for FILEs (or stdin)
+
+<a id="vwc.wc.busybox.BusyBox.add_platform_args"></a>
+
+#### add\_platform\_args
+
+```python
+def add_platform_args(parser)
+```
+
+BusyBox-specific arguments.
+
+<a id="vwc.wc.busybox.BusyBox.print_line"></a>
+
+#### print\_line
+
+```python
+def print_line(counts, filename, file=sys.stdout)
+```
+
+Format and print count line for a file with BusyBox formatting.
+
+<a id="vwc.wc.busybox.BusyBox.use_padding"></a>
+
+#### use\_padding
+
+```python
+def use_padding()
+```
+
+BusyBox-specific padding rules.
+BusyBox uses padding for -L only when processing multiple files.
+
+<a id="vwc.wc"></a>
+
+# vwc.wc
+
+<a id="vwc.wc.get_wc"></a>
+
+#### get\_wc
+
+```python
+def get_wc() -> WC
+```
+
+Get the appropriate platform implementation by checking the $PATH.
+
+We don't use subprocess in here because the project will be flagged as unsafe
+by security tools. Which is fair.
+
 <a id="vwc.wc.wc"></a>
 
 # vwc.wc.wc
@@ -211,253 +498,23 @@ def process_file(filename, file_obj)
 
 Process a file and update instance state.
 
-<a id="vwc.wc"></a>
+<a id="vwc.wc.wc.WC.accelerated_word_mode"></a>
 
-# vwc.wc
-
-<a id="vwc.wc.get_wc"></a>
-
-#### get\_wc
+#### accelerated\_word\_mode
 
 ```python
-def get_wc() -> WC
+def accelerated_word_mode()
 ```
 
-Get the appropriate platform implementation by checking the $PATH.
+Return the byte word rule, or None when word counting needs the line path.
 
-We don't use subprocess in here because the project will be flagged as unsafe
-by security tools. Which is fair.
+<a id="vwc.wc.wc.WC.process_file_accelerated"></a>
 
-<a id="vwc.wc.linux"></a>
-
-# vwc.wc.linux
-
-<a id="vwc.wc.linux.Linux"></a>
-
-## Linux Objects
+#### process\_file\_accelerated
 
 ```python
-class Linux(WC)
+def process_file_accelerated(filename, file_obj)
 ```
 
-Shared base class for BusyBox and GNU, since they have similar
-implementations.
-
-<a id="vwc.wc.linux.Linux.get_file"></a>
-
-#### get\_file
-
-```python
-def get_file(filename)
-```
-
-Open a file for reading.
-In Linux, '-' is treated as a regular file name.
-
-<a id="vwc.wc.linux.Linux.handle_error"></a>
-
-#### handle\_error
-
-```python
-def handle_error(error, filename)
-```
-
-In Linux, print the counts on directories.
-
-<a id="vwc.wc.busybox"></a>
-
-# vwc.wc.busybox
-
-<a id="vwc.wc.busybox.BusyBox"></a>
-
-## BusyBox Objects
-
-```python
-class BusyBox(Linux)
-```
-
-wc - word, line, and byte count
-
-Usage: wc [-cmlwL] [FILE]...
-
-Count lines, words, and bytes for FILEs (or stdin)
-
-<a id="vwc.wc.busybox.BusyBox.add_platform_args"></a>
-
-#### add\_platform\_args
-
-```python
-def add_platform_args(parser)
-```
-
-BusyBox-specific arguments.
-
-<a id="vwc.wc.busybox.BusyBox.print_line"></a>
-
-#### print\_line
-
-```python
-def print_line(counts, filename, file=sys.stdout)
-```
-
-Format and print count line for a file with BusyBox formatting.
-
-<a id="vwc.wc.busybox.BusyBox.use_padding"></a>
-
-#### use\_padding
-
-```python
-def use_padding()
-```
-
-BusyBox-specific padding rules.
-BusyBox uses padding for -L only when processing multiple files.
-
-<a id="vwc.wc.gnu"></a>
-
-# vwc.wc.gnu
-
-<a id="vwc.wc.gnu.GNU"></a>
-
-## GNU Objects
-
-```python
-class GNU(Linux)
-```
-
-wc - print newline, word, and byte counts for each file
-
-Usage: wc [OPTION]... [FILE]...
-or: wc [OPTION]... --files0-from=F
-
-Print newline, word, and byte counts for each FILE, and a total line if
-more than one FILE is specified. A word is a non-zero-length sequence of
-characters delimited by white space.
-
-With no FILE, or when FILE is -, read standard input.
-
-<a id="vwc.wc.gnu.GNU.add_platform_args"></a>
-
-#### add\_platform\_args
-
-```python
-def add_platform_args(parser)
-```
-
-GNU-specific arguments.
-
-<a id="vwc.wc.gnu.GNU.get_file_names"></a>
-
-#### get\_file\_names
-
-```python
-def get_file_names()
-```
-
-Return list of file names from --files0-from or args.files.
-
-<a id="vwc.wc.gnu.GNU.print_totals"></a>
-
-#### print\_totals
-
-```python
-def print_totals(file=sys.stdout)
-```
-
-Print total counts.
-
-<a id="vwc.wc.gnu.GNU.print_counts"></a>
-
-#### print\_counts
-
-```python
-def print_counts(filename, file=sys.stdout)
-```
-
-Print counts for a file.
-
-<a id="vwc.wc.gnu.GNU.print_line"></a>
-
-#### print\_line
-
-```python
-def print_line(counts, filename, file=sys.stdout)
-```
-
-GNU-specific line printing using width.
-
-<a id="vwc.wc.gnu.GNU.set_column_width"></a>
-
-#### set\_column\_width
-
-```python
-def set_column_width(filenames)
-```
-
-Do the same as compute_number_width in GNU's wc.c
-
-<a id="vwc.wc.gnu.GNU.use_padding"></a>
-
-#### use\_padding
-
-```python
-def use_padding()
-```
-
-GNU-specific padding rules.
-
-<a id="vwc.wc.bsd"></a>
-
-# vwc.wc.bsd
-
-<a id="vwc.wc.bsd.BSD"></a>
-
-## BSD Objects
-
-```python
-class BSD(WC)
-```
-
-wc - count lines, words, characters, and bytes
-
-Usage: wc [-clmwL] [file ...]
-
-Count lines, words, characters, and bytes for each input file.
-With no file, or when file is -, read standard input.
-
-<a id="vwc.wc.bsd.BSD.add_platform_args"></a>
-
-#### add\_platform\_args
-
-```python
-def add_platform_args(parser)
-```
-
-BSD-specific arguments.
-
-<a id="vwc.wc.bsd.BSD.print_line"></a>
-
-#### print\_line
-
-```python
-def print_line(counts, filename, file=sys.stdout)
-```
-
-Format and print count line for a file with BSD formatting.
-
-<a id="vwc.main"></a>
-
-# vwc.main
-
-Main entry point for vwc.
-
-<a id="vwc.main.main"></a>
-
-#### main
-
-```python
-def main()
-```
-
-Main entry point.
+Count fixed-size chunks so even a very long line can show progress.
 

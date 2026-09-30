@@ -1,9 +1,9 @@
 # Useful
 
 ```shell
-docker run -it ubuntu          #
-docker run -it madworx/netbsd  # login=root
-docker run -it alpine          #
+podman run -it ubuntu          #
+podman run -it madworx/netbsd  # login=root
+podman run -it alpine          #
 ```
 
 ## Core differences
