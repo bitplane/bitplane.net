@@ -1,3 +1,4 @@
+* [2026-11-06 - 📦 datatypes - readers and writers for AROS](https://github.com/bitplane/datatypes)
 * [2026-09-21 - 🖌️ pillow-wmf - load WMF files in Pillow](/dev/python/pillow-wmf)
 * [2026-07-29 - 🗜️ xfh - unpacker for Python](/dev/python/xfh)
 * [2026-07-29 - 💬 narrator-ts - Amiga narrator for TypeScript](https://www.npmjs.com/package/narrator-ts)
