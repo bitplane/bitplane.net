@@ -23,6 +23,8 @@ that's a fair comment.
   loading Windows Metafiles in pure Python
 * 🆘 [winhlp](winhlp) -
   a Windows 95 era .HLP file decoder.
+* 🖼️ [pillow-zx-spectrum](pillow-zx-spectrum) -
+  Loading SCREEN$ from ZX Spectrum tape dumps
 * 📦 [Crunch-Mania](crunchmania) -
   another Amiga compression format.
 * 📃 [CFF MOST](cff-most) -
