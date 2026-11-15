@@ -2,7 +2,7 @@
 
 Got a new laptop 'cause my old XPS-13 has a dead battery and the charger. It's
 the
-[2023 Razer Blade 14](https://www.amazon.co.uk/Razer-Blade-14-Display-Windows/dp/B09Q6D7H7V).
+[2022 Razer Blade 14](https://www.amazon.co.uk/Razer-Blade-14-Display-Windows/dp/B09Q6D7H7V).
 
 ![pic](laptop.webp)
 
