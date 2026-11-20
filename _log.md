@@ -1,3 +1,4 @@
+* [2026-11-20 - 🖌️ paintrs - ms paint clone in Rust](https://github.com/bitplane/paintrs)
 * [2026-11-06 - 📦 datatypes - readers and writers for AROS](https://github.com/bitplane/datatypes)
 * [2026-09-21 - 🖌️ pillow-wmf - load WMF files in Pillow](/dev/python/pillow-wmf)
 * [2026-07-29 - 🗜️ xfh - unpacker for Python](/dev/python/xfh)
