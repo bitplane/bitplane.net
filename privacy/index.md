@@ -1,6 +1,6 @@
 # Privacy
 
-Canary: I do everything I can to balance privacy, security
+Canary: I do everything I can to protect your privacy.
 
 ## Android Apps
 
