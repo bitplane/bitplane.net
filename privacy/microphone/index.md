@@ -12,4 +12,4 @@ do not contain personal information either.
 Downloads for non-Google Android phones is available on
 [GitHub](https://github.com/bitplane/Microphone), along with the full source
 code. Feel free to audit the source, learn from it, or use it to make your own
-microphone applications.
+microphone application.
